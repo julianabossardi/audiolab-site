@@ -1,0 +1,14 @@
+---
+layout: base.njk
+title: Sobre — AudioLab
+---
+<h1>{{ sobre.titulo }}</h1>
+<p>{{ sobre.tagline }}</p>
+
+<ul>
+  {% for t in sobre.topicos %}
+  <li>
+    <b>{{ t.titulo }}</b>{% if t.texto %} — {{ t.texto }}{% endif %}
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,12 @@
+{
+  "name": "audiolab-site",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

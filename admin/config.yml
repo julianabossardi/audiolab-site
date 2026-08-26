@@ -1,0 +1,116 @@
+backend:
+  name: github
+  repo: SEU-USUARIO/audiolab-site # troque quando criar o repositório real no GitHub
+  branch: main
+
+# Isso faz o Decap usar o servidor local (decap-server) em vez do GitHub
+# enquanto você estiver testando em localhost.
+local_backend: true
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "projetos"
+    label: "Projetos"
+    label_singular: "Projeto"
+    folder: "content/projetos"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - { label: "Nome do projeto", name: "nome", widget: "string" }
+      - {
+          label: "Frase de resumo",
+          name: "tagline",
+          widget: "string",
+          hint: "Uma linha curta — o que é esse projeto",
+        }
+      - label: "Categoria"
+        name: "tag"
+        widget: "select"
+        options:
+          ["Educação e ciência", "Jornalismo", "Cultura", "Esporte"]
+      - {
+          label: "Imagem de capa",
+          name: "capa",
+          widget: "image",
+          required: false,
+        }
+      - label: "Estatísticas"
+        name: "estatisticas"
+        widget: "list"
+        required: false
+        max: 3
+        hint: "Até 3 números de destaque (ex.: 75k visualizações)"
+        fields:
+          - { label: "Número", name: "numero", widget: "string" }
+          - { label: "Rótulo", name: "rotulo", widget: "string" }
+      - label: "Conteúdos / episódios"
+        name: "conteudos"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Título", name: "titulo", widget: "string" }
+          - {
+              label: "Link (opcional)",
+              name: "link",
+              widget: "string",
+              required: false,
+            }
+      - {
+          label: "Vídeo (link do YouTube, opcional)",
+          name: "video",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Descrição completa",
+          name: "descricao",
+          widget: "markdown",
+          required: false,
+        }
+
+  - name: "formacao"
+    label: "Formação"
+    files:
+      - name: "pagina"
+        label: "Página Formação"
+        file: "content/formacao.json"
+        format: "json"
+        fields:
+          - { label: "Título", name: "titulo", widget: "string" }
+          - { label: "Frase de resumo", name: "tagline", widget: "string" }
+          - label: "Tópicos"
+            name: "topicos"
+            widget: "list"
+            fields:
+              - { label: "Título do tópico", name: "titulo", widget: "string" }
+              - {
+                  label: "Texto (opcional)",
+                  name: "texto",
+                  widget: "text",
+                  required: false,
+                }
+
+  - name: "sobre"
+    label: "Sobre"
+    files:
+      - name: "pagina"
+        label: "Página Sobre"
+        file: "content/sobre.json"
+        format: "json"
+        fields:
+          - { label: "Título", name: "titulo", widget: "string" }
+          - { label: "Frase de resumo", name: "tagline", widget: "string" }
+          - label: "Tópicos"
+            name: "topicos"
+            widget: "list"
+            fields:
+              - { label: "Título do tópico", name: "titulo", widget: "string" }
+              - {
+                  label: "Texto (opcional)",
+                  name: "texto",
+                  widget: "text",
+                  required: false,
+                }

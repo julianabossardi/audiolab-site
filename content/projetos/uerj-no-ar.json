@@ -1,0 +1,15 @@
+{
+  "nome": "UERJ no Ar",
+  "tagline": "frase de resumo do que ele é",
+  "tag": "Educação e ciência",
+  "estatisticas": [
+    { "numero": "##", "rotulo": "número 1" },
+    { "numero": "##", "rotulo": "número 2" }
+  ],
+  "conteudos": [
+    { "titulo": "conteúdo / episódio", "link": "" },
+    { "titulo": "conteúdo / episódio", "link": "" }
+  ],
+  "video": "",
+  "descricao": "Este é um projeto de exemplo, pré-carregado só pra mostrar o fluxo funcionando. Edite ou apague pelo /admin — os campos reais de cada projeto entram na Semana 4."
+}

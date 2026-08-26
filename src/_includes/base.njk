@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title or "AudioLab" }}</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 720px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #1a1a1a;
+        line-height: 1.5;
+      }
+      a { color: inherit; }
+      nav a { margin-right: 16px; text-decoration: none; font-weight: 600; }
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        padding: 2px 8px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        margin-bottom: 8px;
+      }
+      .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+      }
+      .card img { max-width: 100%; border-radius: 6px; }
+      .stat-row { display: flex; gap: 12px; margin: 16px 0; }
+      .stat {
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 8px 12px;
+        text-align: center;
+      }
+      .stat b { display: block; font-size: 18px; }
+      .note {
+        color: #888;
+        font-size: 13px;
+        margin-top: 40px;
+        border-top: 1px solid #eee;
+        padding-top: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/">AudioLab</a>
+      <a href="/formacao/">Formação</a>
+      <a href="/sobre/">Sobre</a>
+      <a href="/admin/">editar conteúdo →</a>
+    </nav>
+    <hr />
+    {{ content | safe }}
+    <p class="note">
+      Protótipo de teste — o visual ainda não é o final (isso vem nas
+      próximas semanas). Aqui a gente valida só o mecanismo: editar em
+      /admin e ver aparecer aqui.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: AudioLab — Projetos (teste)
+---
+<h1>Projetos</h1>
+
+{% if projetos.length == 0 %}
+<p>Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
+{% endif %}
+
+{% for p in projetos %}
+<div class="card">
+  {% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
+  <span class="tag">{{ p.tag }}</span>
+  <h2><a href="/projetos/{{ p.slug }}/">{{ p.nome }}</a></h2>
+  <p>{{ p.tagline }}</p>
+</div>
+{% endfor %}

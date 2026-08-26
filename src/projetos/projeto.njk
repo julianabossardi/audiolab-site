@@ -1,0 +1,37 @@
+---
+layout: base.njk
+pagination:
+  data: projetos
+  size: 1
+  alias: p
+permalink: "/projetos/{{ p.slug }}/"
+---
+<h1>{{ p.nome }}</h1>
+<span class="tag">{{ p.tag }}</span>
+<p>{{ p.tagline }}</p>
+
+{% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
+
+{% if p.estatisticas.length %}
+<div class="stat-row">
+  {% for s in p.estatisticas %}
+  <div class="stat"><b>{{ s.numero }}</b>{{ s.rotulo }}</div>
+  {% endfor %}
+</div>
+{% endif %} {% if p.video %}
+<p><a href="{{ p.video }}" target="_blank">▶ assistir vídeo</a></p>
+{% endif %} {% if p.descricao %}
+<div>{{ p.descricao | safe }}</div>
+{% endif %} {% if p.conteudos.length %}
+<h3>Conteúdos</h3>
+<ul>
+  {% for c in p.conteudos %}
+  <li>
+    {% if c.link %}<a href="{{ c.link }}" target="_blank">{{ c.titulo }}</a
+      >{% else %}{{ c.titulo }}{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<p><a href="/">← voltar</a></p>
