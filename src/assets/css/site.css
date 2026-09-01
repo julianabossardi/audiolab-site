@@ -1,0 +1,182 @@
+/* Shared chrome for the "inner" pages (Sobre, Educacional, projeto) —
+   same brand tokens as the home hero, kept intentionally simple:
+   normal scrolling document, no fixed-viewport/app-shell tricks. */
+
+:root {
+  --navy: #024567;
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+  --header-logo-h: clamp(44px, 6vw, 56px);
+  --partner-logo-h: clamp(32px, 4.5vw, 42px);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ── header (same component as the home page) ─────────── */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 32px;
+  font-family: var(--font-display);
+}
+.brand-logo img { height: var(--header-logo-h); width: auto; }
+.main-nav { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.nav-link {
+  padding: 7px 20px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border: 1px solid rgba(61, 224, 192, 0.55);
+  color: rgba(200, 255, 245, 0.92);
+  background: rgba(26, 184, 160, 0.16);
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link:focus-visible {
+  background: rgba(26, 184, 160, 0.32);
+  border-color: rgba(100, 240, 210, 0.75);
+  color: #fff;
+}
+.nav-link.is-active {
+  background: rgba(26, 184, 160, 0.4);
+  border-color: rgba(100, 240, 210, 0.9);
+  color: #fff;
+}
+.header-partner { display: flex; justify-content: flex-end; }
+.header-partner img { height: var(--partner-logo-h); width: auto; }
+@media (max-width: 640px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "brand partner" "nav nav";
+    row-gap: 12px;
+    padding: 16px 20px;
+  }
+  .brand-logo { grid-area: brand; }
+  .header-partner { grid-area: partner; }
+  .main-nav { grid-area: nav; }
+}
+
+/* ── content ────────────────────────────────────────────── */
+.content { flex: 1 1 auto; width: 100%; max-width: 720px; margin: 0 auto; padding: 24px 24px 64px; }
+.content h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 0 0 8px; }
+.content .lead { font-size: 1.05rem; color: rgba(255, 255, 255, 0.72); margin: 0 0 28px; }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(100, 240, 210, 0.9);
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.back-link:hover { color: #fff; }
+
+.tag-pill {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(61, 224, 192, 0.4);
+  color: rgba(100, 240, 210, 0.9);
+  margin-bottom: 14px;
+}
+
+.cover { width: 100%; border-radius: 10px; margin: 0 0 24px; aspect-ratio: 16 / 9; object-fit: cover; }
+
+.stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 24px; }
+.stat {
+  border: 1px solid rgba(61, 224, 192, 0.3);
+  background: rgba(2, 54, 82, 0.35);
+  border-radius: 8px;
+  padding: 10px 16px;
+  text-align: center;
+  min-width: 96px;
+}
+.stat b { display: block; font-family: var(--font-display); font-size: 1.3rem; color: #fff; }
+.stat span { font-size: 11px; color: rgba(255, 255, 255, 0.6); }
+
+.btn {
+  display: inline-block;
+  padding: 9px 20px;
+  border-radius: 3px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(61, 224, 192, 0.55);
+  color: rgba(200, 255, 245, 0.92);
+  background: rgba(26, 184, 160, 0.16);
+  transition: all 0.25s;
+  margin: 0 0 24px;
+}
+.btn:hover { background: rgba(26, 184, 160, 0.32); border-color: rgba(100, 240, 210, 0.75); color: #fff; }
+
+.card {
+  background: rgba(2, 54, 82, 0.35);
+  border: 1px solid rgba(61, 224, 192, 0.22);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+.card h3 { font-family: var(--font-display); margin: 0 0 4px; font-size: 1.02rem; }
+.card p { margin: 0; color: rgba(255, 255, 255, 0.68); font-size: 0.92rem; }
+
+.content ul.plain { list-style: none; padding: 0; margin: 0 0 24px; }
+.content ul.plain li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+}
+.content ul.plain li a { color: rgba(100, 240, 210, 0.9); text-decoration: none; }
+.content ul.plain li a:hover { text-decoration: underline; }
+
+.content .note {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+  margin-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+}
+.content .note a { color: rgba(100, 240, 210, 0.9); }
+
+/* ── footer (same as home) ─────────────────────────────── */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 24px;
+  padding: 14px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(1, 30, 46, 0.6);
+  flex: 0 0 auto;
+}
+.site-footer .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; }
+.site-footer span, .site-footer a {
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.36);
+  text-decoration: none;
+}
+.site-footer a:hover { color: rgba(100, 240, 210, 0.9); }

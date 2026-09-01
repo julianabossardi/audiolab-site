@@ -4,62 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title or "AudioLab" }}</title>
-    <style>
-      body {
-        font-family: system-ui, sans-serif;
-        max-width: 720px;
-        margin: 40px auto;
-        padding: 0 20px;
-        color: #1a1a1a;
-        line-height: 1.5;
-      }
-      a { color: inherit; }
-      nav a { margin-right: 16px; text-decoration: none; font-weight: 600; }
-      .tag {
-        display: inline-block;
-        font-size: 12px;
-        padding: 2px 8px;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        margin-bottom: 8px;
-      }
-      .card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 16px;
-        margin-bottom: 12px;
-      }
-      .card img { max-width: 100%; border-radius: 6px; }
-      .stat-row { display: flex; gap: 12px; margin: 16px 0; }
-      .stat {
-        border: 1px solid #eee;
-        border-radius: 6px;
-        padding: 8px 12px;
-        text-align: center;
-      }
-      .stat b { display: block; font-size: 18px; }
-      .note {
-        color: #888;
-        font-size: 13px;
-        margin-top: 40px;
-        border-top: 1px solid #eee;
-        padding-top: 12px;
-      }
-    </style>
+    <link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
   </head>
   <body>
-    <nav>
-      <a href="/">AudioLab</a>
-      <a href="/formacao/">Formação</a>
-      <a href="/sobre/">Sobre</a>
-      <a href="/admin/">editar conteúdo →</a>
-    </nav>
-    <hr />
-    {{ content | safe }}
-    <p class="note">
-      Protótipo de teste — o visual ainda não é o final (isso vem nas
-      próximas semanas). Aqui a gente valida só o mecanismo: editar em
-      /admin e ver aparecer aqui.
-    </p>
+    <header class="site-header">
+      <a class="brand-logo" href="/" aria-label="AudioLab — início">
+        <img src="/assets/img/logo-audiolab-sm.webp" alt="AudioLab" />
+      </a>
+      <nav class="main-nav">
+        <a class="nav-link{% if page.url == '/sobre/' %} is-active{% endif %}" href="/sobre/">Sobre</a>
+        <a class="nav-link{% if page.url == '/formacao/' %} is-active{% endif %}" href="/formacao/">Educacional</a>
+      </nav>
+      <div class="header-partner">
+        <img src="/assets/img/logo-uerj-fcs.png" alt="UERJ · Faculdade de Comunicação Social" />
+      </div>
+    </header>
+
+    <main class="content">{{ content | safe }}</main>
+
+    <footer class="site-footer">
+      <span>Rua São Francisco Xavier, 524 — Pavilhão João Lyra Filho, sala 9.017 · Rio de Janeiro, RJ</span>
+      <span class="meta">
+        <a href="mailto:audiolab@fcs.uerj.br">audiolab@fcs.uerj.br</a>
+        <span>FCS / UERJ</span>
+        <a href="/admin/">editar conteúdo →</a>
+      </span>
+    </footer>
   </body>
 </html>

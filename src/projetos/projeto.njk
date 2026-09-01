@@ -5,33 +5,39 @@ pagination:
   size: 1
   alias: p
 permalink: "/projetos/{{ p.slug }}/"
+eleventyComputed:
+  title: "{{ p.nome }} — AudioLab"
 ---
-<h1>{{ p.nome }}</h1>
-<span class="tag">{{ p.tag }}</span>
-<p>{{ p.tagline }}</p>
+<a class="back-link" href="/">‹ AudioLab</a>
 
-{% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
+{% if p.capa %}<img class="cover" src="{{ p.capa }}" alt="" />{% endif %}
+{% if p.tag %}<span class="tag-pill">{{ p.tag }}</span>{% endif %}
+<h1>{{ p.nome }}</h1>
+<p class="lead">{{ p.tagline }}</p>
 
 {% if p.estatisticas.length %}
 <div class="stat-row">
   {% for s in p.estatisticas %}
-  <div class="stat"><b>{{ s.numero }}</b>{{ s.rotulo }}</div>
+  <div class="stat"><b>{{ s.numero }}</b><span>{{ s.rotulo }}</span></div>
   {% endfor %}
 </div>
-{% endif %} {% if p.video %}
-<p><a href="{{ p.video }}" target="_blank">▶ assistir vídeo</a></p>
-{% endif %} {% if p.descricao %}
+{% endif %}
+
+{% if p.video %}
+<p><a class="btn" href="{{ p.video }}" target="_blank" rel="noopener">▶ assistir vídeo</a></p>
+{% endif %}
+
+{% if p.descricao %}
 <div>{{ p.descricao | safe }}</div>
-{% endif %} {% if p.conteudos.length %}
+{% endif %}
+
+{% if p.conteudos.length %}
 <h3>Conteúdos</h3>
-<ul>
+<ul class="plain">
   {% for c in p.conteudos %}
   <li>
-    {% if c.link %}<a href="{{ c.link }}" target="_blank">{{ c.titulo }}</a
-      >{% else %}{{ c.titulo }}{% endif %}
+    {% if c.link %}<a href="{{ c.link }}" target="_blank" rel="noopener">{{ c.titulo }}</a>{% else %}{{ c.titulo }}{% endif %}
   </li>
   {% endfor %}
 </ul>
 {% endif %}
-
-<p><a href="/">← voltar</a></p>

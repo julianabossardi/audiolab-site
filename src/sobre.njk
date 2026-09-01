@@ -2,13 +2,13 @@
 layout: base.njk
 title: Sobre — AudioLab
 ---
+<a class="back-link" href="/">‹ AudioLab</a>
 <h1>{{ sobre.titulo }}</h1>
-<p>{{ sobre.tagline }}</p>
+<p class="lead">{{ sobre.tagline }}</p>
 
-<ul>
-  {% for t in sobre.topicos %}
-  <li>
-    <b>{{ t.titulo }}</b>{% if t.texto %} — {{ t.texto }}{% endif %}
-  </li>
-  {% endfor %}
-</ul>
+{% for t in sobre.topicos %}
+<div class="card">
+  <h3>{{ t.titulo }}</h3>
+  {% if t.texto %}<p>{{ t.texto }}</p>{% endif %}
+</div>
+{% endfor %}
