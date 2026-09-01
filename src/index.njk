@@ -53,7 +53,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     --bubble-d: clamp(58px, 12.5vmin, 100px);
     --social-d: clamp(30px, 6vmin, 42px);
     --hero-logo-w: clamp(238px, 40vmin, 525px);    /* +25% */
-    --zone-h: clamp(160px, 32vmin, 330px);
+    --zone-h: clamp(198px, calc(32vmin + 1cm), 368px); /* +1cm, real height so the dots fill down to the footer */
     --zone-h-sub: clamp(100px, 22vmin, 190px);
   }
   * { box-sizing: border-box; }
@@ -198,9 +198,6 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   /* ── waveform zone (present on every screen size) ──────── */
   .wave-zone { position: relative; height: var(--zone-h); flex: 0 0 auto; }
   .wave-zone--sub { height: var(--zone-h-sub); margin-top: auto; }
-  /* the home wave motif (dots, bubbles and the arrow button all live
-     inside this box) sits a bit higher on screen, closer to the hero */
-  [data-wave-zone="home"] { transform: translateY(-1cm); }
   .wave-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
   .project-node {
