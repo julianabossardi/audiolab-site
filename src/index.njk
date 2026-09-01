@@ -1,11 +1,39 @@
 ---
 title: AudioLab — Laboratório de Áudio FCS/UERJ
 ---
+{% macro siteHeader(variant) %}
+<header class="site-header">
+  {% if variant == "projects" %}
+  <button type="button" class="brand-logo back-btn" data-go="home" aria-label="Voltar para a página inicial">
+    <span class="back-arrow" aria-hidden="true">‹</span>
+    <img src="/assets/img/logo-audiolab-sm.webp" alt="AudioLab" />
+  </button>
+  {% else %}
+  <a class="brand-logo" href="/" aria-label="AudioLab — início">
+    <img src="/assets/img/logo-audiolab-sm.webp" alt="AudioLab" />
+  </a>
+  {% endif %}
+  <nav class="main-nav">
+    <a class="nav-link" href="/sobre/">Sobre</a>
+    <a class="nav-link" href="/formacao/">Educacional</a>
+  </nav>
+  <div class="header-partner">
+    <img src="/assets/img/logo-uerj-fcs.png" alt="UERJ · Faculdade de Comunicação Social" />
+  </div>
+</header>
+{% endmacro %}
+
+{% macro projectNode(src, alt, tagText, leftPct, animClass, isEscola) %}
+<button type="button" class="project-node {{ animClass }}{% if isEscola %} is-escola{% endif %}" data-go="projects" data-target="{{ leftPct }}" style="left: {{ leftPct }}%">
+  <span class="bubble project-bubble"><img src="{{ src }}" alt="{{ alt }}" /></span>
+  <span class="tag-chip">{{ tagText }}</span>
+</button>
+{% endmacro %}
 <!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>{{ title }}</title>
 <meta name="description" content="AudioLab — Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
 <link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
@@ -15,15 +43,25 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
 <style>
   :root {
     --navy: #024567;
-    --navy-deep: #011e2e;
-    --mint: rgba(61, 224, 192, 1);
-    --mint-bright: rgba(100, 240, 210, 1);
-    --mint-mid: rgba(26, 184, 160, 1);
     --font-display: "Poppins", system-ui, sans-serif;
     --font-body: "Nunito Sans", system-ui, sans-serif;
+
+    /* sized in vmin so header, bubbles and the hero mark scale down
+       together on short *and* narrow screens instead of overflowing */
+    --header-logo-h: clamp(48px, 8vmin, 62px);
+    --partner-logo-h: clamp(36px, 6vmin, 46px);
+    --bubble-d: clamp(58px, 12.5vmin, 100px);
+    --social-d: clamp(30px, 6vmin, 42px);
+    --hero-logo-w: clamp(190px, 32vmin, 420px);
+    --zone-h: clamp(160px, 32vmin, 330px);
+    --zone-h-sub: clamp(100px, 22vmin, 190px);
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    overflow: hidden; /* the app is a fixed, single screen — no page scroll */
+    overscroll-behavior: none;
+  }
   body {
     background: var(--navy);
     color: #fff;
@@ -32,6 +70,18 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   }
   a { color: inherit; }
   img { max-width: 100%; display: block; }
+  button { font: inherit; }
+
+  /* ── the sliding two-panel app shell ───────────────────── */
+  .viewport { width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; position: relative; }
+  .track {
+    display: flex;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .track.show-projects { transform: translateX(-50%); }
+  .page { flex: 0 0 50%; width: 50%; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
 
   /* ── header ─────────────────────────────────────────── */
   .site-header {
@@ -39,9 +89,22 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 16px;
-    padding: 20px 32px 8px;
+    padding: 1.6vmin 3vmin 0.4vmin;
+    flex: 0 0 auto;
   }
-  .brand-logo img { height: 40px; width: auto; }
+  .brand-logo { display: flex; align-items: center; gap: 8px; }
+  .brand-logo img { height: var(--header-logo-h); width: auto; }
+  .back-btn { background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: #fff; justify-self: start; }
+  .back-arrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(20px, 4vmin, 28px);
+    line-height: 1;
+    color: rgba(100, 240, 210, 0.9);
+    transition: transform 0.25s;
+  }
+  .back-btn:hover .back-arrow, .back-btn:focus-visible .back-arrow { transform: translateX(-4px); }
+
   .main-nav { display: flex; align-items: center; justify-content: center; gap: 8px; }
   .nav-link {
     padding: 7px 20px;
@@ -54,6 +117,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     color: rgba(200, 255, 245, 0.92);
     background: rgba(26, 184, 160, 0.16);
     transition: all 0.25s;
+    white-space: nowrap;
   }
   .nav-link:hover, .nav-link:focus-visible {
     background: rgba(26, 184, 160, 0.32);
@@ -61,21 +125,20 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     color: #fff;
   }
   .header-partner { display: flex; justify-content: flex-end; }
-  .header-partner img { height: 32px; width: auto; }
+  .header-partner img { height: var(--partner-logo-h); width: auto; }
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     .site-header {
       grid-template-columns: 1fr auto;
       grid-template-areas: "brand partner" "nav nav";
-      row-gap: 14px;
-      padding: 16px 20px 8px;
+      row-gap: 10px;
     }
-    .brand-logo { grid-area: brand; }
+    .brand-logo, .back-btn { grid-area: brand; }
     .header-partner { grid-area: partner; }
     .main-nav { grid-area: nav; }
   }
 
-  /* ── shared bubble ──────────────────────────────────── */
+  /* ── shared bubble / tag chip ──────────────────────────── */
   .bubble {
     border-radius: 50%;
     background: rgba(2, 54, 82, 0.28);
@@ -88,14 +151,13 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     justify-content: center;
     color: rgba(26, 184, 160, 0.8);
     transition: all 0.35s;
-    text-decoration: none;
   }
   .bubble:hover, .bubble:focus-visible {
     border-color: rgba(100, 240, 210, 0.75);
     box-shadow: 0 0 30px rgba(61, 224, 192, 0.22), 0 4px 18px rgba(0, 0, 0, 0.36);
     background: rgba(2, 54, 82, 0.5);
     color: rgba(100, 240, 210, 1);
-    transform: scale(1.1);
+    transform: scale(1.08);
   }
   .tag-chip {
     position: relative;
@@ -105,7 +167,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     border: 1px solid rgba(61, 224, 192, 0.4);
     border-radius: 3px;
     padding: 3px 9px;
-    font-size: 8px;
+    font-size: clamp(7.5px, 1.6vmin, 9px);
     font-weight: 700;
     letter-spacing: 0.04em;
     color: rgba(100, 240, 210, 0.88);
@@ -119,33 +181,40 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 24px 12px 8px;
+    padding: 0.6vmin 1.5vmin;
+    flex: 1 1 auto;
+    min-height: 0;
   }
-  .social-rail { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 0 20px; flex: 0 0 auto; }
-  .social-rail .bubble { width: 40px; height: 40px; }
-  .social-rail svg { width: 18px; height: 18px; }
-  .hero-logo-wrap { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
-  .hero-logo { height: auto; width: clamp(220px, 34vw, 420px); user-select: none; }
-  .hero-spacer { width: 68px; flex: 0 0 auto; }
-  @media (max-width: 768px) {
-    .hero-spacer { display: none; }
-    .social-rail { padding: 0 14px; gap: 10px; }
-    .social-rail .bubble { width: 34px; height: 34px; }
-  }
+  .social-rail { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6vmin; padding: 0 1.6vmin; flex: 0 0 auto; }
+  .social-rail .bubble { width: var(--social-d); height: var(--social-d); }
+  .social-rail svg { width: 46%; height: 46%; }
+  .social-rail a { text-decoration: none; }
 
-  /* ── waveform zone (desktop / tablet) ──────────────── */
-  .wave-zone { position: relative; height: 250px; margin-top: 8px; }
-  .wave-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-logo-wrap { flex: 1 1 auto; min-width: 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+  .hero-logo { max-width: var(--hero-logo-w); max-height: 100%; width: auto; height: auto; object-fit: contain; user-select: none; }
+  .hero-spacer { width: var(--social-d); flex: 0 0 auto; }
+  @media (max-width: 640px) { .hero-spacer { display: none; } }
+
+  /* ── waveform zone (present on every screen size) ──────── */
+  .wave-zone { position: relative; height: var(--zone-h); flex: 0 0 auto; }
+  .wave-zone--sub { height: var(--zone-h-sub); margin-top: auto; }
+  .wave-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
   .project-node {
     position: absolute;
-    top: 32px;
+    top: 12%;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
     transform: translateX(-50%);
   }
-  .project-node .bubble { width: 96px; height: 96px; }
+  .project-node .bubble { width: var(--bubble-d); height: var(--bubble-d); }
   .project-node img { width: 78%; height: 78%; object-fit: contain; }
   .project-node.is-escola img { filter: brightness(0) invert(1); }
   .node-a { animation: float-a 3.2s ease-in-out 0s infinite; }
@@ -157,70 +226,44 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
 
   .arrow-node {
     position: absolute;
-    right: 5%;
-    top: 165px;
+    right: 4%;
+    top: 64%;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    text-decoration: none;
-    transition: opacity 0.3s;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
   }
-  .arrow-node:hover, .arrow-node:focus-visible { opacity: 0.7; }
+  .arrow-node:hover, .arrow-node:focus-visible { opacity: 0.75; transform: translateX(3px); }
+  .arrow-node .bubble { width: clamp(30px, 6vmin, 38px); height: clamp(30px, 6vmin, 38px); border-radius: 8px; }
   .arrow-node .tag-chip { margin-top: -8px; border-color: rgba(61, 224, 192, 0.45); color: rgba(80, 235, 200, 1); }
 
-  @media (max-width: 767.98px) {
-    .wave-zone { display: none; }
-  }
-
-  /* ── mobile fallback for the floating project bubbles ─
-     the desktop version places these by absolute % offsets
-     tuned for a wide canvas; below 768px they collided with
-     the viewport edge and got clipped/unreachable, so on
-     narrow screens they reflow into a plain centered row. */
-  .mobile-projects {
-    display: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 28px 22px;
-    padding: 12px 20px 8px;
-  }
-  .mobile-projects .bubble { width: 76px; height: 76px; }
-  .mobile-projects img { width: 78%; height: 78%; object-fit: contain; }
-  .mobile-projects .is-escola img { filter: brightness(0) invert(1); }
-  .mobile-project-node { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
-  .mobile-project-node .tag-chip { margin-top: -8px; }
-  .mobile-more {
-    display: none;
-    width: max-content;
-    margin: 8px auto 28px;
-  }
-  @media (max-width: 767.98px) {
-    .mobile-projects { display: flex; }
-    .mobile-more { display: block; }
-  }
-
-  /* ── projects section ───────────────────────────────── */
-  .projects-section { padding: 48px 32px 64px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
-  .projects-heading { font-size: clamp(1.4rem, 3vw, 2.1rem); font-weight: 700; margin: 0 0 8px; }
+  /* ── projects page ──────────────────────────────────── */
+  .projects-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 0.5vmin 3vmin 1.5vmin; }
+  .projects-heading { font-size: clamp(1.2rem, 3.6vmin, 1.9rem); font-weight: 700; margin: 0 0 6px; }
   .projects-note {
     font-family: var(--font-body);
     color: rgba(255, 255, 255, 0.5);
-    font-size: 13px;
-    margin: 0 0 32px;
+    font-size: clamp(11px, 1.8vmin, 13px);
+    margin: 0 0 1.6vmin;
   }
   .projects-note a { color: rgba(100, 240, 210, 0.95); text-decoration: underline; }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
   .project-card {
     background: rgba(2, 54, 82, 0.35);
     border: 1px solid rgba(61, 224, 192, 0.22);
     border-radius: 10px;
-    padding: 20px;
+    padding: 16px;
     transition: all 0.25s;
   }
   .project-card:hover { border-color: rgba(100, 240, 210, 0.5); background: rgba(2, 54, 82, 0.55); }
-  .project-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 14px; }
+  .project-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 12px; }
   .project-card .tag-pill {
     display: inline-block;
     font-family: var(--font-body);
@@ -231,26 +274,27 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     border-radius: 20px;
     border: 1px solid rgba(61, 224, 192, 0.4);
     color: rgba(100, 240, 210, 0.9);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
-  .project-card h3 { margin: 4px 0 6px; font-size: 1.1rem; }
+  .project-card h3 { margin: 4px 0 6px; font-size: 1.05rem; }
   .project-card h3 a { text-decoration: none; }
   .project-card h3 a:hover { color: rgba(100, 240, 210, 1); }
-  .project-card p { font-family: var(--font-body); color: rgba(255, 255, 255, 0.62); font-size: 0.92rem; margin: 0; line-height: 1.5; }
+  .project-card p { font-family: var(--font-body); color: rgba(255, 255, 255, 0.62); font-size: 0.88rem; margin: 0; line-height: 1.5; }
   .projects-empty { font-family: var(--font-body); color: rgba(255, 255, 255, 0.6); }
   .projects-empty a { color: rgba(100, 240, 210, 1); }
 
-  /* ── footer ─────────────────────────────────────────── */
+  /* ── footer (home page only) ───────────────────────────── */
   .site-footer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 8px 24px;
-    padding: 16px 32px;
+    gap: 4px 24px;
+    padding: 0.8vmin 3vmin;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(1, 30, 46, 0.6);
     font-family: var(--font-body);
+    flex: 0 0 auto;
   }
   .site-footer .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; }
   .site-footer span, .site-footer a {
@@ -264,210 +308,221 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
 </head>
 <body>
 
-  <header class="site-header">
-    <a class="brand-logo" href="/" aria-label="AudioLab — início">
-      <img src="/assets/img/logo-audiolab-sm.webp" alt="AudioLab" />
-    </a>
-    <nav class="main-nav">
-      <a class="nav-link" href="/sobre/">Sobre</a>
-      <a class="nav-link" href="/formacao/">Educacional</a>
-    </nav>
-    <div class="header-partner">
-      <img src="/assets/img/logo-uerj-fcs.png" alt="UERJ · Faculdade de Comunicação Social" />
+  <div class="viewport">
+    <div class="track" id="track">
+
+      <!-- ── PAGE 1 · HOME ──────────────────────────────── -->
+      <section class="page page-home">
+        {{ siteHeader("home") }}
+
+        <main class="hero">
+          <aside class="social-rail">
+            <a class="bubble" href="#" aria-label="Spotify">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            </a>
+            <a class="bubble" href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a class="bubble" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a class="bubble" href="mailto:audiolab@fcs.uerj.br" aria-label="E-mail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+          </aside>
+
+          <div class="hero-logo-wrap">
+            <img class="hero-logo" src="/assets/img/logo-audiolab-lg.webp" alt="AudioLab — Laboratório de Áudio FCS/UERJ" />
+          </div>
+
+          <div class="hero-spacer"></div>
+        </main>
+
+        <div class="wave-zone" data-wave-zone="home">
+          <canvas class="wave-canvas" data-wave-canvas></canvas>
+
+          {{ projectNode("/assets/img/logo-bada.webp", "BADA UERJ", "BadaUERJ", 20, "node-a", false) }}
+          {{ projectNode("/assets/img/logo-atelie.webp", "Ateliê do Podcast", "Ateliê do Podcast", 50, "node-b", false) }}
+          {{ projectNode("/assets/img/logo-escola.webp", "Escola de Narradores", "Escola de Narradores", 76, "node-c", true) }}
+
+          <button type="button" class="arrow-node" data-go="projects" aria-label="Ver mais projetos">
+            <span class="bubble">
+              <svg width="60%" height="60%" viewBox="0 0 34 40" fill="none">
+                <circle cx="13" cy="11" r="2.8" fill="rgba(100,240,210,0.95)" />
+                <circle cx="20" cy="18" r="2.8" fill="rgba(100,240,210,0.95)" />
+                <circle cx="13" cy="25" r="2.8" fill="rgba(100,240,210,0.95)" />
+              </svg>
+            </span>
+            <span class="tag-chip">Mais projetos</span>
+          </button>
+        </div>
+
+        <footer class="site-footer">
+          <span>Rua São Francisco Xavier, 524 — Pavilhão João Lyra Filho, sala 9.017 · Rio de Janeiro, RJ</span>
+          <span class="meta">
+            <a href="mailto:audiolab@fcs.uerj.br">audiolab@fcs.uerj.br</a>
+            <span>FCS / UERJ</span>
+            <a href="/admin/">editar conteúdo →</a>
+          </span>
+        </footer>
+      </section>
+
+      <!-- ── PAGE 2 · PROJETOS ──────────────────────────── -->
+      <section class="page page-projects">
+        {{ siteHeader("projects") }}
+
+        <div class="projects-body">
+          <h1 class="projects-heading">Projetos</h1>
+          <p class="projects-note">
+            Os cards abaixo vêm direto do <a href="/admin/">/admin</a> — ainda é conteúdo de teste,
+            só pra ilustrar o mecanismo.
+          </p>
+
+          {% if projetos.length == 0 %}
+          <p class="projects-empty">Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
+          {% else %}
+          <div class="projects-grid">
+            {% for p in projetos %}
+            <article class="project-card">
+              {% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
+              {% if p.tag %}<span class="tag-pill">{{ p.tag }}</span>{% endif %}
+              <h3><a href="/projetos/{{ p.slug }}/">{{ p.nome }}</a></h3>
+              <p>{{ p.tagline }}</p>
+            </article>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="wave-zone wave-zone--sub" data-wave-zone="projects">
+          <canvas class="wave-canvas" data-wave-canvas></canvas>
+        </div>
+      </section>
+
     </div>
-  </header>
-
-  <main class="hero">
-    <aside class="social-rail">
-      <a class="bubble" href="#" aria-label="Spotify">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      </a>
-      <a class="bubble" href="#" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      </a>
-      <a class="bubble" href="#" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-      </a>
-      <a class="bubble" href="mailto:audiolab@fcs.uerj.br" aria-label="E-mail">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      </a>
-    </aside>
-
-    <div class="hero-logo-wrap">
-      <img class="hero-logo" src="/assets/img/logo-audiolab-lg.webp" alt="AudioLab — Laboratório de Áudio FCS/UERJ" />
-    </div>
-
-    <div class="hero-spacer"></div>
-  </main>
-
-  <!-- desktop/tablet: animated waveform with floating project bubbles -->
-  <div class="wave-zone" data-wave-zone>
-    <canvas class="wave-canvas" data-wave-canvas></canvas>
-
-    <a class="project-node node-a" style="left: 19.74%" href="#projetos">
-      <span class="bubble"><img src="/assets/img/logo-bada.webp" alt="BADA UERJ" /></span>
-      <span class="tag-chip">BadaUERJ</span>
-    </a>
-    <a class="project-node node-b" style="left: 51.32%" href="#projetos">
-      <span class="bubble"><img src="/assets/img/logo-atelie.webp" alt="Ateliê do Podcast" /></span>
-      <span class="tag-chip">Ateliê do Podcast</span>
-    </a>
-    <a class="project-node node-c is-escola" style="left: 81.58%" href="#projetos">
-      <span class="bubble"><img src="/assets/img/logo-escola.webp" alt="Escola de Narradores" /></span>
-      <span class="tag-chip">Escola de Narradores</span>
-    </a>
-
-    <a class="arrow-node" href="#projetos">
-      <span class="bubble" style="width:34px;height:34px;border-radius:7px;">
-        <svg width="20" height="24" viewBox="0 0 34 40" fill="none">
-          <circle cx="13" cy="11" r="2.8" fill="rgba(100,240,210,0.95)" />
-          <circle cx="20" cy="18" r="2.8" fill="rgba(100,240,210,0.95)" />
-          <circle cx="13" cy="25" r="2.8" fill="rgba(100,240,210,0.95)" />
-        </svg>
-      </span>
-      <span class="tag-chip">Mais projetos</span>
-    </a>
   </div>
-
-  <!-- mobile: the same three projects, reflowed into a simple row so
-       nothing gets clipped off-screen like it did in the fixed
-       percentage/column layout above -->
-  <div class="mobile-projects">
-    <a class="mobile-project-node" href="#projetos">
-      <span class="bubble"><img src="/assets/img/logo-bada.webp" alt="BADA UERJ" /></span>
-      <span class="tag-chip">BadaUERJ</span>
-    </a>
-    <a class="mobile-project-node" href="#projetos">
-      <span class="bubble"><img src="/assets/img/logo-atelie.webp" alt="Ateliê do Podcast" /></span>
-      <span class="tag-chip">Ateliê do Podcast</span>
-    </a>
-    <a class="mobile-project-node is-escola" href="#projetos">
-      <span class="bubble"><img src="/assets/img/logo-escola.webp" alt="Escola de Narradores" /></span>
-      <span class="tag-chip">Escola de Narradores</span>
-    </a>
-  </div>
-  <a class="nav-link mobile-more" href="#projetos">Mais projetos ↓</a>
-
-  <section class="projects-section" id="projetos">
-    <h1 class="projects-heading">Projetos</h1>
-    <p class="projects-note">
-      A página inicial já está no visual final — os projetos abaixo ainda são conteúdo de
-      teste. Edite ou adicione pelo <a href="/admin/">/admin</a>.
-    </p>
-
-    {% if projetos.length == 0 %}
-    <p class="projects-empty">Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
-    {% else %}
-    <div class="projects-grid">
-      {% for p in projetos %}
-      <article class="project-card">
-        {% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
-        {% if p.tag %}<span class="tag-pill">{{ p.tag }}</span>{% endif %}
-        <h3><a href="/projetos/{{ p.slug }}/">{{ p.nome }}</a></h3>
-        <p>{{ p.tagline }}</p>
-      </article>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </section>
-
-  <footer class="site-footer">
-    <span>Rua São Francisco Xavier, 524 — Pavilhão João Lyra Filho, sala 9.017 · Rio de Janeiro, RJ</span>
-    <span class="meta">
-      <a href="mailto:audiolab@fcs.uerj.br">audiolab@fcs.uerj.br</a>
-      <span>FCS / UERJ</span>
-      <a href="/admin/">editar conteúdo →</a>
-    </span>
-  </footer>
 
   <script>
   (function () {
-    var NUM_COLS = 76, DOT_R = 3, DOT_STEP = 10;
-    var PROJECT_COLS = [14, 38, 61];
-    var PROJECT_COL_SET = new Set(PROJECT_COLS);
-    var PROJECT_WIDE_SET = new Set(PROJECT_COLS.reduce(function (acc, c) {
-      return acc.concat([c - 1, c, c + 1]);
-    }, []));
+    /* ── waveform: a small factory so both panels can run their own
+       instance. columns near a "target" element (the floating project
+       bubbles) rise to meet that element's bottom edge instead of the
+       old fixed 0–1 fraction, which always left a gap under the tags. */
+    function createWave(zone, canvas, targetSelector) {
+      var ctx = canvas.getContext && canvas.getContext("2d");
+      if (!ctx) return { start: function () {}, stop: function () {} };
 
-    function colHeight(col, t) {
-      if (PROJECT_COL_SET.has(col)) return 0.38 + 0.05 * Math.sin(t * 0.55 + col * 0.38);
-      if (PROJECT_WIDE_SET.has(col)) return 0.30 + 0.06 * Math.sin(t * 0.60 + col * 0.38);
-      var a = Math.sin(t * 0.78 + col * 0.21) * 0.22;
-      var b = Math.sin(t * 1.35 + col * 0.16) * 0.13;
-      var c = Math.sin(t * 0.40 + col * 0.67) * 0.07;
-      return Math.max(0.04, Math.min(0.60, 0.28 + a + b + c));
-    }
+      var dpr = 1, W = 0, H = 0, numCols = 48, raf = null;
+      var dotR = 3, dotStep = 10;
+      var targets = [];
 
-    function dotColor(frac, isCenter, isWide) {
-      if (isCenter || isWide) {
-        if (frac > 0.70) return "rgba(100,240,210,0.98)";
-        if (frac > 0.45) return "rgba(61,224,192,0.92)";
-        if (frac > 0.22) return "rgba(26,184,160,0.82)";
-        return "rgba(10,122,106,0.68)";
-      }
-      if (frac > 0.52) return "rgba(77,194,240,0.70)";
-      if (frac > 0.26) return "rgba(26,143,196,0.58)";
-      return "rgba(14,95,138,0.48)";
-    }
-
-    var zone = document.querySelector("[data-wave-zone]");
-    var canvas = document.querySelector("[data-wave-canvas]");
-    if (!zone || !canvas || !canvas.getContext) return;
-
-    var ctx = canvas.getContext("2d");
-    var dpr = 1, W = 0, H = 0, raf = null;
-
-    function resize() {
-      dpr = window.devicePixelRatio || 1;
-      W = zone.clientWidth;
-      H = zone.clientHeight;
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
-    }
-
-    function draw(ts) {
-      var t = ts / 1000;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, W, H);
-      var colW = W / NUM_COLS;
-      var maxDots = Math.floor(H / DOT_STEP);
-      for (var col = 0; col < NUM_COLS; col++) {
-        var h = colHeight(col, t);
-        var activeDots = Math.max(1, Math.round(h * maxDots));
-        var cx = (col + 0.5) * colW;
-        var isCenter = PROJECT_COL_SET.has(col);
-        var isWide = !isCenter && PROJECT_WIDE_SET.has(col);
-        for (var d = 0; d < activeDots; d++) {
-          var cy = H - DOT_R - 2 - d * DOT_STEP;
-          var frac = d / maxDots;
-          ctx.fillStyle = dotColor(frac, isCenter, isWide);
-          ctx.beginPath();
-          ctx.arc(cx, cy, DOT_R, 0, Math.PI * 2);
-          ctx.fill();
+      function dotColor(frac, isPeak, isWide) {
+        if (isPeak || isWide) {
+          if (frac > 0.70) return "rgba(100,240,210,0.98)";
+          if (frac > 0.45) return "rgba(61,224,192,0.92)";
+          if (frac > 0.22) return "rgba(26,184,160,0.82)";
+          return "rgba(10,122,106,0.68)";
         }
+        if (frac > 0.52) return "rgba(77,194,240,0.70)";
+        if (frac > 0.26) return "rgba(26,143,196,0.58)";
+        return "rgba(14,95,138,0.48)";
       }
-      raf = requestAnimationFrame(draw);
+
+      function measure() {
+        dpr = window.devicePixelRatio || 1;
+        W = zone.clientWidth;
+        H = zone.clientHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+
+        // scale dot size/spacing with the zone's own height, so the
+        // motif reads visibly smaller on the compact mobile zone
+        // instead of staying a fixed absolute size.
+        var s = Math.max(0.55, Math.min(1.1, H / 260));
+        dotR = 3 * s;
+        dotStep = Math.max(6, 10 * s);
+        numCols = Math.max(26, Math.min(90, Math.round(W / 13)));
+
+        var zr = zone.getBoundingClientRect();
+        var els = targetSelector ? zone.querySelectorAll(targetSelector) : [];
+        targets = Array.prototype.map.call(els, function (el) {
+          var r = el.getBoundingClientRect();
+          return { x: r.left + r.width / 2 - zr.left, bottom: r.bottom - zr.top };
+        });
+      }
+
+      function classify(cx, colW) {
+        var best = null, bestD = Infinity;
+        for (var i = 0; i < targets.length; i++) {
+          var d = Math.abs(cx - targets[i].x);
+          if (d < bestD) { bestD = d; best = targets[i]; }
+        }
+        if (!best) return { kind: "plain" };
+        if (bestD < colW * 1.3) return { kind: "peak", t: best };
+        if (bestD < colW * 4) return { kind: "wide", t: best };
+        return { kind: "plain" };
+      }
+
+      function draw(ts) {
+        var t = ts / 1000;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+        var colW = W / numCols;
+        var maxDots = Math.max(1, Math.floor(H / dotStep));
+
+        for (var col = 0; col < numCols; col++) {
+          var cx = (col + 0.5) * colW;
+          var c = classify(cx, colW);
+          var hpx;
+          if (c.kind === "peak") {
+            hpx = Math.max(28, H - c.t.bottom + 16) + 7 * Math.sin(t * 0.55 + col * 0.38);
+          } else if (c.kind === "wide") {
+            hpx = Math.max(20, (H - c.t.bottom + 16) * 0.68) + 9 * Math.sin(t * 0.60 + col * 0.38);
+          } else {
+            var a = Math.sin(t * 0.78 + col * 0.21) * 0.24;
+            var b = Math.sin(t * 1.35 + col * 0.16) * 0.15;
+            var cc = Math.sin(t * 0.40 + col * 0.67) * 0.09;
+            hpx = Math.max(0.08, Math.min(0.78, 0.38 + a + b + cc)) * H;
+          }
+          var activeDots = Math.max(1, Math.min(maxDots, Math.round(hpx / dotStep)));
+          for (var d = 0; d < activeDots; d++) {
+            var cy = H - dotR - 2 - d * dotStep;
+            var frac = d / maxDots;
+            ctx.fillStyle = dotColor(frac, c.kind === "peak", c.kind === "wide");
+            ctx.beginPath();
+            ctx.arc(cx, cy, dotR, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        raf = requestAnimationFrame(draw);
+      }
+
+      var ro = new ResizeObserver(measure);
+      ro.observe(zone);
+
+      return {
+        start: function () { measure(); if (!raf) raf = requestAnimationFrame(draw); },
+        stop: function () { if (raf) { cancelAnimationFrame(raf); raf = null; } },
+      };
     }
 
-    // Only run the canvas loop while the waveform zone is actually
-    // visible (it's hidden below 768px) so mobile doesn't pay for a
-    // hidden animation loop.
-    var mq = window.matchMedia("(min-width: 768px)");
-    function syncToMode(e) {
-      if (e.matches) {
-        resize();
-        if (!raf) raf = requestAnimationFrame(draw);
-      } else if (raf) {
-        cancelAnimationFrame(raf);
-        raf = null;
-      }
-    }
-    syncToMode(mq);
-    if (mq.addEventListener) mq.addEventListener("change", syncToMode);
-    else mq.addListener(syncToMode);
+    document.querySelectorAll("[data-wave-zone]").forEach(function (zone) {
+      var canvas = zone.querySelector("[data-wave-canvas]");
+      var hasBubbles = zone.dataset.waveZone === "home";
+      var wave = createWave(zone, canvas, hasBubbles ? ".project-node .bubble" : null);
+      wave.start();
+    });
 
-    var ro = new ResizeObserver(function () { if (raf) resize(); });
-    ro.observe(zone);
+    /* ── the two-panel slide ───────────────────────────── */
+    var track = document.getElementById("track");
+    document.querySelectorAll("[data-go]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        track.classList.toggle("show-projects", btn.getAttribute("data-go") === "projects");
+      });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") track.classList.remove("show-projects");
+    });
   })();
   </script>
 </body>
