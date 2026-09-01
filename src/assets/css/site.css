@@ -4,6 +4,9 @@
 
 :root {
   --navy: #024567;
+  --mint-bright: #64f0d2;
+  --mint-deep: #1ab8a0;
+  --ink: #012636;
   --font-display: "Poppins", system-ui, sans-serif;
   --font-body: "Nunito Sans", system-ui, sans-serif;
   --header-logo-h: clamp(44px, 6vw, 56px);
@@ -36,27 +39,27 @@ img { max-width: 100%; display: block; }
 .brand-logo img { height: var(--header-logo-h); width: auto; }
 .main-nav { display: flex; align-items: center; justify-content: center; gap: 8px; }
 .nav-link {
-  padding: 7px 20px;
-  border-radius: 3px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  border: 1px solid rgba(61, 224, 192, 0.55);
-  color: rgba(200, 255, 245, 0.92);
-  background: rgba(26, 184, 160, 0.16);
+  border: none;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--mint-bright), var(--mint-deep));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
   transition: all 0.25s;
   white-space: nowrap;
 }
 .nav-link:hover, .nav-link:focus-visible {
-  background: rgba(26, 184, 160, 0.32);
-  border-color: rgba(100, 240, 210, 0.75);
-  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 16px rgba(61, 224, 192, 0.4);
+  filter: brightness(1.08);
 }
 .nav-link.is-active {
-  background: rgba(26, 184, 160, 0.4);
-  border-color: rgba(100, 240, 210, 0.9);
-  color: #fff;
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 1px;
 }
 .header-partner { display: flex; justify-content: flex-end; }
 .header-partner img { height: var(--partner-logo-h); width: auto; }
@@ -176,7 +179,10 @@ img { max-width: 100%; display: block; }
 .site-footer span, .site-footer a {
   font-size: 10px;
   letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.36);
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
 }
-.site-footer a:hover { color: rgba(100, 240, 210, 0.9); }
+.site-footer a:hover { color: rgba(100, 240, 210, 1); }
+.site-footer .credit { color: rgba(255, 255, 255, 0.55); }
+.site-footer .credit a { color: rgba(255, 255, 255, 0.78); text-decoration: underline; }
+.site-footer .credit a:hover { color: rgba(100, 240, 210, 1); }
