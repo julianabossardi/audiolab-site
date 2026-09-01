@@ -1,0 +1,14 @@
+{
+  "nome": "Nome",
+  "tagline": "resumo do projeto",
+  "tag": "Esporte",
+  "estatisticas": [],
+  "conteudos": [
+    {
+      "titulo": "Ep 1",
+      "link": "https://www.youtube.com/watch?v=502ILHjX9EE"
+    }
+  ],
+  "video": "https://www.youtube.com/watch?v=502ILHjX9EE",
+  "descricao": "teste"
+}
