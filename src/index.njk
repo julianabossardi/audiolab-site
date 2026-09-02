@@ -27,7 +27,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
        (14%) + bubble height + the staggered tags + the arrow all have
        to stack without collision below 760px, and that stack needs
        ~320px of room at the current sizes. */
-    --zone-h: clamp(340px, 30vw, 380px);
+    --zone-h: clamp(340px, 30vw, 380px); /* web — do not touch, already dialed in */
   }
   html, body { margin: 0; padding: 0; }
   body { background: var(--navy); }
@@ -64,7 +64,17 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .hline { display: block; font-size: clamp(2rem, 5.5vw, 6.2rem); }
   .hline-1 { animation: hero-line-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
   .hline-2 { animation: hero-line-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both; }
+  .hline-3 { animation: hero-line-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.62s both; }
   @keyframes hero-line-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  /* two headline builds: desktop keeps "AudioLab é a UERJ / em todo
+     lugar"; mobile re-wraps to a shorter 3rd line so nothing gets
+     tight — only one is ever in the layout, the other is display:none */
+  .hero-desktop { display: block; }
+  .hero-mobile { display: none; }
+  @media (max-width: 760px) {
+    .hero-desktop { display: none; }
+    .hero-mobile { display: block; }
+  }
   .grad-text {
     background: linear-gradient(110deg, rgba(61, 224, 192, 1) 0%, rgba(120, 255, 220, 1) 55%, rgba(61, 210, 180, 1) 100%);
     -webkit-background-clip: text;
@@ -122,6 +132,12 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  @media (max-width: 760px) {
+    /* the tags need to read in full on mobile — give them much more
+       room than the desktop safety cap allows (the actual anti-overlap
+       protection there is now each node's own staggered height below) */
+    .tag-chip { font-size: 11.5px; padding: 5px 15px; max-width: 62vw; white-space: normal; text-align: center; }
+  }
 
   .project-node {
     position: absolute;
@@ -147,22 +163,26 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   @keyframes float-b { 0%, 100% { transform: translateX(-50%) translateY(-4px); } 50% { transform: translateX(-50%) translateY(4px); } }
   @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(-2px); } 50% { transform: translateX(-50%) translateY(-9px); } }
   @media (max-width: 760px) {
-    .node-a { left: 14%; }
-    .node-c { left: 82%; } /* keep the bubbles spread apart — pulling this in collided it with node-b's bubble instead */
-    /* +5% on mobile only — desktop tags were already right */
-    .tag-chip { font-size: 11.5px; padding: 5px 15px; max-width: 40vw; }
-    /* stagger each tag to a different height instead of shrinking them
-       to fit side by side — avoids overlap regardless of label length */
-    .node-a .tag-chip { margin-top: -10px; }
-    .node-b .tag-chip { margin-top: 28px; }
-    .node-c .tag-chip { margin-top: 66px; }
+    /* mobile needs a taller zone than web — the three nodes now stack
+       down the height of it (see below), each with room to show its
+       full tag text, plus the arrow underneath all three */
+    :root { --zone-h: 680px; }
+    .node-a { left: 16%; }
+    .node-c { left: 84%; }
+    /* the tag now stays attached right under its own bubble (the base
+       -10px from .tag-chip) — instead of pulling the *tag* away from
+       its bubble, each whole node (bubble+tag together) sits at a
+       different height, which is also what makes room for the full,
+       untruncated label above */
+    .node-a { top: 10%; }
+    .node-b { top: 36%; }
+    .node-c { top: 62%; }
   }
   @media (max-width: 340px) {
     /* very narrow phones (e.g. 320px) don't have room for the Escola
        bubble to clear the social rail at the regular mobile size —
-       shrink every bubble and pull node-c in a bit more for clearance */
+       shrink every bubble a bit more for clearance */
     :root { --bubble-d: 60px; }
-    .node-c { left: 74%; }
   }
 
   .arrow-node {
@@ -182,12 +202,14 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .arrow-node .bubble { width: clamp(40px, 5.6vw, 50px); height: clamp(48px, 6.6vw, 59px); border-radius: 8px; }
   .arrow-node .tag-chip { margin-top: 0; border-color: rgba(61, 224, 192, 0.45); color: rgba(80, 235, 200, 1); }
   @keyframes float-arrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-  /* the shorter mobile zone brings the arrow's standard top:54% up into
-     the staggered Escola tag — nudge it down just enough to clear that,
-     same right-side spot otherwise. Must come after the base rule above
-     so it actually wins at equal specificity. */
+  @keyframes float-arrow-centered { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-7px); } }
+  /* node-c now sits much lower (see above, so its tag has room to show
+     in full) and claims the same right-hand corner the arrow used on
+     desktop — recenter the arrow under everything instead of fighting
+     it for that corner. Must come after the base rule above so it
+     actually wins at equal specificity. */
   @media (max-width: 760px) {
-    .arrow-node { top: 72%; }
+    .arrow-node { right: auto; left: 50%; top: 90%; animation-name: float-arrow-centered; }
   }
 
   /* ── news section ───────────────────────────────────── */
@@ -262,8 +284,15 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     <section class="hero-section">
       <div class="hero-text-wrap">
         <h1 class="hero-headline">
-          <span class="hline hline-1 grad-text">AudioLab é a UERJ</span>
-          <span class="hline hline-2"><span class="grad-text">em </span><span class="white-italic">todo lugar</span></span>
+          <span class="hero-desktop">
+            <span class="hline hline-1 grad-text">AudioLab é a UERJ</span>
+            <span class="hline hline-2"><span class="grad-text">em </span><span class="white-italic">todo lugar</span></span>
+          </span>
+          <span class="hero-mobile">
+            <span class="hline hline-1 grad-text">AudioLab é</span>
+            <span class="hline hline-2 grad-text">a UERJ em</span>
+            <span class="hline hline-3 white-italic">todo lugar</span>
+          </span>
         </h1>
       </div>
 

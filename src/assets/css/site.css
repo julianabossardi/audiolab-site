@@ -80,25 +80,36 @@ img { max-width: 100%; display: block; }
 .nl-short { display: none; }
 
 @media (max-width: 760px) {
-  /* two rows instead of one-per-line — keeps the whole header in the
-     top strip instead of stacking logo / nav / partner separately */
+  /* logos stacked in one narrow column on the left (AudioLab over UERJ)
+     instead of opposite corners — frees the rest of the row for nav */
   .site-header {
     position: fixed;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "brand partner" "nav nav";
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "brand nav" "partner nav";
+    align-items: center;
     min-height: 0;
-    padding: 14px 20px 8px;
-    row-gap: 8px;
+    padding: 12px 20px;
+    row-gap: 4px;
+    column-gap: 12px;
     background: none; /* stay transparent like desktop — solid was a mistake */
   }
   .brand-logo { grid-area: brand; }
-  .header-right { grid-area: partner; justify-content: flex-end; }
-  .main-nav { grid-area: nav; flex-wrap: nowrap; justify-content: flex-start; }
-  .nav-link { padding: 0 11px; font-size: 10px; }
+  .header-right { grid-area: partner; justify-content: flex-start; }
+  .main-nav {
+    grid-area: nav;
+    align-self: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+  .nav-link { padding: 0 10px; font-size: 10px; }
   .nl-full { display: none; }
   .nl-short { display: inline; }
+  /* was a visible divider with its own margin between Educacional and
+     Newsletter — dropped on mobile so the three pills sit closer */
+  .main-nav .nav-divider { display: none; }
 
-  /* the social icon boxes move to a floating column on the right (below)
+  /* the social icon boxes move to a floating column on the left (below)
      so the top bar stays short and the icons stay easy to reach */
   .header-right .icon-boxes, .header-right .nav-divider { display: none; }
 
@@ -109,8 +120,7 @@ img { max-width: 100%; display: block; }
     gap: 10px;
     position: fixed;
     right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 34%;
     z-index: 90;
   }
 }
