@@ -1,6 +1,8 @@
 {
-  "titulo": "Bem-vindo às notícias do AudioLab",
+  "titulo": "Novo episodio do Ateliê podcast!",
   "subtitulo": "Esta é uma notícia de exemplo, pré-carregada só pra mostrar o carrossel funcionando.",
-  "data": "2026-09-01",
-  "corpo": "Edite ou apague esta notícia pelo /admin — as notícias reais entram conforme forem publicadas. Cada notícia criada aqui aparece automaticamente no carrossel \"Últimas notícias\" da página inicial e ganha sua própria página."
+  "data": "2026-09-02T00:32:00.000-03:00",
+  "corpo": "Edite ou apague esta notícia pelo /admin — as notícias reais entram conforme forem publicadas. Cada notícia criada aqui aparece automaticamente no carrossel \"Últimas notícias\" da página inicial e ganha sua própria página.\n\n![](/uploads/captura-de-tela-2026-09-02-às-00.31.06.png \"texto\")\n\ntexto \n\n# texto\n\nhttps://open.spotify.com/show/40MkBIJ8HfyrAhzd0S2SgM<https://open.spotify.com/show/40MkBIJ8HfyrAhzd0S2SgM>",
+  "capa": "/uploads/captura-de-tela-2026-09-02-às-00.31.06.png",
+  "link": ""
 }

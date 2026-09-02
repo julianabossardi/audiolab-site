@@ -1,10 +1,16 @@
 backend:
   name: github
-  repo: SEU-USUARIO/audiolab-site # troque quando criar o repositório real no GitHub
+  repo: julianabossardi/audiolab-site
   branch: main
+  # o GitHub não permite login direto do navegador — esse proxy gratuito
+  # da Netlify faz a troca do código de autorização pelo token. Precisa
+  # de um app OAuth do GitHub configurado lá primeiro (passo a passo
+  # combinado com a Juliana em conversa com o Claude).
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Isso faz o Decap usar o servidor local (decap-server) em vez do GitHub
-# enquanto você estiver testando em localhost.
+# enquanto você estiver testando em localhost. Não afeta o site publicado.
 local_backend: true
 
 media_folder: "uploads"
