@@ -1,8 +1,8 @@
 ---
 title: AudioLab — Laboratório de Áudio FCS/UERJ
 ---
-{% macro projectNode(src, alt, tagText, leftPct, animClass, isEscola, href) %}
-<a class="project-node {{ animClass }}{% if isEscola %} is-escola{% endif %}" href="{{ href if href else '/projetos/' }}" style="--x: {{ leftPct }}%">
+{% macro projectNode(src, alt, tagText, animClass, isEscola, href) %}
+<a class="project-node {{ animClass }}{% if isEscola %} is-escola{% endif %}" href="{{ href if href else '/projetos/' }}">
   <span class="bubble project-bubble"><img src="{{ src }}" alt="{{ alt }}" /></span>
   <span class="tag-chip">{{ tagText }}</span>
 </a>
@@ -21,8 +21,13 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
 <link rel="stylesheet" href="/assets/css/site.css" />
 <style>
   :root {
-    --bubble-d: clamp(74px, 10.35vw, 122px); /* +15% */
-    --zone-h: clamp(360px, 44vw, 580px);     /* doubled */
+    --bubble-d: clamp(70px, 9.85vw, 116px); /* -5% */
+    /* was doubled — that overshot past the fold on web and ran long on
+       mobile, dialed back. The 320px floor isn't arbitrary: bubble top
+       (14%) + bubble height + the staggered tags + the arrow all have
+       to stack without collision below 760px, and that stack needs
+       ~320px of room at the current sizes. */
+    --zone-h: clamp(340px, 30vw, 380px);
   }
   html, body { margin: 0; padding: 0; }
   body { background: var(--navy); }
@@ -53,7 +58,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     align-items: center;
     position: relative;
     z-index: 5;
-    padding: calc(var(--header-h) + 32px) 6vw 24px 6vw;
+    padding: calc(var(--header-h) + 56px) 6vw 24px 6vw;
   }
   .hero-headline { margin: 0; font-family: var(--font-heading); font-weight: 700; line-height: 1.08; letter-spacing: -0.01em; }
   .hline { display: block; font-size: clamp(2rem, 5.5vw, 6.2rem); }
@@ -70,7 +75,8 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .white-italic { color: #fff; font-style: italic; filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15)); }
 
   @media (max-width: 640px) {
-    .hero-text-wrap { padding-left: 24px; padding-right: 24px; }
+    /* the extra top gap above is a web-only tweak — keep mobile as it was */
+    .hero-text-wrap { padding-top: calc(var(--header-h) + 32px); padding-left: 24px; padding-right: 24px; }
   }
 
   /* ── waveform zone ──────────────────────────────────── */
@@ -119,7 +125,6 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
 
   .project-node {
     position: absolute;
-    left: var(--x);
     top: 14%;
     z-index: 10;
     display: flex;
@@ -128,19 +133,36 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     text-decoration: none;
     transform: translateX(-50%);
   }
+  /* fixed x per bubble — plain classes, not an inline custom property,
+     so the mobile media query below can actually override them (a
+     custom property set via style="" always wins over any stylesheet
+     rule, media query or not, so that approach silently never worked) */
+  .node-a { left: 20%; animation: float-a 3.2s ease-in-out 0s infinite; }
+  .node-b { left: 50%; animation: float-b 3.8s ease-in-out 0.9s infinite; }
+  .node-c { left: 76%; animation: float-c 4.4s ease-in-out 1.7s infinite; }
   .project-node .bubble { width: var(--bubble-d); height: var(--bubble-d); }
   .project-node img { width: 78%; height: 78%; object-fit: contain; }
   .project-node.is-escola img { filter: brightness(0) invert(1); }
-  .node-a { animation: float-a 3.2s ease-in-out 0s infinite; }
-  .node-b { animation: float-b 3.8s ease-in-out 0.9s infinite; }
-  .node-c { animation: float-c 4.4s ease-in-out 1.7s infinite; }
   @keyframes float-a { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
   @keyframes float-b { 0%, 100% { transform: translateX(-50%) translateY(-4px); } 50% { transform: translateX(-50%) translateY(4px); } }
   @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(-2px); } 50% { transform: translateX(-50%) translateY(-9px); } }
-  @media (max-width: 420px) {
-    .node-a { --x: 14%; }
-    .node-c { --x: 87%; }
-    .tag-chip { font-size: 7.5px; padding: 3px 7px; max-width: 26vw; }
+  @media (max-width: 760px) {
+    .node-a { left: 14%; }
+    .node-c { left: 82%; } /* keep the bubbles spread apart — pulling this in collided it with node-b's bubble instead */
+    /* +5% on mobile only — desktop tags were already right */
+    .tag-chip { font-size: 11.5px; padding: 5px 15px; max-width: 40vw; }
+    /* stagger each tag to a different height instead of shrinking them
+       to fit side by side — avoids overlap regardless of label length */
+    .node-a .tag-chip { margin-top: -10px; }
+    .node-b .tag-chip { margin-top: 28px; }
+    .node-c .tag-chip { margin-top: 66px; }
+  }
+  @media (max-width: 340px) {
+    /* very narrow phones (e.g. 320px) don't have room for the Escola
+       bubble to clear the social rail at the regular mobile size —
+       shrink every bubble and pull node-c in a bit more for clearance */
+    :root { --bubble-d: 60px; }
+    .node-c { left: 74%; }
   }
 
   .arrow-node {
@@ -160,15 +182,12 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .arrow-node .bubble { width: clamp(40px, 5.6vw, 50px); height: clamp(48px, 6.6vw, 59px); border-radius: 8px; }
   .arrow-node .tag-chip { margin-top: 0; border-color: rgba(61, 224, 192, 0.45); color: rgba(80, 235, 200, 1); }
   @keyframes float-arrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-  /* same float, but keeps the node horizontally centered — needed
-     wherever .arrow-node is also given left:50% (the animation's own
-     transform otherwise replaces the centering transform each frame) */
-  @keyframes float-arrow-centered { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-7px); } }
-
-  /* the mobile social rail floats on the right edge — move the arrow
-     off that edge (and low, past the bubbles) so they never collide */
+  /* the shorter mobile zone brings the arrow's standard top:54% up into
+     the staggered Escola tag — nudge it down just enough to clear that,
+     same right-side spot otherwise. Must come after the base rule above
+     so it actually wins at equal specificity. */
   @media (max-width: 760px) {
-    .arrow-node { right: auto; left: 50%; top: 88%; animation-name: float-arrow-centered; }
+    .arrow-node { top: 72%; }
   }
 
   /* ── news section ───────────────────────────────────── */
@@ -255,9 +274,9 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
         {% set atelieProject = projetos | findByNome("Ateliê do Podcast") %}
         {% set escolaProject = projetos | findByNome("Escola de Narradores") %}
 
-        {{ projectNode("/assets/img/logo-bada.webp", "BADA UERJ", "BadaUERJ", 20, "node-a", false, ("/projetos/" + badaProject.slug + "/") if badaProject else null) }}
-        {{ projectNode("/assets/img/logo-atelie.webp", "Ateliê do Podcast", "Ateliê do Podcast", 50, "node-b", false, ("/projetos/" + atelieProject.slug + "/") if atelieProject else null) }}
-        {{ projectNode("/assets/img/logo-escola.webp", "Escola de Narradores", "Escola de Narradores", 76, "node-c", true, ("/projetos/" + escolaProject.slug + "/") if escolaProject else null) }}
+        {{ projectNode("/assets/img/logo-bada.webp", "BADA UERJ", "BadaUERJ", "node-a", false, ("/projetos/" + badaProject.slug + "/") if badaProject else null) }}
+        {{ projectNode("/assets/img/logo-atelie.webp", "Ateliê do Podcast", "Ateliê do Podcast", "node-b", false, ("/projetos/" + atelieProject.slug + "/") if atelieProject else null) }}
+        {{ projectNode("/assets/img/logo-escola.webp", "Escola de Narradores", "Escola de Narradores", "node-c", true, ("/projetos/" + escolaProject.slug + "/") if escolaProject else null) }}
 
         <a class="arrow-node" href="/projetos/" aria-label="Ver mais projetos">
           <span class="bubble">
@@ -319,6 +338,9 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
       var dotR = 3, dotStep = 10;
       var targets = [];
 
+      // one teal/mint family for every column — the old palette switched
+      // ambient columns to blue, which read as an inconsistent, darker
+      // patch once the zone got taller and more of it was on screen
       function dotColor(frac, isPeak, isWide) {
         if (isPeak || isWide) {
           if (frac > 0.70) return "rgba(100,240,210,0.98)";
@@ -326,9 +348,9 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
           if (frac > 0.22) return "rgba(26,184,160,0.82)";
           return "rgba(10,122,106,0.68)";
         }
-        if (frac > 0.52) return "rgba(77,194,240,0.70)";
-        if (frac > 0.26) return "rgba(26,143,196,0.58)";
-        return "rgba(14,95,138,0.48)";
+        if (frac > 0.52) return "rgba(61,224,192,0.55)";
+        if (frac > 0.26) return "rgba(26,184,160,0.42)";
+        return "rgba(10,122,106,0.30)";
       }
 
       function measure() {
