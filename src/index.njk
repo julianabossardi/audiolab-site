@@ -21,8 +21,8 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
 <link rel="stylesheet" href="/assets/css/site.css" />
 <style>
   :root {
-    --bubble-d: clamp(64px, 9vw, 106px);
-    --zone-h: clamp(180px, 22vw, 290px);
+    --bubble-d: clamp(74px, 10.35vw, 122px); /* +15% */
+    --zone-h: clamp(360px, 44vw, 580px);     /* doubled */
   }
   html, body { margin: 0; padding: 0; }
   body { background: var(--navy); }
@@ -104,8 +104,8 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     background: rgba(1, 24, 38, 0.92);
     border: 1px solid rgba(61, 224, 192, 0.4);
     border-radius: 3px;
-    padding: 4px 11px;
-    font-size: clamp(9px, 1vw, 11px);
+    padding: 5px 14px;                 /* +25% */
+    font-size: clamp(11px, 1.25vw, 14px); /* +25% */
     font-weight: 700;
     letter-spacing: 0.04em;
     color: rgba(100, 240, 210, 0.88);
@@ -120,7 +120,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .project-node {
     position: absolute;
     left: var(--x);
-    top: 18%;
+    top: 14%;
     z-index: 10;
     display: flex;
     flex-direction: column;
@@ -146,23 +146,35 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .arrow-node {
     position: absolute;
     right: 4%;
-    top: 62%;
+    top: 54%;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
     text-decoration: none;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s;
+    animation: float-arrow 3.6s ease-in-out 0.4s infinite;
   }
-  .arrow-node:hover, .arrow-node:focus-visible { opacity: 0.75; transform: translateX(3px); }
-  .arrow-node .bubble { width: clamp(32px, 4.5vw, 40px); height: clamp(38px, 5.3vw, 47px); border-radius: 8px; }
-  .arrow-node .tag-chip { margin-top: -8px; border-color: rgba(61, 224, 192, 0.45); color: rgba(80, 235, 200, 1); }
+  .arrow-node:hover, .arrow-node:focus-visible { opacity: 0.75; }
+  .arrow-node .bubble { width: clamp(40px, 5.6vw, 50px); height: clamp(48px, 6.6vw, 59px); border-radius: 8px; }
+  .arrow-node .tag-chip { margin-top: 0; border-color: rgba(61, 224, 192, 0.45); color: rgba(80, 235, 200, 1); }
+  @keyframes float-arrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  /* same float, but keeps the node horizontally centered — needed
+     wherever .arrow-node is also given left:50% (the animation's own
+     transform otherwise replaces the centering transform each frame) */
+  @keyframes float-arrow-centered { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-7px); } }
+
+  /* the mobile social rail floats on the right edge — move the arrow
+     off that edge (and low, past the bubbles) so they never collide */
+  @media (max-width: 760px) {
+    .arrow-node { right: auto; left: 50%; top: 88%; animation-name: float-arrow-centered; }
+  }
 
   /* ── news section ───────────────────────────────────── */
   .news-section { position: relative; z-index: 3; padding: 56px 0 64px; }
   .news-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 6vw; margin-bottom: 28px; }
-  .news-head h2 { font-family: var(--font-heading); font-size: clamp(1.2rem, 2.2vw, 1.5rem); font-weight: 700; letter-spacing: -0.01em; margin: 0; color: #fff; }
+  .news-head h2 { font-family: var(--font-heading); font-size: clamp(1.4rem, 2.5vw, 1.75rem); font-weight: 700; letter-spacing: -0.01em; margin: 0; color: #fff; } /* +15% */
 
   .news-carousel-wrap { position: relative; }
   .news-carousel {

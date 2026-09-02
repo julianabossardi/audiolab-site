@@ -37,8 +37,8 @@ img { max-width: 100%; display: block; }
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 16px;
-  padding: 0 28px;
-  height: var(--header-h);
+  padding: 20px 28px 8px;
+  min-height: var(--header-h);
   font-family: var(--font-nav);
 }
 .brand-logo img { height: var(--header-logo-h); width: auto; }
@@ -74,19 +74,34 @@ img { max-width: 100%; display: block; }
 .box-btn svg { width: 14px; height: 14px; }
 .header-partner img { height: var(--partner-logo-h); width: auto; }
 
+/* mobile-only floating rail for the social icons — see .mobile-social-rail
+   below; keeps the top header short and genuinely transparent */
+.mobile-social-rail { display: none; }
+
 @media (max-width: 760px) {
   .site-header {
     position: fixed;
     grid-template-columns: 1fr;
-    height: auto;
-    padding: 10px 20px;
+    min-height: 0;
+    padding: 14px 20px 8px;
     row-gap: 10px;
-    background: rgba(1, 22, 34, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: none; /* stay transparent like desktop — solid was a mistake */
   }
   .main-nav { flex-wrap: wrap; justify-content: flex-start; }
   .header-right { justify-content: flex-start; flex-wrap: wrap; }
+  /* the social icon boxes move to a floating column on the right (below)
+     so the top bar stays short and the icons stay easy to reach */
+  .header-right .icon-boxes, .header-right .nav-divider { display: none; }
+
+  .mobile-social-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: fixed;
+    right: 14px;
+    bottom: calc(var(--footer-h) + 16px);
+    z-index: 90;
+  }
 }
 
 /* ── content ────────────────────────────────────────────── */
@@ -216,19 +231,21 @@ img { max-width: 100%; display: block; }
   -webkit-backdrop-filter: blur(12px);
   font-family: var(--font-body);
 }
-.site-footer .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; }
+.site-footer .meta { line-height: 1.5; }
 .site-footer span, .site-footer a {
   font-size: 11px;
   letter-spacing: 0.02em;
   color: rgba(255, 255, 255, 0.62);
   text-decoration: none;
 }
+.site-footer .address { line-height: 1.5; }
 .site-footer a:hover { color: rgba(100, 240, 210, 1); }
 .site-footer .credit { color: rgba(255, 255, 255, 0.48); }
 .site-footer .credit a { color: rgba(100, 240, 210, 0.85); text-decoration: underline; text-underline-offset: 3px; }
 .site-footer .credit a:hover { color: rgba(100, 240, 210, 1); }
 @media (max-width: 640px) {
-  .site-footer { height: auto; flex-direction: column; align-items: flex-start; gap: 2px; padding: 8px 20px; }
+  .site-footer { height: auto; flex-direction: column; align-items: flex-start; gap: 2px; padding: 10px 20px; }
+  .site-footer .address { display: none; } /* dropped on mobile to keep the footer short */
   .content { padding-bottom: 90px; }
 }
 
