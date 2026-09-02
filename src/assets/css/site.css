@@ -120,7 +120,7 @@ img { max-width: 100%; display: block; }
     gap: 10px;
     position: fixed;
     right: 14px;
-    top: 34%;
+    top: 12%; /* aligned with the headline, not the middle of the screen */
     z-index: 90;
   }
 }

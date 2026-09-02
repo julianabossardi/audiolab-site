@@ -133,10 +133,11 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     text-overflow: ellipsis;
   }
   @media (max-width: 760px) {
-    /* the tags need to read in full on mobile — give them much more
-       room than the desktop safety cap allows (the actual anti-overlap
-       protection there is now each node's own staggered height below) */
-    .tag-chip { font-size: 11.5px; padding: 5px 15px; max-width: 62vw; white-space: normal; text-align: center; }
+    /* the whole hero (header + headline + this wave zone) has to fit
+       in one screen with no scroll, so the tags have to be smaller
+       than on web — still full text where it fits, wrapping to a
+       second line rather than truncating when it doesn't */
+    .tag-chip { font-size: 9.5px; padding: 4px 10px; max-width: 46vw; white-space: normal; text-align: center; line-height: 1.3; }
   }
 
   .project-node {
@@ -163,26 +164,15 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   @keyframes float-b { 0%, 100% { transform: translateX(-50%) translateY(-4px); } 50% { transform: translateX(-50%) translateY(4px); } }
   @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(-2px); } 50% { transform: translateX(-50%) translateY(-9px); } }
   @media (max-width: 760px) {
-    /* mobile needs a taller zone than web — the three nodes now stack
-       down the height of it (see below), each with room to show its
-       full tag text, plus the arrow underneath all three */
-    :root { --zone-h: 680px; }
-    .node-a { left: 16%; }
-    .node-c { left: 84%; }
-    /* the tag now stays attached right under its own bubble (the base
-       -10px from .tag-chip) — instead of pulling the *tag* away from
-       its bubble, each whole node (bubble+tag together) sits at a
-       different height, which is also what makes room for the full,
-       untruncated label above */
-    .node-a { top: 10%; }
-    .node-b { top: 36%; }
-    .node-c { top: 62%; }
-  }
-  @media (max-width: 340px) {
-    /* very narrow phones (e.g. 320px) don't have room for the Escola
-       bubble to clear the social rail at the regular mobile size —
-       shrink every bubble a bit more for clearance */
-    :root { --bubble-d: 60px; }
+    /* everything above the news section — header, headline, this wave
+       zone — has to fit in one screen with zero scroll, so the zone is
+       much shorter here than on web. Bubbles are smaller too, and each
+       whole node (bubble+tag together, not just the tag) sits at its
+       own height so the tags don't collide without eating much space */
+    :root { --zone-h: 340px; --bubble-d: 62px; }
+    .node-a { left: 16%; top: 4%; }
+    .node-b { left: 50%; top: 24%; }
+    .node-c { left: 84%; top: 46%; }
   }
 
   .arrow-node {
@@ -203,13 +193,14 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .arrow-node .tag-chip { margin-top: 0; border-color: rgba(61, 224, 192, 0.45); color: rgba(80, 235, 200, 1); }
   @keyframes float-arrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
   @keyframes float-arrow-centered { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-7px); } }
-  /* node-c now sits much lower (see above, so its tag has room to show
-     in full) and claims the same right-hand corner the arrow used on
-     desktop — recenter the arrow under everything instead of fighting
-     it for that corner. Must come after the base rule above so it
-     actually wins at equal specificity. */
+  /* node-c now sits lower (see above, so its tag has room) and claims
+     the same right-hand corner the arrow used on desktop — recenter
+     the arrow under everything and shrink it, there's very little
+     height left in the shorter mobile zone. Must come after the base
+     rule above so it actually wins at equal specificity. */
   @media (max-width: 760px) {
-    .arrow-node { right: auto; left: 50%; top: 90%; animation-name: float-arrow-centered; }
+    .arrow-node { right: auto; left: 50%; top: 68%; gap: 6px; animation-name: float-arrow-centered; }
+    .arrow-node .bubble { width: 30px; height: 36px; }
   }
 
   /* ── news section ───────────────────────────────────── */
