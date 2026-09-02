@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Projetos — AudioLab
+permalink: /projetos/
+---
+<a class="back-link" href="/">‹ AudioLab</a>
+<h1>Projetos</h1>
+<p class="lead">Os cards abaixo vêm direto do <a href="/admin/">/admin</a> — ainda é conteúdo de teste, só pra ilustrar o mecanismo.</p>
+
+{% if projetos.length == 0 %}
+<p>Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
+{% else %}
+<div class="card-grid">
+  {% for p in projetos %}
+  <article class="card-item">
+    {% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
+    {% if p.tag %}<span class="tag-pill">{{ p.tag }}</span>{% endif %}
+    <h3><a href="/projetos/{{ p.slug }}/">{{ p.nome }}</a></h3>
+    <p>{{ p.tagline }}</p>
+  </article>
+  {% endfor %}
+</div>
+{% endif %}

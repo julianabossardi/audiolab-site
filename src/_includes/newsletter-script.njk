@@ -1,0 +1,64 @@
+<!-- jQuery + Mailchimp's own validation script, required by the embed above -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+<script type="text/javascript">
+(function($) {
+  window.fnames = new Array();
+  window.ftypes = new Array();
+  fnames[0]='EMAIL';ftypes[0]='email';
+  fnames[1]='FNAME';ftypes[1]='text';
+  fnames[2]='LNAME';ftypes[2]='text';
+  fnames[3]='ADDRESS';ftypes[3]='address';
+  fnames[4]='PHONE';ftypes[4]='phone';
+  fnames[5]='BIRTHDAY';ftypes[5]='birthday';
+  fnames[6]='COMPANY';ftypes[6]='text';
+}(jQuery));
+var $mcj = jQuery.noConflict(true);
+</script>
+
+<script>
+(function () {
+  var overlay = document.getElementById("newsletterOverlay");
+  if (!overlay) return;
+
+  function openNewsletter() {
+    overlay.hidden = false;
+    var email = document.getElementById("mce-EMAIL");
+    if (email) email.focus();
+  }
+  function closeNewsletter() {
+    overlay.hidden = true;
+  }
+  document.querySelectorAll("[data-open-newsletter]").forEach(function (btn) {
+    btn.addEventListener("click", openNewsletter);
+  });
+  document.querySelectorAll("[data-close-newsletter]").forEach(function (btn) {
+    btn.addEventListener("click", closeNewsletter);
+  });
+  overlay.addEventListener("click", function (e) { if (e.target === overlay) closeNewsletter(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !overlay.hidden) closeNewsletter();
+  });
+})();
+</script>
+
+<script>
+(function () {
+  // --header-h/--footer-h are constants meant for the *desktop* single-row
+  // header/footer. On narrow screens both wrap to extra lines and grow
+  // taller, so every calc() built on those variables (hero height, content
+  // padding…) would otherwise undershoot and let the fixed footer cover
+  // the last bit of the page. Keep the variables in sync with the real,
+  // currently-rendered heights instead of guessing a breakpoint.
+  var header = document.querySelector(".site-header");
+  var footer = document.querySelector(".site-footer");
+  if (!header && !footer) return;
+
+  function syncChromeHeights() {
+    if (header) document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+    if (footer) document.documentElement.style.setProperty("--footer-h", footer.offsetHeight + "px");
+  }
+  syncChromeHeights();
+  window.addEventListener("resize", syncChromeHeights);
+})();
+</script>

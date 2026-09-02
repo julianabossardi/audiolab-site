@@ -1,200 +1,82 @@
 ---
 title: AudioLab — Laboratório de Áudio FCS/UERJ
 ---
-{% macro siteHeader(variant) %}
-<header class="site-header">
-  {% if variant == "projects" %}
-  <button type="button" class="brand-logo back-btn" data-go="home" aria-label="Voltar para a página inicial">
-    <span class="back-arrow" aria-hidden="true">‹</span>
-    <img src="/assets/img/logo-audiolab-sm.webp" alt="AudioLab" />
-  </button>
-  {% else %}
-  <a class="brand-logo" href="/" aria-label="AudioLab — início">
-    <img src="/assets/img/logo-audiolab-sm.webp" alt="AudioLab" />
-  </a>
-  {% endif %}
-
-  <nav class="main-nav">
-    <a class="nav-link" href="/sobre/">Sobre</a>
-    <a class="nav-link" href="/formacao/">Educacional</a>
-  </nav>
-
-  <div class="header-tools">
-    {% if variant == "home" %}
-    <div class="icon-boxes">
-      <a class="box-btn" href="#" aria-label="Spotify">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      </a>
-      <a class="box-btn" href="#" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      </a>
-      <a class="box-btn" href="#" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-      </a>
-      <a class="box-btn" href="mailto:audiolab@fcs.uerj.br" aria-label="E-mail">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      </a>
-      <button type="button" class="box-btn newsletter-btn" data-open-newsletter aria-haspopup="dialog">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        <span class="newsletter-label">Acesse nossa newsletter</span>
-      </button>
-    </div>
-    {% endif %}
-    <div class="header-partner">
-      <img src="/assets/img/logo-uerj-fcs.png" alt="UERJ · Faculdade de Comunicação Social" />
-    </div>
-  </div>
-</header>
-{% endmacro %}
-
 {% macro projectNode(src, alt, tagText, leftPct, animClass, isEscola, href) %}
-{% if href %}
-<a class="project-node {{ animClass }}{% if isEscola %} is-escola{% endif %}" href="{{ href }}" style="--x: {{ leftPct }}%">
-{% else %}
-<button type="button" class="project-node {{ animClass }}{% if isEscola %} is-escola{% endif %}" data-go="projects" style="--x: {{ leftPct }}%">
-{% endif %}
+<a class="project-node {{ animClass }}{% if isEscola %} is-escola{% endif %}" href="{{ href if href else '/projetos/' }}" style="--x: {{ leftPct }}%">
   <span class="bubble project-bubble"><img src="{{ src }}" alt="{{ alt }}" /></span>
   <span class="tag-chip">{{ tagText }}</span>
-{% if href %}</a>{% else %}</button>{% endif %}
+</a>
 {% endmacro %}
 <!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{{ title }}</title>
 <meta name="description" content="AudioLab — Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
 <link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/site.css" />
 <style>
   :root {
-    --navy: #024567;
-    --mint: #3de0c0;
-    --mint-bright: #64f0d2;
-    --mint-deep: #1ab8a0;
-    --ink: #012636;
-    --font-display: "Poppins", system-ui, sans-serif;
-    --font-body: "Nunito Sans", system-ui, sans-serif;
+    --bubble-d: clamp(64px, 9vw, 106px);
+    --zone-h: clamp(180px, 22vw, 290px);
+  }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--navy); }
 
-    /* sized in vmin so header, bubbles and the hero scale down
-       together on short *and* narrow screens instead of overflowing */
-    --header-logo-h: clamp(53px, 8.8vmin, 68px);
-    --partner-logo-h: clamp(40px, 6.6vmin, 51px);
-    --bubble-d: clamp(70px, 15vmin, 120px);   /* +20% */
-    --social-d: clamp(30px, 6vmin, 42px);
-    --zone-h: clamp(228px, calc(37vmin + 1cm), 420px); /* raised again */
-    --zone-h-sub: clamp(100px, 22vmin, 190px);
-  }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0; height: 100%;
-    overflow: hidden; /* the app is a fixed, single screen — no page scroll */
-    overscroll-behavior: none;
-  }
-  body {
-    background: var(--navy);
-    color: #fff;
-    font-family: var(--font-display);
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  img { max-width: 100%; display: block; }
-  button { font: inherit; }
+  .page-wrap { position: relative; padding-bottom: var(--footer-h); }
 
-  /* ── the sliding two-panel app shell ───────────────────── */
-  .viewport { width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; position: relative; }
-  .track {
+  /* diagonal green wash tying the hero into the news section below it */
+  .diagonal-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom left, rgba(4, 72, 52, 0.72) 0%, rgba(6, 90, 64, 0.52) 18%, rgba(8, 110, 78, 0.28) 38%, transparent 62%);
+  }
+
+  /* ── hero ───────────────────────────────────────────── */
+  .hero-section {
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+    min-height: calc(100vh - var(--footer-h));
     display: flex;
-    width: 200%;
-    height: 100%;
-    transition: transform 0.65s cubic-bezier(0.65, 0, 0.35, 1);
+    flex-direction: column;
   }
-  .track.show-projects { transform: translateX(-50%); }
-  .page { flex: 0 0 50%; width: 50%; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
-
-  /* ── header ─────────────────────────────────────────── */
-  .site-header {
+  .hero-text-wrap {
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 8px 18px;
-    padding: 1.4vmin 3vmin 0.4vmin;
-    flex: 0 0 auto;
+    position: relative;
+    z-index: 5;
+    padding: calc(var(--header-h) + 32px) 6vw 24px 6vw;
   }
-  .brand-logo { display: flex; align-items: center; gap: 8px; }
-  .brand-logo img { height: var(--header-logo-h); width: auto; }
-  .back-btn { background: none; border: none; padding: 0; margin: 0; cursor: pointer; color: #fff; }
-  .back-arrow {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(20px, 4vmin, 28px);
-    line-height: 1;
-    color: rgba(100, 240, 210, 0.9);
-    transition: transform 0.25s;
+  .hero-headline { margin: 0; font-family: var(--font-heading); font-weight: 700; line-height: 1.08; letter-spacing: -0.01em; }
+  .hline { display: block; font-size: clamp(2rem, 5.5vw, 6.2rem); }
+  .hline-1 { animation: hero-line-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+  .hline-2 { animation: hero-line-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.38s both; }
+  @keyframes hero-line-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  .grad-text {
+    background: linear-gradient(110deg, rgba(61, 224, 192, 1) 0%, rgba(120, 255, 220, 1) 55%, rgba(61, 210, 180, 1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 28px rgba(61, 224, 192, 0.25));
   }
-  .back-btn:hover .back-arrow, .back-btn:focus-visible .back-arrow { transform: translateX(-4px); }
+  .white-italic { color: #fff; font-style: italic; filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15)); }
 
-  .main-nav { display: flex; align-items: center; gap: 8px; margin-right: auto; }
-  .nav-link {
-    padding: 8px 20px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    border: none;
-    color: var(--ink);
-    background: linear-gradient(135deg, var(--mint-bright), var(--mint-deep));
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
-    transition: all 0.25s;
-    white-space: nowrap;
-  }
-  .nav-link:hover, .nav-link:focus-visible { transform: translateY(-2px); box-shadow: 0 5px 16px rgba(61, 224, 192, 0.4); filter: brightness(1.08); }
-
-  .header-tools { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .icon-boxes { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .box-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    height: var(--social-d);
-    min-width: var(--social-d);
-    padding: 0 10px;
-    border-radius: 8px;
-    border: none;
-    background: linear-gradient(135deg, var(--mint-bright), var(--mint-deep));
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 11px;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
-    transition: all 0.25s;
-    white-space: nowrap;
-  }
-  .box-btn svg { width: 46%; height: 46%; flex: 0 0 auto; }
-  .box-btn:hover, .box-btn:focus-visible { transform: translateY(-2px); box-shadow: 0 5px 16px rgba(61, 224, 192, 0.4); filter: brightness(1.08); }
-  .newsletter-btn { padding: 0 16px; }
-  @media (max-width: 480px) {
-    .newsletter-label { display: none; }
-    .newsletter-btn { padding: 0; width: var(--social-d); }
+  @media (max-width: 640px) {
+    .hero-text-wrap { padding-left: 24px; padding-right: 24px; }
   }
 
-  .header-partner { display: flex; justify-content: flex-end; }
-  .header-partner img { height: var(--partner-logo-h); width: auto; }
+  /* ── waveform zone ──────────────────────────────────── */
+  .wave-zone { position: relative; height: var(--zone-h); flex: 0 0 auto; z-index: 5; }
+  .wave-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 
-  @media (max-width: 860px) {
-    .site-header { justify-content: space-between; }
-    .main-nav { margin-right: 0; order: 2; }
-    .header-tools { order: 3; width: 100%; justify-content: space-between; }
-  }
-
-  /* ── shared bubble / tag chip ──────────────────────────── */
   .bubble {
     border-radius: 50%;
     background: rgba(2, 54, 82, 0.28);
@@ -223,110 +105,27 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
     border: 1px solid rgba(61, 224, 192, 0.4);
     border-radius: 3px;
     padding: 4px 11px;
-    font-size: clamp(9px, 1.92vmin, 10.8px); /* +20% */
+    font-size: clamp(9px, 1vw, 11px);
     font-weight: 700;
     letter-spacing: 0.04em;
     color: rgba(100, 240, 210, 0.88);
     font-family: var(--font-body);
     white-space: nowrap;
     pointer-events: none;
-    /* safety net: on very narrow screens the three tags sit close
-       enough together that a long label could overlap its neighbour —
-       truncate instead of colliding */
     max-width: 30vw;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  /* ── hero: headline (left) + auto-playing vertical gallery (right) ── */
-  .hero {
-    display: flex;
-    align-items: center;
-    gap: 3vmin;
-    padding: 1vmin 4vmin;
-    flex: 1 1 auto;
-    min-height: 0;
-  }
-  .hero-text {
-    flex: 1 1 50%;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    container-type: inline-size; /* so the headline can size off its own column, not the viewport */
-  }
-  .hero-headline {
-    font-family: var(--font-display);
-    font-weight: 800;
-    /* sized against the column's own width (cqw) so "AudioLab é a UERJ"
-       always fits on one line — a vw/vmin size looked fine on some
-       breakpoints and wrapped to 3 lines on others (e.g. tablet row
-       layout), because it ignored how wide the column actually is */
-    font-size: clamp(1.5rem, 9cqw, 3.6rem);
-    line-height: 1.16;
-    color: var(--mint-bright);
-    margin: 0;
-    white-space: nowrap;
-    animation: hero-in 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  }
-  @keyframes hero-in {
-    from { opacity: 0; transform: translateY(22px); }
-    to { opacity: 1; transform: none; }
-  }
-
-  .hero-gallery { flex: 1 1 50%; min-width: 0; height: 100%; display: flex; align-items: center; justify-content: center; }
-  .gallery-frame {
-    position: relative;
-    width: min(70%, 300px);
-    height: min(100%, 62vmin);
-    max-height: 380px;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid rgba(61, 224, 192, 0.35);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    animation: hero-in 0.9s 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  }
-  .gallery-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateY(4%);
-    transition: opacity 1.2s ease, transform 1.6s ease;
-    background-size: 18px 18px, cover;
-    background-position: center;
-  }
-  .gallery-slide.is-active { opacity: 1; transform: translateY(0); }
-  .gallery-slide.s1 { background-image: radial-gradient(rgba(255,255,255,0.14) 1.4px, transparent 1.4px), linear-gradient(155deg, #024567, #1ab8a0); }
-  .gallery-slide.s2 { background-image: radial-gradient(rgba(255,255,255,0.14) 1.4px, transparent 1.4px), linear-gradient(155deg, #011e2e, #286da8); }
-  .gallery-slide.s3 { background-image: radial-gradient(rgba(255,255,255,0.14) 1.4px, transparent 1.4px), linear-gradient(155deg, #023452, #3de0c0); }
-  .gallery-slide.s4 { background-image: radial-gradient(rgba(255,255,255,0.14) 1.4px, transparent 1.4px), linear-gradient(155deg, #024567, #64f0d2); }
-
-  @media (max-width: 760px) {
-    .hero { flex-direction: column; gap: 1.4vmin; padding: 0.6vmin 5vw; }
-    .hero-text, .hero-gallery { flex: 1 1 auto; width: 100%; min-height: 0; }
-    .gallery-frame { width: min(50vw, 220px); height: 100%; max-height: 220px; }
-  }
-
-  /* ── waveform zone (present on every screen size) ──────── */
-  .wave-zone { position: relative; height: var(--zone-h); flex: 0 0 auto; }
-  .wave-zone--sub { height: var(--zone-h-sub); margin-top: auto; }
-  .wave-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-
   .project-node {
     position: absolute;
     left: var(--x);
-    top: 12%;
+    top: 18%;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
     text-decoration: none;
-    cursor: pointer;
     transform: translateX(-50%);
   }
   .project-node .bubble { width: var(--bubble-d); height: var(--bubble-d); }
@@ -335,295 +134,174 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
   .node-a { animation: float-a 3.2s ease-in-out 0s infinite; }
   .node-b { animation: float-b 3.8s ease-in-out 0.9s infinite; }
   .node-c { animation: float-c 4.4s ease-in-out 1.7s infinite; }
-  /* the three tag labels get close enough on narrow phones to collide —
-     spread the bubbles out a bit more and shrink the tags further */
+  @keyframes float-a { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
+  @keyframes float-b { 0%, 100% { transform: translateX(-50%) translateY(-4px); } 50% { transform: translateX(-50%) translateY(4px); } }
+  @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(-2px); } 50% { transform: translateX(-50%) translateY(-9px); } }
   @media (max-width: 420px) {
     .node-a { --x: 14%; }
     .node-c { --x: 87%; }
     .tag-chip { font-size: 7.5px; padding: 3px 7px; max-width: 26vw; }
   }
-  @keyframes float-a { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
-  @keyframes float-b { 0%, 100% { transform: translateX(-50%) translateY(-4px); } 50% { transform: translateX(-50%) translateY(4px); } }
-  @keyframes float-c { 0%, 100% { transform: translateX(-50%) translateY(-2px); } 50% { transform: translateX(-50%) translateY(-9px); } }
 
   .arrow-node {
     position: absolute;
     right: 4%;
-    top: 64%;
+    top: 62%;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
+    text-decoration: none;
     transition: opacity 0.3s, transform 0.3s;
   }
   .arrow-node:hover, .arrow-node:focus-visible { opacity: 0.75; transform: translateX(3px); }
-  .arrow-node .bubble { width: clamp(36px, 7.2vmin, 46px); height: clamp(36px, 7.2vmin, 46px); border-radius: 8px; }
+  .arrow-node .bubble { width: clamp(32px, 4.5vw, 40px); height: clamp(38px, 5.3vw, 47px); border-radius: 8px; }
   .arrow-node .tag-chip { margin-top: -8px; border-color: rgba(61, 224, 192, 0.45); color: rgba(80, 235, 200, 1); }
 
-  /* ── projects page ──────────────────────────────────── */
-  .projects-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 0.5vmin 3vmin 1.5vmin; }
-  .projects-heading { font-size: clamp(1.2rem, 3.6vmin, 1.9rem); font-weight: 700; margin: 0 0 6px; }
-  .projects-note {
-    font-family: var(--font-body);
-    color: rgba(255, 255, 255, 0.5);
-    font-size: clamp(11px, 1.8vmin, 13px);
-    margin: 0 0 1.6vmin;
+  /* ── news section ───────────────────────────────────── */
+  .news-section { position: relative; z-index: 3; padding: 56px 0 64px; }
+  .news-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 6vw; margin-bottom: 28px; }
+  .news-head h2 { font-family: var(--font-heading); font-size: clamp(1.2rem, 2.2vw, 1.5rem); font-weight: 700; letter-spacing: -0.01em; margin: 0; color: #fff; }
+
+  .news-carousel-wrap { position: relative; }
+  .news-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 0 6vw 12px;
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-  .projects-note a { color: rgba(100, 240, 210, 0.95); text-decoration: underline; }
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-  .project-card {
-    background: rgba(2, 54, 82, 0.35);
-    border: 1px solid rgba(61, 224, 192, 0.22);
+  .news-carousel::-webkit-scrollbar { display: none; }
+  .news-carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+  .news-card {
+    flex: 0 0 auto;
+    width: 280px;
     border-radius: 10px;
-    padding: 16px;
-    transition: all 0.25s;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(1, 30, 46, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: transform 0.25s, border-color 0.25s;
   }
-  .project-card:hover { border-color: rgba(100, 240, 210, 0.5); background: rgba(2, 54, 82, 0.55); }
-  .project-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; margin-bottom: 12px; }
-  .project-card .tag-pill {
-    display: inline-block;
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    padding: 3px 10px;
-    border-radius: 20px;
+  .news-card:hover { transform: translateY(-4px); border-color: rgba(61, 224, 192, 0.3); }
+  .news-card-img { height: 156px; overflow: hidden; background: rgba(2, 54, 82, 0.5); }
+  .news-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .news-card-body { padding: 16px 18px 20px; }
+  .news-card-title { font-family: var(--font-nav); font-weight: 500; font-size: 1.02rem; line-height: 1.3; margin-bottom: 8px; }
+  .news-card-sub { font-family: var(--font-nav); font-size: 0.78rem; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+  .news-scroll-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-60%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(2, 54, 82, 0.8);
     border: 1px solid rgba(61, 224, 192, 0.4);
     color: rgba(100, 240, 210, 0.9);
-    margin-bottom: 8px;
-  }
-  .project-card h3 { margin: 4px 0 6px; font-size: 1.05rem; }
-  .project-card h3 a { text-decoration: none; }
-  .project-card h3 a:hover { color: rgba(100, 240, 210, 1); }
-  .project-card p { font-family: var(--font-body); color: rgba(255, 255, 255, 0.62); font-size: 0.88rem; margin: 0; line-height: 1.5; }
-  .projects-empty { font-family: var(--font-body); color: rgba(255, 255, 255, 0.6); }
-  .projects-empty a { color: rgba(100, 240, 210, 1); }
-
-  /* ── footer (home page only) ───────────────────────────── */
-  .site-footer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4px 24px;
-    padding: 0.8vmin 3vmin;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(1, 30, 46, 0.6);
-    font-family: var(--font-body);
-    flex: 0 0 auto;
-  }
-  .site-footer .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; }
-  .site-footer span, .site-footer a {
-    font-size: 10px;
-    letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.72);
-    text-decoration: none;
-  }
-  .site-footer a:hover { color: rgba(100, 240, 210, 1); }
-  .site-footer .credit { color: rgba(255, 255, 255, 0.55); }
-  .site-footer .credit a { color: rgba(255, 255, 255, 0.78); text-decoration: underline; }
-  .site-footer .credit a:hover { color: rgba(100, 240, 210, 1); }
-
-  /* ── newsletter modal ───────────────────────────────── */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    background: rgba(1, 20, 32, 0.72);
-    backdrop-filter: blur(3px);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-  }
-  .modal-overlay[hidden] { display: none; }
-  .modal {
-    background: #023452;
-    border: 1px solid rgba(61, 224, 192, 0.35);
-    border-radius: 14px;
-    padding: 30px 26px;
-    max-width: 380px;
-    width: 100%;
-    position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    animation: modal-in 0.25s ease-out;
-    font-family: var(--font-body);
-  }
-  @keyframes modal-in {
-    from { opacity: 0; transform: translateY(12px) scale(0.98); }
-    to { opacity: 1; transform: none; }
-  }
-  .modal-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    transition: all 0.2s;
-  }
-  .modal-close:hover { background: rgba(255, 255, 255, 0.12); }
-  .modal h2 { font-family: var(--font-display); font-size: 1.3rem; margin: 0 0 8px; padding-right: 24px; }
-  .modal-sub { color: rgba(255, 255, 255, 0.68); font-size: 0.88rem; margin: 0 0 20px; }
-  .newsletter-form { display: flex; gap: 8px; flex-wrap: wrap; }
-  .newsletter-form input {
-    flex: 1 1 160px;
-    padding: 10px 12px;
-    border-radius: 6px;
-    border: 1px solid rgba(61, 224, 192, 0.4);
-    background: rgba(2, 54, 82, 0.5);
-    color: #fff;
-    font-family: var(--font-body);
-    font-size: 13px;
-  }
-  .newsletter-form input::placeholder { color: rgba(255, 255, 255, 0.4); }
-  .newsletter-form input:focus { outline: none; border-color: rgba(100, 240, 210, 0.9); }
-  .btn-primary {
-    padding: 10px 18px;
-    border-radius: 6px;
-    border: none;
-    background: linear-gradient(135deg, var(--mint-bright), var(--mint-deep));
-    color: var(--ink);
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 13px;
     cursor: pointer;
     transition: all 0.2s;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-  .btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
-  .modal-note { margin: 14px 0 0; font-size: 12.5px; color: rgba(100, 240, 210, 0.95); }
-  .modal-note[hidden] { display: none; }
+  .news-scroll-btn:hover { background: rgba(2, 54, 82, 1); border-color: rgba(61, 224, 192, 0.75); }
+  .news-empty { padding: 0 6vw; font-family: var(--font-nav); color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; }
+  .news-empty a { color: rgba(100, 240, 210, 1); }
 </style>
 </head>
 <body>
 
-  <div class="viewport">
-    <div class="track" id="track">
+  {% include "site-header.njk" %}
 
-      <!-- ── PAGE 1 · HOME ──────────────────────────────── -->
-      <section class="page page-home">
-        {{ siteHeader("home") }}
+  <div class="page-wrap">
+    <div class="diagonal-overlay" aria-hidden="true"></div>
 
-        <main class="hero">
-          <div class="hero-text">
-            <h1 class="hero-headline">AudioLab é a UERJ<br />em todo lugar</h1>
-          </div>
-          <div class="hero-gallery" aria-hidden="true">
-            <div class="gallery-frame">
-              <div class="gallery-slide s1 is-active"></div>
-              <div class="gallery-slide s2"></div>
-              <div class="gallery-slide s3"></div>
-              <div class="gallery-slide s4"></div>
-            </div>
-          </div>
-        </main>
+    <!-- ════ SECTION 1 — HERO ════ -->
+    <section class="hero-section">
+      <div class="hero-text-wrap">
+        <h1 class="hero-headline">
+          <span class="hline hline-1 grad-text">AudioLab é a UERJ</span>
+          <span class="hline hline-2"><span class="grad-text">em </span><span class="white-italic">todo lugar</span></span>
+        </h1>
+      </div>
 
-        <div class="wave-zone" data-wave-zone="home">
-          <canvas class="wave-canvas" data-wave-canvas></canvas>
+      <div class="wave-zone" data-wave-zone="home">
+        <canvas class="wave-canvas" data-wave-canvas></canvas>
 
-          {% set badaProject = projetos | findByNome("BadaUERJ") %}
-          {% set atelieProject = projetos | findByNome("Ateliê do Podcast") %}
-          {% set escolaProject = projetos | findByNome("Escola de Narradores") %}
+        {% set badaProject = projetos | findByNome("BadaUERJ") %}
+        {% set atelieProject = projetos | findByNome("Ateliê do Podcast") %}
+        {% set escolaProject = projetos | findByNome("Escola de Narradores") %}
 
-          {{ projectNode("/assets/img/logo-bada.webp", "BADA UERJ", "BadaUERJ", 20, "node-a", false, ("/projetos/" + badaProject.slug + "/") if badaProject else null) }}
-          {{ projectNode("/assets/img/logo-atelie.webp", "Ateliê do Podcast", "Ateliê do Podcast", 50, "node-b", false, ("/projetos/" + atelieProject.slug + "/") if atelieProject else null) }}
-          {{ projectNode("/assets/img/logo-escola.webp", "Escola de Narradores", "Escola de Narradores", 76, "node-c", true, ("/projetos/" + escolaProject.slug + "/") if escolaProject else null) }}
+        {{ projectNode("/assets/img/logo-bada.webp", "BADA UERJ", "BadaUERJ", 20, "node-a", false, ("/projetos/" + badaProject.slug + "/") if badaProject else null) }}
+        {{ projectNode("/assets/img/logo-atelie.webp", "Ateliê do Podcast", "Ateliê do Podcast", 50, "node-b", false, ("/projetos/" + atelieProject.slug + "/") if atelieProject else null) }}
+        {{ projectNode("/assets/img/logo-escola.webp", "Escola de Narradores", "Escola de Narradores", 76, "node-c", true, ("/projetos/" + escolaProject.slug + "/") if escolaProject else null) }}
 
-          <button type="button" class="arrow-node" data-go="projects" aria-label="Ver mais projetos">
-            <span class="bubble">
-              <svg width="60%" height="60%" viewBox="0 0 34 40" fill="none">
-                <circle cx="13" cy="11" r="2.8" fill="rgba(100,240,210,0.95)" />
-                <circle cx="20" cy="18" r="2.8" fill="rgba(100,240,210,0.95)" />
-                <circle cx="13" cy="25" r="2.8" fill="rgba(100,240,210,0.95)" />
-              </svg>
-            </span>
-            <span class="tag-chip">Mais projetos</span>
-          </button>
-        </div>
-
-        <footer class="site-footer">
-          <span>Rua São Francisco Xavier, 524 — Pavilhão João Lyra Filho, sala 9.017 · Rio de Janeiro, RJ</span>
-          <span class="meta">
-            <a href="mailto:audiolab@fcs.uerj.br">audiolab@fcs.uerj.br</a>
-            <span>FCS / UERJ</span>
-            <a href="/admin/">editar conteúdo →</a>
-            <span class="credit">Desenvolvido por <a href="https://agenciamoldura.com/" target="_blank" rel="noopener">agência moldura</a> — todos os direitos reservados</span>
+        <a class="arrow-node" href="/projetos/" aria-label="Ver mais projetos">
+          <span class="bubble">
+            <svg width="60%" height="60%" viewBox="0 0 34 40" fill="none">
+              <circle cx="13" cy="11" r="2.8" fill="rgba(100,240,210,0.95)" />
+              <circle cx="20" cy="18" r="2.8" fill="rgba(100,240,210,0.95)" />
+              <circle cx="13" cy="25" r="2.8" fill="rgba(100,240,210,0.95)" />
+            </svg>
           </span>
-        </footer>
-      </section>
+          <span class="tag-chip">Mais projetos</span>
+        </a>
+      </div>
+    </section>
 
-      <!-- ── PAGE 2 · PROJETOS ──────────────────────────── -->
-      <section class="page page-projects">
-        {{ siteHeader("projects") }}
+    <!-- ════ SECTION 2 — NOTÍCIAS ════ -->
+    <section class="news-section">
+      <div class="news-head">
+        <h2>Últimas notícias</h2>
+        <a class="nav-link" href="/noticias/">Veja mais</a>
+      </div>
 
-        <div class="projects-body">
-          <h1 class="projects-heading">Projetos</h1>
-          <p class="projects-note">
-            Os cards abaixo vêm direto do <a href="/admin/">/admin</a> — ainda é conteúdo de teste,
-            só pra ilustrar o mecanismo.
-          </p>
-
-          {% if projetos.length == 0 %}
-          <p class="projects-empty">Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
-          {% else %}
-          <div class="projects-grid">
-            {% for p in projetos %}
-            <article class="project-card">
-              {% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
-              {% if p.tag %}<span class="tag-pill">{{ p.tag }}</span>{% endif %}
-              <h3><a href="/projetos/{{ p.slug }}/">{{ p.nome }}</a></h3>
-              <p>{{ p.tagline }}</p>
-            </article>
-            {% endfor %}
-          </div>
-          {% endif %}
+      {% if noticias.length == 0 %}
+      <p class="news-empty">Nenhuma notícia ainda. Abra <a href="/admin/">/admin</a> e crie a primeira.</p>
+      {% else %}
+      <div class="news-carousel-wrap">
+        <div class="news-carousel" id="newsCarousel">
+          {% for n in noticias %}
+          <a class="news-card" href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>
+            {% if n.capa %}
+            <div class="news-card-img"><img src="{{ n.capa }}" alt="" /></div>
+            {% endif %}
+            <div class="news-card-body">
+              <div class="news-card-title">{{ n.titulo }}</div>
+              <div class="news-card-sub">{{ n.subtitulo }}</div>
+            </div>
+          </a>
+          {% endfor %}
         </div>
-
-        <div class="wave-zone wave-zone--sub" data-wave-zone="projects">
-          <canvas class="wave-canvas" data-wave-canvas></canvas>
-        </div>
-      </section>
-
-    </div>
+        <button type="button" class="news-scroll-btn" id="newsScrollBtn" aria-label="Ver próximas notícias">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </button>
+      </div>
+      {% endif %}
+    </section>
   </div>
 
-  <!-- ── newsletter modal ─────────────────────────────── -->
-  <div class="modal-overlay" id="newsletterOverlay" hidden>
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="newsletterTitle">
-      <button type="button" class="modal-close" data-close-newsletter aria-label="Fechar">✕</button>
-      <h2 id="newsletterTitle">Receba novidades do AudioLab!</h2>
-      <p class="modal-sub">Cadastre seu e-mail e fique por dentro dos projetos.</p>
-      <form id="newsletterForm" class="newsletter-form">
-        <input type="email" id="newsletterEmail" name="email" required placeholder="seu@email.com" aria-label="E-mail" />
-        <button type="submit" class="btn-primary">Inscrever-se</button>
-      </form>
-      <p class="modal-note" id="newsletterNote" hidden>Recebido! (esse formulário ainda é só de demonstração — falta ligar num serviço de e-mail de verdade)</p>
-    </div>
-  </div>
+  {% include "site-footer.njk" %}
+  {% include "newsletter-modal.njk" %}
+  {% include "newsletter-script.njk" %}
 
   <script>
   (function () {
-    /* ── waveform: a small factory so both panels can run their own
-       instance. columns near a "target" element (the floating project
-       bubbles) rise to meet that element's bottom edge instead of the
-       old fixed 0–1 fraction, which always left a gap under the tags. */
+    /* ── waveform ───────────────────────────────────────── */
     function createWave(zone, canvas, targetSelector) {
       var ctx = canvas.getContext && canvas.getContext("2d");
-      if (!ctx) return { start: function () {}, stop: function () {} };
+      if (!ctx) return { start: function () {} };
 
       var dpr = 1, W = 0, H = 0, numCols = 48, raf = null;
       var dotR = 3, dotStep = 10;
@@ -648,9 +326,6 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
         canvas.width = W * dpr;
         canvas.height = H * dpr;
 
-        // scale dot size/spacing with the zone's own height, so the
-        // motif reads visibly smaller on the compact mobile zone
-        // instead of staying a fixed absolute size.
         var s = Math.max(0.55, Math.min(1.1, H / 260));
         dotR = 3 * s;
         dotStep = Math.max(6, 10 * s);
@@ -713,70 +388,41 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
       var ro = new ResizeObserver(measure);
       ro.observe(zone);
 
-      return {
-        start: function () { measure(); if (!raf) raf = requestAnimationFrame(draw); },
-        stop: function () { if (raf) { cancelAnimationFrame(raf); raf = null; } },
-      };
+      return { start: function () { measure(); if (!raf) raf = requestAnimationFrame(draw); } };
     }
 
-    document.querySelectorAll("[data-wave-zone]").forEach(function (zone) {
-      var canvas = zone.querySelector("[data-wave-canvas]");
-      var hasBubbles = zone.dataset.waveZone === "home";
-      var wave = createWave(zone, canvas, hasBubbles ? ".project-node .bubble" : null);
-      wave.start();
-    });
+    var zone = document.querySelector("[data-wave-zone]");
+    if (zone) createWave(zone, zone.querySelector("[data-wave-canvas]"), ".project-node .bubble").start();
 
-    /* ── the two-panel slide ───────────────────────────── */
-    var track = document.getElementById("track");
-    document.querySelectorAll("[data-go]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        track.classList.toggle("show-projects", btn.getAttribute("data-go") === "projects");
+    /* ── news carousel: drag-to-scroll + arrow button ──────── */
+    var carousel = document.getElementById("newsCarousel");
+    if (carousel) {
+      var isDown = false, startX = 0, scrollLeft = 0, moved = false;
+      carousel.addEventListener("mousedown", function (e) {
+        isDown = true; moved = false;
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+        carousel.classList.add("is-dragging");
       });
-    });
+      window.addEventListener("mouseup", function () { isDown = false; carousel.classList.remove("is-dragging"); });
+      carousel.addEventListener("mouseleave", function () { isDown = false; carousel.classList.remove("is-dragging"); });
+      carousel.addEventListener("mousemove", function (e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var x = e.pageX - carousel.offsetLeft;
+        if (Math.abs(x - startX) > 4) moved = true;
+        carousel.scrollLeft = scrollLeft - (x - startX);
+      });
+      // a drag shouldn't also fire the card's click-through link
+      carousel.addEventListener("click", function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
 
-    /* ── auto-playing vertical gallery ─────────────────── */
-    var slides = document.querySelectorAll(".gallery-slide");
-    if (slides.length > 1) {
-      var current = 0;
-      setInterval(function () {
-        slides[current].classList.remove("is-active");
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("is-active");
-      }, 3800);
+      var scrollBtn = document.getElementById("newsScrollBtn");
+      if (scrollBtn) {
+        scrollBtn.addEventListener("click", function () {
+          carousel.scrollBy({ left: 320, behavior: "smooth" });
+        });
+      }
     }
-
-    /* ── newsletter modal ──────────────────────────────── */
-    var overlay = document.getElementById("newsletterOverlay");
-    var form = document.getElementById("newsletterForm");
-    var note = document.getElementById("newsletterNote");
-
-    function openNewsletter() {
-      overlay.hidden = false;
-      var email = document.getElementById("newsletterEmail");
-      if (email) email.focus();
-    }
-    function closeNewsletter() {
-      overlay.hidden = true;
-      form.reset();
-      note.hidden = true;
-    }
-    document.querySelectorAll("[data-open-newsletter]").forEach(function (btn) {
-      btn.addEventListener("click", openNewsletter);
-    });
-    document.querySelectorAll("[data-close-newsletter]").forEach(function (btn) {
-      btn.addEventListener("click", closeNewsletter);
-    });
-    overlay.addEventListener("click", function (e) { if (e.target === overlay) closeNewsletter(); });
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      note.hidden = false;
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key !== "Escape") return;
-      if (!overlay.hidden) { closeNewsletter(); return; }
-      track.classList.remove("show-projects");
-    });
   })();
   </script>
 </body>

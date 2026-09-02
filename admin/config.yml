@@ -71,6 +71,42 @@ collections:
           required: false,
         }
 
+  - name: "noticias"
+    label: "Notícias"
+    label_singular: "Notícia"
+    folder: "content/noticias"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - { label: "Título", name: "titulo", widget: "string" }
+      - {
+          label: "Subtítulo / resumo",
+          name: "subtitulo",
+          widget: "string",
+          hint: "Aparece no card do carrossel, uma ou duas linhas",
+        }
+      - {
+          label: "Imagem de capa",
+          name: "capa",
+          widget: "image",
+          required: false,
+        }
+      - { label: "Data", name: "data", widget: "datetime", required: false }
+      - {
+          label: "Link externo (opcional)",
+          name: "link",
+          widget: "string",
+          required: false,
+          hint: "Se preenchido, o card abre esse link em vez da página interna da notícia",
+        }
+      - {
+          label: "Corpo da notícia",
+          name: "corpo",
+          widget: "markdown",
+          required: false,
+        }
+
   - name: "formacao"
     label: "Formação"
     files:

@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Notícias — AudioLab
+permalink: /noticias/
+---
+<a class="back-link" href="/">‹ AudioLab</a>
+<h1>Últimas notícias</h1>
+<p class="lead">Os cards abaixo vêm direto do <a href="/admin/">/admin</a> — ainda é conteúdo de teste, só pra ilustrar o mecanismo.</p>
+
+{% if noticias.length == 0 %}
+<p>Nenhuma notícia ainda. Abra <a href="/admin/">/admin</a> e crie a primeira.</p>
+{% else %}
+<div class="card-grid">
+  {% for n in noticias %}
+  <article class="card-item">
+    {% if n.capa %}<img src="{{ n.capa }}" alt="" />{% endif %}
+    {% if n.data %}<span class="tag-pill">{{ n.data }}</span>{% endif %}
+    <h3><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h3>
+    <p>{{ n.subtitulo }}</p>
+  </article>
+  {% endfor %}
+</div>
+{% endif %}
