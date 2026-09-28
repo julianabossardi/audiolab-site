@@ -1,23 +1,75 @@
 ---
-layout: base.njk
 title: Projetos — AudioLab
-permalink: /projetos/
 ---
-<a class="back-link" href="/">‹ AudioLab</a>
-<h1>Projetos</h1>
-<p class="lead">Os cards abaixo vêm direto do <a href="/admin/">/admin</a> — ainda é conteúdo de teste, só pra ilustrar o mecanismo.</p>
+{% from "al-macros.njk" import icon %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ title }}</title>
+<meta name="description" content="AudioLab — Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
+<link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
+<link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
+<link rel="stylesheet" href="/assets/css/site.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  .page-wrap { position: relative; }
 
-{% if projetos.length == 0 %}
-<p>Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
-{% else %}
-<div class="card-grid">
-  {% for p in projetos %}
-  <article class="card-item">
-    {% if p.capa %}<img src="{{ p.capa }}" alt="" />{% endif %}
-    {% if p.tag %}<span class="tag-pill">{{ p.tag }}</span>{% endif %}
-    <h3><a href="/projetos/{{ p.slug }}/">{{ p.nome }}</a></h3>
-    <p>{{ p.tagline }}</p>
-  </article>
-  {% endfor %}
-</div>
-{% endif %}
+  .projetos-hero { padding: calc(var(--header-h) + 48px) var(--side-pad) 56px; }
+  .projetos-hero h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--fw-h1);
+    font-size: var(--fs-h1);
+    line-height: var(--lh-h1);
+    color: var(--navy);
+  }
+  .projetos-lead { padding: 0 var(--side-pad); margin: 14px 0 52px; font-family: var(--font-body); color: rgba(17, 48, 63, 0.8); font-size: var(--fs-body-lg); max-width: 640px; }
+  .projetos-lead a { color: var(--blue); }
+
+  .projetos-grid-wrap { padding: 0 var(--side-pad) 72px; }
+</style>
+</head>
+<body>
+
+  {% include "site-header.njk" %}
+
+  <div class="page-wrap">
+    <section class="projetos-hero">
+      <h1><span class="highlight">Conheça nossos projetos</span></h1>
+    </section>
+
+    {% if projetos.length == 0 %}
+    <p class="projetos-lead">Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
+    {% else %}
+    <div class="projetos-grid-wrap">
+      <div class="project-grid">
+        {% for proj in projetos %}
+        {% set b = proj.nome | brand %}
+        <a class="project-card" href="/projetos/{{ proj.slug }}/" style="--pc-base: {{ b.base }}; --pc-on: {{ b.on }}; --pc-text: {{ b.text }};">
+          <div class="project-card-body">
+            <div class="project-card-sg" aria-hidden="true">{{ b.sigla }}</div>
+            <h3>{{ proj.nome }}</h3>
+            <span class="project-card-type">{{ b.tipo }}</span>
+            {% if proj.tagline %}<p>{{ proj.tagline }}</p>{% endif %}
+            {% if proj.quadros.length %}
+            <div class="project-card-series">
+              {% for q in proj.quadros | limit(3) %}<span class="al-tag al-tag-filled" style="background: {{ b.soft }}; color: {{ b.text }};">{{ q.nome }}</span>{% endfor %}
+            </div>
+            {% endif %}
+            <span class="project-card-link">Conhecer o projeto {{ icon("seta-direita", 14) }}</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  {% include "site-footer.njk" %}
+  {% include "newsletter-modal.njk" %}
+  {% include "newsletter-script.njk" %}
+  {% include "reveal-script.njk" %}
+</body>
+</html>

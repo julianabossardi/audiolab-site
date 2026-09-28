@@ -1,7 +1,19 @@
 <footer class="site-footer">
-  <span class="address">Rua São Francisco Xavier, 524 — Pavilhão João Lyra Filho, sala 9.017<br />Rio de Janeiro, RJ · <a href="mailto:audiolab@fcs.uerj.br">audiolab@fcs.uerj.br</a></span>
-  <span class="meta">
-    <span class="credit">Desenvolvido por <a href="https://agenciamoldura.com/" target="_blank" rel="noopener">agência moldura</a></span><br />
-    — Todos os direitos reservados · <a href="/admin/">editar conteúdo →</a>
-  </span>
+  <div class="site-footer-top">
+    <a class="site-footer-brand" href="/">AudioLab</a>
+    <nav class="site-footer-nav">
+      <a href="/sobre/">Sobre</a>
+      <a href="/projetos/">Projetos</a>
+      <a href="/formacao/">Oficinas e cursos</a>
+      <a href="/jonami/">JONAMI</a>
+      <a href="/noticias/">Notícias</a>
+    </nav>
+  </div>
+  <div class="site-footer-bottom">
+    <span class="address">{{ rodape.endereco }}<br />{{ rodape.cidade }} · <a href="mailto:{{ rodape.email }}">{{ rodape.email }}</a></span>
+    <span class="meta">
+      <span class="credit">Desenvolvido por <a href="https://agenciamoldura.com/" target="_blank" rel="noopener">agência moldura</a></span><br />
+      — Todos os direitos reservados · <a href="/admin/">editar conteúdo →</a>
+    </span>
+  </div>
 </footer>

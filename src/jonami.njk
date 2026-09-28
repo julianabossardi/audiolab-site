@@ -1,0 +1,14 @@
+---
+layout: base.njk
+title: JONAMI — AudioLab
+---
+<a class="back-link" href="/">‹ AudioLab</a>
+<h1>{{ jonami.titulo }}</h1>
+<p class="lead">{{ jonami.tagline }}</p>
+
+{% for t in jonami.topicos %}
+<div class="card">
+  <h3>{{ t.titulo }}</h3>
+  {% if t.texto %}<p>{{ t.texto }}</p>{% endif %}
+</div>
+{% endfor %}

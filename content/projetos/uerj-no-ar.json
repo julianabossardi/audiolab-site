@@ -3,8 +3,8 @@
   "tagline": "frase de resumo do que ele é",
   "tag": "Educação e ciência",
   "estatisticas": [
-    { "numero": "##", "rotulo": "número 1" },
-    { "numero": "##", "rotulo": "número 2" }
+    { "numero": "45", "rotulo": "número 1" },
+    { "numero": "12", "rotulo": "número 2" }
   ],
   "conteudos": [
     { "titulo": "conteúdo / episódio", "link": "" },

@@ -44,19 +44,18 @@ var $mcj = jQuery.noConflict(true);
 
 <script>
 (function () {
-  // --header-h/--footer-h are constants meant for the *desktop* single-row
-  // header/footer. On narrow screens both wrap to extra lines and grow
-  // taller, so every calc() built on those variables (hero height, content
-  // padding…) would otherwise undershoot and let the fixed footer cover
-  // the last bit of the page. Keep the variables in sync with the real,
-  // currently-rendered heights instead of guessing a breakpoint.
+  // --header-h is a constant meant for the *desktop* single-row header.
+  // On narrow screens it wraps to extra lines and grows taller, so every
+  // calc() built on it (hero height, content padding…) would otherwise
+  // undershoot and let the fixed header cover the top of the page. Keep
+  // the variable in sync with the real, currently-rendered height instead
+  // of guessing a breakpoint. The footer isn't fixed anymore, so it needs
+  // no such syncing.
   var header = document.querySelector(".site-header");
-  var footer = document.querySelector(".site-footer");
-  if (!header && !footer) return;
+  if (!header) return;
 
   function syncChromeHeights() {
-    if (header) document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
-    if (footer) document.documentElement.style.setProperty("--footer-h", footer.offsetHeight + "px");
+    document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
   }
   syncChromeHeights();
   window.addEventListener("resize", syncChromeHeights);

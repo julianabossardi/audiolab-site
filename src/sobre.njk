@@ -1,14 +1,506 @@
 ---
-layout: base.njk
 title: Sobre — AudioLab
 ---
-<a class="back-link" href="/">‹ AudioLab</a>
-<h1>{{ sobre.titulo }}</h1>
-<p class="lead">{{ sobre.tagline }}</p>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ title }}</title>
+<meta name="description" content="AudioLab — Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
+<link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
+<link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
+<link rel="stylesheet" href="/assets/css/site.css" />
+<style>
+  html, body { margin: 0; padding: 0; }
+  .page-wrap { position: relative; }
 
-{% for t in sobre.topicos %}
-<div class="card">
-  <h3>{{ t.titulo }}</h3>
-  {% if t.texto %}<p>{{ t.texto }}</p>{% endif %}
-</div>
-{% endfor %}
+  .sobre-section { padding: 0 var(--side-pad); }
+  .sobre-section h2, .sobre-supporters h2 { display: inline-flex; align-items: center; gap: 12px; }
+
+  /* offset lime line behind each photo — the "something more" on the
+     images: a flat line accent instead of a shadow, in line with the
+     no-shadow rule, and another spot to lean on the lime accent.
+     Limão sólido, como manda o DSM (nada de lime-deep diluído). */
+  .sobre-framed { position: relative; z-index: 0; }
+  .sobre-framed::after {
+    content: "";
+    position: absolute;
+    inset: 16px -16px -16px 16px;
+    border: 2px solid var(--lime);
+    border-radius: var(--radius);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .sobre-framed > img, .sobre-framed > .dsm-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    border-radius: var(--radius);
+  }
+
+  /* ── hero repeat ────────────────────────────────────── */
+  .sobre-hero {
+    padding: calc(var(--header-h) + 48px) var(--side-pad) 32px var(--side-pad);
+    text-align: center;
+  }
+  .sobre-hero-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--fw-display);
+    line-height: var(--lh-display);
+    letter-spacing: -0.01em;
+    font-size: var(--fs-display);
+    color: var(--navy);
+  }
+  .sobre-hero-title span { display: inline-block; }
+
+  /* ── história + photos ─────────────────────────────── */
+  .sobre-historia {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 6vw;
+    align-items: center;
+    margin: 24px 0 64px;
+  }
+  .sobre-historia-text p {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-body-lg);
+    color: rgba(17, 48, 63, 0.88);
+    margin: 0 0 22px;
+  }
+  .sobre-historia-photos { position: relative; aspect-ratio: 5 / 4; }
+  .sobre-photo-back, .sobre-photo-front {
+    position: absolute;
+    width: 68%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+  }
+  .sobre-photo-back { top: 0; right: 0; }
+  .sobre-photo-front { bottom: 0; left: 0; border: 4px solid var(--cream); }
+  .sobre-photo-back.sobre-framed > img, .sobre-photo-front.sobre-framed > img { background: rgba(2, 69, 103, 0.06); }
+
+  @media (max-width: 760px) {
+    .sobre-historia { grid-template-columns: 1fr; gap: 40px; }
+    .sobre-historia-photos { aspect-ratio: 4 / 3; }
+  }
+
+  /* ── faixa de números (Stat, padrão DSM: petróleo/limão) ──────── */
+  .sobre-stat-band { background: var(--navy); border-radius: var(--radius); padding: 40px 32px; margin: 0 var(--side-pad) 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .sobre-band-label { grid-column: 1 / -1; font-family: var(--font-body); font-size: var(--fs-body-lg); color: var(--petrol-200); margin: 0 0 24px; }
+  .sobre-stat { padding: 0 24px; border-left: 2px dashed var(--petrol-400); text-align: left; }
+  .sobre-stat:first-child { border-left: none; padding-left: 0; }
+  .sobre-stat-num { font-family: var(--font-display); font-weight: var(--fw-stat); font-size: var(--fs-stat); color: var(--lime); line-height: var(--lh-stat); font-variant-numeric: tabular-nums; }
+  .sobre-stat-label { display: block; font-family: var(--font-body); font-size: var(--fs-body); color: var(--petrol-200); margin-top: 4px; }
+  .sobre-band-note { grid-column: 1 / -1; font-family: var(--font-body); font-size: var(--fs-small); color: var(--petrol-300); margin: 20px 0 0; }
+  @media (max-width: 640px) {
+    .sobre-stat-band { grid-template-columns: repeat(2, 1fr); row-gap: 24px; }
+    .sobre-stat:nth-child(2n+1) { border-left: none; padding-left: 0; }
+  }
+
+  /* ── premiações ───────────────────────────────────────── */
+  .sobre-awards { padding: 0 var(--side-pad); margin-bottom: 64px; }
+  .sobre-awards h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-h2);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--navy);
+    margin: 0 0 24px;
+  }
+  .sobre-awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 24px;
+  }
+  .sobre-award { font-family: var(--font-body); font-size: var(--fs-body-lg); color: rgba(17, 48, 63, 0.92); padding-bottom: 12px; border-bottom: 1px solid var(--petrol-200); }
+  @media (max-width: 640px) {
+    .sobre-awards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── queremos uma UERJ + / valores ──────────────────── */
+  .sobre-valores-section {
+    display: grid;
+    grid-template-columns: 0.9fr 1fr;
+    gap: 6vw;
+    align-items: center;
+    margin-bottom: 56px;
+  }
+  .sobre-uerj-photo { aspect-ratio: 4 / 3; border-radius: var(--radius); }
+  .sobre-valores-list h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-h2);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--navy);
+    margin: 0 0 28px;
+  }
+  .sobre-valor { margin-bottom: 22px; }
+  .sobre-valor span { display: block; font-family: var(--font-display); font-weight: 600; font-size: var(--fs-label); color: var(--navy); margin-bottom: 8px; }
+  .sobre-valor .bar { display: block; height: 8px; background: var(--lime); width: 100%; max-width: 260px; }
+  @media (max-width: 760px) {
+    .sobre-valores-section { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ── mission blurb ──────────────────────────────────── */
+  .sobre-blurb {
+    background: rgba(212, 255, 0, 0.16);
+    padding: 32px var(--side-pad);
+    margin-bottom: 56px;
+  }
+  .sobre-blurb p {
+    max-width: 620px;
+    margin: 0 auto;
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-body-lg);
+    color: rgba(17, 48, 63, 0.9);
+  }
+
+  /* ── photo carousel ─────────────────────────────────── */
+  .sobre-carousel-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-weight: var(--fw-h2);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--navy);
+    margin: 0 0 28px;
+    padding: 0 var(--side-pad);
+  }
+  .sobre-carousel-wrap { position: relative; margin-bottom: 64px; }
+  .sobre-carousel {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px var(--side-pad) 28px;
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .sobre-carousel::-webkit-scrollbar { display: none; }
+  .sobre-carousel.is-dragging { cursor: grabbing; }
+  .sobre-carousel-item {
+    flex: 0 0 auto;
+    width: 340px;
+    height: 320px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .sobre-carousel-item:focus-visible { outline: 2px solid var(--lime-deep); outline-offset: 3px; }
+
+  /* ── photo lightbox ──────────────────────────────────── */
+  .sobre-lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-label);
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+  }
+  .sobre-lightbox-close:hover { background: rgba(255, 255, 255, 0.18); }
+  .sobre-lightbox-body {
+    display: flex;
+    align-items: flex-end;
+    gap: 28px;
+    max-width: 90vw;
+    max-height: 86vh;
+  }
+  .sobre-lightbox-body img {
+    max-width: 62vw;
+    max-height: 86vh;
+    object-fit: contain;
+    display: block;
+  }
+  .sobre-lightbox-caption {
+    max-width: 260px;
+    margin: 0;
+    text-align: left;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+  @media (max-width: 760px) {
+    .sobre-lightbox-body { flex-direction: column; align-items: flex-start; max-width: 92vw; }
+    .sobre-lightbox-body img { max-width: 92vw; max-height: 58vh; }
+    .sobre-lightbox-caption { max-width: 92vw; }
+  }
+  .sobre-carousel .dsm-placeholder { flex: 0 0 auto; width: 340px; height: 320px; }
+  @media (max-width: 640px) {
+    .sobre-carousel-item, .sobre-carousel .dsm-placeholder { width: 78vw; height: 260px; }
+  }
+  .sobre-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    background: var(--cream);
+    border: 1px solid var(--petrol-200);
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
+  }
+  .sobre-scroll-btn:hover { background: rgba(2, 69, 103, 0.08); border-color: rgba(2, 69, 103, 0.6); }
+  .sobre-scroll-prev { left: 1vw; }
+  .sobre-scroll-next { right: 1vw; }
+
+  /* ── supporters ─────────────────────────────────────── */
+  .sobre-supporters { margin-bottom: 64px; }
+  .sobre-supporters h2 {
+    font-family: var(--font-display);
+    font-weight: var(--fw-h2);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--navy);
+    margin: 0 0 28px;
+  }
+  .sobre-supporters-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px 28px;
+    max-width: 880px;
+  }
+  .sobre-supporter { font-family: var(--font-body); font-size: var(--fs-body-lg); color: rgba(17, 48, 63, 0.88); text-align: left; }
+  @media (max-width: 640px) {
+    .sobre-supporters-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+  {% include "site-header.njk" %}
+
+  <div class="page-wrap">
+
+    <!-- ════ hero repeat ════ -->
+    <section class="sobre-hero">
+      <h1 class="sobre-hero-title">
+        <span class="highlight">{{ sobre.titulo }}</span><br>
+        <span class="highlight reveal-from-right">{{ sobre.titulo2 }}</span>
+      </h1>
+    </section>
+
+    <!-- ════ história + photos ════ -->
+    <section class="sobre-section sobre-historia">
+      <div class="sobre-historia-text">
+        {% if sobre.historia_1 %}<p data-reveal="up">{{ sobre.historia_1 }}</p>{% endif %}
+        {% if sobre.historia_2 %}<p data-reveal="up" style="--i: 1;">{{ sobre.historia_2 }}</p>{% endif %}
+      </div>
+      <div class="sobre-historia-photos">
+        <div class="sobre-photo-back sobre-framed" data-reveal="up">
+          {% if sobre.foto_antiga %}
+          <img src="{{ sobre.foto_antiga }}" alt="AudioLab — foto antiga" />
+          {% else %}
+          <div class="dsm-placeholder">[foto 4:3]</div>
+          {% endif %}
+        </div>
+        <div class="sobre-photo-front sobre-framed" data-reveal="up" style="--i: 1;">
+          {% if sobre.foto_recente %}
+          <img src="{{ sobre.foto_recente }}" alt="AudioLab — foto recente" />
+          {% else %}
+          <div class="dsm-placeholder">[foto 4:3]</div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ números (Stat, padrão DSM) ════ -->
+    {% if sobre.stats.length %}
+    <section class="sobre-stat-band">
+      <p class="sobre-band-label" data-reveal="up">hoje, já alcançamos</p>
+      {% for s in sobre.stats %}
+      <div class="sobre-stat" data-reveal="up" style="--i: {{ loop.index0 }};">
+        <span class="sobre-stat-num" data-count>{{ s.numero }}</span>
+        <span class="sobre-stat-label">{{ s.rotulo }}</span>
+      </div>
+      {% endfor %}
+      <p class="sobre-band-note">e contando..</p>
+    </section>
+    {% endif %}
+
+    <!-- ════ premiações ════ -->
+    {% if sobre.premiacoes.length %}
+    <section class="sobre-awards">
+      <h2><span class="al-section-marker" aria-hidden="true"></span>Premiações e reconhecimentos</h2>
+      <div class="sobre-awards-grid">
+        {% for p in sobre.premiacoes %}
+        <div class="sobre-award" data-reveal="up" style="--i: {{ loop.index0 % 4 }};">{{ p }}</div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- ════ queremos uma UERJ + ════ -->
+    <section class="sobre-section sobre-valores-section">
+      <div class="sobre-uerj-photo sobre-framed" data-reveal="up">
+        {% if sobre.foto_uerj %}
+        <img src="{{ sobre.foto_uerj }}" alt="UERJ" />
+        {% else %}
+        <div class="dsm-placeholder">[foto 4:3]</div>
+        {% endif %}
+      </div>
+      <div class="sobre-valores-list">
+        <h2><span class="al-section-marker" aria-hidden="true"></span><span class="highlight">queremos uma UERJ +</span></h2>
+        {% for v in sobre.valores %}
+        <div class="sobre-valor" data-reveal="up" style="--i: {{ loop.index0 }};"><span>{{ v }}</span><span class="bar"></span></div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- ════ mission blurb ════ -->
+    {% if sobre.missao_texto %}
+    <div class="sobre-blurb">
+      <p data-reveal="up">{{ sobre.missao_texto }}</p>
+    </div>
+    {% endif %}
+
+    <!-- ════ photo carousel ════ -->
+    <h2 class="sobre-carousel-title"><span class="al-section-marker" aria-hidden="true"></span><span class="highlight">Veja um pouco da nossa história</span></h2>
+    <div class="sobre-carousel-wrap">
+      <div class="sobre-carousel" id="sobreCarousel">
+        {% if sobre.carrossel_fotos.length %}
+          {% for item in sobre.carrossel_fotos %}
+          <div class="sobre-carousel-item sobre-framed" data-lightbox-item tabindex="0" role="button" aria-label="Ampliar foto" data-caption="{{ item.legenda }}"><img src="{{ item.foto }}" alt="" /></div>
+          {% endfor %}
+        {% else %}
+          <div class="dsm-placeholder">[foto]</div>
+          <div class="dsm-placeholder">[foto]</div>
+          <div class="dsm-placeholder">[foto]</div>
+        {% endif %}
+      </div>
+      <button type="button" class="sobre-scroll-btn sobre-scroll-prev" id="sobrePrevBtn" aria-label="Foto anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+      </button>
+      <button type="button" class="sobre-scroll-btn sobre-scroll-next" id="sobreNextBtn" aria-label="Próxima foto">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+      </button>
+    </div>
+
+    <div class="modal-overlay" id="sobreLightbox" hidden>
+      <button type="button" class="sobre-lightbox-close" data-close-lightbox aria-label="Fechar">✕</button>
+      <div class="sobre-lightbox-body">
+        <img id="sobreLightboxImg" src="" alt="" />
+        <p class="sobre-lightbox-caption" id="sobreLightboxCaption"></p>
+      </div>
+    </div>
+
+    <!-- ════ quem apoia ════ -->
+    {% if sobre.apoiadores.length %}
+    <section class="sobre-section sobre-supporters">
+      <h2><span class="al-section-marker" aria-hidden="true"></span><span class="highlight">quem apoia o AudioLab</span></h2>
+      <div class="sobre-supporters-grid">
+        {% for nome in sobre.apoiadores %}
+        <div class="sobre-supporter" data-reveal="up" style="--i: {{ loop.index0 % 4 }};">{{ nome }}</div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+  </div>
+
+  {% include "site-footer.njk" %}
+  {% include "newsletter-modal.njk" %}
+  {% include "newsletter-script.njk" %}
+  {% include "reveal-script.njk" %}
+
+  <script>
+  (function () {
+    var carousel = document.getElementById("sobreCarousel");
+    if (!carousel) return;
+    var isDown = false, startX = 0, scrollLeft = 0, moved = false;
+    carousel.addEventListener("mousedown", function (e) {
+      isDown = true; moved = false;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      carousel.classList.add("is-dragging");
+    });
+    window.addEventListener("mouseup", function () { isDown = false; carousel.classList.remove("is-dragging"); });
+    carousel.addEventListener("mouseleave", function () { isDown = false; carousel.classList.remove("is-dragging"); });
+    carousel.addEventListener("mousemove", function (e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - carousel.offsetLeft;
+      if (Math.abs(x - startX) > 4) moved = true;
+      carousel.scrollLeft = scrollLeft - (x - startX);
+    });
+
+    var prevBtn = document.getElementById("sobrePrevBtn");
+    var nextBtn = document.getElementById("sobreNextBtn");
+    if (prevBtn) prevBtn.addEventListener("click", function () { stopAuto(); carousel.scrollBy({ left: -300, behavior: "smooth" }); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { stopAuto(); carousel.scrollBy({ left: 300, behavior: "smooth" }); startAuto(); });
+
+    /* ── auto-rotate ────────────────────────────────────── */
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var autoTimer = null;
+    function stopAuto() { if (autoTimer) clearInterval(autoTimer); autoTimer = null; }
+    function startAuto() {
+      if (reduceMotion) return;
+      stopAuto();
+      autoTimer = setInterval(function () {
+        var atEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 4;
+        carousel.scrollTo(atEnd ? { left: 0, behavior: "smooth" } : { left: carousel.scrollLeft + 320, behavior: "smooth" });
+      }, 3500);
+    }
+    carousel.addEventListener("mouseenter", stopAuto);
+    carousel.addEventListener("mouseleave", startAuto);
+    carousel.addEventListener("mousedown", stopAuto);
+    startAuto();
+
+    /* ── lightbox: click a photo to see it bigger, with a caption ── */
+    var lightbox = document.getElementById("sobreLightbox");
+    var lightboxImg = document.getElementById("sobreLightboxImg");
+    var lightboxCaption = document.getElementById("sobreLightboxCaption");
+
+    function openLightbox(item) {
+      var img = item.querySelector("img");
+      if (!img) return;
+      lightboxImg.src = img.src;
+      lightboxCaption.textContent = item.getAttribute("data-caption") || "";
+      lightboxCaption.hidden = !item.getAttribute("data-caption");
+      lightbox.hidden = false;
+      stopAuto();
+    }
+    function closeLightbox() {
+      lightbox.hidden = true;
+      startAuto();
+    }
+    carousel.querySelectorAll("[data-lightbox-item]").forEach(function (item) {
+      item.addEventListener("click", function () { if (!moved) openLightbox(item); });
+      item.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(item); }
+      });
+    });
+    lightbox.querySelectorAll("[data-close-lightbox]").forEach(function (btn) {
+      btn.addEventListener("click", closeLightbox);
+    });
+    lightbox.addEventListener("click", function (e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
+  })();
+  </script>
+</body>
+</html>

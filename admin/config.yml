@@ -43,6 +43,34 @@ collections:
           widget: "image",
           required: false,
         }
+      - {
+          label: "Logo do projeto (opcional)",
+          name: "logo",
+          widget: "image",
+          required: false,
+          hint: "Aparece ao lado do nome, no topo da página do projeto",
+        }
+      - {
+          label: "Cor do sublinhado",
+          name: "cor_sublinhado",
+          widget: "color",
+          required: false,
+          default: "#0A557C",
+          hint: "Usada no traço embaixo do nome e nos títulos das seções da página do projeto",
+        }
+      - { label: "Coordenação", name: "coordenacao", widget: "string", required: false }
+      - { label: "Ano de início", name: "ano_inicio", widget: "string", required: false, hint: "Ex.: 2018" }
+      - { label: "E-mail de contato do projeto", name: "contato_email", widget: "string", required: false }
+      - label: "Redes sociais do projeto (opcional)"
+        name: "redes"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "Spotify", name: "spotify", widget: "string", required: false }
+          - { label: "YouTube", name: "youtube", widget: "string", required: false }
+          - { label: "TikTok", name: "tiktok", widget: "string", required: false }
+          - { label: "Site / outro link", name: "site", widget: "string", required: false }
       - label: "Estatísticas"
         name: "estatisticas"
         widget: "list"
@@ -76,6 +104,24 @@ collections:
           widget: "markdown",
           required: false,
         }
+      - label: "Nossos quadros"
+        name: "quadros"
+        widget: "list"
+        required: false
+        hint: "Cada item vira um bloco expansível na página do projeto"
+        fields:
+          - { label: "Nome do quadro", name: "nome", widget: "string" }
+          - { label: "Descrição", name: "descricao", widget: "text", required: false }
+          - { label: "Imagem", name: "imagem", widget: "image", required: false }
+      - label: "Quem faz (equipe)"
+        name: "equipe"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Nome", name: "nome", widget: "string" }
+          - { label: "Função", name: "funcao", widget: "string", required: false, hint: "Ex.: Coordenação, Edição de áudio" }
+          - { label: "Foto", name: "foto", widget: "image", required: false }
+          - { label: "LinkedIn (opcional)", name: "linkedin", widget: "string", required: false }
 
   - name: "noticias"
     label: "Notícias"
@@ -99,6 +145,22 @@ collections:
           required: false,
         }
       - { label: "Data", name: "data", widget: "datetime", required: false }
+      - label: "Tema"
+        name: "tema"
+        widget: "select"
+        required: false
+        options:
+          ["Educação e ciência", "Jornalismo", "Cultura", "Esporte"]
+        hint: "Usado no filtro por tema da página de notícias"
+      - label: "Projeto relacionado (opcional)"
+        name: "projeto_relacionado"
+        widget: "relation"
+        collection: "projetos"
+        search_fields: ["nome"]
+        display_fields: ["nome"]
+        value_field: "{{slug}}"
+        required: false
+        hint: "Usado no filtro por projeto e no carrossel de notícias da página do projeto"
       - {
           label: "Link externo (opcional)",
           name: "link",
@@ -113,11 +175,76 @@ collections:
           required: false,
         }
 
-  - name: "formacao"
-    label: "Formação"
+  - name: "paginas"
+    label: "Páginas"
     files:
-      - name: "pagina"
-        label: "Página Formação"
+      - name: "sobre"
+        label: "Sobre"
+        file: "content/sobre.json"
+        format: "json"
+        fields:
+          - { label: "Título — linha 1", name: "titulo", widget: "string" }
+          - { label: "Título — linha 2", name: "titulo2", widget: "string" }
+          - { label: "História — parágrafo 1", name: "historia_1", widget: "text" }
+          - { label: "História — parágrafo 2", name: "historia_2", widget: "text" }
+          - { label: "Foto antiga", name: "foto_antiga", widget: "image", required: false }
+          - { label: "Foto recente", name: "foto_recente", widget: "image", required: false }
+          - label: "Números (hoje já alcançamos)"
+            name: "stats"
+            widget: "list"
+            required: false
+            max: 3
+            fields:
+              - { label: "Número", name: "numero", widget: "string" }
+              - { label: "Rótulo", name: "rotulo", widget: "string" }
+          - label: "Premiações e reconhecimentos"
+            name: "premiacoes"
+            widget: "list"
+            required: false
+            hint: "Um nome de premiação por item"
+          - { label: "Foto da UERJ", name: "foto_uerj", widget: "image", required: false }
+          - label: "Valores (queremos uma UERJ +)"
+            name: "valores"
+            widget: "list"
+            required: false
+            max: 3
+            hint: "Até 3 valores, um por item"
+          - { label: "Texto sobre a importância de laboratórios", name: "missao_texto", widget: "text" }
+          - label: "Fotos do carrossel"
+            name: "carrossel_fotos"
+            widget: "list"
+            required: false
+            hint: "Ao clicar na foto no site, a legenda aparece ao lado dela"
+            fields:
+              - { label: "Foto", name: "foto", widget: "image" }
+              - { label: "Legenda", name: "legenda", widget: "text", required: false }
+          - label: "Quem apoia o AudioLab"
+            name: "apoiadores"
+            widget: "list"
+            required: false
+            hint: "Um nome por item"
+
+      - name: "jonami"
+        label: "Educacional — JONAMI"
+        file: "content/jonami.json"
+        format: "json"
+        fields:
+          - { label: "Título", name: "titulo", widget: "string" }
+          - { label: "Frase de resumo", name: "tagline", widget: "string" }
+          - label: "Tópicos"
+            name: "topicos"
+            widget: "list"
+            fields:
+              - { label: "Título do tópico", name: "titulo", widget: "string" }
+              - {
+                  label: "Texto (opcional)",
+                  name: "texto",
+                  widget: "text",
+                  required: false,
+                }
+
+      - name: "formacao"
+        label: "Educacional — Oficinas e cursos"
         file: "content/formacao.json"
         format: "json"
         fields:
@@ -135,24 +262,31 @@ collections:
                   required: false,
                 }
 
-  - name: "sobre"
-    label: "Sobre"
-    files:
-      - name: "pagina"
-        label: "Página Sobre"
-        file: "content/sobre.json"
+      - name: "cabecalho"
+        label: "Cabeçalho"
+        file: "content/cabecalho.json"
         format: "json"
         fields:
-          - { label: "Título", name: "titulo", widget: "string" }
-          - { label: "Frase de resumo", name: "tagline", widget: "string" }
-          - label: "Tópicos"
-            name: "topicos"
-            widget: "list"
+          - { label: "Texto do botão de newsletter", name: "newsletter_texto", widget: "string" }
+          - {
+              label: "Texto curto do botão (aparece no celular)",
+              name: "newsletter_texto_curto",
+              widget: "string",
+            }
+          - label: "Redes sociais e contato"
+            name: "redes"
+            widget: "object"
             fields:
-              - { label: "Título do tópico", name: "titulo", widget: "string" }
-              - {
-                  label: "Texto (opcional)",
-                  name: "texto",
-                  widget: "text",
-                  required: false,
-                }
+              - { label: "Spotify", name: "spotify", widget: "string", required: false, hint: "Link completo, ex.: https://open.spotify.com/..." }
+              - { label: "YouTube", name: "youtube", widget: "string", required: false }
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "E-mail", name: "email", widget: "string", required: false }
+
+      - name: "rodape"
+        label: "Rodapé"
+        file: "content/rodape.json"
+        format: "json"
+        fields:
+          - { label: "Endereço", name: "endereco", widget: "string" }
+          - { label: "Cidade / UF", name: "cidade", widget: "string" }
+          - { label: "E-mail", name: "email", widget: "string" }

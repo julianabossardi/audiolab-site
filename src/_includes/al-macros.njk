@@ -1,0 +1,35 @@
+{#
+  Ícones do sistema AudioLab: grade 24px, traço 2px, pontas e cantos retos,
+  cor herdada de currentColor. Catálogo em docs/audiolab/guidelines/20-icones.md.
+#}
+{% set alIconPaths = {
+  "play": "M7 4v16l13-8z",
+  "pause": "M6 4h4v16H6z M14 4h4v16h-4z",
+  "microfone": "M9 3h6v10H9z M5 11v1a7 7 0 0 0 14 0v-1 M12 19v3 M8 22h8",
+  "fones": "M4 15v-3a8 8 0 0 1 16 0v3 M4 15h4v6H4z M16 15h4v6h-4z",
+  "volume": "M4 9h4l5-4v14l-5-4H4z M16 9a4 4 0 0 1 0 6 M19 6a8 8 0 0 1 0 12",
+  "ao-vivo": "M12 12h.01 M8 8a5.7 5.7 0 0 0 0 8 M16 8a5.7 5.7 0 0 1 0 8 M5 5a10 10 0 0 0 0 14 M19 5a10 10 0 0 1 0 14",
+  "calendario": "M4 5h16v16H4z M4 10h16 M8 3v4 M16 3v4",
+  "relogio": "M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18z M12 7v5l3 2",
+  "pessoas": "M9 11a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7z M2 20v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1 M16 4.5a3.5 3.5 0 0 1 0 7 M19 14a5 5 0 0 1 3 5v1",
+  "email": "M3 5h18v14H3z M3 6l9 7 9-7",
+  "seta": "M4 12h16 M14 6l6 6-6 6",
+  "link-externo": "M14 4h6v6 M20 4l-9 9 M18 14v6H4V6h6",
+  "busca": "M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0-13z M16 16l5 5",
+  "menu": "M3 6h18 M3 12h18 M3 18h18",
+  "fechar": "M5 5l14 14 M19 5L5 19",
+  "baixar": "M12 3v12 M6 10l6 6 6-6 M4 21h16",
+  "seta-baixo": "M5 9l7 7 7-7",
+  "seta-direita": "M9 5l7 7-7 7",
+  "seta-esquerda": "M15 5l-7 7 7 7",
+  "confirmar": "M4 12l5 5L20 6",
+  "informacao": "M12 11v7 M12 6v1 M3 3h18v18H3z",
+  "alerta": "M12 3l10 18H2z M12 10v5 M12 18v1",
+  "erro": "M5 5l14 14 M19 5L5 19 M3 3h18v18H3z",
+  "mais": "M12 4v16 M4 12h16",
+  "menos": "M4 12h16"
+} %}
+
+{% macro icon(name, size=20, hidden=true) %}<svg width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="{{ 'currentColor' if name == 'play' else 'none' }}" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"{% if hidden %} aria-hidden="true"{% endif %}><path d="{{ alIconPaths[name] }}"></path></svg>{% endmacro %}
+
+{% macro sectionMarker(color="var(--navy)") %}<span class="al-section-marker" aria-hidden="true" style="background: repeating-linear-gradient(to top, {{ color }} 0 4px, transparent 4px 6px);"></span>{% endmacro %}

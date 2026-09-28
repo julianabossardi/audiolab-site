@@ -1,0 +1,263 @@
+/*
+  AudioLab, tokens de design, versão 0.3
+  Gerado de tokens.json. Não edite os valores aqui: altere tokens.json e gere de novo.
+  Uso: importe este arquivo uma vez, na raiz da aplicação. Aplique data-theme="clara" ou
+  data-theme="petroleo" em cada seção e data-project="atelie|bada|escola|audiolab" na página
+  ou seção de um projeto. Nunca escreva cor, tamanho, espaçamento ou raio como valor solto.
+*/
+
+@font-face { font-family: 'Barlow Semi Condensed'; src: url('../fonts/BarlowSemiCondensed-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Barlow Semi Condensed'; src: url('../fonts/BarlowSemiCondensed-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Barlow Semi Condensed'; src: url('../fonts/BarlowSemiCondensed-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lato'; src: url('../fonts/Lato-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Lato'; src: url('../fonts/Lato-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Libre Franklin'; src: url('../fonts/LibreFranklin-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Libre Franklin'; src: url('../fonts/LibreFranklin-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+
+:root, [data-theme="clara"] {
+  /* paleta, semânticas e cores-código */
+  --petrol-50: #f2f5f6;
+  --petrol-100: #e6eef1;
+  --petrol-200: #d3dfe4;
+  --petrol-300: #a9c0cb;
+  --petrol-400: #7a97a6;
+  --petrol-500: #4f6b79;
+  --petrol-600: #0a557c;
+  --petrol-700: #024567;
+  --petrol-800: #11303f;
+  --petrol-900: #0a2230;
+  --petrol-950: #06151e;
+  --lime-50: #fcffeb;
+  --lime-100: #f9ffd9;
+  --lime-200: #f2ffb2;
+  --lime-300: #eaff80;
+  --lime-400: #dfff40;
+  --lime-500: #d4ff00;
+  --white: #ffffff;
+  --success-fg: #0b7a4b;
+  --success-tint: #e7f2ed;
+  --success-line: #b9d9c9;
+  --warning-fg: #a35400;
+  --warning-tint: #f4eae0;
+  --warning-line: #e6c9aa;
+  --error-fg: #c23b22;
+  --error-tint: #f9ebe9;
+  --error-line: #ebc2bb;
+  --info-fg: #024567;
+  --info-tint: #e6eef1;
+  --info-line: #d3dfe4;
+  --atelie: #571dfe;
+  --atelie-soft: #f2edff;
+  --atelie-dark: #18005b;
+  --atelie-card: #1d0070;
+  --atelie-muted: #cdbbff;
+  --atelie-rosa: #ff0877;
+  --atelie-rosa-text: #c20057;
+  --atelie-lilac: #e4dbff;
+  --bada: #fc7818;
+  --bada-text: #ab4902;
+  --bada-soft: #fff4ed;
+  --bada-dark: #240000;
+  --bada-cream: #f0e4a8;
+  --bada-red: #e42418;
+  --bada-green: #008454;
+  --escola: #00c060;
+  --escola-text: #007038;
+  --escola-soft: #ebfaf2;
+  --escola-dark: #004724;
+  --on-atelie: #ffffff;
+  --on-bada: #0a2230;
+  --on-escola: #0a2230;
+  /* papéis da superfície clara */
+  --bg: #f2f5f6;
+  --card: #ffffff;
+  --text: #11303f;
+  --muted: #4f6b79;
+  --line: #d3dfe4;
+  --link: #024567;
+  --accent: #d4ff00;
+  --focus-ring: #024567;
+}
+[data-theme="petroleo"] {
+  --bg: #024567;
+  --card: #11303f;
+  --text: #ffffff;
+  --muted: #a9c0cb;
+  --line: #0a557c;
+  --link: #d4ff00;
+  --accent: #d4ff00;
+  --focus-ring: #ffffff;
+}
+
+:root {
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
+  --font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
+  --font-series: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-18: 18px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-88: 88px;
+  --radius: 4px;
+  --radius-round: 50%;
+  --page-width: 1440px;
+  --page-margin: 64px;
+  --page-margin-mobile: 20px;
+  --content-width: 1312px;
+  --grid-gutter: 16px;
+  --measure: 68ch;
+  --target-min: 44px;
+  --focus-width: 3px;
+  --focus-offset: 3px;
+  --breakpoint-layout: 768px;
+  --breakpoint-menu: 1024px;
+  --dur-press: 80ms;
+  --dur-fast: 120ms;
+  --dur-medium: 200ms;
+  --dur-loop: 1200ms;
+  --skeleton-delay: 400ms;
+  --toast-duration: 8000ms;
+  --shadow-none: none;
+  --hero-scrim: linear-gradient(90deg, rgba(2, 69, 103, 0.92) 0%, rgba(2, 69, 103, 0.5) 30%, rgba(2, 69, 103, 0) 60%);
+  --focus-on-light: var(--focus-width) solid var(--petrol-700);
+  --focus-on-dark: var(--focus-width) solid var(--white);
+  /* tamanhos de texto, desktop */
+  --fs-display: 88px; --lh-display: 1.02; --fw-display: 700;
+  --fs-h1: 56px; --lh-h1: 1.08; --fw-h1: 700;
+  --fs-h2: 40px; --lh-h2: 1.12; --fw-h2: 700;
+  --fs-h3: 28px; --lh-h3: 1.15; --fw-h3: 700;
+  --fs-card-title: 26px; --lh-card-title: 1.15; --fw-card-title: 700;
+  --fs-h4: 22px; --lh-h4: 1.2; --fw-h4: 700;
+  --fs-lead: 20px; --lh-lead: 1.6; --fw-lead: 400;
+  --fs-body-lg: 18px; --lh-body-lg: 1.6; --fw-body-lg: 400;
+  --fs-body: 16px; --lh-body: 1.6; --fw-body: 400;
+  --fs-small: 14px; --lh-small: 1.5; --fw-small: 400;
+  --fs-eyebrow: 18px; --lh-eyebrow: 1.3; --fw-eyebrow: 600;
+  --fs-label-lg: 19px; --lh-label-lg: 1.1; --fw-label-lg: 600;
+  --fs-label: 17px; --lh-label: 1.1; --fw-label: 600;
+  --fs-tag: 15px; --lh-tag: 1.2; --fw-tag: 600;
+  --fs-stat: 64px; --lh-stat: 1; --fw-stat: 700;
+  --fs-series-name: 40px; --lh-series-name: 1.1; --fw-series-name: 800;
+}
+
+/* Celular, abaixo de 768 px. Breakpoint proposto, a validar. */
+@media (max-width: 767px) {
+  :root {
+    --page-margin: var(--page-margin-mobile);
+    --fs-display: 44px; --lh-display: 1.05;
+    --fs-h1: 40px; --lh-h1: 1.1;
+    --fs-h2: 32px; --lh-h2: 1.15;
+    --fs-h3: 24px; --lh-h3: 1.2;
+    --fs-card-title: 24px; --lh-card-title: 1.2;
+    --fs-h4: 20px; --lh-h4: 1.25;
+    --fs-lead: 17px;
+    --fs-body-lg: 17px;
+    --fs-eyebrow: 16px;
+    --fs-stat: 48px;
+  }
+}
+
+/* Movimento reduzido: toda transição vira troca instantânea e nada se repete em laço. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-press: 0ms; --dur-fast: 0ms; --dur-medium: 0ms; --dur-loop: 0ms; --skeleton-delay: 0ms; }
+}
+
+/* Estilos de texto. Use estas classes ou as variáveis --fs-*, --lh-*, --fw-*. */
+.al-display { font-family: var(--font-display); font-size: var(--fs-display); line-height: var(--lh-display); font-weight: var(--fw-display); letter-spacing: -0.01em; }
+.al-h1 { font-family: var(--font-display); font-size: var(--fs-h1); line-height: var(--lh-h1); font-weight: var(--fw-h1); letter-spacing: -0.01em; }
+.al-h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-h2); }
+.al-h3 { font-family: var(--font-display); font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--fw-h3); }
+.al-card-title { font-family: var(--font-display); font-size: var(--fs-card-title); line-height: var(--lh-card-title); font-weight: var(--fw-card-title); }
+.al-h4 { font-family: var(--font-display); font-size: var(--fs-h4); line-height: var(--lh-h4); font-weight: var(--fw-h4); }
+.al-lead { font-family: var(--font-body); font-size: var(--fs-lead); line-height: var(--lh-lead); font-weight: var(--fw-lead); }
+.al-body-lg { font-family: var(--font-body); font-size: var(--fs-body-lg); line-height: var(--lh-body-lg); font-weight: var(--fw-body-lg); }
+.al-body { font-family: var(--font-body); font-size: var(--fs-body); line-height: var(--lh-body); font-weight: var(--fw-body); }
+.al-small { font-family: var(--font-body); font-size: var(--fs-small); line-height: var(--lh-small); font-weight: var(--fw-small); }
+.al-eyebrow { font-family: var(--font-display); font-size: var(--fs-eyebrow); line-height: var(--lh-eyebrow); font-weight: var(--fw-eyebrow); }
+.al-label-lg { font-family: var(--font-display); font-size: var(--fs-label-lg); line-height: var(--lh-label-lg); font-weight: var(--fw-label-lg); letter-spacing: 0.01em; }
+.al-label { font-family: var(--font-display); font-size: var(--fs-label); line-height: var(--lh-label); font-weight: var(--fw-label); letter-spacing: 0.01em; }
+.al-tag { font-family: var(--font-display); font-size: var(--fs-tag); line-height: var(--lh-tag); font-weight: var(--fw-tag); }
+.al-stat { font-family: var(--font-display); font-size: var(--fs-stat); line-height: var(--lh-stat); font-weight: var(--fw-stat); }
+.al-series-name { font-family: var(--font-series); font-size: var(--fs-series-name); line-height: var(--lh-series-name); font-weight: var(--fw-series-name); letter-spacing: -0.02em; }
+.al-stat { font-variant-numeric: tabular-nums; }
+
+/* Cores-código: só acento. Estrutura fixa, cor variável. */
+[data-project="audiolab"] {
+  --project-base: var(--petrol-700);
+  --project-on: var(--lime-500);
+  --project-text: var(--petrol-700);
+  --project-soft: var(--petrol-100);
+  --project-dark: var(--petrol-800);
+  --project-accent: var(--lime-500);
+}
+[data-project="atelie"] {
+  --project-base: var(--atelie);
+  --project-on: var(--on-atelie);
+  --project-text: var(--atelie);
+  --project-soft: var(--atelie-soft);
+  --project-dark: var(--atelie-dark);
+  --project-accent: var(--atelie-rosa);
+  --project-card-dark: var(--atelie-card); --project-muted-on-dark: var(--atelie-muted); --project-accent-text: var(--atelie-rosa-text); --project-lilac: var(--atelie-lilac);
+}
+[data-project="bada"] {
+  --project-base: var(--bada);
+  --project-on: var(--on-bada);
+  --project-text: var(--bada-text);
+  --project-soft: var(--bada-soft);
+  --project-dark: var(--bada-dark);
+  --project-accent: var(--bada-cream);
+}
+[data-project="escola"] {
+  --project-base: var(--escola);
+  --project-on: var(--on-escola);
+  --project-text: var(--escola-text);
+  --project-soft: var(--escola-soft);
+  --project-dark: var(--escola-dark);
+  --project-accent: var(--lime-500);
+}
+[data-theme="projeto"] {
+  --bg: var(--project-dark); --card: var(--project-card-dark, var(--project-dark)); --text: var(--white);
+  --muted: var(--project-muted-on-dark, var(--petrol-300)); --line: var(--project-base); --link: var(--lime-500);
+  --accent: var(--project-accent); --focus-ring: var(--white);
+}
+
+/* Foco visível em todo elemento interativo. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Campos: o texto de exemplo não substitui o rótulo, mas precisa de contraste. */
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: var(--fs-body); line-height: var(--lh-body); }
+a { color: var(--link); }
+:where(button, input, select, textarea) { font-family: inherit; }
+
+/* Grafismos, receitas */
+.al-eq-bar { display: block; width: 12px; flex: none; background: repeating-linear-gradient(to top, var(--lime-500) 0 5px, transparent 5px 8px); }
+.al-eq-bar--divider { width: 6px; background: repeating-linear-gradient(to top, var(--petrol-700) 0 4px, transparent 4px 6px); }
+.al-wave-bar { display: block; width: 4px; flex: none; }
+.al-section-marker { width: 10px; height: 26px; flex: none; background: repeating-linear-gradient(to top, var(--petrol-700) 0 4px, transparent 4px 6px); }
+[data-theme="petroleo"] .al-section-marker, [data-theme="projeto"] .al-section-marker { background: repeating-linear-gradient(to top, var(--lime-500) 0 4px, transparent 4px 6px); }
+[data-project] .al-section-marker { background: repeating-linear-gradient(to top, var(--project-base) 0 4px, transparent 4px 6px); }
+.al-rule-segmented { height: 10px; background: repeating-linear-gradient(90deg, var(--petrol-700) 0 8px, transparent 8px 12px); }
+.al-dot-matrix { background: radial-gradient(circle, var(--petrol-600) 0 2px, transparent 2.5px) 0 0 / 10px 10px; }
+.al-highlight { background: linear-gradient(transparent 60%, var(--lime-500) 60%); padding: 0 2px; }
+.al-visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+

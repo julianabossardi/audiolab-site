@@ -1,0 +1,56 @@
+<script>
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function countUp(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = "1";
+    var raw = el.textContent.trim();
+    var match = raw.match(/[\d.,]+/);
+    if (!match) return;
+    var numStr = match[0];
+    var hasSep = /[.,]/.test(numStr);
+    var target = parseInt(numStr.replace(/[.,]/g, ""), 10);
+    if (isNaN(target)) return;
+    var prefix = raw.slice(0, match.index);
+    var suffix = raw.slice(match.index + numStr.length);
+    if (reduceMotion) return;
+
+    var start = null, duration = 1100;
+    function frame(ts) {
+      if (!start) start = ts;
+      var p = Math.min(1, (ts - start) / duration);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = Math.round(eased * target);
+      el.textContent = prefix + (hasSep ? val.toLocaleString("pt-BR") : String(val)) + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+      else el.textContent = raw;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function reveal(el) {
+    el.classList.add("is-revealed");
+    if (el.hasAttribute("data-count")) countUp(el);
+    el.querySelectorAll("[data-count]").forEach(countUp);
+  }
+
+  var targets = document.querySelectorAll(".highlight, .proj-heading, [data-reveal]");
+
+  if (!("IntersectionObserver" in window) || reduceMotion) {
+    targets.forEach(reveal);
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries, obs) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        reveal(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -5% 0px" });
+
+  targets.forEach(function (el) { io.observe(el); });
+})();
+</script>
