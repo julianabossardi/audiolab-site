@@ -114,9 +114,10 @@ title: Notícias · AudioLab
          {% if n.link %}target="_blank" rel="noopener"{% endif %}
          data-projeto="{{ n.projeto_relacionado or '' }}"
          data-tema="{{ n.tema or '' }}">
-        {% if n.capa %}
+        {% set capa = n.capa | img %}
+        {% if true %}
         <div class="noticia-card-img">
-          <img src="{{ n.capa }}" alt="" />
+          {% if capa %}<img src="{{ capa }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 16:9]</div>{% endif %}
           <span class="noticia-card-tag">{{ icon("microfone", 12) }}Notícia</span>
         </div>
         {% endif %}

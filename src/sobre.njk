@@ -298,17 +298,17 @@ title: Sobre · AudioLab
       </div>
       <div class="sobre-historia-photos">
         <div class="sobre-photo-back sobre-framed" data-reveal="up">
-          {% if sobre.foto_antiga %}
-          <img src="{{ sobre.foto_antiga }}" alt="AudioLab, foto antiga" />
+          {% if sobre.foto_antiga | img %}
+          <img src="{{ sobre.foto_antiga | img }}" alt="AudioLab, foto antiga" />
           {% else %}
-          <div class="dsm-placeholder">[foto 4:3]</div>
+          <div class="dsm-placeholder">[imagem 4:3]</div>
           {% endif %}
         </div>
         <div class="sobre-photo-front sobre-framed" data-reveal="up" style="--i: 1;">
-          {% if sobre.foto_recente %}
-          <img src="{{ sobre.foto_recente }}" alt="AudioLab, foto recente" />
+          {% if sobre.foto_recente | img %}
+          <img src="{{ sobre.foto_recente | img }}" alt="AudioLab, foto recente" />
           {% else %}
-          <div class="dsm-placeholder">[foto 4:3]</div>
+          <div class="dsm-placeholder">[imagem 4:3]</div>
           {% endif %}
         </div>
       </div>
@@ -343,10 +343,10 @@ title: Sobre · AudioLab
     <!-- ════ queremos uma UERJ + ════ -->
     <section class="sobre-section sobre-valores-section">
       <div class="sobre-uerj-photo sobre-framed" data-reveal="up">
-        {% if sobre.foto_uerj %}
-        <img src="{{ sobre.foto_uerj }}" alt="UERJ" />
+        {% if sobre.foto_uerj | img %}
+        <img src="{{ sobre.foto_uerj | img }}" alt="UERJ" />
         {% else %}
-        <div class="dsm-placeholder">[foto 4:3]</div>
+        <div class="dsm-placeholder">[imagem 4:3]</div>
         {% endif %}
       </div>
       <div class="sobre-valores-list">
@@ -362,12 +362,12 @@ title: Sobre · AudioLab
       <div class="sobre-carousel" id="sobreCarousel">
         {% if sobre.carrossel_fotos.length %}
           {% for item in sobre.carrossel_fotos %}
-          <div class="sobre-carousel-item sobre-framed" data-lightbox-item tabindex="0" role="button" aria-label="Ampliar foto" data-caption="{{ item.legenda }}"><img src="{{ item.foto }}" alt="" /></div>
+          <div class="sobre-carousel-item sobre-framed" data-lightbox-item tabindex="0" role="button" aria-label="Ampliar foto" data-caption="{{ item.legenda }}">{% if item.foto | img %}<img src="{{ item.foto | img }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 4:3]</div>{% endif %}</div>
           {% endfor %}
         {% else %}
-          <div class="dsm-placeholder">[foto]</div>
-          <div class="dsm-placeholder">[foto]</div>
-          <div class="dsm-placeholder">[foto]</div>
+          <div class="dsm-placeholder">[imagem 4:3]</div>
+          <div class="dsm-placeholder">[imagem 4:3]</div>
+          <div class="dsm-placeholder">[imagem 4:3]</div>
         {% endif %}
       </div>
       <button type="button" class="sobre-scroll-btn sobre-scroll-prev" id="sobrePrevBtn" aria-label="Foto anterior">

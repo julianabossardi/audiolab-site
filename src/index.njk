@@ -254,9 +254,10 @@ title: AudioLab · Laboratório de Áudio FCS/UERJ
         <div class="news-carousel" id="newsCarousel">
           {% for n in noticias %}
           <a class="news-card" href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>
-            {% if n.capa %}
+            {% set capa = n.capa | img %}
+            {% if true %}
             <div class="news-card-img">
-              <img src="{{ n.capa }}" alt="" />
+              {% if capa %}<img src="{{ capa }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 16:9]</div>{% endif %}
               <span class="news-card-tag">{{ icon("microfone", 11) }}Notícia</span>
             </div>
             {% endif %}

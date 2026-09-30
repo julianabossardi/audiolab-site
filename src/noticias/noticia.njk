@@ -11,7 +11,9 @@ eleventyComputed:
 ---
 <a class="back-link" href="/">‹ AudioLab</a>
 
-{% if n.capa %}<img class="cover" src="{{ n.capa }}" alt="" />{% endif %}
+{% from "al-macros.njk" import placeholder %}
+{% set capa = n.capa | img %}
+<div class="cover">{% if capa %}<img src="{{ capa }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
 {% if n.data %}<span class="tag-pill">{{ n.data | formatDate }}</span>{% endif %}
 <h1>{{ n.titulo }}</h1>
 <p class="lead">{{ n.subtitulo }}</p>
@@ -35,7 +37,7 @@ eleventyComputed:
 {% endif %}
 
 {% if n.corpo %}
-<div>{{ n.corpo | safe }}</div>
+<div class="prose">{{ n.corpo | md | safe }}</div>
 {% endif %}
 
 <style>

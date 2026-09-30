@@ -263,7 +263,7 @@ eleventyComputed:
       <div class="proj-series-grid">
         {% for q in p.quadros %}
         <div class="proj-serie-card">
-          <div class="proj-serie-img">{% if q.imagem %}<img src="{{ q.imagem }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 16:9]</div>{% endif %}</div>
+          <div class="proj-serie-img">{% if q.imagem | img %}<img src="{{ q.imagem | img }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 16:9]</div>{% endif %}</div>
           <div class="proj-serie-body">
             <span class="name">{{ q.nome }}</span>
             {% if q.descricao %}<p>{{ q.descricao }}</p>{% endif %}
@@ -302,7 +302,7 @@ eleventyComputed:
         <div class="proj-news-track">
           {% for n in relatedNews %}
           <a class="proj-news-card" href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>
-            {% if n.capa %}<img src="{{ n.capa }}" alt="" />{% else %}<div class="dsm-placeholder" style="aspect-ratio:16/9;">[imagem 16:9]</div>{% endif %}
+            {% if n.capa | img %}<img src="{{ n.capa | img }}" alt="" />{% else %}<div class="dsm-placeholder" style="aspect-ratio:16/9;">[imagem 16:9]</div>{% endif %}
             <span>{{ n.titulo }}</span>
           </a>
           {% endfor %}
@@ -318,7 +318,7 @@ eleventyComputed:
       <div class="proj-team-grid">
         {% for m in p.equipe %}
         <div class="proj-team-member">
-          <div class="proj-team-photo" style="--tm-base: {{ b.base }};">{% if m.foto %}<img src="{{ m.foto }}" alt="{{ m.nome }}" />{% else %}<div class="dsm-placeholder">[foto 4:5]</div>{% endif %}</div>
+          <div class="proj-team-photo" style="--tm-base: {{ b.base }};">{% if m.foto | img %}<img src="{{ m.foto | img }}" alt="{{ m.nome }}" />{% else %}<div class="dsm-placeholder">[foto 4:5]</div>{% endif %}</div>
           <h4>{{ m.nome }}</h4>
           {% if m.funcao %}<span class="proj-team-role">{{ m.funcao }}</span>{% endif %}
           {% if m.linkedin %}<a class="proj-team-in" href="{{ m.linkedin }}" target="_blank" rel="noopener">{{ icon("link-externo", 12) }}LinkedIn</a>{% endif %}
