@@ -1,5 +1,5 @@
 ---
-title: AudioLab — Laboratório de Áudio FCS/UERJ
+title: AudioLab · Laboratório de Áudio FCS/UERJ
 ---
 {% from "al-macros.njk" import icon %}
 <!doctype html>
@@ -8,7 +8,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{{ title }}</title>
-<meta name="description" content="AudioLab — Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
+<meta name="description" content="AudioLab: Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
 <link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
 <link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
 <link rel="stylesheet" href="/assets/css/site.css" />
@@ -235,7 +235,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
       </div>
 
       {% if projetos.length == 0 %}
-      <p class="projects-empty">Nenhum projeto ainda. Abra <a href="/admin/">/admin</a> e crie o primeiro.</p>
+      <p class="projects-empty">Nenhum projeto publicado no momento.</p>
       {% else %}
       <div class="project-grid">
         {% for proj in projetos %}
@@ -262,7 +262,7 @@ title: AudioLab — Laboratório de Áudio FCS/UERJ
       </div>
 
       {% if noticias.length == 0 %}
-      <p class="news-empty">Nenhuma notícia ainda. Abra <a href="/admin/">/admin</a> e crie a primeira.</p>
+      <p class="news-empty">Nenhuma notícia publicada no momento.</p>
       {% else %}
       <div class="news-carousel-wrap">
         <div class="news-carousel" id="newsCarousel">

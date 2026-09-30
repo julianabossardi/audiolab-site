@@ -30,7 +30,7 @@ collections:
           label: "Frase de resumo",
           name: "tagline",
           widget: "string",
-          hint: "Uma linha curta — o que é esse projeto",
+          hint: "Uma linha curta: o que é esse projeto",
         }
       - label: "Categoria"
         name: "tag"
@@ -183,10 +183,10 @@ collections:
         file: "content/sobre.json"
         format: "json"
         fields:
-          - { label: "Título — linha 1", name: "titulo", widget: "string" }
-          - { label: "Título — linha 2", name: "titulo2", widget: "string" }
-          - { label: "História — parágrafo 1", name: "historia_1", widget: "text" }
-          - { label: "História — parágrafo 2", name: "historia_2", widget: "text" }
+          - { label: "Título, linha 1", name: "titulo", widget: "string" }
+          - { label: "Título, linha 2", name: "titulo2", widget: "string" }
+          - { label: "História, parágrafo 1", name: "historia_1", widget: "text" }
+          - { label: "História, parágrafo 2", name: "historia_2", widget: "text" }
           - { label: "Foto antiga", name: "foto_antiga", widget: "image", required: false }
           - { label: "Foto recente", name: "foto_recente", widget: "image", required: false }
           - label: "Números (hoje já alcançamos)"
@@ -225,7 +225,7 @@ collections:
             hint: "Um nome por item"
 
       - name: "jonami"
-        label: "Educacional — JONAMI"
+        label: "Educacional: JONAMI"
         file: "content/jonami.json"
         format: "json"
         fields:
@@ -244,7 +244,7 @@ collections:
                 }
 
       - name: "formacao"
-        label: "Educacional — Oficinas e cursos"
+        label: "Educacional: Oficinas e cursos"
         file: "content/formacao.json"
         format: "json"
         fields:

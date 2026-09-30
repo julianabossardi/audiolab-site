@@ -5,7 +5,7 @@ pagination:
   alias: p
 permalink: "/projetos/{{ p.slug }}/"
 eleventyComputed:
-  title: "{{ p.nome }} — AudioLab"
+  title: "{{ p.nome }} · AudioLab"
 ---
 {% from "al-macros.njk" import icon %}
 {% set b = p.nome | brand %}
@@ -302,7 +302,7 @@ eleventyComputed:
         {% endfor %}
       </div>
       {% else %}
-      <p style="color: rgba(17,48,63,0.7);">Nenhum episódio publicado ainda. Abra <a href="/admin/">/admin</a> e adicione o primeiro.</p>
+      <p>Nenhum episódio publicado no momento.</p>
       {% endif %}
     </section>
 

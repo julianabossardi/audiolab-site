@@ -3,19 +3,19 @@
   "carrossel_fotos": [
     {
       "foto": "/uploads/img_e4754.jpg",
-      "legenda": "Legenda desse momento — edite pelo /admin."
+      "legenda": "[Legenda a escrever.]"
     },
     {
       "foto": "/uploads/1000025871.jpg",
-      "legenda": "Legenda desse momento — edite pelo /admin."
+      "legenda": "[Legenda a escrever.]"
     },
     {
       "foto": "/uploads/1000025726.jpg",
-      "legenda": "Legenda desse momento — edite pelo /admin."
+      "legenda": "[Legenda a escrever.]"
     },
     {
       "foto": "/uploads/img_1995.jpg",
-      "legenda": "Legenda desse momento — edite pelo /admin."
+      "legenda": "[Legenda a escrever.]"
     }
   ],
   "missao_texto": "Um laboratório de produção sonora dentro de uma universidade pública ocupa um lugar que nenhuma disciplina isolada ocupa: o de colocar o aluno para produzir de verdade, com prazo, com público e com erro real, enquanto ainda está aprendendo. É onde a teoria de sala de aula vira prática de redação, estúdio e edição, e onde pesquisa, ensino e extensão deixam de ser three palavras separadas do currículo e passam a acontecer juntas, no mesmo projeto. Isso é especialmente relevante em áreas como jornalismo e comunicação, que dependem de vivência de rotina profissional para formar competência, algo que a universidade pública tem estrutura para oferecer sem depender de estágios em empresas privadas.\n\nPara os alunos, passar por um espaço assim muda a formação de um jeito que a sala de aula sozinha não consegue. Eles saem com portfólio, com contato com profissionais reconhecidos do mercado e com a experiência de assumir papéis diferentes dentro de uma produção real, de repórter a editor. Ao mesmo tempo, esse tipo de laboratório devolve à sociedade o que a universidade pública produz: leva ciência, cultura e jornalismo para fora dos muros, muitas vezes chegando a públicos que dificilmente teriam acesso a esse conteúdo por outros canais, como ouvintes de rádios comunitárias. É um investimento que forma profissional e, ao mesmo tempo, justifica publicamente por que vale a pena manter e fortalecer a universidade pública.",
@@ -31,12 +31,12 @@
   "titulo2": "em todo lugar",
   "titulo": "AudioLab é a UERJ",
   "premiacoes": [
-    "1º lugar — Prêmio Luiz Beltrão da Intercom",
-    "categoria Grupo Inovador (2017) 1º lugar — II Prêmio UNBCAST de Podcasts Universitários",
+    "1º lugar, Prêmio Luiz Beltrão da Intercom",
+    "categoria Grupo Inovador (2017) 1º lugar, II Prêmio UNBCAST de Podcasts Universitários",
     "categoria Produção Sonora Cultural Regional",
-    "com o episódio \"BadaUerj - Resistência Negra\" (2025) 3º lugar — IV Prêmio Rubra de Rádio Universitário",
+    "com o episódio \"BadaUerj - Resistência Negra\" (2025) 3º lugar, IV Prêmio Rubra de Rádio Universitário",
     "categoria Reportagem Especial",
-    "com \"Questões LGBTQIAP+ no Brasil e Oriente Médio\" (2025); 3º lugar — IV Prêmio Rubra de Rádio Universitário",
+    "com \"Questões LGBTQIAP+ no Brasil e Oriente Médio\" (2025); 3º lugar, IV Prêmio Rubra de Rádio Universitário",
     "categoria Documentário",
     "com \"Especial Golpe Militar 60 anos #1\" (2025)"
   ],
