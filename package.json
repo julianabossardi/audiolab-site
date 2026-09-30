@@ -5,7 +5,8 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "importar": "node scripts/importar-planilha.mjs"
+    "importar": "node scripts/importar-planilha.mjs",
+    "passada": "node scripts/passada-dsm.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

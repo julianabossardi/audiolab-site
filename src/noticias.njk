@@ -2,194 +2,74 @@
 layout: base.njk
 title: Notícias · AudioLab
 ---
-{% from "al-macros.njk" import icon %}
-<style>
-  html, body { margin: 0; padding: 0; }
-  .page-wrap { position: relative; }
+{% from "al-macros.njk" import icon, placeholder, equalizer %}
+{% set temas = ["Educação e ciência", "Jornalismo", "Cultura", "Esporte"] %}
 
-  .noticias-hero { padding: calc(var(--header-h) + 48px) var(--side-pad) 8px; }
-  .noticias-hero h1 { margin: 0; font-family: var(--font-display); font-weight: var(--fw-h1); font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--navy); }
+<section class="page-hero">
+  <div class="wrap page-hero-inner">
+    <nav class="breadcrumb" aria-label="Trilha"><a href="/">AudioLab</a> · <span aria-current="page">Notícias</span></nav>
+    <h1>Notícias</h1>
+  </div>
+  {{ equalizer(56, "md") }}
+</section>
 
-  .noticias-filters { display: flex; gap: 12px; padding: 0 var(--side-pad); margin: 28px 0 44px; flex-wrap: wrap; }
-
-  .noticias-list { padding: 0 var(--side-pad); margin-bottom: 72px; display: flex; flex-direction: column; gap: 24px; }
-  .noticia-card {
-    display: flex;
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid var(--petrol-200);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--cream);
-    transition: border-color 0.2s ease-out, transform 0.2s ease-out;
-  }
-  .noticia-card:hover { border-color: var(--lime-deep); transform: translateX(4px); }
-  .noticia-card[hidden] { display: none; }
-  .noticia-card-img { position: relative; width: 220px; flex: 0 0 auto; aspect-ratio: 4 / 3; overflow: hidden; background: rgba(2, 69, 103, 0.06); }
-  .noticia-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .noticia-card-tag {
-    position: absolute; top: 10px; left: 10px;
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--navy); color: var(--white);
-    font-family: var(--font-display); font-size: var(--fs-tag); font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
-    padding: 4px 8px; border-radius: var(--radius);
-  }
-  .noticia-card-tag svg { width: 12px; height: 12px; }
-  .noticia-card-body {
-    position: relative;
-    flex: 1 1 auto;
-    padding: 18px 56px 18px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    min-height: 132px;
-  }
-  .noticia-card-body h3 { margin: 0; font-family: var(--font-display); font-weight: var(--fw-card-title); font-size: var(--fs-card-title); line-height: var(--lh-card-title); color: var(--navy); }
-  .noticia-card-body p { margin: 0; font-family: var(--font-body); font-size: var(--fs-body); line-height: var(--lh-body); color: rgba(17, 48, 63, 0.8); }
-  .noticia-card-date { display: flex; align-items: center; gap: 5px; font-family: var(--font-body); font-size: var(--fs-small); color: rgba(17, 48, 63, 0.55); }
-  .noticia-card-date svg { width: 13px; height: 13px; }
-  .noticia-card-arrow {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    width: 32px; height: 32px;
-    border-radius: var(--radius);
-    border: 1px solid var(--petrol-200);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--navy);
-    transition: color 0.2s ease-out, transform 0.2s ease-out, border-color 0.2s ease-out, background-color 0.2s ease-out;
-  }
-  .noticia-card-arrow svg { width: 16px; height: 16px; }
-  .noticia-card:hover .noticia-card-arrow { color: var(--white); background: var(--lime-deep); border-color: var(--lime-deep); transform: translateX(2px); }
-
-  .noticias-empty, .noticias-empty-filtered { padding: 0 var(--side-pad); font-family: var(--font-body); color: rgba(17, 48, 63, 0.7); font-size: var(--fs-body); }
-  .noticias-empty a, .noticias-empty-filtered a { color: var(--blue); }
-
-  @media (max-width: 640px) {
-    .noticia-card { flex-direction: column; }
-    .noticia-card-img { width: 100%; aspect-ratio: 16 / 9; }
-    .noticia-card-body { padding: 16px 44px 16px 16px; min-height: 0; }
-  }
-</style>
-<div class="page-wrap">
-    <section class="noticias-hero">
-      <h1><span class="highlight">Veja as últimas notícias</span></h1>
-    </section>
-
-    {% if noticias.length == 0 %}
-    <p class="noticias-empty">Nenhuma notícia publicada no momento.</p>
-    {% else %}
-    <div class="noticias-filters">
-      <div class="nav-item">
-        <button type="button" class="nav-link" data-filter-toggle aria-expanded="false">
-          <span data-filter-label="projeto">projetos</span>
-          <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
-        </button>
-        <div class="nav-dropdown" hidden>
-          <a href="#" data-filter-key="projeto" data-filter-value="">Todos os projetos</a>
-          {% for p in projetos %}
-          <a href="#" data-filter-key="projeto" data-filter-value="{{ p.slug }}">{{ p.nome }}</a>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="nav-item">
-        <button type="button" class="nav-link" data-filter-toggle aria-expanded="false">
-          <span data-filter-label="tema">temas</span>
-          <svg class="nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
-        </button>
-        <div class="nav-dropdown" hidden>
-          <a href="#" data-filter-key="tema" data-filter-value="">Todos os temas</a>
-          {% for t in ["Educação e ciência", "Jornalismo", "Cultura", "Esporte"] %}
-          <a href="#" data-filter-key="tema" data-filter-value="{{ t }}">{{ t }}</a>
-          {% endfor %}
-        </div>
-      </div>
+<section class="section">
+  <div class="wrap">
+    {% if noticias.length %}
+    <div class="news-filters">
+      <label class="field">
+        <span>Projeto</span>
+        <select data-filtro="projeto">
+          <option value="">Todos os projetos</option>
+          {% for p in projetos %}<option value="{{ p.slug }}">{{ p.nome }}</option>{% endfor %}
+        </select>
+      </label>
+      <label class="field">
+        <span>Tema</span>
+        <select data-filtro="tema">
+          <option value="">Todos os temas</option>
+          {% for t in temas %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+        </select>
+      </label>
     </div>
 
-    <div class="noticias-list" id="noticiasList">
+    <ul class="news-list" id="lista-noticias">
       {% for n in noticias %}
-      <a class="noticia-card"
-         href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"
-         {% if n.link %}target="_blank" rel="noopener"{% endif %}
-         data-projeto="{{ n.projeto_relacionado or '' }}"
-         data-tema="{{ n.tema or '' }}">
-        {% set capa = n.capa | img %}
-        {% if true %}
-        <div class="noticia-card-img">
-          {% if capa %}<img src="{{ capa }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 16:9]</div>{% endif %}
-          <span class="noticia-card-tag">{{ icon("microfone", 12) }}Notícia</span>
-        </div>
-        {% endif %}
-        <div class="noticia-card-body">
-          <h3>{{ n.titulo }}</h3>
+      {% set capa = n.capa | img %}
+      <li class="news-row" data-projeto="{{ n.projeto_relacionado or '' }}" data-tema="{{ n.tema or '' }}">
+        <div class="news-row-img">{% if capa %}<img src="{{ capa }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
+        <div class="news-row-body">
+          <h2><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h2>
           {% if n.subtitulo %}<p>{{ n.subtitulo }}</p>{% endif %}
-          {% if n.data %}<span class="noticia-card-date">{{ icon("calendario", 13) }}{{ n.data | formatDate }}</span>{% endif %}
-          <span class="noticia-card-arrow" aria-hidden="true">{{ icon("seta-direita", 16) }}</span>
+          {% if n.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ n.data | formatDate }}</span>{% endif %}
         </div>
-      </a>
+      </li>
       {% endfor %}
-    </div>
-    <p class="noticias-empty-filtered" id="noticiasEmptyFiltered" hidden>Nenhuma notícia encontrada com esses filtros.</p>
+    </ul>
+    <p class="empty-state" id="noticias-vazio" role="status" hidden>Nenhuma notícia encontrada com esses filtros.</p>
+    {% else %}
+    <p class="empty-state">Nenhuma notícia publicada no momento.</p>
     {% endif %}
   </div>
+</section>
 
 <script>
-  (function () {
-    var list = document.getElementById("noticiasList");
-    var filterRoot = document.querySelector(".noticias-filters");
-    if (!list || !filterRoot) return;
-    var cards = Array.prototype.slice.call(list.querySelectorAll(".noticia-card"));
-    var emptyMsg = document.getElementById("noticiasEmptyFiltered");
-    var state = { projeto: "", tema: "" };
-    var defaultLabels = { projeto: "projetos", tema: "temas" };
-
-    /* toggle open/close — same pattern as the header's Projetos/Educacional
-       menus, scoped to this filter row */
-    var toggles = filterRoot.querySelectorAll("[data-filter-toggle]");
-    function closeAll() {
-      filterRoot.querySelectorAll(".nav-dropdown").forEach(function (dd) { dd.hidden = true; });
-      filterRoot.querySelectorAll(".nav-item").forEach(function (it) { it.classList.remove("is-open"); });
-      toggles.forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
-    }
-    toggles.forEach(function (btn) {
-      var item = btn.closest(".nav-item");
-      var dropdown = item.querySelector(".nav-dropdown");
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        var wasOpen = !dropdown.hidden;
-        closeAll();
-        if (!wasOpen) {
-          dropdown.hidden = false;
-          item.classList.add("is-open");
-          btn.setAttribute("aria-expanded", "true");
-        }
-      });
+(function () {
+  var selects = document.querySelectorAll("[data-filtro]");
+  var itens = document.querySelectorAll("#lista-noticias .news-row");
+  var vazio = document.getElementById("noticias-vazio");
+  if (!selects.length) return;
+  function aplicar() {
+    var f = {};
+    selects.forEach(function (s) { f[s.getAttribute("data-filtro")] = s.value; });
+    var visiveis = 0;
+    itens.forEach(function (li) {
+      var mostra = (!f.projeto || li.getAttribute("data-projeto") === f.projeto) && (!f.tema || li.getAttribute("data-tema") === f.tema);
+      li.hidden = !mostra;
+      if (mostra) visiveis++;
     });
-    document.addEventListener("click", closeAll);
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
-
-    function applyFilters() {
-      var visibleCount = 0;
-      cards.forEach(function (card) {
-        var show = (!state.projeto || card.dataset.projeto === state.projeto) && (!state.tema || card.dataset.tema === state.tema);
-        card.hidden = !show;
-        if (show) visibleCount++;
-      });
-      if (emptyMsg) emptyMsg.hidden = visibleCount !== 0;
-    }
-
-    filterRoot.querySelectorAll("[data-filter-key]").forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        var key = link.getAttribute("data-filter-key");
-        var value = link.getAttribute("data-filter-value");
-        state[key] = value;
-        var label = filterRoot.querySelector('[data-filter-label="' + key + '"]');
-        if (label) label.textContent = value ? link.textContent : defaultLabels[key];
-        closeAll();
-        applyFilters();
-      });
-    });
-  })();
-  </script>
+    vazio.hidden = visiveis > 0;
+  }
+  selects.forEach(function (s) { s.addEventListener("change", aplicar); });
+})();
+</script>
