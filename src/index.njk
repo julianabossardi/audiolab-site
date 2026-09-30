@@ -1,353 +1,100 @@
 ---
 layout: base.njk
 title: AudioLab · Laboratório de Áudio FCS/UERJ
+bodyClass: is-home
 ---
-{% from "al-macros.njk" import icon %}
-<style>
-  html, body { margin: 0; padding: 0; }
-  body { background: var(--bg-light); }
+{% from "al-macros.njk" import icon, placeholder, projectMark, projectCard, equalizer %}
+{% set principais = projetos | principais %}
+{% set destaque = noticias[0] %}
+{% set outras = noticias | limit(3) %}
 
-  .page-wrap { position: relative; }
+<!-- herói: título, frase de apoio e atalhos fixos para os três projetos principais -->
+<section class="home-hero">
+  <div class="wrap home-hero-grid">
+    <div class="home-hero-text">
+      <h1 class="home-hero-title">
+        <span class="hero-desktop">AudioLab é a UERJ<br /><em>em todo lugar</em></span>
+        <span class="hero-mobile">AudioLab é<br />a UERJ <em>em</em><br /><em>todo lugar</em></span>
+      </h1>
+      <p class="lead">{{ laboratorio.lab_nome_completo }}</p>
+    </div>
 
-  /* ── hero ───────────────────────────────────────────── */
-  .hero-section {
-    position: relative;
-    z-index: 3;
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: var(--navy);
-  }
-  .hero-text-wrap {
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 5;
-    padding: calc(var(--header-h) + 56px) var(--side-pad) 24px var(--side-pad);
-  }
-  .hero-headline { margin: 0; font-family: var(--font-display); font-weight: var(--fw-display); line-height: var(--lh-display); letter-spacing: -0.01em; color: var(--white); }
-  .hline { display: block; font-size: var(--fs-display); }
-  .hero-desktop { display: block; }
-  .hero-mobile { display: none; }
-  @media (max-width: 760px) {
-    .hero-desktop { display: none; }
-    .hero-mobile { display: block; }
-  }
-  .italic-text { font-style: italic; }
-  .hero-headline .italic-text { color: var(--lime); }
-
-  @media (max-width: 760px) {
-    /* sem as bolhas, o herói não precisa mais ocupar a tela toda — vira
-       cabeçalho + título + faixa de equalizador, do tamanho do conteúdo */
-    .hero-section { min-height: 0; }
-    .hero-text-wrap { flex: 0 1 auto; }
-  }
-  @media (max-width: 640px) {
-    .hero-text-wrap { padding-top: calc(var(--header-h) + 32px); padding-bottom: 32px; padding-left: 24px; padding-right: 24px; }
-  }
-
-  /* ── faixa de equalizador do herói: traços limão com movimento
-     contínuo (pedido explícito — o DSM só anima enquanto o áudio
-     toca, aqui é decorativo e constante) ──────────────────────── */
-  .hero-eq-zone { position: relative; height: clamp(150px, 22vw, 260px); flex: 0 0 auto; z-index: 4; cursor: default; }
-  .hero-eq {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 3px;
-    height: 100%;
-    width: 100%;
-  }
-  /* cada coluna tem dois níveis de movimento: o pulso automático (na
-     barra, "sozinho", sempre ligado) e o impulso do mouse (na coluna,
-     via JS, escala o pulso pra cima perto do cursor) */
-  .hero-eq-col {
-    display: flex;
-    align-items: flex-end;
-    flex: 1 1 auto;
-    max-width: 12px;
-    height: 100%;
-    transform-origin: bottom;
-    transform: scaleY(1);
-    transition: transform 0.25s ease-out;
-    will-change: transform;
-  }
-  .hero-eq-col i {
-    display: block;
-    width: 100%;
-    background: repeating-linear-gradient(to top, var(--lime) 0 5px, transparent 5px 8px);
-    transform-origin: bottom;
-    animation-name: eqPulse;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-  }
-  @keyframes eqPulse {
-    0%, 100% { transform: scaleY(0.42); }
-    50% { transform: scaleY(1); }
-  }
-  @media (max-width: 640px) {
-    .hero-eq-zone { height: 130px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-eq-col i { animation: none; transform: scaleY(0.7); }
-    .hero-eq-col { transition: none; }
-  }
-
-  /* ── seção de projetos (cards — formato do DSM) ────────── */
-  .projects-section { position: relative; z-index: 3; padding: 64px 0 56px; }
-  .projects-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 var(--side-pad); margin-bottom: 28px; flex-wrap: wrap; }
-  .projects-head h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-h2); margin: 0; color: var(--navy); }
-
-  /* .project-grid / .project-card*: ver regra compartilhada em site.css
-     (mesma usada na listagem /projetos/, pra ficarem idênticos) */
-  .project-grid { padding: 0 var(--side-pad); }
-  .projects-empty { padding: 0 var(--side-pad); font-family: var(--font-body); color: rgba(17, 48, 63, 0.6); font-size: var(--fs-body); }
-  .projects-empty a { color: var(--blue); }
-
-  /* ── news section ─────────────────────────────────────── */
-  .news-section { position: relative; z-index: 3; padding: 40px 0 64px; }
-  .news-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 var(--side-pad); margin-bottom: 28px; }
-  .news-head h2 { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-h2); margin: 0; color: var(--navy); }
-
-  .news-carousel-wrap { position: relative; }
-  .news-carousel {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 0 var(--side-pad) 12px;
-    cursor: grab;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .news-carousel::-webkit-scrollbar { display: none; }
-  .news-carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; }
-  .news-card {
-    position: relative;
-    flex: 0 0 auto;
-    width: 280px;
-    border: 1px solid var(--petrol-200);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--cream);
-    text-decoration: none;
-    color: var(--navy);
-    display: block;
-    transition: transform 0.2s ease-out, border-color 0.2s ease-out;
-  }
-  .news-card:hover { transform: translateY(-4px); border-color: var(--lime-deep); }
-  .news-card-img { height: 156px; overflow: hidden; background: rgba(2, 69, 103, 0.08); position: relative; }
-  .news-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .news-card-tag {
-    position: absolute; top: 10px; left: 10px;
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--navy); color: var(--white);
-    font-family: var(--font-display); font-size: var(--fs-tag); font-weight: var(--fw-tag); letter-spacing: 0.04em; text-transform: uppercase;
-    padding: 4px 8px; border-radius: var(--radius);
-  }
-  .news-card-tag svg { width: 11px; height: 11px; }
-  .news-card-body { padding: 16px 44px 20px 18px; }
-  .news-card-title { font-family: var(--font-display); font-weight: var(--fw-card-title); font-size: var(--fs-card-title); line-height: var(--lh-card-title); margin-bottom: 8px; color: var(--navy); }
-  .news-card-sub { font-family: var(--font-body); font-size: var(--fs-small); line-height: var(--lh-small); color: rgba(17, 48, 63, 0.75); margin-bottom: 10px; }
-  .news-card-date { display: flex; align-items: center; gap: 5px; font-family: var(--font-body); font-size: var(--fs-small); color: rgba(17, 48, 63, 0.55); }
-  .news-card-date svg { width: 12px; height: 12px; }
-  .news-card-arrow {
-    position: absolute;
-    right: 14px;
-    bottom: 16px;
-    width: 26px; height: 26px;
-    border-radius: var(--radius);
-    border: 1px solid var(--petrol-200);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--navy);
-    transition: color 0.2s ease-out, transform 0.2s ease-out, border-color 0.2s ease-out, background-color 0.2s ease-out;
-  }
-  .news-card-arrow svg { width: 14px; height: 14px; }
-  .news-card:hover .news-card-arrow { color: var(--white); background: var(--lime-deep); border-color: var(--lime-deep); transform: translateX(2px); }
-  .news-scroll-btn {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-60%);
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius);
-    background: var(--cream);
-    border: 1px solid var(--petrol-200);
-    color: var(--navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
-  }
-  .news-scroll-btn:hover { background: rgba(2, 69, 103, 0.08); border-color: rgba(2, 69, 103, 0.6); }
-  .news-empty { padding: 0 var(--side-pad); font-family: var(--font-body); color: rgba(17, 48, 63, 0.6); font-size: var(--fs-body); }
-  .news-empty a { color: var(--blue); }
-</style>
-<div class="page-wrap">
-
-    <!-- ════ SECTION 1 — HERÓI ════ -->
-    <section class="hero-section">
-      <div class="hero-text-wrap">
-        <h1 class="hero-headline">
-          <span class="hero-desktop">
-            <span class="hline hline-1">AudioLab é a UERJ</span>
-            <span class="hline hline-2"><span class="italic-text">em todo lugar</span></span>
-          </span>
-          <span class="hero-mobile">
-            <span class="hline hline-1">AudioLab é</span>
-            <span class="hline hline-2">a UERJ <span class="italic-text">em</span></span>
-            <span class="hline hline-3"><span class="italic-text">todo lugar</span></span>
-          </span>
-        </h1>
-      </div>
-
-      <div class="hero-eq-zone" id="heroEqZone" aria-hidden="true">
-        <div class="hero-eq" id="heroEq">
-          {% for i in range(0, 56) %}
-          <span class="hero-eq-col"><i style="height: {{ 30 + (i * 47) % 70 }}%; animation-duration: {{ (3.4 + (i % 7) * 0.55) | round(2) }}s; animation-delay: {{ ((i % 11) * 0.32) | round(2) }}s;"></i></span>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-
-    <!-- ════ SECTION 2 — PROJETOS (cards) ════ -->
-    <section class="projects-section">
-      <div class="projects-head">
-        <h2><span class="highlight">Nossos projetos</span></h2>
-        <a class="nav-link" href="/projetos/">Ver todos os projetos</a>
-      </div>
-
-      {% if projetos.length == 0 %}
-      <p class="projects-empty">Nenhum projeto publicado no momento.</p>
-      {% else %}
-      <div class="project-grid">
-        {% for proj in projetos %}
+    {% if principais.length %}
+    <nav class="home-shortcuts" aria-label="Projetos em destaque">
+      <ul class="home-shortcuts-list">
+        {% for proj in principais %}
         {% set b = proj.nome | brand %}
-        <a class="project-card" href="/projetos/{{ proj.slug }}/" style="--pc-base: {{ b.base }}; --pc-on: {{ b.on }}; --pc-text: {{ b.text }};">
-          <div class="project-card-body">
-            <div class="project-card-sg" aria-hidden="true">{{ b.sigla }}</div>
-            <h3>{{ proj.nome }}</h3>
-            <span class="project-card-type">{{ b.tipo }}</span>
-            {% if proj.tagline %}<p>{{ proj.tagline }}</p>{% endif %}
-            <span class="project-card-link">Conhecer o projeto {{ icon("seta-direita", 14) }}</span>
-          </div>
-        </a>
-        {% endfor %}
-      </div>
-      {% endif %}
-    </section>
-
-    <!-- ════ SECTION 3 — NOTÍCIAS ════ -->
-    <section class="news-section">
-      <div class="news-head">
-        <h2><span class="highlight">Últimas notícias</span></h2>
-        <a class="nav-link" href="/noticias/">Veja mais</a>
-      </div>
-
-      {% if noticias.length == 0 %}
-      <p class="news-empty">Nenhuma notícia publicada no momento.</p>
-      {% else %}
-      <div class="news-carousel-wrap">
-        <div class="news-carousel" id="newsCarousel">
-          {% for n in noticias %}
-          <a class="news-card" href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>
-            {% set capa = n.capa | img %}
-            {% if true %}
-            <div class="news-card-img">
-              {% if capa %}<img src="{{ capa }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 16:9]</div>{% endif %}
-              <span class="news-card-tag">{{ icon("microfone", 11) }}Notícia</span>
-            </div>
-            {% endif %}
-            <div class="news-card-body">
-              <div class="news-card-title">{{ n.titulo }}</div>
-              <div class="news-card-sub">{{ n.subtitulo }}</div>
-              {% if n.data %}<div class="news-card-date">{{ icon("calendario", 12) }}{{ n.data | formatDate }}</div>{% endif %}
-            </div>
-            <span class="news-card-arrow" aria-hidden="true">{{ icon("seta-direita", 14) }}</span>
+        <li>
+          <a class="home-shortcut" href="/projetos/{{ proj.slug }}/" aria-label="{{ proj.nome }}" data-project="{{ b.key }}">
+            {{ projectMark(b, proj.logo | img, proj.nome) }}
+            <span class="home-shortcut-arrow" aria-hidden="true">{{ icon("seta", 24) }}</span>
           </a>
-          {% endfor %}
-        </div>
-        <button type="button" class="news-scroll-btn" id="newsScrollBtn" aria-label="Ver próximas notícias">
-          {{ icon("seta-direita", 18) }}
-        </button>
-      </div>
-      {% endif %}
-    </section>
+        </li>
+        {% endfor %}
+      </ul>
+      <a class="home-shortcuts-all" href="/projetos/">Ver todos os projetos {{ icon("seta", 18) }}</a>
+    </nav>
+    {% endif %}
   </div>
+  {{ equalizer(56, "lg") }}
+</section>
 
-<script>
-  (function () {
-    /* ── equalizador do herói: pulso automático sempre ligado (na
-       barra, via CSS), e um impulso extra que segue o mouse (na
-       coluna, via JS) — as colunas perto do cursor "sobem" mais alto */
-    var eqZone = document.getElementById("heroEqZone");
-    var eq = document.getElementById("heroEq");
-    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (eqZone && eq && !reduceMotion) {
-      var cols = Array.prototype.slice.call(eq.querySelectorAll(".hero-eq-col"));
-      var raf = null, pointerX = null;
-      var RADIUS = 140; // px de alcance do impulso pra cada lado do cursor
-      var BOOST = 0.9; // o quanto uma coluna bem embaixo do cursor cresce (scaleY extra)
+<!-- todos os projetos, em cards do mesmo tamanho; os três principais primeiro -->
+<section class="section" aria-labelledby="titulo-projetos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="titulo-projetos"><span class="highlight">Nossos projetos</span></h2>
+      <a class="link-arrow" href="/projetos/">Ver todos os projetos {{ icon("seta", 18) }}</a>
+    </div>
+    {% if projetos.length %}
+    <ul class="project-grid">
+      {% for proj in projetos %}
+      <li>{{ projectCard(proj) }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty-state">Nenhum projeto publicado no momento.</p>
+    {% endif %}
+  </div>
+</section>
 
-      function apply() {
-        raf = null;
-        var rect = eq.getBoundingClientRect();
-        cols.forEach(function (col) {
-          if (pointerX === null) {
-            col.style.transform = "scaleY(1)";
-            return;
-          }
-          var colRect = col.getBoundingClientRect();
-          var colCenter = colRect.left + colRect.width / 2 - rect.left;
-          var dist = Math.abs(pointerX - colCenter);
-          var falloff = Math.max(0, 1 - dist / RADIUS);
-          col.style.transform = "scaleY(" + (1 + falloff * BOOST).toFixed(3) + ")";
-        });
-      }
-      function schedule() { if (!raf) raf = requestAnimationFrame(apply); }
+<!-- notícias: destaque grande + até duas em lista compacta -->
+<section class="section" aria-labelledby="titulo-noticias">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="titulo-noticias"><span class="highlight">Últimas notícias</span></h2>
+      {% if noticias.length %}<a class="link-arrow" href="/noticias/">Ver todas as notícias {{ icon("seta", 18) }}</a>{% endif %}
+    </div>
 
-      eqZone.addEventListener("mousemove", function (e) {
-        var rect = eq.getBoundingClientRect();
-        pointerX = e.clientX - rect.left;
-        schedule();
-      });
-      eqZone.addEventListener("mouseleave", function () {
-        pointerX = null;
-        schedule();
-      });
-    }
+    {% if destaque %}
+    {% set capa = destaque.capa | img %}
+    <article class="highlight-card">
+      <div class="highlight-card-text">
+        <span class="eyebrow">{{ icon("microfone", 16) }}Notícia</span>
+        <h3><a href="{{ destaque.link if destaque.link else ('/noticias/' + destaque.slug + '/') }}"{% if destaque.link %} target="_blank" rel="noopener"{% endif %}>{{ destaque.titulo }}</a></h3>
+        {% if destaque.subtitulo %}<p>{{ destaque.subtitulo }}</p>{% endif %}
+        {% if destaque.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ destaque.data | formatDate }}</span>{% endif %}
+        <span class="link-arrow" aria-hidden="true">Ler a notícia {{ icon("seta", 18) }}</span>
+      </div>
+      <div class="highlight-card-img">{% if capa %}<img src="{{ capa }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
+    </article>
 
-    /* ── news carousel: drag-to-scroll + arrow button ──────── */
-    var carousel = document.getElementById("newsCarousel");
-    if (carousel) {
-      var isDown = false, startX = 0, scrollLeft = 0, moved = false;
-      carousel.addEventListener("mousedown", function (e) {
-        isDown = true; moved = false;
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-        carousel.classList.add("is-dragging");
-      });
-      window.addEventListener("mouseup", function () { isDown = false; carousel.classList.remove("is-dragging"); });
-      carousel.addEventListener("mouseleave", function () { isDown = false; carousel.classList.remove("is-dragging"); });
-      carousel.addEventListener("mousemove", function (e) {
-        if (!isDown) return;
-        e.preventDefault();
-        var x = e.pageX - carousel.offsetLeft;
-        if (Math.abs(x - startX) > 4) moved = true;
-        carousel.scrollLeft = scrollLeft - (x - startX);
-      });
-      // a drag shouldn't also fire the card's click-through link
-      carousel.addEventListener("click", function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
-
-      var scrollBtn = document.getElementById("newsScrollBtn");
-      if (scrollBtn) {
-        scrollBtn.addEventListener("click", function () {
-          carousel.scrollBy({ left: 320, behavior: "smooth" });
-        });
-      }
-    }
-  })();
-  </script>
+    {% if outras.length > 1 %}
+    <ul class="news-compact">
+      {% for n in outras %}{% if not loop.first %}
+      {% set capa = n.capa | img %}
+      <li class="news-compact-item">
+        <div class="news-compact-img">{% if capa %}<img src="{{ capa }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
+        <div>
+          <h3><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h3>
+          {% if n.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ n.data | formatDate }}</span>{% endif %}
+        </div>
+      </li>
+      {% endif %}{% endfor %}
+    </ul>
+    {% endif %}
+    {% else %}
+    <p class="empty-state">Nenhuma notícia publicada no momento.</p>
+    {% endif %}
+  </div>
+</section>

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const markdownIt = require("markdown-it");
-const { brandFor, slugify } = require("./src/_data/projectBrands.js");
+const { brandFor, slugify, PRINCIPAIS } = require("./src/_data/projectBrands.js");
 
 // Caminho público → arquivo no disco, para conferir se a imagem existe.
 const PUBLIC_DIRS = { "/uploads/": "uploads/", "/assets/": "src/assets/" };
@@ -30,6 +30,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("uploads");
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
+  // Os JSON de conteúdo ficam fora de src/: sem isso, editar pelo /admin
+  // ou rodar a importação não atualiza o servidor local.
+  eleventyConfig.addWatchTarget("./content/");
+
   // Devolve o caminho da imagem só se o arquivo existir. Vazio faz o
   // modelo mostrar o espaço marcado: nunca um ícone de imagem quebrada.
   eleventyConfig.addFilter("img", existingImage);
@@ -46,6 +50,11 @@ module.exports = function (eleventyConfig) {
     if (isNaN(d)) return "";
     return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
   });
+
+  // Os três projetos principais, na ordem do herói da home.
+  eleventyConfig.addFilter("principais", (projetos) =>
+    PRINCIPAIS.map((slug) => (projetos || []).find((p) => p.slug === slug)).filter(Boolean)
+  );
 
   // Pessoas de um projeto: as ligadas a ele e as marcadas "Todos os projetos".
   eleventyConfig.addFilter("pessoasDoProjeto", (pessoas, nome) =>

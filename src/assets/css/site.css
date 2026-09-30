@@ -724,6 +724,92 @@ a.episode-row svg { flex: none; margin-left: auto; color: var(--petrol-600); }
 @media (max-width: 767px) { .news-mini-grid { grid-template-columns: minmax(0, 1fr); } }
 
 
+/* ── home ─────────────────────────────────────────────────── */
+.home-hero { display: flex; flex-direction: column; background: var(--petrol-700); color: var(--white); padding-top: calc(var(--header-h) + var(--space-64)); }
+.home-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-48); align-items: end; padding-bottom: var(--space-40); }
+.home-hero-title { margin: 0; font-size: var(--fs-display); line-height: var(--lh-display); font-weight: var(--fw-display); letter-spacing: -0.01em; }
+.home-hero-title em { font-style: italic; color: var(--lime-500); }
+.hero-mobile { display: none; }
+.home-hero .lead { max-width: var(--measure); margin: var(--space-20) 0 0; font-size: var(--fs-lead); line-height: var(--lh-lead); color: var(--petrol-200); }
+
+/* atalhos: fixos, não acompanham o movimento do equalizador */
+.home-shortcuts { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-8); }
+.home-shortcuts-list { display: flex; flex-direction: column; gap: var(--space-10); }
+.home-shortcut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  padding: var(--space-8) var(--space-16) var(--space-8) var(--space-8);
+  border: var(--hairline) solid var(--petrol-500);
+  border-radius: var(--radius);
+  color: var(--white);
+  text-decoration: none;
+  transition: background-color var(--dur-fast) ease-out, border-color var(--dur-fast) ease-out;
+}
+.home-shortcut:hover { background: var(--petrol-600); border-color: var(--lime-500); }
+.home-shortcut .project-mark { height: var(--mark-md); }
+.home-shortcut-arrow { display: flex; color: var(--lime-500); transition: transform var(--dur-fast) ease-out; }
+.home-shortcut:hover .home-shortcut-arrow { transform: translateX(var(--space-4)); }
+.home-shortcuts-all { display: inline-flex; align-items: center; justify-content: flex-end; gap: var(--space-6); min-height: var(--target-min); font-family: var(--font-display); font-size: var(--fs-label); font-weight: var(--fw-label); color: var(--lime-500); text-decoration: none; }
+.home-shortcuts-all:hover { text-decoration: underline; text-underline-offset: var(--space-4); }
+
+@media (max-width: 1023px) {
+  .home-hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-24); }
+  .home-shortcuts-list { flex-direction: row; }
+  .home-shortcuts-list > li { flex: 1 1 0; min-width: 0; }
+  .home-shortcut { justify-content: center; padding: var(--space-6); }
+  .home-shortcut-arrow { display: none; }
+  .home-shortcuts-all { justify-content: flex-start; }
+}
+@media (max-width: 767px) {
+  .home-hero { padding-top: calc(var(--header-h) + var(--space-24)); }
+  .hero-desktop { display: none; }
+  .hero-mobile { display: inline; }
+  .home-hero .lead { margin-top: var(--space-12); }
+  .home-hero-grid { gap: var(--space-16); padding-bottom: var(--space-16); }
+  .home-shortcuts { gap: 0; }
+  .home-shortcuts-list { gap: var(--space-8); }
+  .home-shortcut .project-mark { height: var(--mark-sm); min-width: 0; max-width: 100%; }
+  .home-shortcut .project-mark img { width: 100%; height: 100%; object-fit: contain; }
+  .is-home .eq-zone--lg { height: var(--eq-h-md); }
+}
+
+/* Highlight (DSM): notícia mais recente, texto à esquerda e imagem 16:9 à direita */
+.highlight-card { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); background: var(--white); border: var(--hairline) solid var(--petrol-200); border-radius: var(--radius); overflow: hidden; }
+.highlight-card-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-12); padding: var(--space-40); }
+.highlight-card h3 { margin: 0; font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--fw-h3); color: var(--petrol-800); }
+.highlight-card h3 a { color: inherit; text-decoration: none; }
+.highlight-card h3 a::after { content: ""; position: absolute; inset: 0; }
+.highlight-card:hover h3 a { text-decoration: underline; text-underline-offset: var(--space-4); }
+.highlight-card p { margin: 0; color: var(--petrol-800); }
+.highlight-card .link-arrow { margin-top: auto; }
+.highlight-card-img { aspect-ratio: 16 / 9; }
+.highlight-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.highlight-card-img .dsm-placeholder { border-radius: 0; border-width: 0 0 0 var(--rule); }
+.eyebrow { display: inline-flex; align-items: center; gap: var(--space-6); font-family: var(--font-display); font-size: var(--fs-eyebrow); line-height: var(--lh-eyebrow); font-weight: var(--fw-eyebrow); color: var(--petrol-600); }
+.news-date { display: inline-flex; align-items: center; gap: var(--space-6); font-size: var(--fs-small); color: var(--petrol-500); }
+
+.news-compact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-20); margin-top: var(--space-20); }
+.news-compact-item { position: relative; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-16); align-items: center; padding: var(--space-12); background: var(--white); border: var(--hairline) solid var(--petrol-200); border-radius: var(--radius); }
+.news-compact-img { aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden; }
+.news-compact-img img { width: 100%; height: 100%; object-fit: cover; }
+.news-compact h3 { margin: 0 0 var(--space-4); font-size: var(--fs-h4); line-height: var(--lh-h4); font-weight: var(--fw-h4); color: var(--petrol-800); }
+.news-compact h3 a { color: inherit; text-decoration: none; }
+.news-compact h3 a::after { content: ""; position: absolute; inset: 0; }
+.news-compact-item:hover h3 a { text-decoration: underline; }
+
+@media (max-width: 1023px) {
+  .highlight-card { grid-template-columns: minmax(0, 1fr); }
+  .highlight-card-img { order: -1; }
+  .highlight-card-img .dsm-placeholder { border-width: 0 0 var(--rule) 0; }
+  .highlight-card-text { padding: var(--space-24); }
+}
+@media (max-width: 767px) {
+  .news-compact { grid-template-columns: minmax(0, 1fr); }
+}
+
+
 /* ── modal da newsletter (Mailchimp) ──────────────────────── */
 .modal-overlay {
   position: fixed;
