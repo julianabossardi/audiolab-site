@@ -11,9 +11,9 @@
 // só brancos e pedem fundo escuro; os do Ateliê e da Escola têm partes
 // pretas e pedem placa branca.
 const BRANDS = [
-  { key: "bada", slug: "badauerj", sigla: "BU", tipo: "Projeto de extensão", logo: "/assets/img/logo-bada.webp", logoBg: "var(--bada-hero)" },
-  { key: "atelie", slug: "atelie-do-podcast", sigla: "AP", tipo: "Projeto de extensão", logo: "/assets/img/logo-atelie.webp", logoBg: "var(--white)" },
-  { key: "escola", slug: "escola-de-narradores", sigla: "EN", tipo: "Projeto de extensão", logo: "/assets/img/logo-escola.webp", logoBg: "var(--white)" },
+  { key: "bada", slug: "badauerj", sigla: "BU", tipo: "Projeto de extensão", logo: "/assets/img/logo-bada-crop.png", logoBg: "var(--bada-hero)" },
+  { key: "atelie", slug: "atelie-do-podcast", sigla: "AP", tipo: "Projeto de extensão", logo: "/assets/img/logo-atelie-crop.png", logoBg: "var(--white)" },
+  { key: "escola", slug: "escola-de-narradores", sigla: "EN", tipo: "Projeto de extensão", logo: "/assets/img/logo-escola-crop.png", logoBg: "var(--white)" },
   { key: "petrol-600", slug: "a-gente-da-ciencia", sigla: "GC", tipo: "Projeto" },
   { key: "petrol-800", slug: "radioatividade", sigla: "RA", tipo: "Projeto" },
   { key: "petrol-700", slug: "mergulhando", sigla: "MG", tipo: "Projeto" },

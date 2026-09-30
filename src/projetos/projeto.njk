@@ -1,4 +1,5 @@
 ---
+layout: base.njk
 pagination:
   data: projetos
   size: 1
@@ -6,19 +7,10 @@ pagination:
 permalink: "/projetos/{{ p.slug }}/"
 eleventyComputed:
   title: "{{ p.nome }} · AudioLab"
+  description: "{{ p.tagline }}"
 ---
 {% from "al-macros.njk" import icon %}
 {% set b = p.nome | brand %}
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{{ title }}</title>
-<meta name="description" content="{{ p.tagline }}" />
-<link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
-<link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
-<link rel="stylesheet" href="/assets/css/site.css" />
 <style>
   html, body { margin: 0; padding: 0; }
   .page-wrap { position: relative; }
@@ -154,12 +146,7 @@ eleventyComputed:
   .proj-cta-wave { display: flex; align-items: flex-end; gap: 3px; height: 36px; margin-top: 28px; }
   .proj-cta-wave i { display: block; width: 4px; flex: none; background: rgba(255,255,255,0.35); }
 </style>
-</head>
-<body>
-
-  {% include "site-header.njk" %}
-
-  <div class="page-wrap">
+<div class="page-wrap">
 
     <!-- ════ HERÓI ════ -->
     <section class="proj-hero" data-theme="projeto" data-project="{{ b.key }}" style="border-top: 8px solid {{ b.base }};">
@@ -359,12 +346,7 @@ eleventyComputed:
 
   </div>
 
-  {% include "site-footer.njk" %}
-  {% include "newsletter-modal.njk" %}
-  {% include "newsletter-script.njk" %}
-  {% include "reveal-script.njk" %}
-
-  <script>
+<script>
   (function () {
     var track = document.querySelector(".proj-news-track");
     if (!track) return;
@@ -383,5 +365,3 @@ eleventyComputed:
     });
   })();
   </script>
-</body>
-</html>

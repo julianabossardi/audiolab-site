@@ -1,17 +1,8 @@
 ---
+layout: base.njk
 title: Notícias · AudioLab
 ---
 {% from "al-macros.njk" import icon %}
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{{ title }}</title>
-<meta name="description" content="AudioLab: Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
-<link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
-<link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
-<link rel="stylesheet" href="/assets/css/site.css" />
 <style>
   html, body { margin: 0; padding: 0; }
   .page-wrap { position: relative; }
@@ -81,12 +72,7 @@ title: Notícias · AudioLab
     .noticia-card-body { padding: 16px 44px 16px 16px; min-height: 0; }
   }
 </style>
-</head>
-<body>
-
-  {% include "site-header.njk" %}
-
-  <div class="page-wrap">
+<div class="page-wrap">
     <section class="noticias-hero">
       <h1><span class="highlight">Veja as últimas notícias</span></h1>
     </section>
@@ -147,12 +133,7 @@ title: Notícias · AudioLab
     {% endif %}
   </div>
 
-  {% include "site-footer.njk" %}
-  {% include "newsletter-modal.njk" %}
-  {% include "newsletter-script.njk" %}
-  {% include "reveal-script.njk" %}
-
-  <script>
+<script>
   (function () {
     var list = document.getElementById("noticiasList");
     var filterRoot = document.querySelector(".noticias-filters");
@@ -211,5 +192,3 @@ title: Notícias · AudioLab
     });
   })();
   </script>
-</body>
-</html>

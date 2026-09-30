@@ -21,13 +21,16 @@ var $mcj = jQuery.noConflict(true);
   var overlay = document.getElementById("newsletterOverlay");
   if (!overlay) return;
 
-  function openNewsletter() {
+  var lastTrigger = null;
+  function openNewsletter(e) {
+    lastTrigger = e && e.currentTarget;
     overlay.hidden = false;
     var email = document.getElementById("mce-EMAIL");
     if (email) email.focus();
   }
   function closeNewsletter() {
     overlay.hidden = true;
+    if (lastTrigger && lastTrigger.offsetParent) lastTrigger.focus();
   }
   document.querySelectorAll("[data-open-newsletter]").forEach(function (btn) {
     btn.addEventListener("click", openNewsletter);
@@ -42,22 +45,3 @@ var $mcj = jQuery.noConflict(true);
 })();
 </script>
 
-<script>
-(function () {
-  // --header-h is a constant meant for the *desktop* single-row header.
-  // On narrow screens it wraps to extra lines and grows taller, so every
-  // calc() built on it (hero height, content padding…) would otherwise
-  // undershoot and let the fixed header cover the top of the page. Keep
-  // the variable in sync with the real, currently-rendered height instead
-  // of guessing a breakpoint. The footer isn't fixed anymore, so it needs
-  // no such syncing.
-  var header = document.querySelector(".site-header");
-  if (!header) return;
-
-  function syncChromeHeights() {
-    document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
-  }
-  syncChromeHeights();
-  window.addEventListener("resize", syncChromeHeights);
-})();
-</script>

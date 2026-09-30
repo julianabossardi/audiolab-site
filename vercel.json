@@ -1,4 +1,10 @@
 {
   "buildCommand": "npx eleventy",
-  "outputDirectory": "_site"
+  "outputDirectory": "_site",
+  "redirects": [
+    { "source": "/jonami", "destination": "/pesquisa-e-formacao/", "permanent": true },
+    { "source": "/jonami/", "destination": "/pesquisa-e-formacao/", "permanent": true },
+    { "source": "/formacao", "destination": "/pesquisa-e-formacao/", "permanent": true },
+    { "source": "/formacao/", "destination": "/pesquisa-e-formacao/", "permanent": true }
+  ]
 }

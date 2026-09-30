@@ -1,0 +1,29 @@
+<script>
+(function () {
+  // Equalizador: pulso automático sempre ligado (CSS) e um impulso extra
+  // que segue o mouse, com as colunas perto do cursor subindo mais.
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+  var RADIUS = 140; // alcance do impulso, em px, para cada lado do cursor
+  var BOOST = 0.9; // crescimento extra de uma coluna logo abaixo do cursor
+
+  document.querySelectorAll("[data-eq]").forEach(function (zone) {
+    var cols = Array.prototype.slice.call(zone.querySelectorAll(".eq-col"));
+    var raf = null, pointerX = null;
+    function apply() {
+      raf = null;
+      var rect = zone.getBoundingClientRect();
+      cols.forEach(function (col) {
+        if (pointerX === null) { col.style.transform = ""; return; }
+        var r = col.getBoundingClientRect();
+        var dist = Math.abs(pointerX - (r.left + r.width / 2 - rect.left));
+        var falloff = Math.max(0, 1 - dist / RADIUS);
+        col.style.transform = "scaleY(" + (1 + falloff * BOOST).toFixed(3) + ")";
+      });
+    }
+    function schedule() { if (!raf) raf = requestAnimationFrame(apply); }
+    zone.addEventListener("mousemove", function (e) { pointerX = e.clientX - zone.getBoundingClientRect().left; schedule(); });
+    zone.addEventListener("mouseleave", function () { pointerX = null; schedule(); });
+  });
+})();
+</script>

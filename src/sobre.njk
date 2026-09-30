@@ -1,16 +1,8 @@
 ---
+layout: base.njk
 title: Sobre · AudioLab
 ---
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{{ title }}</title>
-<meta name="description" content="AudioLab: Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
-<link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
-<link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
-<link rel="stylesheet" href="/assets/css/site.css" />
+
 <style>
   html, body { margin: 0; padding: 0; }
   .page-wrap { position: relative; }
@@ -288,12 +280,7 @@ title: Sobre · AudioLab
     .sobre-supporters-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
-</head>
-<body>
-
-  {% include "site-header.njk" %}
-
-  <div class="page-wrap">
+<div class="page-wrap">
 
     <!-- ════ hero repeat ════ -->
     <section class="sobre-hero">
@@ -400,12 +387,7 @@ title: Sobre · AudioLab
     </div>
   </div>
 
-  {% include "site-footer.njk" %}
-  {% include "newsletter-modal.njk" %}
-  {% include "newsletter-script.njk" %}
-  {% include "reveal-script.njk" %}
-
-  <script>
+<script>
   (function () {
     var carousel = document.getElementById("sobreCarousel");
     if (!carousel) return;
@@ -481,5 +463,3 @@ title: Sobre · AudioLab
     });
   })();
   </script>
-</body>
-</html>

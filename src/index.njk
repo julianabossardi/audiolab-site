@@ -1,17 +1,8 @@
 ---
+layout: base.njk
 title: AudioLab · Laboratório de Áudio FCS/UERJ
 ---
 {% from "al-macros.njk" import icon %}
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{{ title }}</title>
-<meta name="description" content="AudioLab: Laboratório de Áudio da Faculdade de Comunicação Social da UERJ." />
-<link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
-<link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
-<link rel="stylesheet" href="/assets/css/site.css" />
 <style>
   html, body { margin: 0; padding: 0; }
   body { background: var(--bg-light); }
@@ -195,12 +186,7 @@ title: AudioLab · Laboratório de Áudio FCS/UERJ
   .news-empty { padding: 0 var(--side-pad); font-family: var(--font-body); color: rgba(17, 48, 63, 0.6); font-size: var(--fs-body); }
   .news-empty a { color: var(--blue); }
 </style>
-</head>
-<body>
-
-  {% include "site-header.njk" %}
-
-  <div class="page-wrap">
+<div class="page-wrap">
 
     <!-- ════ SECTION 1 — HERÓI ════ -->
     <section class="hero-section">
@@ -291,12 +277,7 @@ title: AudioLab · Laboratório de Áudio FCS/UERJ
     </section>
   </div>
 
-  {% include "site-footer.njk" %}
-  {% include "newsletter-modal.njk" %}
-  {% include "newsletter-script.njk" %}
-  {% include "reveal-script.njk" %}
-
-  <script>
+<script>
   (function () {
     /* ── equalizador do herói: pulso automático sempre ligado (na
        barra, via CSS), e um impulso extra que segue o mouse (na
@@ -369,5 +350,3 @@ title: AudioLab · Laboratório de Áudio FCS/UERJ
     }
   })();
   </script>
-</body>
-</html>

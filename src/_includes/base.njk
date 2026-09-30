@@ -4,18 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ title or "AudioLab" }}</title>
+    <meta name="description" content="{{ description or laboratorio.lab_nome_completo }}" />
     <link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
     <link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
     <link rel="stylesheet" href="/assets/css/site.css" />
   </head>
-  <body>
+  <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
     {% include "site-header.njk" %}
 
-    <main class="content">{{ content | safe }}</main>
+    <main id="conteudo"{% if mainClass %} class="{{ mainClass }}"{% endif %}>
+      {{ content | safe }}
+    </main>
 
     {% include "site-footer.njk" %}
     {% include "newsletter-modal.njk" %}
     {% include "newsletter-script.njk" %}
-  {% include "reveal-script.njk" %}
+    {% include "reveal-script.njk" %}
+    {% include "eq-script.njk" %}
   </body>
 </html>

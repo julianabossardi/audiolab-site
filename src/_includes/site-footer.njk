@@ -1,19 +1,23 @@
 <footer class="site-footer">
-  <div class="site-footer-top">
-    <a class="site-footer-brand" href="/">AudioLab</a>
-    <nav class="site-footer-nav">
-      <a href="/sobre/">Sobre</a>
-      <a href="/projetos/">Projetos</a>
-      <a href="/formacao/">Oficinas e cursos</a>
-      <a href="/jonami/">JONAMI</a>
-      <a href="/noticias/">Notícias</a>
-    </nav>
-  </div>
-  <div class="site-footer-bottom">
-    <span class="address">{{ rodape.endereco }}<br />{{ rodape.cidade }} · <a href="mailto:{{ laboratorio.lab_email }}">{{ laboratorio.lab_email }}</a></span>
-    <span class="meta">
-      <span class="credit">Desenvolvido por <a href="https://agenciamoldura.com/" target="_blank" rel="noopener">agência moldura</a></span><br />
-      AudioLab · Todos os direitos reservados
-    </span>
+  <div class="wrap">
+    <div class="site-footer-top">
+      <a class="site-footer-brand" href="/" aria-label="AudioLab, página inicial"><img src="/assets/img/logo-audiolab-wide.png" alt="" width="260" height="128" /></a>
+      <nav class="site-footer-nav" aria-label="Rodapé">
+        <a href="/sobre/">Sobre</a>
+        <a href="/projetos/">Projetos</a>
+        <a href="/pesquisa-e-formacao/">Pesquisa e formação</a>
+        <a href="/noticias/">Notícias</a>
+      </nav>
+    </div>
+    <div class="site-footer-bottom">
+      <p class="site-footer-address">
+        {{ rodape.endereco }}<br />{{ rodape.cidade }}
+        {% if laboratorio.lab_email %}<br /><a href="mailto:{{ laboratorio.lab_email }}">{{ laboratorio.lab_email }}</a>{% endif %}
+      </p>
+      <p class="site-footer-meta">
+        <span class="credit">Desenvolvido por <a href="https://agenciamoldura.com/" target="_blank" rel="noopener">agência moldura</a></span><br />
+        AudioLab · Todos os direitos reservados
+      </p>
+    </div>
   </div>
 </footer>
