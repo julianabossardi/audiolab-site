@@ -101,15 +101,18 @@
   "conteudos": [
     {
       "titulo": "Episódio #1: Resistência Negra",
-      "link": ""
+      "link": "",
+      "data": ""
     },
     {
       "titulo": "Entrevista com Jorge Perlingeiro",
-      "link": ""
+      "link": "",
+      "data": ""
     },
     {
       "titulo": "[Título do episódio]",
-      "link": "https://www.youtube.com/watch?v=GedAB7jTLlI"
+      "link": "https://www.youtube.com/watch?v=GedAB7jTLlI",
+      "data": ""
     }
   ]
 }

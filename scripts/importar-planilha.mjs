@@ -152,7 +152,7 @@ function importarProjetos(wb, avisos) {
           .map((s) => ({ nome: s.nome, descricao: s.descricao, link: s.link, imagem: imagem(s.imagem_arquivo) })),
         conteudos: conteudos
           .filter((c) => c.projeto === p.nome && c.titulo)
-          .map((c) => ({ titulo: c.titulo, link: c.link })),
+          .map((c) => ({ titulo: c.titulo, link: c.link, data: c.data || "" })),
       };
       return { slug: slugUnico(slugify(p.nome), usados), dados };
     });

@@ -83,6 +83,7 @@ collections:
         fields:
           - { label: "Título", name: "titulo", widget: "string" }
           - { label: "Link", name: "link", widget: "string", required: false }
+          - { label: "Data (dd/mm/aaaa)", name: "data", widget: "string", required: false, hint: "Ordena a lista do mais recente ao mais antigo. Sem data, o item fica depois dos datados." }
 
   - name: "pessoas"
     label: "Pessoas"

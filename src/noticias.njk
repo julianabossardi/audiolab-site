@@ -42,6 +42,7 @@ title: Notícias · AudioLab
           <h2><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h2>
           {% if n.subtitulo %}<p>{{ n.subtitulo }}</p>{% endif %}
           {% if n.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ n.data | formatDate }}</span>{% endif %}
+          <span class="link-arrow" aria-hidden="true">Ler a notícia {{ icon("seta", 16) }}</span>
         </div>
       </li>
       {% endfor %}

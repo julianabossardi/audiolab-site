@@ -9,9 +9,9 @@ eleventyComputed:
   title: "{{ p.nome }} · AudioLab"
   description: "{{ p.tagline }}"
 ---
-{% from "al-macros.njk" import icon, socialIcon, placeholder, projectMark, equalizer %}
+{% from "al-macros.njk" import icon, socialIcon, placeholder, equalizer %}
 {% set b = p.nome | brand %}
-{% set capa = p.capa | img %}
+{% set logoHeroi = (p.logo | img) or b.logoBranco or b.logo %}
 {% set email = p.email or laboratorio.lab_email %}
 {% set sobreTexto = p.o_que_e or p.historia_contexto %}
 {% set equipe = (pessoas | pessoasDoProjeto(p.nome) | limit(6)) if publicacao.pessoas else [] %}
@@ -35,10 +35,7 @@ eleventyComputed:
         <nav class="breadcrumb" aria-label="Trilha">
           <a href="/">AudioLab</a>{{ icon("seta-direita", 14) }}<a href="/projetos/">Projetos</a>{{ icon("seta-direita", 14) }}<span aria-current="page">{{ p.nome }}</span>
         </nav>
-        <div class="proj-hero-id">
-          {{ projectMark(b, p.logo | img, p.nome, "lg") }}
-          {% if p.tag %}<span class="proj-hero-tag">{{ p.tag }}</span>{% endif %}
-        </div>
+        {% if p.tag %}<span class="proj-hero-tag">{{ p.tag }}</span>{% endif %}
         <h1>{{ p.nome }}</h1>
         {% if p.tagline %}<p class="lead">{{ p.tagline }}</p>{% endif %}
         <div class="proj-hero-actions">
@@ -58,13 +55,9 @@ eleventyComputed:
           {% endif %}
         </div>
       </div>
-      <div class="proj-hero-cover on-dark">
-        {% if capa %}
-        <img src="{{ capa }}" alt="" />
-        <span class="proj-hero-veil" aria-hidden="true"></span>
-        {% else %}
-        {{ placeholder("[imagem 16:9]") }}
-        {% endif %}
+      <!-- imagem principal: logo em branco, sem fundo; sem logo, a sigla -->
+      <div class="proj-hero-art" aria-hidden="true">
+        {% if logoHeroi %}<img src="{{ logoHeroi }}" alt="" />{% else %}<span class="proj-hero-sigla">{{ b.sigla }}</span>{% endif %}
       </div>
     </div>
     {{ equalizer(56, "md") }}
@@ -168,24 +161,26 @@ eleventyComputed:
   <section class="section" id="episodios">
     <div class="wrap">
       <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Episódios e conteúdos</h2>
-      <ol class="episode-list">
-        {% for c in p.conteudos %}
+      {% set conteudos = p.conteudos | ordenarConteudos %}
+      <ol class="episode-list" id="lista-episodios"{% if conteudos.length > 5 %} data-paginar="5"{% endif %}>
+        {% for c in conteudos %}
         <li>
           {% if c.link %}
           <a class="episode-row" href="{{ c.link }}" target="_blank" rel="noopener">
             <span class="episode-num" aria-hidden="true">{{ loop.index }}</span>
-            <span class="episode-title">{{ c.titulo }}</span>
+            <span class="episode-title">{{ c.titulo }}{% if c.data %}<span class="episode-date">{{ c.data }}</span>{% endif %}</span>
             {{ icon("link-externo", 20) }}
           </a>
           {% else %}
           <span class="episode-row">
             <span class="episode-num" aria-hidden="true">{{ loop.index }}</span>
-            <span class="episode-title">{{ c.titulo }}</span>
+            <span class="episode-title">{{ c.titulo }}{% if c.data %}<span class="episode-date">{{ c.data }}</span>{% endif %}</span>
           </span>
           {% endif %}
         </li>
         {% endfor %}
       </ol>
+      {% if conteudos.length > 5 %}<nav class="pagination" aria-label="Páginas de episódios" data-paginacao="lista-episodios" hidden></nav>{% endif %}
     </div>
   </section>
   {% endif %}
@@ -201,6 +196,7 @@ eleventyComputed:
           <div class="news-mini-img">{% if n.capa | img %}<img src="{{ n.capa | img }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
           <h3><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h3>
           {% if n.data %}<span class="news-date">{{ n.data | formatDate }}</span>{% endif %}
+          <span class="link-arrow" aria-hidden="true">Ler a notícia {{ icon("seta", 16) }}</span>
         </li>
         {% endfor %}
       </ul>
@@ -249,6 +245,48 @@ eleventyComputed:
 
 <script>
 (function () {
+  // Episódios: 5 por página. Sem JavaScript, a lista aparece inteira.
+  document.querySelectorAll("[data-paginacao]").forEach(function (nav) {
+    var lista = document.getElementById(nav.getAttribute("data-paginacao"));
+    var itens = Array.prototype.slice.call(lista.children);
+    var porPagina = parseInt(lista.getAttribute("data-paginar"), 10) || 5;
+    var total = Math.ceil(itens.length / porPagina);
+    var atual = 1;
+    function botao(rotulo, pagina, extra) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "pagination-btn" + (extra ? " " + extra : "");
+      b.innerHTML = rotulo;
+      b.addEventListener("click", function () { mostrar(pagina, true); });
+      return b;
+    }
+    function mostrar(pagina, focar) {
+      atual = Math.min(Math.max(pagina, 1), total);
+      itens.forEach(function (li, i) { li.hidden = Math.floor(i / porPagina) + 1 !== atual; });
+      nav.innerHTML = "";
+      var ant = botao("<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M16 5v14L5 12z\"></path></svg>", atual - 1, "pagination-arrow");
+      ant.setAttribute("aria-label", "Página anterior");
+      ant.disabled = atual === 1;
+      nav.appendChild(ant);
+      for (var n = 1; n <= total; n++) {
+        var b = botao(String(n), n);
+        b.setAttribute("aria-label", "Página " + n);
+        if (n === atual) b.setAttribute("aria-current", "page");
+        nav.appendChild(b);
+      }
+      var prox = botao("<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M8 5v14l11-7z\"></path></svg>", atual + 1, "pagination-arrow");
+      prox.setAttribute("aria-label", "Próxima página");
+      prox.disabled = atual === total;
+      nav.appendChild(prox);
+      if (focar) {
+        var alvo = nav.querySelector("[aria-current]");
+        if (alvo) alvo.focus();
+      }
+    }
+    nav.hidden = false;
+    mostrar(1, false);
+  });
+
   document.querySelectorAll("[data-accordion]").forEach(function (btn) {
     var panel = document.getElementById(btn.getAttribute("aria-controls"));
     btn.addEventListener("click", function () {

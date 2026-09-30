@@ -40,7 +40,7 @@ bodyClass: is-home
 </section>
 
 <!-- todos os projetos em carrossel: 4 por vez, passa sozinho; os três principais primeiro -->
-<section class="section" aria-labelledby="titulo-projetos" data-carousel data-passagem="5000" aria-roledescription="carrossel">
+<section class="section" aria-labelledby="titulo-projetos" data-carousel data-passagem="3000" aria-roledescription="carrossel">
   <div class="wrap">
     <div class="section-head">
       <h2 class="section-title" id="titulo-projetos"><span class="highlight">Nossos projetos</span></h2>
@@ -91,6 +91,7 @@ bodyClass: is-home
         <div>
           <h3><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h3>
           {% if n.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ n.data | formatDate }}</span>{% endif %}
+          <span class="link-arrow" aria-hidden="true">Ler a notícia {{ icon("seta", 16) }}</span>
         </div>
       </li>
       {% endif %}{% endfor %}

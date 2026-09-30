@@ -53,7 +53,7 @@
 {% macro projectMark(b, logo, nome, size="md") %}{% set src = logo or b.logo %}{% if src %}<span class="project-mark project-mark--{{ size }} has-logo" style="--mark-bg: {{ b.logoBg }};"><img src="{{ src }}" alt="{{ nome }}" /></span>{% else %}<span class="project-mark project-mark--{{ size }}" aria-hidden="true">{{ b.sigla }}</span>{% endif %}{% endmacro %}
 
 {# Faixa de equalizador em largura total, igual à da home. Decorativa. #}
-{% macro equalizer(cols=56, size="lg") %}<div class="eq-zone eq-zone--{{ size }}" data-eq aria-hidden="true"><div class="eq">{% for i in range(0, cols) %}<span class="eq-col"><i style="height: {{ 30 + (i * 47) % 70 }}%; animation-duration: {{ (3.4 + (i % 7) * 0.55) | round(2) }}s; animation-delay: {{ ((i % 11) * 0.32) | round(2) }}s;"></i></span>{% endfor %}</div></div>{% endmacro %}
+{% macro equalizer(cols=56, size="lg") %}<div class="eq-zone eq-zone--{{ size }}" data-eq aria-hidden="true"><div class="eq">{% for i in range(0, cols) %}<span class="eq-col"><i style="height: {{ 30 + (i * 47) % 70 }}%; animation-duration: {{ (3.4 + (i % 7) * 0.55) | round(2) }}s; animation-delay: -{{ ((i % 11) * 0.32 + (i % 5) * 0.21) | round(2) }}s;"></i></span>{% endfor %}</div></div>{% endmacro %}
 
 {# Card de projeto (DSM): faixa de 8 px na cor, logo ou sigla, nome em h3,
    categoria, frase de resumo e "Conhecer o projeto". Mesmo tamanho para

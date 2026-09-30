@@ -98,6 +98,18 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => a.iso.localeCompare(b.iso));
   });
 
+  // Episódios e conteúdos: com data (dd/mm/aaaa) primeiro, do mais recente
+  // ao mais antigo; sem data, na ordem da planilha, depois dos datados.
+  eleventyConfig.addFilter("ordenarConteudos", (itens) => {
+    const iso = (d) => {
+      const m = String(d || "").trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      return m ? m[3] + "-" + m[2].padStart(2, "0") + "-" + m[1].padStart(2, "0") : "";
+    };
+    return (itens || [])
+      .map((c, i) => ({ ...c, iso: iso(c.data), i }))
+      .sort((a, b) => (a.iso && b.iso ? b.iso.localeCompare(a.iso) : a.iso ? -1 : b.iso ? 1 : a.i - b.i));
+  });
+
   // Valores distintos de um campo, na ordem em que aparecem (vazios fora).
   eleventyConfig.addFilter("distinct", (list, key) => [...new Set((list || []).map((i) => i[key]).filter(Boolean))]);
 
