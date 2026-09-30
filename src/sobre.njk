@@ -328,10 +328,10 @@ title: Sobre · AudioLab
     </section>
 
     <!-- ════ números (Stat, padrão DSM) ════ -->
-    {% if sobre.stats.length %}
+    {% if laboratorio.estatisticas.length %}
     <section class="sobre-stat-band">
       <p class="sobre-band-label" data-reveal="up">hoje, já alcançamos</p>
-      {% for s in sobre.stats %}
+      {% for s in laboratorio.estatisticas %}
       <div class="sobre-stat" data-reveal="up" style="--i: {{ loop.index0 }};">
         <span class="sobre-stat-num" data-count>{{ s.numero }}</span>
         <span class="sobre-stat-label">{{ s.rotulo }}</span>
@@ -342,11 +342,11 @@ title: Sobre · AudioLab
     {% endif %}
 
     <!-- ════ premiações ════ -->
-    {% if sobre.premiacoes.length %}
+    {% if laboratorio.premios.length %}
     <section class="sobre-awards">
       <h2><span class="al-section-marker" aria-hidden="true"></span>Premiações e reconhecimentos</h2>
       <div class="sobre-awards-grid">
-        {% for p in sobre.premiacoes %}
+        {% for p in laboratorio.premios %}
         <div class="sobre-award" data-reveal="up" style="--i: {{ loop.index0 % 4 }};">{{ p }}</div>
         {% endfor %}
       </div>
@@ -369,14 +369,6 @@ title: Sobre · AudioLab
         {% endfor %}
       </div>
     </section>
-
-    <!-- ════ mission blurb ════ -->
-    {% if sobre.missao_texto %}
-    <div class="sobre-blurb">
-      <p data-reveal="up">{{ sobre.missao_texto }}</p>
-    </div>
-    {% endif %}
-
     <!-- ════ photo carousel ════ -->
     <h2 class="sobre-carousel-title"><span class="al-section-marker" aria-hidden="true"></span><span class="highlight">Veja um pouco da nossa história</span></h2>
     <div class="sobre-carousel-wrap">
@@ -406,19 +398,6 @@ title: Sobre · AudioLab
         <p class="sobre-lightbox-caption" id="sobreLightboxCaption"></p>
       </div>
     </div>
-
-    <!-- ════ quem apoia ════ -->
-    {% if sobre.apoiadores.length %}
-    <section class="sobre-section sobre-supporters">
-      <h2><span class="al-section-marker" aria-hidden="true"></span><span class="highlight">quem apoia o AudioLab</span></h2>
-      <div class="sobre-supporters-grid">
-        {% for nome in sobre.apoiadores %}
-        <div class="sobre-supporter" data-reveal="up" style="--i: {{ loop.index0 % 4 }};">{{ nome }}</div>
-        {% endfor %}
-      </div>
-    </section>
-    {% endif %}
-
   </div>
 
   {% include "site-footer.njk" %}

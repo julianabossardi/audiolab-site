@@ -1,3 +1,3 @@
 const { readFolder } = require("../../lib/content.js");
 
-module.exports = () => readFolder("projetos");
+module.exports = () => readFolder("pessoas");

@@ -1,0 +1,64 @@
+{
+  "nome": "A Gente da Ciência",
+  "ordem": 4,
+  "tagline": "Quem faz ciência no Brasil? Perfis em áudio e vídeo que aproximam cientistas brasileiros do público.",
+  "tag": "Educação e ciência",
+  "o_que_e": "A Gente da Ciência conta quem são as pessoas que fazem ciência no Brasil, o que estão descobrindo e como é a rotina de quem pesquisa. São matérias curtas, de cerca de 5 minutos, sobre pesquisadores das principais instituições do país, com prioridade para a UERJ. O projeto tem quatro produtos: Pioneiros da Ciência, Hoje na Ciência, Eureka e Séries Especiais.",
+  "historia_contexto": "Produzido pelo AudioLab desde 2015, o projeto quer humanizar os cientistas e aproximá-los da população. Já são mais de 80 perfis, de nomes como Nise da Silveira, Milton Santos, Paulo Freire, Enedina Alves e Landell de Moura. A série foi exibida pela Rádio MEC AM e pela Rádio UFRJ. O bolsista participa de todas as etapas: pesquisa, entrevista, texto, gravação e edição.",
+  "fale_com_o_projeto": "Conhece uma pesquisadora ou um pesquisador que merece ser ouvido? Sugira um perfil para A Gente da Ciência.",
+  "coordenacao": "Gisele Sobral",
+  "ano_inicio": "2015",
+  "email": "",
+  "redes": {
+    "youtube": "https://www.youtube.com/@uerjaudiolab"
+  },
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+80",
+      "rotulo": "perfis de cientistas"
+    },
+    {
+      "numero": "4",
+      "rotulo": "produtos de divulgação"
+    },
+    {
+      "numero": "5 min",
+      "rotulo": "por matéria"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [
+    {
+      "nome": "Pioneiros da Ciência",
+      "descricao": "A história de figuras importantes da ciência no Brasil, em áudio.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Hoje na Ciência",
+      "descricao": "Cientistas de todas as áreas e a importância do seu trabalho hoje para o Brasil e o mundo, em áudio.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Eureka",
+      "descricao": "Vídeos para as redes sobre as principais invenções de cientistas brasileiros.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Séries Especiais",
+      "descricao": "Programas sobre marcos da ciência no Brasil, como os especiais sobre o SUS e os 5 anos da pandemia de covid-19.",
+      "link": "",
+      "imagem": ""
+    }
+  ],
+  "conteudos": [
+    {
+      "titulo": "Especial 5 anos da pandemia de covid-19",
+      "link": ""
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "nome": "AudioLabGeo",
+  "ordem": 8,
+  "tagline": "Um aplicativo que conta, em áudio, a história de mais de 300 lugares do Rio de Janeiro e de Niterói.",
+  "tag": "Cultura",
+  "o_que_e": "O AudioLabGeo é um aplicativo com conteúdos em áudio sobre pontos de interesse histórico, geográfico, social e cultural, acessados pela localização do celular. É como circular por um museu com fones de ouvido. A versão beta, para Android, reúne mais de 300 locais do Rio de Janeiro e de Niterói, em categorias como Endereços Cariocas, História e Memória, Espaços Culturais e Lazer e Esportes.",
+  "historia_contexto": "O aplicativo foi desenvolvido pelo AudioLab com o Laboratório de Ciências da Computação do IME, ambos Unidades de Desenvolvimento Tecnológico da UERJ. Desde 2018, o projeto tem parceria com a ECO/UFRJ na produção de conteúdo. Os episódios também estão no podcast AudioLab Geo, no Spotify, e desde 2023 fazem parte da Revista AudioLab.",
+  "fale_com_o_projeto": "Conhece um lugar do Rio ou de Niterói com uma boa história? Sugira para o AudioLabGeo.",
+  "coordenacao": "",
+  "ano_inicio": "",
+  "email": "",
+  "redes": {},
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+300",
+      "rotulo": "locais no Rio e em Niterói"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [],
+  "conteudos": []
+}

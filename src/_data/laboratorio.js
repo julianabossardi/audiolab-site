@@ -1,3 +1,3 @@
 const { readFile } = require("../../lib/content.js");
 
-module.exports = () => readFile("sobre.json");
+module.exports = () => readFile("laboratorio.json");

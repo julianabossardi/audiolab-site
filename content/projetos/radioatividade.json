@@ -1,0 +1,60 @@
+{
+  "nome": "Radioatividade",
+  "ordem": 5,
+  "tagline": "Jornalismo sonoro em ação: reportagens investigativas em áudio, com tempo para pesquisar e aprofundar cada tema.",
+  "tag": "Jornalismo",
+  "o_que_e": "O Radioatividade produz reportagens de radiojornalismo investigativo, mais longas e aprofundadas, com foco em inclusão social e em divulgação científica, tecnológica e cultural. Os programas são distribuídos de graça pela internet e podem ser usados por rádios comunitárias e educativas de todo o país. Entre as séries especiais estão 60 anos do Golpe Militar no Brasil, Rio Capital Mundial do Livro e uma série sobre as eleições de 2026.",
+  "historia_contexto": "Feito por bolsistas e voluntários desde 2004, o programa foi ao ar na Rádio CBN, em rede local, até julho de 2016. Depois passou para as redes do AudioLab e, desde 2023, faz parte da Revista AudioLab. Em 2025, ficou em 3º lugar em duas categorias do IV Prêmio Rubra de Rádio Universitário: Reportagem Especial e Documentário.",
+  "fale_com_o_projeto": "Tem uma pauta para uma reportagem? Fale com a equipe. Rádios comunitárias e educativas podem baixar os programas de graça no RadioTube.",
+  "coordenacao": "Leonardo Puglia",
+  "ano_inicio": "2004",
+  "email": "",
+  "redes": {},
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+250",
+      "rotulo": "matérias desde 2012"
+    },
+    {
+      "numero": "3",
+      "rotulo": "séries especiais"
+    },
+    {
+      "numero": "2",
+      "rotulo": "pódios no Prêmio Rubra 2025"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [
+    {
+      "nome": "60 anos do Golpe Militar no Brasil",
+      "descricao": "Série especial de 2024 em quatro episódios. O primeiro ficou em 3º lugar no Prêmio Rubra 2025, categoria Documentário.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Rio Capital Mundial do Livro",
+      "descricao": "Oito episódios, entre 2025 e 2026, sobre grandes nomes da literatura brasileira.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Especial Eleições 2026",
+      "descricao": "Série especial em sete episódios sobre as eleições de 2026.",
+      "link": "",
+      "imagem": ""
+    }
+  ],
+  "conteudos": [
+    {
+      "titulo": "Questões LGBTAQIAP+ no Brasil e Oriente Médio",
+      "link": ""
+    },
+    {
+      "titulo": "Especial Golpe Militar 60 anos #1",
+      "link": ""
+    }
+  ]
+}

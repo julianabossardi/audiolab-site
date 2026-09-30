@@ -1,0 +1,86 @@
+{
+  "nome": "Ateliê do Podcast",
+  "ordem": 2,
+  "tagline": "Porque fazer som é uma arte: oficinas, apoio técnico e divulgação para podcasts feitos na UERJ.",
+  "tag": "Cultura",
+  "o_que_e": "O Ateliê do Podcast oferece oficinas de produção sonora e audiovisual e dá apoio técnico e de divulgação aos programas criados no projeto. São oito produtos próprios, com mais de 100 conteúdos por mês, todos feitos por bolsistas e voluntários. Também funcionamos como incubadora: ajudamos 10 laboratórios e departamentos da UERJ a ajustar formato, roteiro e linguagem de seus podcasts, levando a pesquisa da universidade ao grande público.",
+  "historia_contexto": "Criado em 2023, o projeto parte da ideia de que fazer som é uma arte. Assim como o artista vai ao ateliê para pensar e criar, estudantes e professores vêm até aqui para mergulhar em uma ideia, testar, elaborar e apresentar o resultado em forma de som. Fala, vinhetas, música e silêncio criam o ambiente para que outras experiências aconteçam.",
+  "fale_com_o_projeto": "Tem um podcast na UERJ ou uma ideia de programa? Fale com a equipe do Ateliê do Podcast.",
+  "coordenacao": "Filipe Mostaro",
+  "ano_inicio": "2023",
+  "email": "",
+  "redes": {
+    "instagram": "https://www.instagram.com/ateliedopodcast/",
+    "spotify": "https://open.spotify.com/show/40MkBIJ8HfyrAhzd0S2SgM",
+    "amazon_music": "https://music.amazon.com.br/podcasts/2baf3f45-3e78-40ba-a92a-74ec01087f22/ateli%C3%AA-do-podcast-uerj",
+    "youtube": "https://www.youtube.com/playlist?list=PLoIMbOD4p4QS_AhBib8lz9mn7chInAWIo"
+  },
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+100",
+      "rotulo": "conteúdos por mês"
+    },
+    {
+      "numero": "+70 mil",
+      "rotulo": "visualizações por mês"
+    },
+    {
+      "numero": "10",
+      "rotulo": "parceiros na UERJ"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [
+    {
+      "nome": "Top 3",
+      "descricao": "[Descrição a escrever.]",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Transmissões ao vivo",
+      "descricao": "Coberturas ao vivo de eventos como o Prêmio Multishow e o Oscar.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Lado C",
+      "descricao": "A partir do acervo de LPs do AudioLab, contamos o contexto de produção de cada álbum.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Qual é a música?",
+      "descricao": "[Descrição a escrever.]",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Ecos",
+      "descricao": "Análises e indicações de podcasts para quem nos acompanha.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Jornal do Ateliê",
+      "descricao": "O resumo mensal do entretenimento: música, cinema, teatro, literatura, eventos e bastidores da equipe.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Sonosfera",
+      "descricao": "Um pesquisador convidado fala sobre o poder do som no cotidiano. Episódio novo na primeira quinta-feira do mês, no YouTube.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Entretenicast",
+      "descricao": "O mundo do entretenimento ao alcance dos ouvidos, com série especial sobre diretores de cinema.",
+      "link": "",
+      "imagem": ""
+    }
+  ],
+  "conteudos": []
+}

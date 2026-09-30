@@ -211,8 +211,8 @@ eleventyComputed:
       <div class="proj-about-grid">
         <div>
           <h2><span class="al-section-marker" aria-hidden="true"></span>Sobre {{ p.nome }}</h2>
-          {% if p.descricao %}
-          {{ p.descricao | safe }}
+          {% if p.o_que_e or p.historia_contexto %}
+          {% if p.o_que_e %}<p>{{ p.o_que_e }}</p>{% endif %}{% if p.historia_contexto %}<p>{{ p.historia_contexto }}</p>{% endif %}
           {% else %}
           <p>[Parágrafo de abertura, até cinco linhas: origem, propósito e público do projeto.]</p>
           <p>[Segundo parágrafo, até cinco linhas: como o projeto funciona e o que os participantes produzem.]</p>
@@ -221,7 +221,7 @@ eleventyComputed:
           <div class="proj-note">
             <span class="proj-note-ruler" aria-hidden="true"></span>
             <h4>{{ icon("informacao", 18) }} Como participar</h4>
-            <p>{% if p.contato_email %}Escreva para <a href="mailto:{{ p.contato_email }}">{{ p.contato_email }}</a> e conte o que você quer fazer no {{ p.nome }}.{% else %}[Instruções de inscrição ou seleção, em até três linhas.]{% endif %}</p>
+            <p>{% if p.email %}Escreva para <a href="mailto:{{ p.email }}">{{ p.email }}</a> e conte o que você quer fazer no {{ p.nome }}.{% else %}[Instruções de inscrição ou seleção, em até três linhas.]{% endif %}</p>
           </div>
         </div>
 
@@ -234,7 +234,7 @@ eleventyComputed:
             </div>
             <div>
               <dt>{{ icon("email", 13) }}Contato</dt>
-              <dd>{% if p.contato_email %}<a href="mailto:{{ p.contato_email }}">{{ p.contato_email }}</a>{% else %}[e-mail]{% endif %}</dd>
+              <dd>{% if p.email %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% else %}[e-mail]{% endif %}</dd>
             </div>
             <div>
               <dt>{{ icon("link-externo", 13) }}Redes</dt>
@@ -253,7 +253,7 @@ eleventyComputed:
               <dd>{{ p.ano_inicio or "[ano]" }}</dd>
             </div>
           </dl>
-          <a class="proj-ficha-btn" style="background: {{ b.base }}; color: {{ b.on }};" href="{{ 'mailto:' + p.contato_email if p.contato_email else '#contato' }}">Falar com o projeto</a>
+          <a class="proj-ficha-btn" style="background: {{ b.base }}; color: {{ b.on }};" href="{{ 'mailto:' + p.email if p.email else '#contato' }}">Falar com o projeto</a>
         </aside>
       </div>
 

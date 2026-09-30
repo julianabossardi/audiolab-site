@@ -1,0 +1,115 @@
+{
+  "nome": "BadaUERJ",
+  "ordem": 1,
+  "tagline": "Som preto, festa brasileira: jornalismo sobre o carnaval das escolas de samba do Rio, feito o ano inteiro.",
+  "tag": "Cultura",
+  "o_que_e": "O BadaUERJ produz jornalismo sobre o carnaval das escolas de samba do estado do Rio de Janeiro. Para nós, o carnaval não acontece só em fevereiro. Vamos às quadras, ouvimos quem faz a festa e contamos a história do samba, das agremiações e de seus personagens em podcasts, vídeos, transmissões ao vivo e postagens. Como o samba nasce da história dos negros escravizados, cada produção também aproxima a universidade e a comunidade dessa reflexão.",
+  "historia_contexto": "O projeto nasceu em 2023, da construção coletiva de 57 estudantes de diferentes cursos da UERJ. O nome vem de badauê, palavra iorubá que significa festa e celebração. Em 2024, com menos de um ano de vida, participamos do programa Conexão, do Canal Futura. Em 2025, o primeiro episódio do nosso podcast, sobre o samba como resistência negra, ficou em 1º lugar no II Prêmio UnBCast de Podcasts Universitários.",
+  "fale_com_o_projeto": "Tem uma pauta sobre samba e carnaval ou quer conhecer o projeto? Fale com a equipe do BadaUERJ.",
+  "coordenacao": "Filipe Mostaro",
+  "ano_inicio": "2023",
+  "email": "",
+  "redes": {
+    "instagram": "https://www.instagram.com/badauerj/",
+    "youtube": "https://www.youtube.com/@uerjaudiolab"
+  },
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+500 mil",
+      "rotulo": "visualizações"
+    },
+    {
+      "numero": "+1.700",
+      "rotulo": "vídeos e postagens"
+    },
+    {
+      "numero": "10",
+      "rotulo": "produtos próprios"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [
+    {
+      "nome": "BadaNews",
+      "descricao": "Mini telejornal semanal com as notícias do samba direto das escolas: contratações, enredos, escolhas de samba e ensaios.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Caravanas",
+      "descricao": "Passamos um dia inteiro em uma escola de samba, ouvindo e entrevistando de baianas e ritmistas a aderecistas e ferreiros.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Vitrola",
+      "descricao": "A história do carnaval contada pelos vinis de sambas-enredo do nosso acervo, em parceria com o projeto Sambavivências.",
+      "link": "https://www.youtube.com/playlist?list=PLoIMbOD4p4QTgz5I1iYGh_ltv8s0as0e8",
+      "imagem": ""
+    },
+    {
+      "nome": "Muita História pra Sambar",
+      "descricao": "Episódios especiais do podcast com histórias de personalidades do carnaval e do samba.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Rios de Samba",
+      "descricao": "Mapeamos grafites que homenageiam ícones do samba pelo Rio e mostramos onde encontrar cada um.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Transmissões ao vivo",
+      "descricao": "Transmissões da apuração das notas das escolas de samba, com análise e interação com o público.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Podcasts",
+      "descricao": "A história do samba, sua relação com a cultura iorubá, a resistência, os enredos e como se avalia cada quesito.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Dicionário Iorubá",
+      "descricao": "Expressões iorubás presentes no dia a dia, que aproximam o público dessa cultura tão ligada ao samba.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Samba em Nome Delas",
+      "descricao": "[Descrição a escrever.]",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Bada nas Quadras",
+      "descricao": "Cobertura dos eventos do carnaval direto das quadras, em contato com quem faz a festa.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Samba 365",
+      "descricao": "Datas, aniversários e efemérides do samba, porque todo dia é dia de falar de carnaval.",
+      "link": "",
+      "imagem": ""
+    }
+  ],
+  "conteudos": [
+    {
+      "titulo": "Episódio #1: Resistência Negra",
+      "link": ""
+    },
+    {
+      "titulo": "Entrevista com Jorge Perlingeiro",
+      "link": ""
+    },
+    {
+      "titulo": "[Título do episódio]",
+      "link": "https://www.youtube.com/watch?v=GedAB7jTLlI"
+    }
+  ]
+}

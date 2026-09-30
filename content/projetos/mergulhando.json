@@ -1,0 +1,35 @@
+{
+  "nome": "Mergulhando",
+  "ordem": 6,
+  "tagline": "A comunicação além da superfície: professores da FCS contam suas trajetórias e pesquisas em entrevistas em áudio e vídeo.",
+  "tag": "Educação e ciência",
+  "o_que_e": "Cada episódio apresenta a trajetória acadêmica e profissional de um professor da FCS e relaciona suas pesquisas ao cotidiano. As entrevistas seguem a metodologia da história oral e ajudam a preservar a memória da faculdade e da comunicação no Brasil. A versão completa vai para o YouTube do AudioLab e da FCS, e trechos viram podcasts e conteúdos para as redes.",
+  "historia_contexto": "O projeto começou em 2025 com a meta de entrevistar os 43 docentes da FCS, em duas entrevistas por mês. Os bolsistas participam de todas as etapas: pesquisa, perguntas, gravação, roteiro, edição e divulgação. A ideia é, no futuro, chegar também a professores de outras unidades da UERJ.",
+  "fale_com_o_projeto": "Quer sugerir uma pergunta ou acompanhar as entrevistas? Fale com a equipe do Mergulhando.",
+  "coordenacao": "Leonardo Puglia",
+  "ano_inicio": "2025",
+  "email": "",
+  "redes": {
+    "instagram": "https://www.instagram.com/mergulhando_audiolabuerj/",
+    "youtube": "https://www.youtube.com/playlist?list=PLoIMbOD4p4QSsdiRKuyOmlk25g-JgHgfG"
+  },
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "11",
+      "rotulo": "episódios"
+    },
+    {
+      "numero": "43",
+      "rotulo": "professores da FCS na meta"
+    },
+    {
+      "numero": "2",
+      "rotulo": "entrevistas por mês"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [],
+  "conteudos": []
+}

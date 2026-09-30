@@ -1,0 +1,208 @@
+{
+  "pagina_titulo": "Pesquisa e formação",
+  "pagina_frase_apoio": "Onde o AudioLab pesquisa som, narrativa e imaginário, e compartilha o que aprende em oficinas abertas ao público.",
+  "jonami_sigla": "JONAMI",
+  "jonami_por_extenso": "Jogo, Narrativa, Mídia e Imaginário",
+  "jonami_ano_formacao": "2025",
+  "jonami_lideranca": "Filipe Fernandes Ribeiro Mostaro",
+  "jonami_composicao": "4 doutores, 6 doutorandos, 5 mestrandos e 4 graduandos",
+  "jonami_link_instagram": "https://www.instagram.com/uerjaudiolab/",
+  "jonami_link_cnpq": "http://dgp.cnpq.br/dgp/espelhogrupo/821618",
+  "jonami_descricao_curta": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário, fundamentais para compreender o processo comunicacional. Investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários.",
+  "jonami_descricao_completa": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário. Parte-se da ideia de que os três são fundamentais para compreender o processo comunicacional e seus desdobramentos. O impulso presente no jogo (HUIZINGA, 2014) na criação de um mundo à parte no qual os interlocutores se empenham, elabora uma situação social para que determinados imaginários (DURAND, 1997) sejam criados, reforçados e reconfigurados através das narrativas (RICOEUR, 2010), elaborando “quadros sociais” (GOFFMAN, 2012), que trazem o fantástico e o fictício para a narrativa (ISER, 2017). A partir dessas premissas, investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários. Especificamente, nos debruçamos nas narrativas presentes na era da convergência e os desdobramentos do jogo narrativo elaborado nesses cenários.",
+  "formacao_titulo": "Oficinas e formação",
+  "formacao_intro": "Todo semestre, o AudioLab oferece oficinas abertas ao público sobre os temas que trabalhamos no laboratório. Também promovemos eventos, como o seminário anual Mídia, Imaginário e Sonoridades, que aproxima estudantes de profissionais da área.",
+  "jonami_logo": "",
+  "conceitos": [
+    {
+      "conceito": "Imaginário",
+      "autores": "Castoriadis (1982), Durand (1988), Maffesoli (2001), Wunenburger (2007), Silva (2012)",
+      "definicao": "Conjunto de imagens e símbolos pelo qual uma sociedade cria e reconhece o real. Mais do que representar, organiza sentidos, afetos e laços coletivos."
+    },
+    {
+      "conceito": "Jogo",
+      "autores": "Huizinga (2014)",
+      "definicao": "Atividade livre, vivida como não séria, que absorve quem joga e segue regras, tempo e espaço próprios."
+    },
+    {
+      "conceito": "Círculo mágico",
+      "autores": "Huizinga (2014)",
+      "definicao": "Espaço delimitado onde o jogo acontece e suas regras valem, separado da vida comum."
+    },
+    {
+      "conceito": "Fachada",
+      "autores": "Goffman (2007)",
+      "definicao": "Conjunto de recursos expressivos que uma pessoa aciona, de forma intencional ou não, para se apresentar numa interação."
+    },
+    {
+      "conceito": "Mimese",
+      "autores": "Ricoeur (2010)",
+      "definicao": "Os três momentos da narrativa: a compreensão prévia do mundo, sua organização em trama e sua incorporação pela experiência de quem lê ou ouve."
+    },
+    {
+      "conceito": "Tecnopólio",
+      "autores": "Postman (1994)",
+      "definicao": "Cultura que se rende à tecnologia. Toda tecnologia é fardo e benefício ao mesmo tempo e redefine significados de forma silenciosa."
+    }
+  ],
+  "temas": [
+    {
+      "eixo": "Educação e cidadania",
+      "pessoa": "Crystal",
+      "nivel": "Mestrado",
+      "tema": "Rádio e educação",
+      "descricao": "Como o podcast pode apoiar professores no ensino e ampliar a cidadania de pessoas em situação de vulnerabilidade."
+    },
+    {
+      "eixo": "Plataformas e dados",
+      "pessoa": "Edu",
+      "nivel": "Graduação",
+      "tema": "Conteúdo em plataformas digitais",
+      "descricao": "Otimização de conteúdo a partir de dados de engajamento, testada nas próprias transmissões do laboratório."
+    },
+    {
+      "eixo": "Cidade e memória",
+      "pessoa": "JG",
+      "nivel": "Graduação",
+      "tema": "Ludens narrativo e cidade",
+      "descricao": "O discurso sobre o Porto Maravilha e a apropriação de símbolos e narrativas ancestrais pelo mercado."
+    },
+    {
+      "eixo": "Cidade e memória",
+      "pessoa": "Aline",
+      "nivel": "Doutorado",
+      "tema": "Memória discursiva e imaginário urbano",
+      "descricao": "O imaginário urbano da Praça Tahrir, no Egito, e as imagens de protesto da Primavera Árabe."
+    },
+    {
+      "eixo": "Jornalismo e televisão",
+      "pessoa": "Jhonny",
+      "nivel": "[nível]",
+      "tema": "Telejornalismo na pandemia",
+      "descricao": "Análise da cobertura de 8 a 12 de junho de 2020 e do consórcio de veículos de imprensa que passou a reunir os dados de mortes por covid-19."
+    },
+    {
+      "eixo": "Esporte",
+      "pessoa": "Luís",
+      "nivel": "Mestrado",
+      "tema": "Narrativa esportiva na TV",
+      "descricao": "Como o Esporte Espetacular conta a trajetória do Brasil nas Copas e convida o público a continuar jogando."
+    },
+    {
+      "eixo": "Plataformas e dados",
+      "pessoa": "Lucas",
+      "nivel": "Mestrado",
+      "tema": "Plataformas de áudio e memória musical",
+      "descricao": "O Spotify como dispositivo de memória de uma geração, entre o desenho da plataforma e a escolha de quem ouve."
+    },
+    {
+      "eixo": "Cidade e memória",
+      "pessoa": "Gustavo Vicente",
+      "nivel": "Doutorado",
+      "tema": "Escolas de samba e história",
+      "descricao": "Como os enredos da década atual narram a história e com que intenção constroem essas narrativas."
+    },
+    {
+      "eixo": "Plataformas e dados",
+      "pessoa": "Daiane",
+      "nivel": "Mestrado",
+      "tema": "Videocasts e marcas",
+      "descricao": "Como videocasts viram ecossistemas de marca e criam vínculo com o público pela estética da autenticidade."
+    },
+    {
+      "eixo": "Esporte",
+      "pessoa": "Giulia",
+      "nivel": "[nível]",
+      "tema": "[Tema a confirmar]",
+      "descricao": "[Descrição a escrever.]"
+    },
+    {
+      "eixo": "Esporte",
+      "pessoa": "Vitor Ramos",
+      "nivel": "[nível]",
+      "tema": "Narrativa esportiva no streaming",
+      "descricao": "[Descrição a escrever. Notas citam CazéTV e ge tv.]"
+    },
+    {
+      "eixo": "Plataformas e dados",
+      "pessoa": "Juliana Bossardi",
+      "nivel": "[nível]",
+      "tema": "Imaginário e IA generativa",
+      "descricao": "O imaginário produzido na interação entre usuários e sistemas de IA generativa."
+    },
+    {
+      "eixo": "",
+      "pessoa": "Grupo",
+      "nivel": "",
+      "tema": "Narrativas na era da convergência",
+      "descricao": "Como as mídias e suas adaptações mudam regras, códigos e percepções das narrativas."
+    }
+  ],
+  "formacao": [
+    {
+      "tipo": "Oficina",
+      "titulo": "Oficina de transmissão esportiva",
+      "descricao": "Prática de narração, reportagem e comentário para transmissões esportivas ao vivo.",
+      "foto": "",
+      "ano": "",
+      "link": ""
+    },
+    {
+      "tipo": "Oficina",
+      "titulo": "Oficina de gestão de redes sociais",
+      "descricao": "Planejamento e produção de conteúdo para as redes sociais de projetos de comunicação.",
+      "foto": "",
+      "ano": "",
+      "link": ""
+    },
+    {
+      "tipo": "Oficina",
+      "titulo": "Oficina de produção para podcast",
+      "descricao": "Do roteiro à publicação: como criar e produzir um podcast.",
+      "foto": "",
+      "ano": "",
+      "link": ""
+    },
+    {
+      "tipo": "Oficina",
+      "titulo": "Oficina de texto para mídia sonora",
+      "descricao": "Como escrever para ser ouvido: técnicas de redação para rádio e podcast.",
+      "foto": "",
+      "ano": "",
+      "link": ""
+    },
+    {
+      "tipo": "Oficina",
+      "titulo": "Oficina de edição de áudio e vídeo",
+      "descricao": "Noções práticas de edição de áudio e vídeo para conteúdos sonoros e audiovisuais.",
+      "foto": "",
+      "ano": "",
+      "link": ""
+    },
+    {
+      "tipo": "Seminário",
+      "titulo": "Mídia, Imaginário e Sonoridades",
+      "descricao": "Seminário anual transmitido no YouTube. A 2ª edição recebeu Tiago Rogero, do Projeto Querino, e Rodrigo Alves, do Vida de Jornalista.",
+      "foto": "",
+      "ano": "",
+      "link": "https://www.youtube.com/playlist?list=PLoIMbOD4p4QSUz2PVmqCsMoA87nkOgFYF"
+    },
+    {
+      "tipo": "Material",
+      "titulo": "Manual de produção de podcasts",
+      "descricao": "Guia do AudioLab para planejar, gravar e publicar um podcast.",
+      "foto": "",
+      "ano": "",
+      "link": "https://drive.google.com/file/d/1Q2u-VUu1kdcXV98fUly0uAh3mmCrjV1k/view"
+    }
+  ],
+  "eventos": [
+    {
+      "nome": "Mídia, Imaginário e Sonoridades",
+      "data": "[dd/mm/aaaa]",
+      "horario": "",
+      "local": "",
+      "link": ""
+    }
+  ]
+}

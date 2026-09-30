@@ -1,10 +1,4 @@
 {
   "newsletter_texto": "Participe da nossa newsletter!",
-  "newsletter_texto_curto": "Newsletter",
-  "redes": {
-    "spotify": "https://open.spotify.com/show/6sRbfbl0COb8x7hRRitMdJ",
-    "youtube": "https://www.youtube.com/@uerjaudiolab",
-    "instagram": "https://www.instagram.com/uerjaudiolab/",
-    "email": "uerjaudiolab@gmail.com"
-  }
+  "newsletter_texto_curto": "Newsletter"
 }

@@ -1,0 +1,112 @@
+{
+  "nome": "Escola de Narradores",
+  "ordem": 3,
+  "tagline": "Estudantes da UERJ narram, comentam, reportam e apresentam grandes competições esportivas ao vivo.",
+  "tag": "Esporte",
+  "o_que_e": "A Escola de Narradores forma estudantes para a cobertura esportiva na prática. Em transmissões ao vivo e treinamentos, todos passam pelas funções de narrador, repórter, comentarista, produtor e apresentador. Já cobrimos 40 competições, como Copa do Mundo de seleções e de clubes, Olimpíadas, Campeonato Brasileiro, Liga dos Campeões, Libertadores, Fórmula 1 e vôlei. Além das transmissões, o projeto tem podcasts, programas ao vivo semanais e mensais e séries para as redes sociais.",
+  "historia_contexto": "O projeto nasceu em novembro de 2022, com a cobertura da Copa do Mundo daquele ano, e virou o carro-chefe da expansão do AudioLab. Também pesquisamos a história da transmissão esportiva no Brasil e as novas formas de narrar e cobrir o esporte. Hoje o projeto é um dos motivos pelos quais estudantes escolhem a FCS, e outras universidades e empresas de comunicação reconhecem seu caráter inovador.",
+  "fale_com_o_projeto": "Quer sugerir uma cobertura ou conhecer o projeto? Fale com a equipe da Escola de Narradores.",
+  "coordenacao": "Filipe Mostaro",
+  "ano_inicio": "2022",
+  "email": "escoladenarradoresuerj@gmail.com",
+  "redes": {
+    "instagram": "https://www.instagram.com/escoladenarradoresuerj/",
+    "spotify": "https://open.spotify.com/show/4IoYql3RSq8smZjr7DNxKp",
+    "youtube": "https://www.youtube.com/@uerjaudiolab"
+  },
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+1.200",
+      "rotulo": "transmissões desde 2022"
+    },
+    {
+      "numero": "40",
+      "rotulo": "competições cobertas"
+    },
+    {
+      "numero": "90",
+      "rotulo": "voluntários na Copa 2026"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [
+    {
+      "nome": "Transmissões Esportivas",
+      "descricao": "Transmissões ao vivo de competições como Copa do Mundo, Olimpíadas, Libertadores e Fórmula 1.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Papos de Copa",
+      "descricao": "Podcast que mergulha em cada edição da Copa do Mundo, a partir de pesquisa em jornais e narrações de rádio.",
+      "link": "https://www.youtube.com/playlist?list=PLoIMbOD4p4QT03tNrGOalOs_27iYAM52g",
+      "imagem": ""
+    },
+    {
+      "nome": "Hércules",
+      "descricao": "Podcast sobre a história de cada modalidade olímpica, com curiosidades, grandes nomes e expectativas para 2028.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Bem Alunos",
+      "descricao": "Comentários sobre o esporte do fim de semana, às segundas no YouTube. Nasceu na Copa de 2022.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Uerj League",
+      "descricao": "Informação e comentários sobre esportes americanos, como basquete e futebol americano. Às sextas, no YouTube.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Lab Olímpico",
+      "descricao": "Na última quinta-feira do mês, apresentamos as modalidades de Los Angeles 2028 para preparar a próxima cobertura olímpica.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Escola de Historiadores",
+      "descricao": "[Descrição a escrever.]",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Pele do Clube",
+      "descricao": "[Descrição a escrever.]",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Camisas de Times",
+      "descricao": "[Descrição a escrever.]",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "EN Play",
+      "descricao": "Dicas de músicas, filmes, séries e documentários sobre esporte, em parceria com o Ateliê do Podcast.",
+      "link": "",
+      "imagem": ""
+    },
+    {
+      "nome": "Heróis da Narração",
+      "descricao": "Grandes nomes da narração esportiva: carreira, estilo e bordões.",
+      "link": "",
+      "imagem": ""
+    }
+  ],
+  "conteudos": [
+    {
+      "titulo": "Como foi cobrir Paris 2024?",
+      "link": ""
+    },
+    {
+      "titulo": "[Título do episódio]",
+      "link": "https://www.youtube.com/watch?v=31kOuui4WFQ"
+    }
+  ]
+}

@@ -1,8 +1,3 @@
-const fs = require("fs");
-const path = require("path");
+const { readFile } = require("../../lib/content.js");
 
-module.exports = () => {
-  const file = path.join(__dirname, "../../content/cabecalho.json");
-  if (!fs.existsSync(file)) return {};
-  return JSON.parse(fs.readFileSync(file, "utf8"));
-};
+module.exports = () => readFile("cabecalho.json");
