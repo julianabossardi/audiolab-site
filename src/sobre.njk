@@ -171,7 +171,7 @@ title: Sobre · AudioLab
     <li>
       {% if item.foto | img %}
       <button type="button" class="photo-carousel-item framed" data-lightbox-item data-caption="{{ item.legenda }}" aria-label="Ampliar foto {{ loop.index }}{% if item.legenda %}: {{ item.legenda }}{% endif %}">
-        <img src="{{ item.foto | img }}" alt="" loading="lazy" />
+        <img src="{{ item.foto | img }}" alt="" />
       </button>
       {% else %}
       <div class="photo-carousel-item">{{ placeholder("[imagem 4:3]", "4-3") }}</div>
