@@ -61,11 +61,14 @@
     <ul class="drawer-list">
       <li><a class="drawer-link" href="/sobre/"{% if page.url == "/sobre/" %} aria-current="page"{% endif %}>Sobre</a></li>
       <li>
-        <a class="drawer-link" href="/projetos/"{% if page.url == "/projetos/" %} aria-current="page"{% endif %}>Projetos</a>
-        <ul class="drawer-sublist">
+        <button type="button" class="drawer-link drawer-toggle" data-drawer-toggle aria-expanded="{{ 'true' if emProjeto else 'false' }}" aria-controls="gaveta-projetos">
+          Projetos {{ icon("seta-baixo", 20) }}
+        </button>
+        <ul class="drawer-sublist" id="gaveta-projetos"{% if not emProjeto %} hidden{% endif %}>
           {% for proj in projetos %}
           <li><a href="/projetos/{{ proj.slug }}/"{% if page.url == "/projetos/" + proj.slug + "/" %} aria-current="page"{% endif %}>{{ proj.nome }}</a></li>
           {% endfor %}
+          <li><a class="drawer-all" href="/projetos/"{% if page.url == "/projetos/" %} aria-current="page"{% endif %}>Ver todos os projetos {{ icon("seta", 16) }}</a></li>
         </ul>
       </li>
       <li><a class="drawer-link" href="/pesquisa-e-formacao/"{% if page.url == "/pesquisa-e-formacao/" %} aria-current="page"{% endif %}>Pesquisa e formação</a></li>
@@ -114,6 +117,14 @@
     document.documentElement.classList.toggle("menu-open", open);
   }
   menuBtn.addEventListener("click", function () { setDrawer(drawer.hidden); });
+  drawer.querySelectorAll("[data-drawer-toggle]").forEach(function (btn) {
+    var lista = document.getElementById(btn.getAttribute("aria-controls"));
+    btn.addEventListener("click", function () {
+      var aberto = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!aberto));
+      lista.hidden = aberto;
+    });
+  });
   drawer.addEventListener("click", function (e) { if (e.target.closest("a, [data-open-newsletter]")) setDrawer(false); });
   window.matchMedia("(min-width: 1024px)").addEventListener("change", function (e) { if (e.matches) setDrawer(false); });
 

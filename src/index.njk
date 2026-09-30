@@ -27,7 +27,7 @@ bodyClass: is-home
         <li>
           <a class="home-shortcut" href="/projetos/{{ proj.slug }}/" aria-label="{{ proj.nome }}" data-project="{{ b.key }}">
             <img class="home-shortcut-logo{% if b.key == "escola" %} is-knockout{% endif %}" src="{{ b.logoBranco or b.logo }}" alt="{{ proj.nome }}" />
-            <span class="home-shortcut-arrow" aria-hidden="true">{{ icon("seta", 24) }}</span>
+            <span class="home-shortcut-arrow" aria-hidden="true">{{ icon("seta", 18) }}</span>
           </a>
         </li>
         {% endfor %}

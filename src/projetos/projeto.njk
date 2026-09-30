@@ -208,7 +208,7 @@ eleventyComputed:
   </section>
   {% endif %}
 
-  <!-- equipe: até 6 pessoas, foto 4:5 com faixa na cor do projeto -->
+  <!-- equipe: até 6 pessoas, em cards de texto com filete na cor do projeto -->
   {% if equipe.length %}
   <section class="section" id="equipe">
     <div class="wrap">
@@ -216,10 +216,9 @@ eleventyComputed:
         <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Equipe</h2>
         <a class="link-arrow" href="/sobre/?projeto={{ p.slug }}#equipe">Ver toda a equipe {{ icon("seta", 18) }}</a>
       </div>
-      <ul class="people-grid people-grid--6">
+      <ul class="people-grid people-grid--text">
         {% for m in equipe %}
-        <li class="person">
-          <div class="person-photo">{% if m.foto | img %}<img src="{{ m.foto | img }}" alt="" />{% else %}{{ placeholder("[foto 4:5]", "4-5") }}{% endif %}</div>
+        <li class="person person--text">
           <h3 class="person-name">{{ m.nome }}</h3>
           {% if m.funcao %}<p class="person-role">{{ m.funcao }}</p>{% endif %}
         </li>
