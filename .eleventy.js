@@ -83,6 +83,24 @@ module.exports = function (eleventyConfig) {
     return /^[\w-]{6,}$/.test(id) ? "https://www.youtube-nocookie.com/embed/" + id : "";
   });
 
+  // Eventos com data válida (dd/mm/aaaa) de hoje em diante, em ordem.
+  // Ganham "iso" para o navegador conferir de novo, já que o site é estático.
+  eleventyConfig.addFilter("eventosFuturos", (eventos) => {
+    const hoje = new Date().toLocaleDateString("sv-SE", { timeZone: "America/Sao_Paulo" });
+    return (eventos || [])
+      .map((e) => {
+        const m = String(e.data || "").trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+        if (!m) return null;
+        const iso = m[3] + "-" + m[2].padStart(2, "0") + "-" + m[1].padStart(2, "0");
+        return isNaN(new Date(iso)) ? null : { ...e, iso };
+      })
+      .filter((e) => e && e.iso >= hoje)
+      .sort((a, b) => a.iso.localeCompare(b.iso));
+  });
+
+  // Valores distintos de um campo, na ordem em que aparecem (vazios fora).
+  eleventyConfig.addFilter("distinct", (list, key) => [...new Set((list || []).map((i) => i[key]).filter(Boolean))]);
+
   // Cor-código, sigla e logo padrão do projeto (src/_data/projectBrands.js).
   eleventyConfig.addFilter("brand", (nome) => brandFor(nome));
 

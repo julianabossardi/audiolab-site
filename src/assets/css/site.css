@@ -921,6 +921,60 @@ div.photo-carousel-item { cursor: default; }
 .person-tag--more { background: var(--petrol-700); color: var(--white); }
 
 
+/* ── pesquisa e formação ──────────────────────────────────── */
+.section.section--tint { padding-top: var(--space-64); background: var(--white); border-top: var(--hairline) solid var(--petrol-200); border-bottom: var(--hairline) solid var(--petrol-200); }
+.block-title { margin: 0 0 var(--space-16); font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--fw-h3); color: var(--petrol-700); }
+
+.jonami-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-24); margin-bottom: var(--space-20); }
+.jonami-logo { width: var(--mark-lg); flex: none; }
+.jonami-logo img { width: 100%; height: auto; }
+.jonami-title { margin: 0; font-size: var(--fs-h1); line-height: var(--lh-h1); font-weight: var(--fw-h1); color: var(--petrol-700); }
+.jonami-full { margin: var(--space-4) 0 0; font-family: var(--font-display); font-size: var(--fs-h4); line-height: var(--lh-h4); font-weight: var(--fw-label); color: var(--petrol-600); }
+.jonami-meta { display: flex; flex-wrap: wrap; gap: var(--space-8) var(--space-24); margin-bottom: var(--space-24); padding: var(--space-12) 0; border-top: var(--hairline) solid var(--petrol-200); border-bottom: var(--hairline) solid var(--petrol-200); font-size: var(--fs-small); color: var(--petrol-800); }
+.jonami-meta li { display: inline-flex; align-items: center; gap: var(--space-6); }
+.jonami-meta svg { color: var(--petrol-600); }
+.jonami-text p { font-size: var(--fs-body-lg); line-height: var(--lh-body-lg); }
+.jonami-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-8) var(--space-24); }
+.jonami-block { margin-top: var(--space-48); }
+
+.chip[aria-expanded="true"] { background: var(--petrol-700); border-color: var(--petrol-700); color: var(--white); }
+.concept-panel { max-width: var(--measure); margin-top: calc(-1 * var(--space-16)); padding: var(--space-20) var(--space-24); background: var(--white); border: var(--hairline) solid var(--petrol-200); border-left: var(--bar) solid var(--lime-500); border-radius: var(--radius); }
+.concept-panel h4 { margin: 0 0 var(--space-8); font-size: var(--fs-h4); line-height: var(--lh-h4); color: var(--petrol-800); }
+.concept-panel p { margin: 0; color: var(--petrol-800); }
+.concept-panel .concept-authors { margin-top: var(--space-8); font-size: var(--fs-small); color: var(--petrol-500); }
+
+.topic-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-16); }
+.topic { padding: var(--space-20); background: var(--white); border: var(--hairline) solid var(--petrol-200); border-radius: var(--radius); }
+.topic[hidden] { display: none; }
+.topic-axis { display: inline-block; margin-bottom: var(--space-8); padding: var(--space-2) var(--space-8); border-radius: var(--radius); background: var(--petrol-100); color: var(--petrol-700); font-family: var(--font-display); font-size: var(--fs-tag); font-weight: var(--fw-tag); line-height: var(--lh-tag); }
+.topic h4 { margin: 0 0 var(--space-6); font-size: var(--fs-h4); line-height: var(--lh-h4); font-weight: var(--fw-h4); color: var(--petrol-800); }
+.topic p { margin: 0; color: var(--petrol-800); }
+.topic .topic-who { margin-top: var(--space-10); font-size: var(--fs-small); color: var(--petrol-500); }
+@media (max-width: 767px) { .topic-list { grid-template-columns: minmax(0, 1fr); } }
+
+.course-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-20); }
+.course-card { display: flex; flex-direction: column; background: var(--petrol-50); border: var(--hairline) solid var(--petrol-200); border-radius: var(--radius); overflow: hidden; }
+.course-img { aspect-ratio: 16 / 9; }
+.course-img img { width: 100%; height: 100%; object-fit: cover; }
+.course-img .dsm-placeholder { border-radius: 0; border-width: 0 0 var(--rule) 0; }
+.course-body { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-8); flex: 1; padding: var(--space-20); }
+.course-type { font-family: var(--font-display); font-size: var(--fs-tag); font-weight: var(--fw-tag); color: var(--petrol-600); }
+.course-body h3 { margin: 0; font-size: var(--fs-h4); line-height: var(--lh-h4); font-weight: var(--fw-h4); color: var(--petrol-800); }
+.course-body p { margin: 0; color: var(--petrol-800); }
+.course-body .btn, .course-body .link-arrow { margin-top: auto; }
+@media (max-width: 1279px) { .course-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 1023px) { .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .course-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.event-list { display: grid; gap: var(--space-8); }
+.event-item { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-20); padding: var(--space-12) var(--space-16); border: var(--hairline) solid var(--petrol-200); border-left: var(--bar) solid var(--petrol-700); border-radius: var(--radius); background: var(--white); }
+.event-item[hidden] { display: none; }
+.event-date { display: inline-flex; align-items: center; gap: var(--space-6); font-family: var(--font-display); font-size: var(--fs-label); font-weight: var(--fw-label); color: var(--petrol-700); }
+.event-name { font-family: var(--font-display); font-size: var(--fs-h4); font-weight: var(--fw-h4); color: var(--petrol-800); }
+.event-place { font-size: var(--fs-small); color: var(--petrol-500); }
+.event-item .link-arrow { margin-left: auto; }
+
+
 /* ── modal da newsletter (Mailchimp) ──────────────────────── */
 .modal-overlay {
   position: fixed;

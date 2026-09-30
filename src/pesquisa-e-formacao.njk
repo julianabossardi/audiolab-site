@@ -1,0 +1,211 @@
+---
+layout: base.njk
+permalink: /pesquisa-e-formacao/
+eleventyComputed:
+  title: "{{ pesquisa.pagina_titulo or 'Pesquisa e formação' }} · AudioLab"
+  description: "{{ pesquisa.pagina_frase_apoio }}"
+---
+{% from "al-macros.njk" import icon, placeholder, equalizer %}
+{% set eixos = pesquisa.temas | distinct("eixo") %}
+{% set eventos = pesquisa.eventos | eventosFuturos %}
+
+<section class="page-hero">
+  <div class="wrap page-hero-inner">
+    <nav class="breadcrumb" aria-label="Trilha"><a href="/">AudioLab</a> · <span aria-current="page">{{ pesquisa.pagina_titulo or "Pesquisa e formação" }}</span></nav>
+    <h1>{{ pesquisa.pagina_titulo or "Pesquisa e formação" }}</h1>
+    {% if pesquisa.pagina_frase_apoio %}<p class="lead">{{ pesquisa.pagina_frase_apoio }}</p>{% endif %}
+  </div>
+  {{ equalizer(56, "md") }}
+</section>
+
+<!-- JONAMI: grupo de pesquisa -->
+<section class="section" id="jonami" aria-labelledby="titulo-jonami">
+  <div class="wrap">
+    <div class="jonami-head">
+      <div class="jonami-logo">
+        {% if pesquisa.jonami_logo | img %}<img src="{{ pesquisa.jonami_logo | img }}" alt="{{ pesquisa.jonami_sigla }}" />{% else %}{{ placeholder("[logo]", "1-1") }}{% endif %}
+      </div>
+      <div>
+        <span class="eyebrow">Grupo de pesquisa</span>
+        <h2 class="jonami-title" id="titulo-jonami">{{ pesquisa.jonami_sigla }}</h2>
+        {% if pesquisa.jonami_por_extenso %}<p class="jonami-full">{{ pesquisa.jonami_por_extenso }}</p>{% endif %}
+      </div>
+    </div>
+
+    <ul class="jonami-meta">
+      {% if pesquisa.jonami_ano_formacao %}<li>{{ icon("calendario", 16) }}Formado em {{ pesquisa.jonami_ano_formacao }}</li>{% endif %}
+      {% if pesquisa.jonami_lideranca %}<li>{{ icon("pessoas", 16) }}Liderança: {{ pesquisa.jonami_lideranca }}</li>{% endif %}
+      {% if pesquisa.jonami_composicao %}<li>{{ pesquisa.jonami_composicao }}</li>{% endif %}
+    </ul>
+
+    <div class="prose jonami-text">
+      <p id="jonami-curta">{{ pesquisa.jonami_descricao_curta }}</p>
+      {% if pesquisa.jonami_descricao_completa %}
+      <p id="jonami-completa" hidden>{{ pesquisa.jonami_descricao_completa }}</p>
+      <div class="jonami-actions">
+        <button type="button" class="btn btn-secondary" data-ler-mais aria-expanded="false" aria-controls="jonami-completa">Ler texto completo</button>
+        {% if pesquisa.jonami_link_cnpq %}<a class="link-arrow" href="{{ pesquisa.jonami_link_cnpq }}" target="_blank" rel="noopener">Espelho do grupo no CNPq {{ icon("link-externo", 18) }}</a>{% endif %}
+      </div>
+      {% elif pesquisa.jonami_link_cnpq %}
+      <a class="link-arrow" href="{{ pesquisa.jonami_link_cnpq }}" target="_blank" rel="noopener">Espelho do grupo no CNPq {{ icon("link-externo", 18) }}</a>
+      {% endif %}
+    </div>
+
+    {% if publicacao.conceitos and pesquisa.conceitos.length %}
+    <div class="jonami-block">
+      <h3 class="block-title">Conceitos</h3>
+      <div class="chips" role="group" aria-label="Conceitos do grupo">
+        {% for c in pesquisa.conceitos %}
+        <button type="button" class="chip" data-conceito aria-expanded="false" aria-controls="conceito-{{ loop.index }}">{{ c.conceito }}</button>
+        {% endfor %}
+      </div>
+      {% for c in pesquisa.conceitos %}
+      <div class="concept-panel" id="conceito-{{ loop.index }}" hidden>
+        <h4>{{ c.conceito }}</h4>
+        {% if c.definicao %}<p>{{ c.definicao }}</p>{% endif %}
+        {% if c.autores %}<p class="concept-authors">{{ c.autores }}</p>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if pesquisa.temas.length %}
+    <div class="jonami-block">
+      <h3 class="block-title">Temas de pesquisa</h3>
+      {% if eixos.length > 1 %}
+      <div class="chips" role="group" aria-label="Filtrar temas por eixo">
+        <button type="button" class="chip" data-eixo="" aria-pressed="true" aria-controls="lista-temas">Todos</button>
+        {% for e in eixos %}
+        <button type="button" class="chip" data-eixo="{{ e }}" aria-pressed="false" aria-controls="lista-temas">{{ e }}</button>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <ul class="topic-list" id="lista-temas">
+        {% for t in pesquisa.temas %}
+        <li class="topic" data-eixo="{{ t.eixo }}">
+          {% if t.eixo %}<span class="topic-axis">{{ t.eixo }}</span>{% else %}<span class="topic-axis">Todos os eixos</span>{% endif %}
+          <h4>{{ t.tema }}</h4>
+          {% if t.descricao %}<p>{{ t.descricao }}</p>{% endif %}
+          {% set quem = [] %}
+          {% if t.pessoa == "Grupo" or publicacao.pessoas %}{% set quem = (quem.push(t.pessoa), quem) if t.pessoa else quem %}{% endif %}
+          {% if t.nivel %}{% set quem = (quem.push(t.nivel), quem) %}{% endif %}
+          {% if quem.length %}<p class="topic-who">{{ quem | join(" · ") }}</p>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- oficinas e formação -->
+{% if pesquisa.formacao.length or pesquisa.formacao_intro %}
+<section class="section section--tint" id="formacao" aria-labelledby="titulo-formacao">
+  <div class="wrap">
+    <h2 class="section-title" id="titulo-formacao"><span class="al-section-marker" aria-hidden="true"></span>{{ pesquisa.formacao_titulo or "Oficinas e formação" }}</h2>
+    {% if pesquisa.formacao_intro %}<p class="section-lead">{{ pesquisa.formacao_intro }}</p>{% endif %}
+    {% if pesquisa.formacao.length %}
+    <ul class="course-grid">
+      {% for f in pesquisa.formacao %}
+      <li class="course-card">
+        <div class="course-img">{% if f.foto | img %}<img src="{{ f.foto | img }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
+        <div class="course-body">
+          <span class="course-type">{{ f.tipo }}{% if f.ano %} · {{ f.ano }}{% endif %}</span>
+          <h3>{{ f.titulo }}</h3>
+          {% if f.descricao %}<p>{{ f.descricao }}</p>{% endif %}
+          {% if f.link and f.tipo == "Seminário" %}
+          <a class="btn btn-secondary" href="{{ f.link }}" target="_blank" rel="noopener">{{ icon("play", 18) }}Assistir às mesas</a>
+          {% elif f.link and f.tipo == "Material" %}
+          <a class="btn btn-secondary" href="{{ f.link }}" target="_blank" rel="noopener">{{ icon("baixar", 18) }}Baixar o manual</a>
+          {% elif f.link %}
+          <a class="link-arrow" href="{{ f.link }}" target="_blank" rel="noopener">Saiba mais {{ icon("link-externo", 18) }}</a>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<!-- em breve: some quando não há evento ou quando a data passou -->
+{% if eventos.length %}
+<section class="section" id="em-breve" aria-labelledby="titulo-em-breve" data-eventos>
+  <div class="wrap">
+    <h2 class="block-title" id="titulo-em-breve">Em breve</h2>
+    <ul class="event-list">
+      {% for e in eventos %}
+      <li class="event-item" data-data="{{ e.iso }}">
+        <span class="event-date">{{ icon("calendario", 18) }}{{ e.data }}{% if e.horario %} · {{ e.horario }}{% endif %}</span>
+        <span class="event-name">{{ e.nome }}</span>
+        {% if e.local %}<span class="event-place">{{ e.local }}</span>{% endif %}
+        {% if e.link %}<a class="link-arrow" href="{{ e.link }}" target="_blank" rel="noopener">Saiba mais <span class="al-visually-hidden">sobre {{ e.nome }}</span>{{ icon("link-externo", 18) }}</a>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+<script>
+(function () {
+  // Ler texto completo: expande no lugar.
+  var lerMais = document.querySelector("[data-ler-mais]");
+  if (lerMais) {
+    var curta = document.getElementById("jonami-curta");
+    var completa = document.getElementById("jonami-completa");
+    lerMais.addEventListener("click", function () {
+      var aberto = lerMais.getAttribute("aria-expanded") === "true";
+      lerMais.setAttribute("aria-expanded", String(!aberto));
+      lerMais.textContent = aberto ? "Ler texto completo" : "Mostrar só o resumo";
+      completa.hidden = aberto;
+      curta.hidden = !aberto;
+    });
+  }
+
+  // Conceitos: um aberto por vez.
+  var conceitos = document.querySelectorAll("[data-conceito]");
+  conceitos.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var abrir = btn.getAttribute("aria-expanded") !== "true";
+      conceitos.forEach(function (b) {
+        b.setAttribute("aria-expanded", "false");
+        document.getElementById(b.getAttribute("aria-controls")).hidden = true;
+      });
+      if (abrir) {
+        btn.setAttribute("aria-expanded", "true");
+        document.getElementById(btn.getAttribute("aria-controls")).hidden = false;
+      }
+    });
+  });
+
+  // Temas: filtro por eixo. Tema sem eixo (do grupo) aparece em todos.
+  var eixos = document.querySelectorAll("[data-eixo]:not(li)");
+  var temas = document.querySelectorAll("#lista-temas .topic");
+  eixos.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var valor = chip.getAttribute("data-eixo");
+      eixos.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+      temas.forEach(function (t) {
+        var eixo = t.getAttribute("data-eixo");
+        t.hidden = !(valor === "" || eixo === "" || eixo === valor);
+      });
+    });
+  });
+
+  // Em breve: o site é estático, então a data é conferida de novo aqui.
+  var bloco = document.querySelector("[data-eventos]");
+  if (bloco) {
+    var d = new Date();
+    var hoje = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    var restantes = 0;
+    bloco.querySelectorAll("[data-data]").forEach(function (item) {
+      var passou = item.getAttribute("data-data") < hoje;
+      item.hidden = passou;
+      if (!passou) restantes++;
+    });
+    bloco.hidden = restantes === 0;
+  }
+})();
+</script>
