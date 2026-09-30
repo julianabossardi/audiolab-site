@@ -10,13 +10,16 @@
 // artigo: como o nome entra numa frase ("Fale com a Escola de Narradores",
 // "Fale com A Gente da Ciência"). Padrão: "o".
 //
+// logoBranco: versão toda branca, sem placa, para os atalhos do herói da
+// home (a do Escola vira branca por filtro; a do Ateliê é vazada).
+//
 // logoBg: fundo da placa do logo. Os logos do BadaUERJ e do AudioLab são
 // só brancos e pedem fundo escuro; os do Ateliê e da Escola têm partes
 // pretas e pedem placa branca.
 const BRANDS = [
-  { key: "bada", slug: "badauerj", sigla: "BU", tipo: "Projeto de extensão", logo: "/assets/img/logo-bada-crop.png", logoBg: "var(--bada-hero)" },
-  { key: "atelie", slug: "atelie-do-podcast", sigla: "AP", tipo: "Projeto de extensão", logo: "/assets/img/logo-atelie-crop.png", logoBg: "var(--white)" },
-  { key: "escola", slug: "escola-de-narradores", artigo: "a", sigla: "EN", tipo: "Projeto de extensão", logo: "/assets/img/logo-escola-crop.png", logoBg: "var(--white)" },
+  { key: "bada", slug: "badauerj", sigla: "BU", tipo: "Projeto de extensão", logo: "/assets/img/logo-bada-crop.png", logoBranco: "/assets/img/logo-bada-crop.png", logoBg: "var(--bada-hero)" },
+  { key: "atelie", slug: "atelie-do-podcast", sigla: "AP", tipo: "Projeto de extensão", logo: "/assets/img/logo-atelie-crop.png", logoBranco: "/assets/img/logo-atelie-branco.png", logoBg: "var(--white)" },
+  { key: "escola", slug: "escola-de-narradores", artigo: "a", sigla: "EN", tipo: "Projeto de extensão", logo: "/assets/img/logo-escola-crop.png", logoBranco: "/assets/img/logo-escola-crop.png", logoBg: "var(--white)" },
   { key: "petrol-600", slug: "a-gente-da-ciencia", artigo: "", sigla: "GC", tipo: "Projeto" },
   { key: "petrol-800", slug: "radioatividade", sigla: "RA", tipo: "Projeto" },
   { key: "petrol-700", slug: "mergulhando", sigla: "MG", tipo: "Projeto" },

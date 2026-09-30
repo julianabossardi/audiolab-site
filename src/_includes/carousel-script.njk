@@ -1,0 +1,52 @@
+<script>
+(function () {
+  // Carrossel (data-carousel): setas movem um card por vez; com
+  // data-passagem="ms" passa sozinho, em laço, e para quando o mouse ou o
+  // foco estão dentro, quando a pessoa aperta Pausar ou quando o sistema
+  // pede movimento reduzido.
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll("[data-carousel]").forEach(function (root) {
+    var track = root.querySelector("[data-carousel-track]");
+    if (!track) return;
+    var prev = root.querySelector("[data-carousel-prev]");
+    var next = root.querySelector("[data-carousel-next]");
+    var toggle = root.querySelector("[data-carousel-toggle]");
+    var delay = parseInt(root.getAttribute("data-passagem"), 10);
+
+    function step() {
+      var slide = track.firstElementChild;
+      if (!slide) return track.clientWidth;
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return slide.getBoundingClientRect().width + gap;
+    }
+    function atEnd() { return track.scrollLeft + track.clientWidth >= track.scrollWidth - 4; }
+    function atStart() { return track.scrollLeft <= 4; }
+    function go(dir) {
+      if (dir > 0 && atEnd()) track.scrollTo({ left: 0, behavior: "smooth" });
+      else if (dir < 0 && atStart()) track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+      else track.scrollBy({ left: dir * step(), behavior: "smooth" });
+    }
+    if (prev) prev.addEventListener("click", function () { go(-1); });
+    if (next) next.addEventListener("click", function () { go(1); });
+
+    if (!delay || reduceMotion) { if (toggle) toggle.hidden = true; return; }
+    var timer = null, pausedByUser = false, hovering = false;
+    function run() { stop(); if (!pausedByUser && !hovering) timer = setInterval(function () { go(1); }, delay); }
+    function stop() { if (timer) clearInterval(timer); timer = null; }
+    root.addEventListener("mouseenter", function () { hovering = true; stop(); });
+    root.addEventListener("mouseleave", function () { hovering = false; run(); });
+    root.addEventListener("focusin", function () { hovering = true; stop(); });
+    root.addEventListener("focusout", function (e) { if (!root.contains(e.relatedTarget)) { hovering = false; run(); } });
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        pausedByUser = !pausedByUser;
+        toggle.setAttribute("aria-pressed", String(pausedByUser));
+        toggle.setAttribute("aria-label", pausedByUser ? "Continuar a passagem automática" : "Pausar a passagem automática");
+        if (pausedByUser) stop(); else run();
+      });
+    }
+    run();
+  });
+})();
+</script>

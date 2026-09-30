@@ -3,10 +3,10 @@ layout: base.njk
 title: AudioLab · Laboratório de Áudio FCS/UERJ
 bodyClass: is-home
 ---
-{% from "al-macros.njk" import icon, placeholder, projectMark, projectCard, equalizer %}
+{% from "al-macros.njk" import icon, placeholder, projectCard, carouselControls, equalizer %}
 {% set principais = projetos | principais %}
 {% set destaque = noticias[0] %}
-{% set outras = noticias | limit(3) %}
+{% set outras = noticias | limit(4) %}
 
 <!-- herói: título, frase de apoio e atalhos fixos para os três projetos principais -->
 <section class="home-hero">
@@ -26,7 +26,7 @@ bodyClass: is-home
         {% set b = proj.nome | brand %}
         <li>
           <a class="home-shortcut" href="/projetos/{{ proj.slug }}/" aria-label="{{ proj.nome }}" data-project="{{ b.key }}">
-            {{ projectMark(b, proj.logo | img, proj.nome) }}
+            <img class="home-shortcut-logo{% if b.key == "escola" %} is-knockout{% endif %}" src="{{ b.logoBranco or b.logo }}" alt="{{ proj.nome }}" />
             <span class="home-shortcut-arrow" aria-hidden="true">{{ icon("seta", 24) }}</span>
           </a>
         </li>
@@ -39,17 +39,20 @@ bodyClass: is-home
   {{ equalizer(56, "lg") }}
 </section>
 
-<!-- todos os projetos, em cards do mesmo tamanho; os três principais primeiro -->
-<section class="section" aria-labelledby="titulo-projetos">
+<!-- todos os projetos em carrossel: 4 por vez, passa sozinho; os três principais primeiro -->
+<section class="section" aria-labelledby="titulo-projetos" data-carousel data-passagem="5000" aria-roledescription="carrossel">
   <div class="wrap">
     <div class="section-head">
       <h2 class="section-title" id="titulo-projetos"><span class="highlight">Nossos projetos</span></h2>
-      <a class="link-arrow" href="/projetos/">Ver todos os projetos {{ icon("seta", 18) }}</a>
+      <div class="section-head-actions">
+        <a class="link-arrow" href="/projetos/">Ver todos os projetos {{ icon("seta", 18) }}</a>
+        {% if projetos.length > 4 %}{{ carouselControls("Projetos", true) }}{% endif %}
+      </div>
     </div>
     {% if projetos.length %}
-    <ul class="project-grid">
+    <ul class="carousel-track" data-carousel-track>
       {% for proj in projetos %}
-      <li>{{ projectCard(proj) }}</li>
+      <li class="carousel-slide">{{ projectCard(proj, true) }}</li>
       {% endfor %}
     </ul>
     {% else %}

@@ -5,7 +5,7 @@ eleventyComputed:
   title: "{{ pesquisa.pagina_titulo or 'Pesquisa e formação' }} · AudioLab"
   description: "{{ pesquisa.pagina_frase_apoio }}"
 ---
-{% from "al-macros.njk" import icon, placeholder, equalizer %}
+{% from "al-macros.njk" import icon, placeholder, equalizer, carouselControls %}
 {% set eixos = pesquisa.temas | distinct("eixo") %}
 {% set eventos = pesquisa.eventos | eventosFuturos %}
 
@@ -43,7 +43,7 @@ eleventyComputed:
       {% if pesquisa.jonami_descricao_completa %}
       <p id="jonami-completa" hidden>{{ pesquisa.jonami_descricao_completa }}</p>
       <div class="jonami-actions">
-        <button type="button" class="btn btn-secondary" data-ler-mais aria-expanded="false" aria-controls="jonami-completa">Ler texto completo</button>
+        <button type="button" class="icon-btn icon-btn--light read-more" data-ler-mais aria-expanded="false" aria-controls="jonami-completa" aria-label="Ler texto completo" title="Ler texto completo">{{ icon("seta-baixo", 24) }}</button>
         {% if pesquisa.jonami_link_cnpq %}<a class="link-arrow" href="{{ pesquisa.jonami_link_cnpq }}" target="_blank" rel="noopener">Espelho do grupo no CNPq {{ icon("link-externo", 18) }}</a>{% endif %}
       </div>
       {% elif pesquisa.jonami_link_cnpq %}
@@ -100,14 +100,17 @@ eleventyComputed:
 
 <!-- oficinas e formação -->
 {% if pesquisa.formacao.length or pesquisa.formacao_intro %}
-<section class="section section--tint" id="formacao" aria-labelledby="titulo-formacao">
+<section class="section section--tint" id="formacao" aria-labelledby="titulo-formacao" data-carousel aria-roledescription="carrossel">
   <div class="wrap">
-    <h2 class="section-title" id="titulo-formacao"><span class="al-section-marker" aria-hidden="true"></span>{{ pesquisa.formacao_titulo or "Oficinas e formação" }}</h2>
+    <div class="section-head">
+      <h2 class="section-title" id="titulo-formacao"><span class="al-section-marker" aria-hidden="true"></span>{{ pesquisa.formacao_titulo or "Oficinas e formação" }}</h2>
+      {% if pesquisa.formacao.length > 4 %}{{ carouselControls("Oficinas") }}{% endif %}
+    </div>
     {% if pesquisa.formacao_intro %}<p class="section-lead">{{ pesquisa.formacao_intro }}</p>{% endif %}
     {% if pesquisa.formacao.length %}
-    <ul class="course-grid">
+    <ul class="carousel-track" data-carousel-track>
       {% for f in pesquisa.formacao %}
-      <li class="course-card">
+      <li class="carousel-slide course-card">
         <div class="course-img">{% if f.foto | img %}<img src="{{ f.foto | img }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
         <div class="course-body">
           <span class="course-type">{{ f.tipo }}{% if f.ano %} · {{ f.ano }}{% endif %}</span>
@@ -158,7 +161,9 @@ eleventyComputed:
     lerMais.addEventListener("click", function () {
       var aberto = lerMais.getAttribute("aria-expanded") === "true";
       lerMais.setAttribute("aria-expanded", String(!aberto));
-      lerMais.textContent = aberto ? "Ler texto completo" : "Mostrar só o resumo";
+      var rotulo = aberto ? "Ler texto completo" : "Mostrar só o resumo";
+      lerMais.setAttribute("aria-label", rotulo);
+      lerMais.setAttribute("title", rotulo);
       completa.hidden = aberto;
       curta.hidden = !aberto;
     });

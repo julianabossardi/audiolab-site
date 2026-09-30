@@ -2,7 +2,7 @@
 layout: base.njk
 title: Sobre · AudioLab
 ---
-{% from "al-macros.njk" import icon, socialIcon, placeholder, equalizer %}
+{% from "al-macros.njk" import icon, socialIcon, placeholder, equalizer, carouselControls %}
 {% set filtros = [["todos", "Todos"], ["audiolab", "Equipe do laboratório"]] %}
 {% for proj in projetos %}{% set filtros = (filtros.push([proj.slug, proj.nome]), filtros) %}{% endfor %}
 {% set filtros = (filtros.push(["jonami", "JONAMI"]), filtros) %}
@@ -11,7 +11,7 @@ title: Sobre · AudioLab
 <section class="page-hero">
   <div class="wrap page-hero-inner">
     <nav class="breadcrumb" aria-label="Trilha"><a href="/">AudioLab</a> · <span aria-current="page">Sobre</span></nav>
-    <h1>{{ sobre.titulo }}{% if sobre.titulo2 %}<br /><em>{{ sobre.titulo2 }}</em>{% endif %}</h1>
+    <h1>Conheça o AudioLab</h1>
     {% if laboratorio.lab_descricao_curta %}<p class="lead">{{ laboratorio.lab_descricao_curta }}</p>{% endif %}
   </div>
   {{ equalizer(56, "md") }}
@@ -118,13 +118,15 @@ title: Sobre · AudioLab
 </section>
 {% endif %}
 
-<!-- RadioTube -->
+<!-- RadioTube: bloco próprio, discreto, para marcar o lugar na hierarquia -->
 {% if laboratorio.lab_radiotube %}
 <section class="section" aria-labelledby="titulo-radiotube">
   <div class="wrap">
     <div class="radiotube">
-      <div>
-        <h2 class="section-title" id="titulo-radiotube"><span class="al-section-marker" aria-hidden="true"></span>RadioTube</h2>
+      <span class="radiotube-icon" aria-hidden="true">{{ icon("ao-vivo", 32) }}</span>
+      <div class="radiotube-text">
+        <span class="eyebrow">Rádios comunitárias</span>
+        <h2 id="titulo-radiotube">Nossos programas no RadioTube</h2>
         <p>{{ laboratorio.lab_radiotube }}</p>
       </div>
       {% if laboratorio.lab_link_radiotube %}
@@ -156,17 +158,14 @@ title: Sobre · AudioLab
 
 <!-- fotos -->
 {% if sobre.carrossel_fotos.length %}
-<section class="section" aria-labelledby="titulo-fotos">
+<section class="section" aria-labelledby="titulo-fotos" data-carousel aria-roledescription="carrossel">
   <div class="wrap">
     <div class="section-head">
       <h2 class="section-title" id="titulo-fotos"><span class="al-section-marker" aria-hidden="true"></span>Um pouco da nossa história</h2>
-      <div class="carousel-controls">
-        <button type="button" class="icon-btn icon-btn--light" data-carousel-prev aria-label="Fotos anteriores">{{ icon("seta-esquerda", 20) }}</button>
-        <button type="button" class="icon-btn icon-btn--light" data-carousel-next aria-label="Próximas fotos">{{ icon("seta-direita", 20) }}</button>
-      </div>
+      {{ carouselControls("Fotos") }}
     </div>
   </div>
-  <ul class="photo-carousel" data-carousel>
+  <ul class="photo-carousel" data-carousel-track>
     {% for item in sobre.carrossel_fotos %}
     <li>
       {% if item.foto | img %}
@@ -199,12 +198,11 @@ title: Sobre · AudioLab
       <button type="button" class="chip" data-filtro="{{ f[0] }}" aria-pressed="{{ 'true' if f[0] == 'todos' else 'false' }}" aria-controls="lista-equipe">{{ f[1] }}</button>
       {% endfor %}
     </div>
-    <ul class="people-grid" id="lista-equipe">
+    <ul class="people-grid people-grid--text" id="lista-equipe">
       {% for m in pessoas %}
       {% set todos = "Todos os projetos" in m.projetos %}
       {% set etiquetas = ["Todos os projetos"] if todos else m.projetos %}
-      <li class="person" data-projetos="{% for x in m.projetos %}{{ x | slugify }} {% endfor %}"{% if todos %} data-todos{% endif %}>
-        <div class="person-photo">{% if m.foto | img %}<img src="{{ m.foto | img }}" alt="" />{% else %}{{ placeholder("[foto 4:5]", "4-5") }}{% endif %}</div>
+      <li class="person person--text" data-projetos="{% for x in m.projetos %}{{ x | slugify }} {% endfor %}"{% if todos %} data-todos{% endif %}>
         <h3 class="person-name">{{ m.nome }}</h3>
         {% if m.funcao %}<p class="person-role">{{ m.funcao }}</p>{% endif %}
         {% if etiquetas.length %}
@@ -225,12 +223,9 @@ title: Sobre · AudioLab
 
 <script>
 (function () {
-  // Fotos: rolagem pelos botões e ampliação com legenda.
-  var carousel = document.querySelector("[data-carousel]");
+  // Fotos: ampliação com legenda (a rolagem vem de carousel-script.njk).
+  var carousel = document.querySelector(".photo-carousel");
   if (carousel) {
-    var step = function () { return Math.max(carousel.clientWidth * 0.8, 280); };
-    document.querySelector("[data-carousel-prev]").addEventListener("click", function () { carousel.scrollBy({ left: -step(), behavior: "smooth" }); });
-    document.querySelector("[data-carousel-next]").addEventListener("click", function () { carousel.scrollBy({ left: step(), behavior: "smooth" }); });
 
     var lightbox = document.getElementById("sobreLightbox");
     var img = document.getElementById("sobreLightboxImg");
