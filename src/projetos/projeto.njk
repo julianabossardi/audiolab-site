@@ -9,359 +9,254 @@ eleventyComputed:
   title: "{{ p.nome }} · AudioLab"
   description: "{{ p.tagline }}"
 ---
-{% from "al-macros.njk" import icon %}
+{% from "al-macros.njk" import icon, socialIcon, placeholder, projectMark, equalizer %}
 {% set b = p.nome | brand %}
-<style>
-  html, body { margin: 0; padding: 0; }
-  .page-wrap { position: relative; }
+{% set capa = p.capa | img %}
+{% set email = p.email or laboratorio.lab_email %}
+{% set sobreTexto = p.o_que_e or p.historia_contexto %}
+{% set equipe = (pessoas | pessoasDoProjeto(p.nome) | limit(6)) if publicacao.pessoas else [] %}
+{% set video = p.video | youtubeEmbed %}
+{% set noticiasDoProjeto = noticias | relatedNoticias(p.slug) %}
+{% set redesProjeto = [
+  ["instagram", "Instagram", p.redes.instagram],
+  ["spotify", "Spotify", p.redes.spotify],
+  ["amazon_music", "Amazon Music", p.redes.amazon_music],
+  ["youtube", "YouTube", p.redes.youtube],
+  ["tiktok", "TikTok", p.redes.tiktok]
+] %}
+{% set temRedes = p.redes.instagram or p.redes.spotify or p.redes.amazon_music or p.redes.youtube or p.redes.tiktok %}
 
-  /* ── herói do projeto: superfície na cor-código, via tokens do DSM ── */
-  .proj-hero { padding: calc(var(--header-h) + 40px) 0 0; }
-  .proj-hero-inner { padding: 0 var(--side-pad); }
-  .proj-breadcrumb { display: flex; align-items: center; gap: 6px; font-family: var(--font-body); font-size: var(--fs-body); color: var(--project-muted-on-dark, var(--petrol-300)); margin-bottom: 20px; flex-wrap: wrap; }
-  .proj-breadcrumb a { color: inherit; text-decoration: none; }
-  .proj-breadcrumb a:hover { text-decoration: underline; }
-  .proj-breadcrumb svg { width: 12px; height: 12px; }
-  .proj-breadcrumb span[aria-current] { color: var(--white); font-weight: 600; }
+<div data-project="{{ b.key }}">
 
-  .proj-hero-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: end; }
-  .proj-hero-id { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
-  .proj-sigla { width: 64px; height: 64px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 24px; flex: none; }
-  .proj-tipo { font-family: var(--font-body); font-size: var(--fs-body); color: var(--project-muted-on-dark, var(--petrol-300)); }
-  .proj-hero h1 { margin: 0 0 14px; font-family: var(--font-display); font-weight: var(--fw-display); font-size: var(--fs-display); line-height: var(--lh-display); color: var(--white); letter-spacing: -0.01em; }
-  .proj-hero-lead { max-width: 52ch; margin: 0 0 24px; font-family: var(--font-body); font-size: var(--fs-lead); line-height: var(--lh-lead); color: var(--project-muted-on-dark, var(--petrol-200)); }
-  .proj-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 8px; }
-  .proj-hero-btn { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 24px; border-radius: var(--radius); font-family: var(--font-display); font-weight: 600; font-size: var(--fs-label); text-decoration: none; border: 2px solid transparent; transition: background-color 0.2s ease-out, transform 0.15s ease-out; }
-  .proj-hero-btn.is-primary { background: var(--lime-500); color: var(--petrol-700); }
-  .proj-hero-btn.is-primary:hover { background: var(--lime-400); }
-  .proj-hero-btn.is-secondary { border-color: rgba(255,255,255,0.55); color: var(--white); }
-  .proj-hero-btn.is-secondary:hover { background: rgba(255,255,255,0.12); }
-  .proj-hero-btn:active { transform: translateY(1px); }
-
-  .proj-series-names { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
-  .proj-series-chip { font-family: var(--font-series); font-weight: var(--fw-series-name); font-size: var(--fs-series-name); line-height: var(--lh-series-name); padding: 4px 16px; border-radius: var(--radius); }
-
-  .proj-hero-eq { display: flex; align-items: flex-end; gap: 3px; height: 64px; margin-top: 32px; padding: 0 var(--side-pad); }
-  .proj-hero-eq i { display: block; width: 10px; flex: 1 1 auto; max-width: 12px; background: repeating-linear-gradient(to top, var(--lime-500) 0 5px, transparent 5px 8px); }
-
-  @media (max-width: 900px) {
-    .proj-hero-grid { grid-template-columns: 1fr; }
-    .proj-series-names { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
-  }
-  @media (max-width: 640px) {
-    .proj-hero-inner { padding: 0 24px; }
-    .proj-hero-eq { padding: 0 24px; height: 44px; }
-    .proj-hero-actions .proj-hero-btn { flex: 1 1 auto; justify-content: center; }
-  }
-
-  /* ── tabs (âncoras pras seções abaixo) ─────────────────── */
-  .proj-tabs { position: sticky; top: var(--header-h); z-index: 20; background: var(--white); border-bottom: 1px solid rgba(2, 69, 103, 0.16); display: flex; gap: 4px; overflow-x: auto; padding: 0 var(--side-pad); }
-  .proj-tabs a { white-space: nowrap; padding: 16px 14px; font-family: var(--font-display); font-weight: 600; font-size: var(--fs-label-lg); color: rgba(17, 48, 63, 0.55); text-decoration: none; border-bottom: 3px solid transparent; }
-  .proj-tabs a:hover { color: var(--navy); }
-
-  /* ── seções ───────────────────────────────────────────── */
-  .proj-section { padding: 56px var(--side-pad); }
-  .proj-section-tight { padding: 0 var(--side-pad) 56px; }
-  .proj-section h2, .proj-section-tight h2 { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: var(--fw-h2); font-size: var(--fs-h2); line-height: var(--lh-h2); color: var(--navy); margin: 0 0 24px; }
-
-  /* ── faixa de números (Stat) ──────────────────────────── */
-  .proj-stats-band { background: var(--navy); border-radius: var(--radius); padding: 36px 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); margin-bottom: 56px; }
-  .proj-stat { padding: 0 24px; border-left: 2px dashed rgba(255,255,255,0.3); }
-  .proj-stat:first-child { border-left: none; padding-left: 0; }
-  .proj-stat-num { display: block; font-family: var(--font-display); font-weight: var(--fw-stat); font-size: var(--fs-stat); color: var(--lime); font-variant-numeric: tabular-nums; line-height: var(--lh-stat); }
-  .proj-stat-label { display: block; margin-top: 4px; font-family: var(--font-body); color: rgba(255,255,255,0.75); font-size: var(--fs-body); }
-  @media (max-width: 640px) { .proj-stat { border-left: none; border-top: 2px dashed rgba(255,255,255,0.3); padding: 16px 0 0; } .proj-stat:first-child { border-top: none; padding-top: 0; } }
-
-  .proj-about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-  .proj-about-grid p { font-family: var(--font-body); font-size: var(--fs-body-lg); line-height: var(--lh-body-lg); color: rgba(17, 48, 63, 0.88); max-width: 68ch; }
-  .proj-note { background: rgba(212, 255, 0, 0.14); border: 1px solid rgba(212, 255, 0, 0.5); border-radius: var(--radius); padding: 20px 24px; margin-top: 24px; max-width: 68ch; }
-  .proj-note-ruler { display: block; width: 56px; height: 8px; margin-bottom: 14px; background: repeating-linear-gradient(90deg, var(--navy) 0 8px, transparent 8px 12px); }
-  .proj-note h4 { margin: 0 0 8px; font-family: var(--font-display); font-weight: var(--fw-h4); font-size: var(--fs-h4); line-height: var(--lh-h4); color: var(--navy); }
-  .proj-note p { margin: 0; font-family: var(--font-body); font-size: var(--fs-body); color: rgba(17, 48, 63, 0.9); }
-
-  .proj-ficha { position: relative; background: var(--white); border: 1px solid var(--petrol-200); border-radius: var(--radius); padding: 24px; align-self: start; overflow: hidden; }
-  .proj-ficha::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--pc-base, var(--navy)); }
-  .proj-ficha h3 { margin: 0 0 6px; font-family: var(--font-display); font-weight: var(--fw-h4); font-size: var(--fs-h4); line-height: var(--lh-h4); color: var(--navy); }
-  .proj-ficha dl { margin: 0; }
-  .proj-ficha dl > div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 13px 0; border-bottom: 1px solid rgba(2, 69, 103, 0.1); }
-  .proj-ficha dl > div:last-child { border-bottom: none; }
-  .proj-ficha dt { display: flex; align-items: center; gap: 6px; font-family: var(--font-body); font-size: var(--fs-small); color: rgba(17, 48, 63, 0.55); flex: none; }
-  .proj-ficha dt svg { width: 13px; height: 13px; }
-  .proj-ficha dd { margin: 0; font-family: var(--font-body); font-size: var(--fs-body); color: var(--ink); text-align: right; }
-  .proj-ficha dd a { color: var(--blue); }
-  .proj-ficha-social { display: flex; gap: 6px; justify-content: flex-end; }
-  .proj-ficha-btn { display: block; text-align: center; margin-top: 20px; height: 44px; line-height: 44px; border-radius: var(--radius); color: var(--white); font-family: var(--font-display); font-weight: 600; font-size: var(--fs-label); text-decoration: none; }
-
-  @media (max-width: 900px) { .proj-about-grid { grid-template-columns: 1fr; } }
-
-  /* ── séries ───────────────────────────────────────────── */
-  .proj-series-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .proj-serie-card { background: var(--white); border: 1px solid var(--petrol-200); border-radius: var(--radius); overflow: hidden; }
-  .proj-serie-img { aspect-ratio: 16/9; background: rgba(2, 69, 103, 0.06); overflow: hidden; }
-  .proj-serie-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .proj-serie-body { padding: 18px 20px; }
-  .proj-serie-body .name { font-family: var(--font-series); font-weight: var(--fw-series-name); font-size: var(--fs-series-name); line-height: var(--lh-series-name); color: var(--navy); display: block; margin-bottom: 8px; }
-  .proj-serie-body p { margin: 0 0 14px; font-family: var(--font-body); font-size: var(--fs-body); line-height: var(--lh-body); color: rgba(17, 48, 63, 0.8); }
-  .proj-serie-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-weight: 700; font-size: var(--fs-body-lg); color: var(--blue); text-decoration: none; }
-  .proj-serie-link svg { width: 13px; height: 13px; }
-  @media (max-width: 900px) { .proj-series-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .proj-series-grid { grid-template-columns: 1fr; } }
-
-  /* ── episódios ────────────────────────────────────────── */
-  .proj-episode-list { background: var(--white); border: 1px solid var(--petrol-200); border-radius: var(--radius); }
-  .proj-episode-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-bottom: 1px solid rgba(2, 69, 103, 0.1); }
-  .proj-episode-row:last-child { border-bottom: none; }
-  .proj-episode-seal { width: 34px; height: 34px; border-radius: var(--radius); background: var(--navy); color: var(--lime); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 14px; flex: none; }
-  .proj-episode-body { flex: 1; min-width: 0; }
-  .proj-episode-body h4 { margin: 0; font-family: var(--font-display); font-weight: var(--fw-h4); font-size: var(--fs-h4); line-height: var(--lh-h4); color: var(--navy); }
-  .proj-episode-play { width: 40px; height: 40px; border-radius: var(--radius); border: 2px solid var(--navy); color: var(--navy); display: flex; align-items: center; justify-content: center; flex: none; text-decoration: none; }
-  .proj-episode-play:hover { background: rgba(2, 69, 103, 0.08); }
-  .proj-episode-play svg { width: 15px; height: 15px; }
-
-  /* ── notícias vinculadas ──────────────────────────────── */
-  .proj-news-wrap { position: relative; }
-  .proj-news-track { display: flex; gap: 20px; overflow-x: auto; padding: 4px 0 8px; scrollbar-width: none; }
-  .proj-news-track::-webkit-scrollbar { display: none; }
-  .proj-news-card { flex: 0 0 auto; width: 240px; text-decoration: none; color: inherit; border: 1px solid var(--petrol-200); background: var(--white); border-radius: var(--radius); overflow: hidden; }
-  .proj-news-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
-  .proj-news-card span { display: block; padding: 12px 14px; font-family: var(--font-body); font-size: var(--fs-small); font-weight: 600; color: var(--navy); line-height: var(--lh-small); }
-
-  /* ── equipe ───────────────────────────────────────────── */
-  .proj-team-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
-  .proj-team-photo { position: relative; aspect-ratio: 4/5; border-radius: var(--radius); background: rgba(2, 69, 103, 0.06); overflow: hidden; margin-bottom: 12px; }
-  .proj-team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .proj-team-photo::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: var(--tm-base); }
-  .proj-team-member h4 { margin: 0; font-family: var(--font-display); font-weight: var(--fw-h4); font-size: var(--fs-h4); line-height: var(--lh-h4); color: var(--navy); }
-  .proj-team-role { display: block; font-family: var(--font-body); font-size: var(--fs-small); color: rgba(17, 48, 63, 0.6); margin: 2px 0 8px; }
-  .proj-team-in { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-body); font-size: var(--fs-small); color: var(--blue); text-decoration: none; }
-  .proj-team-in svg { width: 12px; height: 12px; }
-  @media (max-width: 900px) { .proj-team-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 560px) { .proj-team-grid { grid-template-columns: repeat(2, 1fr); } }
-
-  /* ── cta ──────────────────────────────────────────────── */
-  .proj-cta { border-radius: var(--radius); padding: 40px; position: relative; overflow: hidden; }
-  .proj-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; position: relative; z-index: 1; }
-  .proj-cta h2 { margin: 0 0 8px; color: var(--white); font-family: var(--font-display); font-weight: var(--fw-h2); font-size: var(--fs-h2); line-height: var(--lh-h2); }
-  .proj-cta p { margin: 0; font-family: var(--font-body); font-size: var(--fs-body-lg); line-height: var(--lh-body-lg); color: var(--project-muted-on-dark, var(--petrol-200)); max-width: 50ch; }
-  .proj-cta-wave { display: flex; align-items: flex-end; gap: 3px; height: 36px; margin-top: 28px; }
-  .proj-cta-wave i { display: block; width: 4px; flex: none; background: rgba(255,255,255,0.35); }
-</style>
-<div class="page-wrap">
-
-    <!-- ════ HERÓI ════ -->
-    <section class="proj-hero" data-theme="projeto" data-project="{{ b.key }}" style="border-top: 8px solid {{ b.base }};">
-      <div class="proj-hero-inner">
-        <nav class="proj-breadcrumb" aria-label="Trilha">
-          <a href="/">AudioLab</a> {{ icon("seta-direita", 12) }} <a href="/projetos/">Projetos</a> {{ icon("seta-direita", 12) }} <span aria-current="page">{{ p.nome }}</span>
+  <!-- herói: mesma estrutura em todo projeto, só a cor muda -->
+  <section class="proj-hero">
+    <div class="wrap proj-hero-grid">
+      <div class="proj-hero-text">
+        <nav class="breadcrumb" aria-label="Trilha">
+          <a href="/">AudioLab</a>{{ icon("seta-direita", 14) }}<a href="/projetos/">Projetos</a>{{ icon("seta-direita", 14) }}<span aria-current="page">{{ p.nome }}</span>
         </nav>
-
-        <div class="proj-hero-grid">
-          <div>
-            <div class="proj-hero-id">
-              <div class="proj-sigla" style="background: {{ b.base }}; color: {{ b.on }};" aria-hidden="true">{{ b.sigla }}</div>
-              <span class="proj-tipo">{{ b.tipo }}</span>
-            </div>
-            <h1>{{ p.nome }}</h1>
-            {% if p.tagline %}<p class="proj-hero-lead">{{ p.tagline }}</p>{% endif %}
-            <div class="proj-hero-actions">
-              <a class="proj-hero-btn is-primary" href="#episodios">{{ icon("play", 16) }}Ouça os episódios</a>
-              <a class="proj-hero-btn is-secondary" href="#equipe">{{ icon("pessoas", 16) }}Conheça a equipe</a>
-            </div>
-          </div>
-
-          {% if p.quadros.length %}
-          <div class="proj-series-names">
-            {% for q in p.quadros | limit(3) %}
-            <span class="proj-series-chip" style="background: {{ b.base }}; color: {{ b.on }};">{{ q.nome }}</span>
-            {% endfor %}
-          </div>
+        <div class="proj-hero-id">
+          {{ projectMark(b, p.logo | img, p.nome, "lg") }}
+          {% if p.tag %}<span class="proj-hero-tag">{{ p.tag }}</span>{% endif %}
+        </div>
+        <h1>{{ p.nome }}</h1>
+        {% if p.tagline %}<p class="lead">{{ p.tagline }}</p>{% endif %}
+        <div class="proj-hero-actions">
+          {% if p.conteudos.length %}
+          <a class="btn btn-primary" href="#episodios">{{ icon("play", 18) }}Ouça os episódios</a>
+          {% elif p.quadros.length %}
+          <a class="btn btn-primary" href="#series">{{ icon("fones", 18) }}Conheça as séries</a>
+          {% elif video %}
+          <a class="btn btn-primary" href="#video">{{ icon("play", 18) }}Assista ao vídeo</a>
+          {% elif p.redes.youtube %}
+          <a class="btn btn-primary" href="{{ p.redes.youtube }}" target="_blank" rel="noopener">{{ icon("play", 18) }}Assista no YouTube</a>
+          {% endif %}
+          {% if equipe.length %}
+          <a class="btn btn-on-dark" href="#equipe">{{ icon("pessoas", 18) }}Conheça a equipe</a>
+          {% elif p.redes.instagram %}
+          <a class="btn btn-on-dark" href="{{ p.redes.instagram }}" target="_blank" rel="noopener">{{ socialIcon("instagram", 18) }}Siga no Instagram</a>
           {% endif %}
         </div>
       </div>
-
-      <div class="proj-hero-eq" aria-hidden="true">
-        {% for i in range(0, 60) %}<i style="height: {{ 26 + (i * 43) % 74 }}%;"></i>{% endfor %}
+      <div class="proj-hero-cover on-dark">
+        {% if capa %}
+        <img src="{{ capa }}" alt="" />
+        <span class="proj-hero-veil" aria-hidden="true"></span>
+        {% else %}
+        {{ placeholder("[imagem 16:9]") }}
+        {% endif %}
       </div>
-    </section>
+    </div>
+    {{ equalizer(56, "md") }}
+  </section>
 
-    <!-- ════ TABS ════ -->
-    <nav class="proj-tabs" aria-label="Seções do projeto" style="--tab-accent: {{ b.base }};">
-      <a href="#sobre">Sobre</a>
+  <!-- abas: só as das seções que existem neste projeto -->
+  <nav class="proj-tabs" aria-label="Seções do projeto">
+    <div class="wrap proj-tabs-list">
+      <a href="#sobre">{{ "Sobre" if sobreTexto else "Ficha" }}</a>
       {% if p.quadros.length %}<a href="#series">Séries</a>{% endif %}
-      <a href="#episodios">Episódios</a>
-      {% if p.equipe.length %}<a href="#equipe">Equipe</a>{% endif %}
+      {% if video %}<a href="#video">Vídeo</a>{% endif %}
+      {% if p.conteudos.length %}<a href="#episodios">Episódios</a>{% endif %}
+      {% if noticiasDoProjeto.length %}<a href="#noticias">Notícias</a>{% endif %}
+      {% if equipe.length %}<a href="#equipe">Equipe</a>{% endif %}
       <a href="#contato">Contato</a>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- ════ SOBRE ════ -->
-    <section class="proj-section" id="sobre">
-      <div class="proj-about-grid">
-        <div>
-          <h2><span class="al-section-marker" aria-hidden="true"></span>Sobre {{ p.nome }}</h2>
-          {% if p.o_que_e or p.historia_contexto %}
-          {% if p.o_que_e %}<p>{{ p.o_que_e }}</p>{% endif %}{% if p.historia_contexto %}<p>{{ p.historia_contexto }}</p>{% endif %}
-          {% else %}
-          <p>[Parágrafo de abertura, até cinco linhas: origem, propósito e público do projeto.]</p>
-          <p>[Segundo parágrafo, até cinco linhas: como o projeto funciona e o que os participantes produzem.]</p>
-          {% endif %}
-
-          <div class="proj-note">
-            <span class="proj-note-ruler" aria-hidden="true"></span>
-            <h4>{{ icon("informacao", 18) }} Como participar</h4>
-            <p>{% if p.email %}Escreva para <a href="mailto:{{ p.email }}">{{ p.email }}</a> e conte o que você quer fazer no {{ p.nome }}.{% else %}[Instruções de inscrição ou seleção, em até três linhas.]{% endif %}</p>
-          </div>
+  <!-- sobre + ficha -->
+  <section class="section" id="sobre">
+    <div class="wrap">
+      <div class="proj-about{% if not sobreTexto %} is-ficha-only{% endif %}">
+        {% if sobreTexto %}
+        <div class="prose">
+          <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Sobre {{ p.nome | comArtigo }}</h2>
+          {% if p.o_que_e %}<p>{{ p.o_que_e }}</p>{% endif %}
+          {% if p.historia_contexto %}<p>{{ p.historia_contexto }}</p>{% endif %}
         </div>
+        {% endif %}
 
-        <aside class="proj-ficha" style="--pc-base: {{ b.base }};">
-          <h3>Ficha do projeto</h3>
+        <aside class="proj-ficha" aria-labelledby="ficha-titulo">
+          <h2 class="proj-ficha-title" id="ficha-titulo">Ficha do projeto</h2>
           <dl>
-            <div>
-              <dt>{{ icon("pessoas", 13) }}Coordenação</dt>
-              <dd>{{ p.coordenacao or "[nome]" }}</dd>
-            </div>
-            <div>
-              <dt>{{ icon("email", 13) }}Contato</dt>
-              <dd>{% if p.email %}<a href="mailto:{{ p.email }}">{{ p.email }}</a>{% else %}[e-mail]{% endif %}</dd>
-            </div>
-            <div>
-              <dt>{{ icon("link-externo", 13) }}Redes</dt>
-              <dd>
-                {% if p.redes.instagram or p.redes.spotify or p.redes.youtube %}
-                <div class="proj-ficha-social">
-                  {% if p.redes.instagram %}<a class="box-btn icon-only" href="{{ p.redes.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{{ icon("link-externo", 15) }}</a>{% endif %}
-                  {% if p.redes.spotify %}<a class="box-btn icon-only" href="{{ p.redes.spotify }}" target="_blank" rel="noopener" aria-label="Spotify">{{ icon("volume", 15) }}</a>{% endif %}
-                  {% if p.redes.youtube %}<a class="box-btn icon-only" href="{{ p.redes.youtube }}" target="_blank" rel="noopener" aria-label="YouTube">{{ icon("play", 15) }}</a>{% endif %}
-                </div>
-                {% else %}[perfis oficiais]{% endif %}
-              </dd>
-            </div>
-            <div>
-              <dt>{{ icon("calendario", 13) }}Início do projeto</dt>
-              <dd>{{ p.ano_inicio or "[ano]" }}</dd>
-            </div>
+            {% if p.coordenacao %}<div><dt>{{ icon("pessoas", 16) }}Coordenação</dt><dd>{{ p.coordenacao }}</dd></div>{% endif %}
+            {% if p.ano_inicio %}<div><dt>{{ icon("calendario", 16) }}Início</dt><dd>{{ p.ano_inicio }}</dd></div>{% endif %}
+            <div><dt>{{ icon("email", 16) }}E-mail</dt><dd><a href="mailto:{{ email }}">{{ email }}</a></dd></div>
           </dl>
-          <a class="proj-ficha-btn" style="background: {{ b.base }}; color: {{ b.on }};" href="{{ 'mailto:' + p.email if p.email else '#contato' }}">Falar com o projeto</a>
+          {% if temRedes %}
+          <ul class="proj-redes" aria-label="Redes {{ 'da' if b.artigo == 'a' else 'do' }} {{ p.nome }}">
+            {% for r in redesProjeto %}{% if r[2] %}
+            <li><a href="{{ r[2] }}" target="_blank" rel="noopener">{{ socialIcon(r[0], 20) }}<span>{{ r[1] }}</span></a></li>
+            {% endif %}{% endfor %}
+          </ul>
+          {% endif %}
         </aside>
       </div>
 
       {% if p.estatisticas.length %}
-      <div class="proj-stats-band">
+      <ul class="stat-band" style="--n: {{ p.estatisticas.length }};" aria-label="Números">
         {% for s in p.estatisticas %}
-        <div class="proj-stat">
-          <span class="proj-stat-num">{{ s.numero }}</span>
-          <span class="proj-stat-label">{{ s.rotulo }}</span>
-        </div>
+        <li class="stat" data-reveal="up" style="--i: {{ loop.index0 }};">
+          <span class="stat-num" data-count>{{ s.numero }}</span>
+          <span class="stat-label">{{ s.rotulo }}</span>
+        </li>
         {% endfor %}
-      </div>
+      </ul>
       {% endif %}
-    </section>
+    </div>
+  </section>
 
-    <!-- ════ SÉRIES ════ -->
-    {% if p.quadros.length %}
-    <section class="proj-section-tight" id="series">
-      <h2><span class="al-section-marker" aria-hidden="true"></span>Séries</h2>
-      <div class="proj-series-grid">
+  <!-- séries: accordion, nome sempre visível -->
+  {% if p.quadros.length %}
+  <section class="section" id="series">
+    <div class="wrap">
+      <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Séries</h2>
+      <ul class="accordion">
         {% for q in p.quadros %}
-        <div class="proj-serie-card">
-          <div class="proj-serie-img">{% if q.imagem | img %}<img src="{{ q.imagem | img }}" alt="" />{% else %}<div class="dsm-placeholder">[imagem 16:9]</div>{% endif %}</div>
-          <div class="proj-serie-body">
-            <span class="name">{{ q.nome }}</span>
+        {% set qid = "serie-" + loop.index %}
+        <li class="accordion-item">
+          <h3 class="accordion-heading">
+            <button type="button" class="accordion-btn" aria-expanded="false" aria-controls="{{ qid }}" data-accordion>
+              <span>{{ q.nome }}</span>{{ icon("mais", 20) }}
+            </button>
+          </h3>
+          <div class="accordion-panel" id="{{ qid }}" hidden>
+            {% if q.imagem | img %}<img class="accordion-img" src="{{ q.imagem | img }}" alt="" />{% endif %}
             {% if q.descricao %}<p>{{ q.descricao }}</p>{% endif %}
-            <a class="proj-serie-link" href="#episodios">Ver episódios {{ icon("seta-direita", 13) }}</a>
+            {% if q.link %}<a class="link-arrow" href="{{ q.link }}" target="_blank" rel="noopener">Ver a série {{ icon("link-externo", 16) }}</a>{% endif %}
           </div>
-        </div>
+        </li>
         {% endfor %}
-      </div>
-    </section>
-    {% endif %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
 
-    <!-- ════ EPISÓDIOS ════ -->
-    <section class="proj-section-tight" id="episodios">
-      <h2><span class="al-section-marker" aria-hidden="true"></span>Episódios recentes</h2>
-      {% if p.conteudos.length %}
-      <div class="proj-episode-list">
+  <!-- vídeo em destaque: sem cookies e sem autoplay -->
+  {% if video %}
+  <section class="section" id="video">
+    <div class="wrap">
+      <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Vídeo em destaque</h2>
+      <div class="video-frame">
+        <iframe src="{{ video }}" title="Vídeo {{ 'da' if b.artigo == 'a' else 'do' }} {{ p.nome }} no YouTube" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- episódios e conteúdos -->
+  {% if p.conteudos.length %}
+  <section class="section" id="episodios">
+    <div class="wrap">
+      <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Episódios e conteúdos</h2>
+      <ol class="episode-list">
         {% for c in p.conteudos %}
-        <div class="proj-episode-row">
-          <span class="proj-episode-seal" aria-hidden="true">{{ loop.index }}</span>
-          <div class="proj-episode-body"><h4>{{ c.titulo }}</h4></div>
-          {% if c.link %}<a class="proj-episode-play" href="{{ c.link }}" target="_blank" rel="noopener" aria-label="Ouvir {{ c.titulo }}">{{ icon("play", 15) }}</a>{% endif %}
-        </div>
-        {% endfor %}
-      </div>
-      {% else %}
-      <p>Nenhum episódio publicado no momento.</p>
-      {% endif %}
-    </section>
-
-    <!-- ════ NOTÍCIAS VINCULADAS ════ -->
-    {% set relatedNews = noticias | relatedNoticias(p.slug) %}
-    {% if relatedNews.length %}
-    <section class="proj-section-tight">
-      <h2><span class="al-section-marker" aria-hidden="true"></span>Notícias sobre o {{ p.nome }}</h2>
-      <div class="proj-news-wrap">
-        <div class="proj-news-track">
-          {% for n in relatedNews %}
-          <a class="proj-news-card" href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>
-            {% if n.capa | img %}<img src="{{ n.capa | img }}" alt="" />{% else %}<div class="dsm-placeholder" style="aspect-ratio:16/9;">[imagem 16:9]</div>{% endif %}
-            <span>{{ n.titulo }}</span>
+        <li>
+          {% if c.link %}
+          <a class="episode-row" href="{{ c.link }}" target="_blank" rel="noopener">
+            <span class="episode-num" aria-hidden="true">{{ loop.index }}</span>
+            <span class="episode-title">{{ c.titulo }}</span>
+            {{ icon("link-externo", 20) }}
           </a>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
-    <!-- ════ EQUIPE ════ -->
-    {% if p.equipe.length %}
-    <section class="proj-section-tight" id="equipe">
-      <h2><span class="al-section-marker" aria-hidden="true"></span>Quem faz o {{ p.nome }}</h2>
-      <div class="proj-team-grid">
-        {% for m in p.equipe %}
-        <div class="proj-team-member">
-          <div class="proj-team-photo" style="--tm-base: {{ b.base }};">{% if m.foto | img %}<img src="{{ m.foto | img }}" alt="{{ m.nome }}" />{% else %}<div class="dsm-placeholder">[foto 4:5]</div>{% endif %}</div>
-          <h4>{{ m.nome }}</h4>
-          {% if m.funcao %}<span class="proj-team-role">{{ m.funcao }}</span>{% endif %}
-          {% if m.linkedin %}<a class="proj-team-in" href="{{ m.linkedin }}" target="_blank" rel="noopener">{{ icon("link-externo", 12) }}LinkedIn</a>{% endif %}
-        </div>
+          {% else %}
+          <span class="episode-row">
+            <span class="episode-num" aria-hidden="true">{{ loop.index }}</span>
+            <span class="episode-title">{{ c.titulo }}</span>
+          </span>
+          {% endif %}
+        </li>
         {% endfor %}
-      </div>
-    </section>
-    {% endif %}
+      </ol>
+    </div>
+  </section>
+  {% endif %}
 
-    <!-- ════ CTA ════ -->
-    <section class="proj-section-tight" id="contato">
-      <div class="proj-cta" data-theme="projeto" data-project="{{ b.key }}" style="background: var(--project-dark);">
-        <div class="proj-cta-row">
-          <div>
-            <h2>Participe</h2>
-            <p>Fale com o {{ p.nome }} e conheça as formas de colaborar.</p>
-          </div>
-          <button type="button" class="nav-link" data-open-newsletter style="background: var(--lime-500); color: var(--petrol-700); border-color: var(--lime-500);">Participe</button>
-        </div>
-        <div class="proj-cta-wave" aria-hidden="true">
-          {% for i in range(0, 70) %}<i style="height: {{ 18 + (i * 41) % 80 }}%;"></i>{% endfor %}
-        </div>
-      </div>
-    </section>
+  <!-- notícias ligadas ao projeto -->
+  {% if noticiasDoProjeto.length %}
+  <section class="section" id="noticias">
+    <div class="wrap">
+      <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Notícias</h2>
+      <ul class="news-mini-grid">
+        {% for n in noticiasDoProjeto | limit(3) %}
+        <li class="news-mini">
+          <div class="news-mini-img">{% if n.capa | img %}<img src="{{ n.capa | img }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
+          <h3><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h3>
+          {% if n.data %}<span class="news-date">{{ n.data | formatDate }}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
 
-  </div>
+  <!-- equipe: até 6 pessoas, foto 4:5 com faixa na cor do projeto -->
+  {% if equipe.length %}
+  <section class="section" id="equipe">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title"><span class="al-section-marker" aria-hidden="true"></span>Equipe</h2>
+        <a class="link-arrow" href="/sobre/?projeto={{ p.slug }}#equipe">Ver toda a equipe {{ icon("seta", 18) }}</a>
+      </div>
+      <ul class="people-grid people-grid--6">
+        {% for m in equipe %}
+        <li class="person">
+          <div class="person-photo">{% if m.foto | img %}<img src="{{ m.foto | img }}" alt="" />{% else %}{{ placeholder("[foto 4:5]", "4-5") }}{% endif %}</div>
+          <h3 class="person-name">{{ m.nome }}</h3>
+          {% if m.funcao %}<p class="person-role">{{ m.funcao }}</p>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- fale com o projeto -->
+  <section class="section" id="contato">
+    <div class="wrap">
+      <div class="cta-band">
+        <div class="cta-band-text">
+          <h2>Participe</h2>
+          {% if p.fale_com_o_projeto %}<p>{{ p.fale_com_o_projeto }}</p>{% endif %}
+        </div>
+        {% if p.redes.instagram %}
+        <a class="btn btn-primary" href="{{ p.redes.instagram }}" target="_blank" rel="noopener">{{ socialIcon("instagram", 18) }}Fale com {{ p.nome | comArtigo }}</a>
+        {% else %}
+        <a class="btn btn-primary" href="mailto:{{ email }}">{{ icon("email", 18) }}Fale com {{ p.nome | comArtigo }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+</div>
 
 <script>
-  (function () {
-    var track = document.querySelector(".proj-news-track");
-    if (!track) return;
-    var isDown = false, startX = 0, scrollLeft = 0;
-    track.addEventListener("mousedown", function (e) {
-      isDown = true;
-      startX = e.pageX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
+(function () {
+  document.querySelectorAll("[data-accordion]").forEach(function (btn) {
+    var panel = document.getElementById(btn.getAttribute("aria-controls"));
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      panel.hidden = open;
     });
-    window.addEventListener("mouseup", function () { isDown = false; });
-    track.addEventListener("mousemove", function (e) {
-      if (!isDown) return;
-      e.preventDefault();
-      var x = e.pageX - track.offsetLeft;
-      track.scrollLeft = scrollLeft - (x - startX);
-    });
-  })();
-  </script>
+  });
+})();
+</script>

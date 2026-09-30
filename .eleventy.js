@@ -47,6 +47,33 @@ module.exports = function (eleventyConfig) {
     return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
   });
 
+  // Pessoas de um projeto: as ligadas a ele e as marcadas "Todos os projetos".
+  eleventyConfig.addFilter("pessoasDoProjeto", (pessoas, nome) =>
+    (pessoas || []).filter((p) => (p.projetos || []).some((x) => x === nome || x === "Todos os projetos"))
+  );
+
+  // "o BadaUERJ", "a Escola de Narradores", "A Gente da Ciência".
+  eleventyConfig.addFilter("comArtigo", (nome) => {
+    const artigo = brandFor(nome).artigo;
+    return artigo ? artigo + " " + nome : nome;
+  });
+
+  // Link do YouTube → endereço de incorporação sem cookies, sem autoplay.
+  eleventyConfig.addFilter("youtubeEmbed", (url) => {
+    if (!url) return "";
+    let u;
+    try { u = new URL(url); } catch { return ""; }
+    const host = u.hostname.replace(/^www\.|^m\./, "");
+    let id = "";
+    if (host === "youtu.be") id = u.pathname.slice(1);
+    else if (host === "youtube.com" || host === "youtube-nocookie.com") {
+      if (u.pathname === "/watch") id = u.searchParams.get("v") || "";
+      else if (/^\/(embed|shorts|live)\//.test(u.pathname)) id = u.pathname.split("/")[2];
+      else if (u.pathname === "/playlist" && u.searchParams.get("list")) return "https://www.youtube-nocookie.com/embed/videoseries?list=" + encodeURIComponent(u.searchParams.get("list"));
+    }
+    return /^[\w-]{6,}$/.test(id) ? "https://www.youtube-nocookie.com/embed/" + id : "";
+  });
+
   // Cor-código, sigla e logo padrão do projeto (src/_data/projectBrands.js).
   eleventyConfig.addFilter("brand", (nome) => brandFor(nome));
 

@@ -1,56 +1,29 @@
 ---
 layout: base.njk
 title: Projetos · AudioLab
+description: Os projetos do AudioLab, o Laboratório de Áudio da Faculdade de Comunicação Social da UERJ.
 ---
-{% from "al-macros.njk" import icon %}
-<style>
-  html, body { margin: 0; padding: 0; }
-  .page-wrap { position: relative; }
+{% from "al-macros.njk" import projectCard, equalizer %}
 
-  .projetos-hero { padding: calc(var(--header-h) + 48px) var(--side-pad) 56px; }
-  .projetos-hero h1 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-weight: var(--fw-h1);
-    font-size: var(--fs-h1);
-    line-height: var(--lh-h1);
-    color: var(--navy);
-  }
-  .projetos-lead { padding: 0 var(--side-pad); margin: 14px 0 52px; font-family: var(--font-body); color: rgba(17, 48, 63, 0.8); font-size: var(--fs-body-lg); max-width: 640px; }
-  .projetos-lead a { color: var(--blue); }
+<section class="page-hero">
+  <div class="wrap page-hero-inner">
+    <nav class="breadcrumb" aria-label="Trilha"><a href="/">AudioLab</a> · <span aria-current="page">Projetos</span></nav>
+    <h1>Nossos projetos</h1>
+    {% if laboratorio.lab_descricao_curta %}<p class="lead">Podcasts, reportagens, transmissões ao vivo e divulgação científica feitos por estudantes, professores e técnicos da FCS/UERJ.</p>{% endif %}
+  </div>
+  {{ equalizer(56, "md") }}
+</section>
 
-  .projetos-grid-wrap { padding: 0 var(--side-pad) 72px; }
-</style>
-<div class="page-wrap">
-    <section class="projetos-hero">
-      <h1><span class="highlight">Conheça nossos projetos</span></h1>
-    </section>
-
-    {% if projetos.length == 0 %}
-    <p class="projetos-lead">Nenhum projeto publicado no momento.</p>
+<section class="section">
+  <div class="wrap">
+    {% if projetos.length %}
+    <ul class="project-grid">
+      {% for proj in projetos %}
+      <li>{{ projectCard(proj) }}</li>
+      {% endfor %}
+    </ul>
     {% else %}
-    <div class="projetos-grid-wrap">
-      <div class="project-grid">
-        {% for proj in projetos %}
-        {% set b = proj.nome | brand %}
-        <a class="project-card" href="/projetos/{{ proj.slug }}/" style="--pc-base: {{ b.base }}; --pc-on: {{ b.on }}; --pc-text: {{ b.text }};">
-          <div class="project-card-body">
-            <div class="project-card-sg" aria-hidden="true">{{ b.sigla }}</div>
-            <h3>{{ proj.nome }}</h3>
-            <span class="project-card-type">{{ b.tipo }}</span>
-            {% if proj.tagline %}<p>{{ proj.tagline }}</p>{% endif %}
-            {% if proj.quadros.length %}
-            <div class="project-card-series">
-              {% for q in proj.quadros | limit(3) %}<span class="al-tag al-tag-filled" style="background: {{ b.soft }}; color: {{ b.text }};">{{ q.nome }}</span>{% endfor %}
-            </div>
-            {% endif %}
-            <span class="project-card-link">Conhecer o projeto {{ icon("seta-direita", 14) }}</span>
-          </div>
-        </a>
-        {% endfor %}
-      </div>
-    </div>
+    <p class="empty-state">Nenhum projeto publicado no momento.</p>
     {% endif %}
   </div>
-
-
+</section>

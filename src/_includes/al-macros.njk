@@ -52,3 +52,16 @@
 
 {# Faixa de equalizador em largura total, igual à da home. Decorativa. #}
 {% macro equalizer(cols=56, size="lg") %}<div class="eq-zone eq-zone--{{ size }}" data-eq aria-hidden="true"><div class="eq">{% for i in range(0, cols) %}<span class="eq-col"><i style="height: {{ 30 + (i * 47) % 70 }}%; animation-duration: {{ (3.4 + (i % 7) * 0.55) | round(2) }}s; animation-delay: {{ ((i % 11) * 0.32) | round(2) }}s;"></i></span>{% endfor %}</div></div>{% endmacro %}
+
+{# Card de projeto (DSM): faixa de 8 px na cor, logo ou sigla, nome em h3,
+   categoria, frase de resumo e "Conhecer o projeto". Mesmo tamanho para
+   todos; a cor vem de data-project. #}
+{% macro projectCard(proj) %}{% set b = proj.nome | brand %}
+<article class="project-card" data-project="{{ b.key }}">
+  {{ projectMark(b, proj.logo | img, proj.nome) }}
+  <h3 class="project-card-title"><a href="/projetos/{{ proj.slug }}/">{{ proj.nome }}</a></h3>
+  {% if proj.tag %}<span class="project-card-tag">{{ proj.tag }}</span>{% endif %}
+  {% if proj.tagline %}<p class="project-card-text">{{ proj.tagline }}</p>{% endif %}
+  <span class="project-card-link" aria-hidden="true">Conhecer o projeto {{ icon("seta", 18) }}</span>
+</article>
+{% endmacro %}

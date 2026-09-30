@@ -261,3 +261,36 @@ a { color: var(--link); }
 .al-highlight { background: linear-gradient(transparent 60%, var(--lime-500) 60%); padding: 0 2px; }
 .al-visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
+
+/* ── Decisões do site, rodada da planilha v2 (setembro de 2026) ──────────
+   Registradas também em docs/decisoes.md. Ao gerar este arquivo de novo a
+   partir de tokens.json, leve estes valores para lá.
+
+   1. Fundo do herói das páginas de projeto. Tons mais abertos que os
+      *-dark, na luminosidade do petróleo da home. Branco sobre eles:
+      --bada-hero 12,7:1, --atelie-hero 16,5:1, --escola-hero 9,4:1.
+   2. Projetos sem cor própria variam dentro da família petróleo, com
+      acento limão e sem verde, para não confundir com a Escola:
+      petrol-600: A Gente da Ciência, UERJ no Ar.
+      petrol-700: Mergulhando, Política nas Rampas.
+      petrol-800: Radioatividade, AudioLabGeo.
+      O tom é o fundo do herói e a cor do card. Uso: data-project="petrol-600|petrol-700|petrol-800".
+*/
+:root {
+  --bada-hero: #5e1d0d;
+  --atelie-hero: #1f0863;
+  --escola-hero: #04522b;
+}
+[data-project="audiolab"] { --project-hero: var(--petrol-700); }
+[data-project="atelie"] { --project-hero: var(--atelie-hero); }
+[data-project="bada"] { --project-hero: var(--bada-hero); }
+[data-project="escola"] { --project-hero: var(--escola-hero); }
+[data-project="petrol-600"], [data-project="petrol-700"], [data-project="petrol-800"] {
+  --project-on: var(--lime-500);
+  --project-text: var(--petrol-700);
+  --project-soft: var(--petrol-100);
+  --project-accent: var(--lime-500);
+}
+[data-project="petrol-600"] { --project-base: var(--petrol-600); --project-dark: var(--petrol-600); --project-hero: var(--petrol-600); }
+[data-project="petrol-700"] { --project-base: var(--petrol-700); --project-dark: var(--petrol-700); --project-hero: var(--petrol-700); }
+[data-project="petrol-800"] { --project-base: var(--petrol-800); --project-dark: var(--petrol-800); --project-hero: var(--petrol-800); }
