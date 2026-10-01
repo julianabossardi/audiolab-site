@@ -188,6 +188,26 @@ title: Sobre · AudioLab
 </section>
 {% endif %}
 
+<!-- CTA: participação -->
+<section class="section" id="participe" aria-labelledby="titulo-participe">
+  <div class="wrap">
+    <div class="cta-band">
+      <div class="cta-band-text">
+        <h2 id="titulo-participe">Quer participar?</h2>
+        <p>Abrimos inscrições anualmente: fique de olho nas nossas redes sociais para entrar como bolsista, ou nos mande uma mensagem para atuar como voluntário.</p>
+      </div>
+      <div class="cta-band-actions">
+        {% if laboratorio.lab_link_instagram %}
+        <a class="btn btn-primary" href="{{ laboratorio.lab_link_instagram }}" target="_blank" rel="noopener">{{ socialIcon("instagram", 18) }}Seguir no Instagram</a>
+        {% endif %}
+        {% if laboratorio.lab_email %}
+        <a class="btn btn-on-dark" href="mailto:{{ laboratorio.lab_email }}">{{ icon("email", 18) }}Quero ser voluntário</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- quem faz parte -->
 {% if publicacao.pessoas and pessoas.length %}
 <section class="section" id="equipe" aria-labelledby="titulo-equipe">
