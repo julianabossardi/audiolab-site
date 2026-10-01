@@ -7,7 +7,7 @@ const preview = process.env.ELEVENTY_RUN_MODE === "serve" || process.env.ELEVENT
 const autorizado = {
   // Nomes e fotos da aba Pessoas: seção "Quem faz parte" no Sobre, equipe
   // nas páginas de projeto e nomes nos temas de pesquisa do JONAMI.
-  pessoas: false,
+  pessoas: true,
   // Definições dos conceitos do JONAMI, ainda em rascunho.
   conceitos: false,
 };
