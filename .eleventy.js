@@ -28,6 +28,7 @@ md.renderer.rules.image = (tokens, idx) => {
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("uploads");
+  eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
   // Os JSON de conteúdo ficam fora de src/: sem isso, editar pelo /admin

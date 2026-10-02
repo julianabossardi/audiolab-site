@@ -1,13 +1,34 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    {% set tituloPagina = title or "AudioLab" %}
+    {% set descricaoPagina = description or laboratorio.lab_descricao_curta %}
+    {% set imagemPagina = site.url + ((image | img) if image else "/assets/img/og-default.png") %}
+    {% set urlPagina = site.url + page.url %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ title or "AudioLab" }}</title>
-    <meta name="description" content="{{ description or laboratorio.lab_nome_completo }}" />
+    <title>{{ tituloPagina }}</title>
+    <meta name="description" content="{{ descricaoPagina }}" />
+    <link rel="canonical" href="{{ urlPagina }}" />
     <link rel="icon" href="/assets/img/logo-audiolab-sm.webp" />
     <link rel="stylesheet" href="/assets/css/audiolab-tokens.css" />
     <link rel="stylesheet" href="/assets/css/site.css" />
+
+    <!-- Open Graph / Twitter Card: como o link aparece ao ser compartilhado -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AudioLab" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:url" content="{{ urlPagina }}" />
+    <meta property="og:title" content="{{ tituloPagina }}" />
+    <meta property="og:description" content="{{ descricaoPagina }}" />
+    <meta property="og:image" content="{{ imagemPagina }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ tituloPagina }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ tituloPagina }}" />
+    <meta name="twitter:description" content="{{ descricaoPagina }}" />
+    <meta name="twitter:image" content="{{ imagemPagina }}" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWPM0B14KT"></script>

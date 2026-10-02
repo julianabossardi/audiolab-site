@@ -8,6 +8,7 @@ permalink: "/projetos/{{ p.slug }}/"
 eleventyComputed:
   title: "{{ p.nome }} · AudioLab"
   description: "{{ p.tagline }}"
+  image: "{{ p.capa | img }}"
 ---
 {% from "al-macros.njk" import icon, socialIcon, placeholder, equalizer %}
 {% set b = p.nome | brand %}

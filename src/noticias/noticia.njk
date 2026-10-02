@@ -8,6 +8,7 @@ permalink: "/noticias/{{ n.slug }}/"
 eleventyComputed:
   title: "{{ n.titulo }} · AudioLab"
   description: "{{ n.subtitulo }}"
+  image: "{{ n.capa | img }}"
 ---
 {% from "al-macros.njk" import icon, socialIcon, placeholder %}
 {% set capa = n.capa | img %}
