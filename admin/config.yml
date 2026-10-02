@@ -303,3 +303,5 @@ collections:
         fields:
           - { label: "Endereço", name: "endereco", widget: "string" }
           - { label: "Cidade / UF", name: "cidade", widget: "string" }
+          - { label: "Crédito: texto", name: "credito_texto", widget: "string", hint: "Aparece depois de “Desenvolvido por”." }
+          - { label: "Crédito: link", name: "credito_link", widget: "string" }
