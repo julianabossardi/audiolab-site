@@ -41,7 +41,11 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const payload = JSON.stringify({ token: data.access_token, provider: "github" }).replace(/</g, "\\u003c");
+  // JSON.stringify duas vezes: a primeira monta o payload do token, a segunda
+  // transforma a mensagem inteira (que contém aspas do JSON) num literal de
+  // string JS válido pra colar dentro do <script> abaixo sem quebrar a sintaxe.
+  const tokenPayload = JSON.stringify({ token: data.access_token, provider: "github" });
+  const successMessage = JSON.stringify("authorization:github:success:" + tokenPayload).replace(/</g, "\\u003c");
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Set-Cookie", "decap_oauth_state=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0");
   // O handshake abaixo é o protocolo que o Decap espera (lib netlify-auth):
@@ -63,7 +67,7 @@ module.exports = async (req, res) => {
   function receiveMessage(e) {
     done = true;
     try {
-      window.opener.postMessage("authorization:github:success:${payload}", e.origin);
+      window.opener.postMessage(${successMessage}, e.origin);
       show("Login concluído, pode fechar esta janela.");
     } catch (err) {
       show("Erro ao enviar o token de volta: " + err.message);
