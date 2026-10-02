@@ -7,7 +7,10 @@ backend:
   # api/callback.js, publicadas junto com o resto do site na Vercel.
   # Precisam de um app OAuth do GitHub e das variáveis de ambiente
   # OAUTH_CLIENT_ID e OAUTH_CLIENT_SECRET configuradas no projeto da Vercel.
-  base_url: https://audiolabuerj.com.br
+  # O domínio sem "www" redireciona (308) pro "www" na Vercel. O base_url
+  # precisa ser exatamente a origem onde o /admin roda de verdade, senão o
+  # Decap ignora a mensagem do popup de login e trava em "Autenticando…".
+  base_url: https://www.audiolabuerj.com.br
   auth_endpoint: api/auth
 
 # Isso faz o Decap usar o servidor local (decap-server) em vez do GitHub
