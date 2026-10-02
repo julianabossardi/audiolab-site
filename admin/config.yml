@@ -7,7 +7,7 @@ backend:
   # api/callback.js, publicadas junto com o resto do site na Vercel.
   # Precisam de um app OAuth do GitHub e das variáveis de ambiente
   # OAUTH_CLIENT_ID e OAUTH_CLIENT_SECRET configuradas no projeto da Vercel.
-  base_url: https://audiolab-site.vercel.app
+  base_url: https://audiolabuerj.com.br
   auth_endpoint: api/auth
 
 # Isso faz o Decap usar o servidor local (decap-server) em vez do GitHub

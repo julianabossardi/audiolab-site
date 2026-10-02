@@ -1,34 +1,28 @@
 {
-  "nome": "BadaUERJ",
-  "ordem": 1,
-  "tagline": "Som preto, festa brasileira: jornalismo sobre o carnaval das escolas de samba do Rio, feito o ano inteiro.",
-  "tag": "Cultura",
-  "o_que_e": "O BadaUERJ produz jornalismo sobre o carnaval das escolas de samba do estado do Rio de Janeiro. Para nós, o carnaval não acontece só em fevereiro. Vamos às quadras, ouvimos quem faz a festa e contamos a história do samba, das agremiações e de seus personagens em podcasts, vídeos, transmissões ao vivo e postagens. Como o samba nasce da história dos negros escravizados, cada produção também aproxima a universidade e a comunidade dessa reflexão.",
   "historia_contexto": "O projeto nasceu em 2023, da construção coletiva de 57 estudantes de diferentes cursos da UERJ. O nome vem de badauê, palavra iorubá que significa festa e celebração. Em 2024, com menos de um ano de vida, participamos do programa Conexão, do Canal Futura. Em 2025, o primeiro episódio do nosso podcast, sobre o samba como resistência negra, ficou em 1º lugar no II Prêmio UnBCast de Podcasts Universitários.",
-  "fale_com_o_projeto": "Tem uma pauta sobre samba e carnaval ou quer conhecer o projeto? Fale com a equipe do BadaUERJ.",
-  "coordenacao": "Filipe Mostaro",
   "ano_inicio": "2023",
-  "email": "",
-  "redes": {
-    "instagram": "https://www.instagram.com/badauerj/",
-    "youtube": "https://www.youtube.com/@uerjaudiolab"
-  },
-  "video": "",
-  "estatisticas": [
+  "conteudos": [
     {
-      "numero": "+500 mil",
-      "rotulo": "visualizações"
+      "titulo": "Episódio #1: Resistência Negra",
+      "link": "",
+      "data": ""
     },
     {
-      "numero": "+1.700",
-      "rotulo": "vídeos e postagens"
+      "titulo": "Entrevista com Jorge Perlingeiro",
+      "link": "",
+      "data": ""
     },
     {
-      "numero": "10",
-      "rotulo": "produtos próprios"
+      "titulo": "[Título do episódio]",
+      "link": "https://www.youtube.com/watch?v=GedAB7jTLlI",
+      "data": ""
     }
   ],
+  "ordem": 1,
+  "fale_com_o_projeto": "Tem uma pauta sobre samba e carnaval ou quer conhecer o projeto? Fale com a equipe do BadaUERJ.",
   "logo": "",
+  "tagline": "Som preto, festa brasileira: jornalismo sobre o carnaval das escolas de samba do Rio, feito o ano inteiro.",
+  "coordenacao": "Filipe Mostaro",
   "capa": "",
   "quadros": [
     {
@@ -98,21 +92,28 @@
       "imagem": ""
     }
   ],
-  "conteudos": [
+  "o_que_e": "O BadaUERJ produz jornalismo sobre o carnaval das escolas de samba do estado do Rio de Janeiro. Para nós, o carnaval não acontece só em fevereiro. Vamos às quadras, ouvimos quem faz a festa e contamos a história do samba, das agremiações e de seus personagens em podcasts, vídeos, transmissões ao vivo e postagens. Como o samba nasce da história dos negros escravizados, cada produção também aproxima a universidade e a comunidade dessa reflexão.",
+  "nome": "BadaUERJ",
+  "tag": "Cultura",
+  "video": "",
+  "email": "",
+  "estatisticas": [
     {
-      "titulo": "Episódio #1: Resistência Negra",
-      "link": "",
-      "data": ""
+      "numero": "+500 mil",
+      "rotulo": "visualizações"
     },
     {
-      "titulo": "Entrevista com Jorge Perlingeiro",
-      "link": "",
-      "data": ""
+      "numero": "+1.700",
+      "rotulo": "vídeos e postagens"
     },
     {
-      "titulo": "[Título do episódio]",
-      "link": "https://www.youtube.com/watch?v=GedAB7jTLlI",
-      "data": ""
+      "numero": "10",
+      "rotulo": "produtos próprios"
     }
-  ]
+  ],
+  "redes": {
+    "instagram": "https://www.instagram.com/badauerj/",
+    "youtube": "https://www.youtube.com/@uerjaudiolab",
+    "spotify": "https://open.spotify.com/show/40MkBIJ8HfyrAhzd0S2SgM"
+  }
 }
