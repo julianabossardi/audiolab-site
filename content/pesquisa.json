@@ -9,7 +9,7 @@
   "jonami_link_instagram": "https://www.instagram.com/uerjaudiolab/",
   "jonami_link_cnpq": "http://dgp.cnpq.br/dgp/espelhogrupo/821618",
   "jonami_descricao_curta": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário, fundamentais para compreender o processo comunicacional. Investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários.",
-  "jonami_descricao_completa": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário. Parte-se da ideia de que os três são fundamentais para compreender o processo comunicacional e seus desdobramentos. O impulso presente no jogo (HUIZINGA, 2014) na criação de um mundo à parte no qual os interlocutores se empenham, elabora uma situação social para que determinados imaginários (DURAND, 1997) sejam criados, reforçados e reconfigurados através das narrativas (RICOEUR, 2010), elaborando “quadros sociais” (GOFFMAN, 2012), que trazem o fantástico e o fictício para a narrativa (ISER, 2017). A partir dessas premissas, investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários. Especificamente, nos debruçamos nas narrativas presentes na era da convergência e os desdobramentos do jogo narrativo elaborado nesses cenários.",
+  "jonami_descricao_completa": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário. Parte-se da ideia de que os três são fundamentais para compreender o processo comunicacional e seus desdobramentos. O impulso presente no jogo (HUIZINGA, 1971) na criação de um mundo à parte no qual os interlocutores se empenham, elabora uma situação social para que determinados imaginários (DURAND, 1997) sejam criados, reforçados e reconfigurados através das narrativas (RICOEUR, 2010), elaborando “quadros sociais” (GOFFMAN, 2012), que trazem o fantástico e o fictício para a narrativa (ISER, 2017). A partir dessas premissas, investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários. Especificamente, nos debruçamos nas narrativas presentes na era da convergência e os desdobramentos do jogo narrativo elaborado nesses cenários.",
   "formacao_titulo": "Oficinas e formação",
   "formacao_intro": "Todo semestre, o AudioLab oferece oficinas abertas ao público sobre os temas que trabalhamos no laboratório. Também promovemos eventos, como o seminário anual Mídia, Imaginário e Sonoridades, que aproxima estudantes de profissionais da área.",
   "jonami_logo": "",
@@ -21,12 +21,12 @@
     },
     {
       "conceito": "Jogo",
-      "autores": "Huizinga (2014)",
+      "autores": "Huizinga (1971)",
       "definicao": "Atividade livre, vivida como não séria, que absorve quem joga e segue regras, tempo e espaço próprios."
     },
     {
       "conceito": "Círculo mágico",
-      "autores": "Huizinga (2014)",
+      "autores": "Huizinga (1971)",
       "definicao": "Espaço delimitado onde o jogo acontece e suas regras valem, separado da vida comum."
     },
     {
@@ -139,46 +139,6 @@
     }
   ],
   "formacao": [
-    {
-      "tipo": "Oficina",
-      "titulo": "Oficina de transmissão esportiva",
-      "descricao": "Prática de narração, reportagem e comentário para transmissões esportivas ao vivo.",
-      "foto": "",
-      "ano": "",
-      "link": ""
-    },
-    {
-      "tipo": "Oficina",
-      "titulo": "Oficina de gestão de redes sociais",
-      "descricao": "Planejamento e produção de conteúdo para as redes sociais de projetos de comunicação.",
-      "foto": "",
-      "ano": "",
-      "link": ""
-    },
-    {
-      "tipo": "Oficina",
-      "titulo": "Oficina de produção para podcast",
-      "descricao": "Do roteiro à publicação: como criar e produzir um podcast.",
-      "foto": "",
-      "ano": "",
-      "link": ""
-    },
-    {
-      "tipo": "Oficina",
-      "titulo": "Oficina de texto para mídia sonora",
-      "descricao": "Como escrever para ser ouvido: técnicas de redação para rádio e podcast.",
-      "foto": "",
-      "ano": "",
-      "link": ""
-    },
-    {
-      "tipo": "Oficina",
-      "titulo": "Oficina de edição de áudio e vídeo",
-      "descricao": "Noções práticas de edição de áudio e vídeo para conteúdos sonoros e audiovisuais.",
-      "foto": "",
-      "ano": "",
-      "link": ""
-    },
     {
       "tipo": "Seminário",
       "titulo": "Mídia, Imaginário e Sonoridades",
