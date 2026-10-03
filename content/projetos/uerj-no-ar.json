@@ -1,16 +1,19 @@
 {
-  "nome": "UERJ no Ar",
-  "ordem": 7,
-  "tagline": "Notícias da UERJ em áudio para rádios comunitárias e educativas de todo o país.",
-  "tag": "Jornalismo",
-  "o_que_e": "O UERJ no Ar produz notícias e conteúdos educativos em áudio, distribuídos pela internet para rádios comunitárias e educativas de todo o Brasil. O noticiário acompanha a UERJ e seus eventos, com foco em inclusão social e em divulgação científica, tecnológica e de extensão. É feito por estudantes de Jornalismo e Relações Públicas no AudioLab.",
   "historia_contexto": "O projeto parte da ideia de que o rádio ajuda na inclusão social e na difusão do conhecimento, e de que o acesso à informação precisa ser democrático. Desde 2015, publicou mais de 450 matérias, e 80% das unidades da UERJ já foram notícia no programa.",
-  "fale_com_o_projeto": "Sua unidade tem uma notícia? Fale com a equipe do UERJ no Ar. Rádios podem baixar as matérias de graça no RadioTube.",
-  "coordenacao": "",
   "ano_inicio": "2015",
-  "email": "",
-  "redes": {},
+  "conteudos": [],
+  "ordem": 7,
+  "fale_com_o_projeto": "Sua unidade tem uma notícia? Fale com a equipe do UERJ no Ar. Rádios podem baixar as matérias de graça no RadioTube.",
+  "logo": "",
+  "tagline": "Notícias da UERJ em áudio para rádios comunitárias e educativas de todo o país.",
+  "coordenacao": "Gisele Sobral",
+  "capa": "",
+  "quadros": [],
+  "o_que_e": "O UERJ no Ar produz notícias e conteúdos educativos em áudio, distribuídos pela internet para rádios comunitárias e educativas de todo o Brasil. O noticiário acompanha a UERJ e seus eventos, com foco em inclusão social e em divulgação científica, tecnológica e de extensão. É feito por estudantes de Jornalismo e Relações Públicas no AudioLab.",
+  "nome": "UERJ no Ar",
+  "tag": "Jornalismo",
   "video": "",
+  "email": "",
   "estatisticas": [
     {
       "numero": "+450",
@@ -21,8 +24,7 @@
       "rotulo": "das unidades da UERJ já noticiadas"
     }
   ],
-  "logo": "",
-  "capa": "",
-  "quadros": [],
-  "conteudos": []
+  "redes": {
+    "spotify": "https://open.spotify.com/show/6sRbfbl0COb8x7hRRitMdJ?si=e791a8bea6bd4dfa"
+  }
 }
