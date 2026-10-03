@@ -1,11 +1,12 @@
 {
-  "nome": "Edu",
+  "nome": "Eduardo Campos",
   "ordem": 24,
-  "funcao": "Pesquisa, graduação",
+  "funcao": "Bolsista de Iniciação Científica, graduação",
   "foto": "",
   "linkedin": "",
   "projetos": [
-    "JONAMI"
+    "JONAMI",
+    "Escola de Narradores"
   ],
   "periodo": ""
 }
