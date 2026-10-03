@@ -1,31 +1,23 @@
 {
-  "nome": "Radioatividade",
-  "ordem": 5,
-  "tagline": "Jornalismo sonoro em ação: reportagens investigativas em áudio, com tempo para pesquisar e aprofundar cada tema.",
-  "tag": "Jornalismo",
-  "o_que_e": "O Radioatividade produz reportagens de radiojornalismo investigativo, mais longas e aprofundadas, com foco em inclusão social e em divulgação científica, tecnológica e cultural. Os programas são distribuídos de graça pela internet e podem ser usados por rádios comunitárias e educativas de todo o país. Entre as séries especiais estão 60 anos do Golpe Militar no Brasil, Rio Capital Mundial do Livro e uma série sobre as eleições de 2026.",
   "historia_contexto": "Feito por bolsistas e voluntários desde 2004, o programa foi ao ar na Rádio CBN, em rede local, até julho de 2016. Depois passou para as redes do AudioLab e, desde 2023, faz parte da Revista AudioLab. Em 2025, ficou em 3º lugar em duas categorias do IV Prêmio Rubra de Rádio Universitário: Reportagem Especial e Documentário.",
-  "fale_com_o_projeto": "Tem uma pauta para uma reportagem? Fale com a equipe. Rádios comunitárias e educativas podem baixar os programas de graça no RadioTube.",
-  "coordenacao": "Leonardo Puglia",
   "ano_inicio": "2004",
-  "email": "",
-  "redes": {},
-  "video": "",
-  "estatisticas": [
+  "conteudos": [
     {
-      "numero": "+250",
-      "rotulo": "matérias desde 2012"
+      "titulo": "Questões LGBTAQIAP+ no Brasil e Oriente Médio",
+      "link": "https://open.spotify.com/episode/2HBxxcBqWdBVrmZRAOwG4R?si=1840f36eacb142f5",
+      "data": ""
     },
     {
-      "numero": "3",
-      "rotulo": "séries especiais"
-    },
-    {
-      "numero": "2",
-      "rotulo": "pódios no Prêmio Rubra 2025"
+      "titulo": "Especial Golpe Militar 60 anos #1",
+      "link": "https://open.spotify.com/episode/41chmKRm7PlgufHPbLLFrX?si=65cf23b718b9406b",
+      "data": ""
     }
   ],
+  "ordem": 5,
+  "fale_com_o_projeto": "Tem uma pauta para uma reportagem? Fale com a equipe. Rádios comunitárias e educativas podem baixar os programas de graça no RadioTube.",
   "logo": "",
+  "tagline": "Jornalismo sonoro em ação: reportagens investigativas em áudio, com tempo para pesquisar e aprofundar cada tema.",
+  "coordenacao": "Leonardo Puglia",
   "capa": "",
   "quadros": [
     {
@@ -47,16 +39,24 @@
       "imagem": ""
     }
   ],
-  "conteudos": [
+  "o_que_e": "O Radioatividade produz reportagens de radiojornalismo investigativo, mais longas e aprofundadas, com foco em inclusão social e em divulgação científica, tecnológica e cultural. Os programas são distribuídos de graça pela internet e podem ser usados por rádios comunitárias e educativas de todo o país. Entre as séries especiais estão 60 anos do Golpe Militar no Brasil, Rio Capital Mundial do Livro e uma série sobre as eleições de 2026.",
+  "nome": "Radioatividade",
+  "tag": "Jornalismo",
+  "video": "",
+  "email": "",
+  "estatisticas": [
     {
-      "titulo": "Questões LGBTAQIAP+ no Brasil e Oriente Médio",
-      "link": "",
-      "data": ""
+      "numero": "+250",
+      "rotulo": "matérias desde 2012"
     },
     {
-      "titulo": "Especial Golpe Militar 60 anos #1",
-      "link": "",
-      "data": ""
+      "numero": "3",
+      "rotulo": "séries especiais"
+    },
+    {
+      "numero": "2",
+      "rotulo": "pódios no Prêmio Rubra 2025"
     }
-  ]
+  ],
+  "redes": {}
 }
