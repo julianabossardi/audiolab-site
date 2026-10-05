@@ -42,8 +42,30 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("slugify", slugify);
 
+  // Resumo para meta description: tira markdown e links, junta espaços e
+  // corta em ~155 caracteres sem quebrar palavra (o Google corta ali).
+  eleventyConfig.addFilter("resumo", (text, max = 155) => {
+    const t = String(text || "")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/https?:\/\/\S+/g, " ")
+      .replace(/[#*_>`~]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (t.length <= max) return t;
+    const corte = t.slice(0, max - 1);
+    return corte.slice(0, corte.lastIndexOf(" ") > 80 ? corte.lastIndexOf(" ") : corte.length).replace(/[\s,.;:–-]+$/, "") + "…";
+  });
+
+  // JSON para <script type="application/ld+json"> (dados estruturados).
+  eleventyConfig.addFilter("json", (obj) => JSON.stringify(obj).replace(/</g, "\\u003c"));
+
   // Notícias que citam um projeto em "projeto_relacionado".
   eleventyConfig.addFilter("relatedNoticias", (list, slug) => (list || []).filter((n) => n.projeto_relacionado === slug));
+
+  eleventyConfig.addFilter("dataIso", (iso) => { const d = new Date(iso); return isNaN(d) ? "" : d.toISOString().slice(0, 10); });
+
+  eleventyConfig.addFilter("rssDate", (iso) => { const d = new Date(iso); return isNaN(d) ? "" : d.toUTCString(); });
 
   eleventyConfig.addFilter("formatDate", (iso) => {
     if (!iso) return "";

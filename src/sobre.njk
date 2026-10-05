@@ -119,25 +119,6 @@ description: "Conheça a história, a equipe e os valores do AudioLab, o Laborat
 </section>
 {% endif %}
 
-<!-- RadioTube: bloco próprio, discreto, para marcar o lugar na hierarquia -->
-{% if laboratorio.lab_radiotube %}
-<section class="section" aria-labelledby="titulo-radiotube">
-  <div class="wrap">
-    <div class="radiotube">
-      <span class="radiotube-icon" aria-hidden="true">{{ icon("ao-vivo", 32) }}</span>
-      <div class="radiotube-text">
-        <span class="eyebrow">Rádios comunitárias</span>
-        <h2 id="titulo-radiotube">Nossos programas no RadioTube</h2>
-        <p>{{ laboratorio.lab_radiotube }}</p>
-      </div>
-      {% if laboratorio.lab_link_radiotube %}
-      <a class="btn btn-secondary" href="{{ laboratorio.lab_link_radiotube }}" target="_blank" rel="noopener">Perfil do AudioLab no RadioTube {{ icon("link-externo", 18) }}</a>
-      {% endif %}
-    </div>
-  </div>
-</section>
-{% endif %}
-
 <!-- valores -->
 {% if sobre.valores.length %}
 <section class="section" aria-labelledby="titulo-valores">

@@ -13,6 +13,6 @@ eleventyExcludeFromCollections: true
   <url><loc>{{ site.url }}/projetos/{{ p.slug }}/</loc></url>
   {%- endfor %}
   {%- for n in noticias %}
-  <url><loc>{{ site.url }}/noticias/{{ n.slug }}/</loc></url>
+  <url><loc>{{ site.url }}/noticias/{{ n.slug }}/</loc>{% if n.data %}<lastmod>{{ n.data | dataIso }}</lastmod>{% endif %}</url>
   {%- endfor %}
 </urlset>

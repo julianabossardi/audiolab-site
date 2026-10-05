@@ -1,0 +1,20 @@
+---
+pagination:
+  data: noticias
+  size: 1
+  alias: n
+  before: lista
+permalink: "{% if n.slug_antigo %}/noticias/{{ n.slug_antigo }}/index.html{% else %}false{% endif %}"
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>{{ n.titulo }} · AudioLab</title>
+<meta name="robots" content="noindex" />
+<link rel="canonical" href="{{ site.url }}/noticias/{{ n.slug }}/" />
+<meta http-equiv="refresh" content="0; url=/noticias/{{ n.slug }}/" />
+</head>
+<body><p><a href="/noticias/{{ n.slug }}/">Ir para a notícia</a></p></body>
+</html>

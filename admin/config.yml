@@ -17,6 +17,11 @@ backend:
 # enquanto você estiver testando em localhost. Não afeta o site publicado.
 local_backend: true
 
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 media_folder: "uploads"
 public_folder: "/uploads"
 
@@ -132,7 +137,8 @@ collections:
     format: "json"
     fields:
       - { label: "Título", name: "titulo", widget: "string" }
-      - { label: "Subtítulo / resumo", name: "subtitulo", widget: "string", hint: "Aparece no destaque e na lista, uma ou duas linhas" }
+      - { label: "Endereço da página (URL)", name: "url_slug", widget: "string", required: false, hint: "Só letras minúsculas, números e hífens. Ex.: mis-4-audiolab-evento. Vazio usa o nome do arquivo. Se mudar depois de publicada, o endereço antigo redireciona para o novo." }
+      - { label: "Subtítulo / resumo", name: "subtitulo", widget: "string", hint: "Aparece no destaque e na lista, uma ou duas linhas. Também é o texto que o Google mostra nos resultados (até ~155 caracteres)." }
       - { label: "Imagem de capa 16:9", name: "capa", widget: "image", required: false }
       - { label: "Data", name: "data", widget: "datetime", required: false }
       - label: "Tema"
@@ -231,8 +237,6 @@ collections:
           - { label: "Metodologia", name: "lab_metodologia", widget: "text", required: false }
           - { label: "Unidade de Desenvolvimento Tecnológico", name: "lab_udt", widget: "text", required: false }
           - { label: "Avaliação", name: "lab_avaliacao", widget: "text", required: false }
-          - { label: "RadioTube", name: "lab_radiotube", widget: "text", required: false }
-          - { label: "Link RadioTube", name: "lab_link_radiotube", widget: "string", required: false }
           - label: "Números do laboratório"
             name: "estatisticas"
             widget: "list"

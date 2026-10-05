@@ -949,28 +949,6 @@ a.episode-row svg { flex: none; margin-left: auto; color: var(--petrol-600); }
 .feature-band-stats li:first-child { padding-top: 0; border-top: 0; }
 @media (max-width: 1023px) { .feature-band { grid-template-columns: minmax(0, 1fr); padding: var(--space-32) var(--space-24); gap: var(--space-32); } }
 
-/* RadioTube: painel claro com moldura, entre a Revista (escura) e os valores */
-.radiotube {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-16) var(--space-32);
-  padding: var(--space-32);
-  background: var(--petrol-100);
-  border: var(--hairline) solid var(--petrol-200);
-  border-left: var(--stripe) solid var(--petrol-700);
-  border-radius: var(--radius);
-}
-.radiotube-icon { display: flex; align-items: center; justify-content: center; width: var(--mark-md); height: var(--mark-md); border-radius: var(--radius); background: var(--petrol-700); color: var(--lime-500); }
-.radiotube h2 { margin: var(--space-4) 0 var(--space-8); font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--fw-h3); color: var(--petrol-800); }
-.radiotube p { max-width: var(--measure); margin: 0; color: var(--petrol-800); }
-.radiotube .btn { white-space: normal; text-align: left; }
-@media (max-width: 1023px) {
-  .radiotube { grid-template-columns: auto minmax(0, 1fr); padding: var(--space-24); }
-  .radiotube .btn { grid-column: 1 / -1; justify-self: start; }
-}
-@media (max-width: 767px) { .radiotube { grid-template-columns: minmax(0, 1fr); } }
-
 .sobre-valores { display: grid; grid-template-columns: minmax(0, 9fr) minmax(0, 10fr); gap: var(--space-64); align-items: center; }
 .sobre-valores-photo { aspect-ratio: 4 / 3; }
 .valores-list li { max-width: var(--valor-bar-w); margin-bottom: var(--space-20); padding-bottom: var(--space-8); border-bottom: var(--stripe) solid var(--lime-500); font-family: var(--font-display); font-size: var(--fs-label-lg); font-weight: var(--fw-label-lg); color: var(--petrol-700); }

@@ -7,13 +7,41 @@ pagination:
 permalink: "/noticias/{{ n.slug }}/"
 eleventyComputed:
   title: "{{ n.titulo }} · AudioLab"
-  description: "{{ n.subtitulo }}"
+  description: "{{ n.subtitulo or (n.corpo | resumo) }}"
   image: "{{ n.capa | img }}"
+  ogTipo: "article"
+  publicado: "{{ n.data }}"
 ---
 {% from "al-macros.njk" import icon, socialIcon, placeholder %}
 {% set capa = n.capa | img %}
 {% set projeto = null %}
 {% for p in projetos %}{% if p.slug == n.projeto_relacionado %}{% set projeto = p %}{% endif %}{% endfor %}
+
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NewsArticle",
+      "headline": n.titulo | resumo(110),
+      "description": n.subtitulo or (n.corpo | resumo),
+      "image": [capa if capa.startsWith("http") else site.url + capa] if capa else undefined,
+      "datePublished": n.data or undefined,
+      "dateModified": n.data or undefined,
+      "inLanguage": "pt-BR",
+      "mainEntityOfPage": site.url + "/noticias/" + n.slug + "/",
+      "author": { "@id": site.url + "/#organizacao" },
+      "publisher": { "@id": site.url + "/#organizacao" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "AudioLab", "item": site.url + "/" },
+        { "@type": "ListItem", "position": 2, "name": "Notícias", "item": site.url + "/noticias/" },
+        { "@type": "ListItem", "position": 3, "name": n.titulo }
+      ]
+    }
+  ]
+} | json | safe }}</script>
 
 <article class="article">
   <header class="article-head">
@@ -31,7 +59,7 @@ eleventyComputed:
   </header>
 
   <div class="wrap wrap--narrow article-body">
-    <div class="article-cover">{% if capa %}<img src="{{ capa }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
+    <div class="article-cover">{% if capa %}<img src="{{ capa }}" alt="{{ n.titulo }}" fetchpriority="high" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
 
     <div class="share-row">
       <span class="share-label">Compartilhar</span>

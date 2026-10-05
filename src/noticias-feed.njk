@@ -1,0 +1,24 @@
+---
+permalink: /noticias/feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notícias do AudioLab</title>
+    <link>{{ site.url }}/noticias/</link>
+    <description>Notícias e produções do AudioLab, o Laboratório de Áudio da Faculdade de Comunicação Social da UERJ.</description>
+    <language>pt-BR</language>
+    <atom:link href="{{ site.url }}/noticias/feed.xml" rel="self" type="application/rss+xml" />
+    {%- for n in noticias %}
+    <item>
+      <title>{{ n.titulo | escape }}</title>
+      <link>{{ site.url }}/noticias/{{ n.slug }}/</link>
+      <guid>{{ site.url }}/noticias/{{ n.slug }}/</guid>
+      {%- if n.data %}
+      <pubDate>{{ n.data | rssDate }}</pubDate>{% endif %}
+      <description>{{ (n.subtitulo or (n.corpo | resumo)) | escape }}</description>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

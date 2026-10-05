@@ -27,6 +27,16 @@ eleventyComputed:
 ] %}
 {% set temRedes = p.redes.instagram or p.redes.spotify or p.redes.amazon_music or p.redes.youtube or p.redes.tiktok %}
 
+<script type="application/ld+json">{{ {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "AudioLab", "item": site.url + "/" },
+    { "@type": "ListItem", "position": 2, "name": "Projetos", "item": site.url + "/projetos/" },
+    { "@type": "ListItem", "position": 3, "name": p.nome }
+  ]
+} | json | safe }}</script>
+
 <div data-project="{{ b.key }}">
 
   <!-- herói: mesma estrutura em todo projeto, só a cor muda -->
