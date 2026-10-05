@@ -26,5 +26,54 @@
     "Reflexiva",
     "Inovadora"
   ],
-  "foto_antiga": "/uploads/foto-audiolab.jpeg"
+  "foto_antiga": "/uploads/foto-audiolab.jpeg",
+  "lab_desde": "1992",
+  "revista_historia": "A Revista começou em maio de 2023 para reunir em um só lugar a produção do laboratório e ampliar seu alcance. Está nos principais tocadores de podcast e no portal colaborativo RadioTube.",
+  "revista_estatisticas": [
+    {
+      "numero": "49",
+      "rotulo": "edições"
+    },
+    {
+      "numero": "190",
+      "rotulo": "reportagens"
+    },
+    {
+      "numero": "+1.160",
+      "rotulo": "horas de produção"
+    }
+  ],
+  "premios": [
+    "1º lugar, Produção Sonora Cultural Regional, II Prêmio UnBCast de Podcasts Universitários, 2025. BadaUERJ, episódio Resistência Negra.",
+    "3º lugar, Reportagem Especial, IV Prêmio Rubra de Rádio Universitário, 2025. Radioatividade.",
+    "3º lugar, Documentário, IV Prêmio Rubra de Rádio Universitário, 2025. Radioatividade, Especial Golpe Militar 60 anos.",
+    "1º lugar, Prêmio Luiz Beltrão da Intercom, categoria Grupo Inovador, 2017."
+  ],
+  "lab_descricao_curta": "O AudioLab é o Laboratório de Áudio da Faculdade de Comunicação Social da UERJ. Aqui, estudantes, professores e técnicos produzem conteúdos que têm o som como fio condutor: podcasts, reportagens, transmissões ao vivo, vídeos e divulgação científica. É um espaço de ensino, pesquisa e extensão para experimentar formatos e linguagens.",
+  "lab_avaliacao": "Nas avaliações periódicas da UERJ, todos os nossos projetos recebem nota máxima.",
+  "lab_nome": "AudioLab",
+  "lab_metodologia": "Nosso trabalho se baseia no ludens narrativo, proposta de Filipe Mostaro que une narrativa, jogo e imaginário. A ideia é que os três atuam juntos para convidar o público a entrar no jogo da história, o que ajuda na imersão e desperta emoções.",
+  "lab_link_radiotube": "https://www.radiotube.org.br/meuperfil-2335",
+  "lab_radiotube": "Todos os programas e reportagens podem ser baixados de graça no perfil do AudioLab no RadioTube, portal usado por mais de 600 rádios comunitárias do Brasil.",
+  "revista_o_que_e": "A Revista AudioLab é um programa quinzenal apresentado pelos estagiários do laboratório. Ela reúne reportagens de estagiários e voluntários sobre política, cultura, ciência, tecnologia, educação e esportes, com produções do Radioatividade, do projeto A Gente da Ciência e do AudioLabGeo.",
+  "lab_udt": "Somos reconhecidos pelo InovUERJ como Unidade de Desenvolvimento Tecnológico, um espaço de inovação e de integração entre graduação e pós-graduação.",
+  "destaque_1": "Videocasts no Rio Innovation Week 2025",
+  "lab_nome_completo": "Laboratório de Áudio da Faculdade de Comunicação Social da UERJ",
+  "lab_descricao_completa": "O AudioLab é o Laboratório de Áudio da Faculdade de Comunicação Social da UERJ, espaço de ensino, pesquisa e extensão da graduação e da pós-graduação. Aqui, estudantes experimentam linguagens e formatos e pesquisam como aplicar técnicas jornalísticas na mídia sonora. Nossos temas vão do esporte ao carnaval, passando por ciência, memória, cinema, música, tecnologia e a própria UERJ. Também funcionamos como incubadora: ajudamos 10 unidades da universidade a criar seus podcasts e levar o conhecimento acadêmico para toda a sociedade.",
+  "lab_assinatura": "AudioLab é a UERJ em todo lugar.",
+  "estatisticas": [
+    {
+      "numero": "+8.500",
+      "rotulo": "conteúdos publicados desde 2022"
+    },
+    {
+      "numero": "4,1 milhões",
+      "rotulo": "de visualizações desde 2022"
+    },
+    {
+      "numero": "35",
+      "rotulo": "produtos próprios"
+    }
+  ],
+  "revista_onde_ouvir": "Spotify, Amazon Music e Deezer."
 }

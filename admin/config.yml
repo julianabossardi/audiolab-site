@@ -20,9 +20,9 @@ local_backend: true
 media_folder: "uploads"
 public_folder: "/uploads"
 
-# Projetos, pessoas, laboratório e pesquisa também são gerados pela
-# planilha (npm run importar). Uma importação nova sobrescreve o que foi
-# editado aqui nesses arquivos. Notícias só existem aqui.
+# Projetos, pessoas e pesquisa também são gerados pela planilha
+# (npm run importar). Uma importação nova sobrescreve o que foi editado
+# aqui nesses arquivos. Notícias só existem aqui.
 collections:
   - name: "projetos"
     label: "Projetos"
@@ -102,8 +102,6 @@ collections:
       - { label: "Nome", name: "nome", widget: "string" }
       - { label: "Ordem", name: "ordem", widget: "number", value_type: "int", required: false }
       - { label: "Função", name: "funcao", widget: "string", required: false, hint: "Uma só por pessoa." }
-      - { label: "Foto 4:5", name: "foto", widget: "image", required: false }
-      - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
       - label: "Projetos"
         name: "projetos"
         widget: "select"
@@ -124,7 +122,6 @@ collections:
           - "UERJ no Ar"
           - "AudioLabGeo"
           - "Política nas Rampas"
-      - { label: "Período", name: "periodo", widget: "string", required: false }
 
   - name: "noticias"
     label: "Notícias"
@@ -153,58 +150,12 @@ collections:
         value_field: "{{slug}}"
         required: false
         hint: "Usado no filtro por projeto e na página do projeto"
-      - { label: "Link externo", name: "link", widget: "string", required: false, hint: "Se preenchido, o card abre esse link em vez da página interna da notícia" }
+      - { label: "Link externo", name: "link", widget: "string", required: false, hint: "Se preenchido, a página da notícia mostra um destaque com esse link antes do texto" }
       - { label: "Corpo da notícia", name: "corpo", widget: "markdown", required: false }
 
   - name: "paginas"
     label: "Páginas"
     files:
-      - name: "laboratorio"
-        label: "Laboratório"
-        file: "content/laboratorio.json"
-        format: "json"
-        fields:
-          - { label: "Nome", name: "lab_nome", widget: "string" }
-          - { label: "Nome completo", name: "lab_nome_completo", widget: "string" }
-          - { label: "Desde", name: "lab_desde", widget: "string", required: false }
-          - { label: "Assinatura", name: "lab_assinatura", widget: "string", required: false }
-          - { label: "Descrição curta", name: "lab_descricao_curta", widget: "text", hint: "Abertura da página Sobre, até 60 palavras." }
-          - { label: "Descrição completa", name: "lab_descricao_completa", widget: "text", required: false }
-          - { label: "Metodologia", name: "lab_metodologia", widget: "text", required: false }
-          - { label: "Unidade de Desenvolvimento Tecnológico", name: "lab_udt", widget: "text", required: false }
-          - { label: "Avaliação", name: "lab_avaliacao", widget: "text", required: false }
-          - { label: "RadioTube", name: "lab_radiotube", widget: "text", required: false }
-          - { label: "E-mail", name: "lab_email", widget: "string", hint: "Usado no cabeçalho, no rodapé e nos projetos sem e-mail próprio." }
-          - { label: "Link RadioTube", name: "lab_link_radiotube", widget: "string", required: false }
-          - { label: "Instagram", name: "lab_link_instagram", widget: "string", required: false }
-          - { label: "YouTube", name: "lab_link_youtube", widget: "string", required: false }
-          - { label: "TikTok", name: "lab_link_tiktok", widget: "string", required: false }
-          - { label: "LinkedIn", name: "lab_link_linkedin", widget: "string", required: false }
-          - { label: "Facebook", name: "lab_link_facebook", widget: "string", required: false }
-          - { label: "Site da FCS", name: "lab_link_fcs", widget: "string", required: false }
-          - label: "Números do laboratório"
-            name: "estatisticas"
-            widget: "list"
-            required: false
-            max: 3
-            fields:
-              - { label: "Número", name: "numero", widget: "string" }
-              - { label: "Rótulo", name: "rotulo", widget: "string" }
-          - { label: "Premiações e reconhecimentos", name: "premios", widget: "list", required: false, hint: "Um prêmio por item" }
-          - { label: "Revista: o que é", name: "revista_o_que_e", widget: "text", required: false }
-          - { label: "Revista: história", name: "revista_historia", widget: "text", required: false }
-          - { label: "Revista: onde ouvir", name: "revista_onde_ouvir", widget: "string", required: false }
-          - { label: "Revista: link do Spotify", name: "revista_link_spotify", widget: "string", required: false }
-          - label: "Revista: números"
-            name: "revista_estatisticas"
-            widget: "list"
-            required: false
-            max: 3
-            fields:
-              - { label: "Número", name: "numero", widget: "string" }
-              - { label: "Rótulo", name: "rotulo", widget: "string" }
-          - { label: "Destaque 1", name: "destaque_1", widget: "string", required: false }
-
       - name: "pesquisa"
         label: "Pesquisa e formação"
         file: "content/pesquisa.json"
@@ -271,6 +222,38 @@ collections:
         file: "content/sobre.json"
         format: "json"
         fields:
+          - { label: "Nome", name: "lab_nome", widget: "string" }
+          - { label: "Nome completo", name: "lab_nome_completo", widget: "string" }
+          - { label: "Desde", name: "lab_desde", widget: "string", required: false }
+          - { label: "Assinatura", name: "lab_assinatura", widget: "string", required: false }
+          - { label: "Descrição curta", name: "lab_descricao_curta", widget: "text", hint: "Abertura da página Sobre, até 60 palavras." }
+          - { label: "Descrição completa", name: "lab_descricao_completa", widget: "text", required: false }
+          - { label: "Metodologia", name: "lab_metodologia", widget: "text", required: false }
+          - { label: "Unidade de Desenvolvimento Tecnológico", name: "lab_udt", widget: "text", required: false }
+          - { label: "Avaliação", name: "lab_avaliacao", widget: "text", required: false }
+          - { label: "RadioTube", name: "lab_radiotube", widget: "text", required: false }
+          - { label: "Link RadioTube", name: "lab_link_radiotube", widget: "string", required: false }
+          - label: "Números do laboratório"
+            name: "estatisticas"
+            widget: "list"
+            required: false
+            max: 3
+            fields:
+              - { label: "Número", name: "numero", widget: "string" }
+              - { label: "Rótulo", name: "rotulo", widget: "string" }
+          - { label: "Premiações e reconhecimentos", name: "premios", widget: "list", required: false, hint: "Um prêmio por item" }
+          - { label: "Revista: o que é", name: "revista_o_que_e", widget: "text", required: false }
+          - { label: "Revista: história", name: "revista_historia", widget: "text", required: false }
+          - { label: "Revista: onde ouvir", name: "revista_onde_ouvir", widget: "string", required: false }
+          - label: "Revista: números"
+            name: "revista_estatisticas"
+            widget: "list"
+            required: false
+            max: 3
+            fields:
+              - { label: "Número", name: "numero", widget: "string" }
+              - { label: "Rótulo", name: "rotulo", widget: "string" }
+          - { label: "Destaque 1", name: "destaque_1", widget: "string", required: false }
           - { label: "História, parágrafo 1", name: "historia_1", widget: "text" }
           - { label: "História, parágrafo 2", name: "historia_2", widget: "text" }
           - { label: "Foto antiga", name: "foto_antiga", widget: "image", required: false }
@@ -298,6 +281,14 @@ collections:
         fields:
           - { label: "Texto do botão de newsletter", name: "newsletter_texto", widget: "string" }
           - { label: "Texto curto do botão (aparece no celular)", name: "newsletter_texto_curto", widget: "string" }
+          - { label: "E-mail", name: "lab_email", widget: "string", hint: "Usado no cabeçalho, no rodapé e nos projetos sem e-mail próprio." }
+          - { label: "Instagram", name: "lab_link_instagram", widget: "string", required: false }
+          - { label: "YouTube", name: "lab_link_youtube", widget: "string", required: false }
+          - { label: "TikTok", name: "lab_link_tiktok", widget: "string", required: false }
+          - { label: "LinkedIn", name: "lab_link_linkedin", widget: "string", required: false }
+          - { label: "Facebook", name: "lab_link_facebook", widget: "string", required: false }
+          - { label: "Site da FCS", name: "lab_link_fcs", widget: "string", required: false }
+          - { label: "Revista: link do Spotify", name: "revista_link_spotify", widget: "string", required: false }
 
       - name: "rodape"
         label: "Rodapé"

@@ -46,7 +46,12 @@ eleventyComputed:
     </div>
 
     {% if n.link %}
-    <p><a class="btn btn-primary" href="{{ n.link }}" target="_blank" rel="noopener">Ler matéria completa {{ icon("link-externo", 18) }}</a></p>
+    {% set linkHost = n.link | replace("https://", "") | replace("http://", "") | replace("www.", "") %}
+    <a class="link-embed" href="{{ n.link }}" target="_blank" rel="noopener">
+      <span class="link-embed-label">Saiba mais</span>
+      <span class="link-embed-host">{{ linkHost.split("/")[0] }}</span>
+      <span class="link-embed-cta">Acessar o link {{ icon("link-externo", 18) }}</span>
+    </a>
     {% endif %}
 
     {% if n.corpo %}

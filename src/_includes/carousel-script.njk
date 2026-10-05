@@ -6,6 +6,74 @@
   // pede movimento reduzido.
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+
+  // Anel giratório (data-anel="px por segundo"): os cards correm sem parar,
+  // em velocidade baixa, e a lista volta ao início sem emenda (cópia dos
+  // cards no fim). Pausa com o mouse/foco ou no botão Pausar; as setas
+  // andam um card; dá para arrastar com o dedo ou o mouse.
+  function ring(root, track, prev, next, toggle, speed) {
+    var slides = Array.prototype.slice.call(track.children);
+    if (slides.length < 2) return;
+    slides.forEach(function (li) {
+      var c = li.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      c.setAttribute("inert", "");
+      track.appendChild(c);
+    });
+    track.classList.add("is-ring");
+    var all = Array.prototype.slice.call(track.children);
+    var offset = 0, kick = 0, loopW = 0, last = null, hovering = false, pausedByUser = false, dragging = false;
+    function measure() { loopW = all[slides.length].offsetLeft - all[0].offsetLeft; }
+    function step() {
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return all[0].getBoundingClientRect().width + gap;
+    }
+    function paint() {
+      if (loopW) offset = ((offset % loopW) + loopW) % loopW;
+      var t = "translate3d(" + (-offset) + "px,0,0)";
+      all.forEach(function (li) { li.style.transform = t; });
+    }
+    function tick(now) {
+      if (last === null) last = now;
+      var dt = Math.min((now - last) / 1000, 0.1);
+      last = now;
+      if (!dragging) {
+        if (kick) { var d = kick * Math.min(1, dt * 8); kick -= d; if (Math.abs(kick) < 0.5) { d += kick; kick = 0; } offset += d; }
+        if (!hovering && !pausedByUser) offset += speed * dt;
+      }
+      paint();
+      requestAnimationFrame(tick);
+    }
+    if (prev) prev.addEventListener("click", function () { kick -= step(); });
+    if (next) next.addEventListener("click", function () { kick += step(); });
+    root.addEventListener("mouseenter", function () { hovering = true; });
+    root.addEventListener("mouseleave", function () { hovering = false; });
+    root.addEventListener("focusin", function () { hovering = true; });
+    root.addEventListener("focusout", function (e) { if (!root.contains(e.relatedTarget)) hovering = false; });
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        pausedByUser = !pausedByUser;
+        toggle.setAttribute("aria-pressed", String(pausedByUser));
+        toggle.setAttribute("aria-label", pausedByUser ? "Continuar a passagem automática" : "Pausar a passagem automática");
+      });
+    }
+    var startX = 0, startOffset = 0, moved = false;
+    track.addEventListener("pointerdown", function (e) { dragging = true; moved = false; startX = e.clientX; startOffset = offset; kick = 0; });
+    window.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var dx = startX - e.clientX;
+      if (Math.abs(dx) > 5) moved = true;
+      offset = startOffset + dx;
+    });
+    window.addEventListener("pointerup", function () { dragging = false; });
+    track.addEventListener("click", function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+    track.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("load", measure);
+    requestAnimationFrame(tick);
+  }
+
   document.querySelectorAll("[data-carousel]").forEach(function (root) {
     var track = root.querySelector("[data-carousel-track]");
     if (!track) return;
@@ -13,6 +81,9 @@
     var next = root.querySelector("[data-carousel-next]");
     var toggle = root.querySelector("[data-carousel-toggle]");
     var delay = parseInt(root.getAttribute("data-passagem"), 10);
+    var anel = parseFloat(root.getAttribute("data-anel"));
+    if (anel && !reduceMotion) { ring(root, track, prev, next, toggle, anel); return; }
+    if (anel) { if (toggle) toggle.hidden = true; delay = 0; }
 
     function step() {
       var slide = track.firstElementChild;

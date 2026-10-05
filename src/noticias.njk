@@ -40,7 +40,7 @@ description: "Acompanhe as notícias e produções do AudioLab, o Laboratório d
       <li class="news-row" data-projeto="{{ n.projeto_relacionado or '' }}" data-tema="{{ n.tema or '' }}">
         <div class="news-row-img">{% if capa %}<img src="{{ capa }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
         <div class="news-row-body">
-          <h2><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h2>
+          <h2><a href="/noticias/{{ n.slug }}/">{{ n.titulo }}</a></h2>
           {% if n.subtitulo %}<p>{{ n.subtitulo }}</p>{% endif %}
           {% if n.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ n.data | formatDate }}</span>{% endif %}
           <span class="link-arrow" aria-hidden="true">Ler a notícia {{ icon("seta", 16) }}</span>

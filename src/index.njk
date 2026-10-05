@@ -40,8 +40,8 @@ bodyClass: is-home
   {{ equalizer(56, "lg") }}
 </section>
 
-<!-- todos os projetos em carrossel: 4 por vez, passa sozinho; os três principais primeiro -->
-<section class="section" aria-labelledby="titulo-projetos" data-carousel data-passagem="1500" aria-roledescription="carrossel">
+<!-- todos os projetos em carrossel: 4 por vez, corre sozinho em anel; os três principais primeiro -->
+<section class="section" aria-labelledby="titulo-projetos" data-carousel data-anel="45" aria-roledescription="carrossel">
   <div class="wrap">
     <div class="section-head">
       <h2 class="section-title" id="titulo-projetos"><span class="highlight">Nossos projetos</span></h2>
@@ -75,7 +75,7 @@ bodyClass: is-home
     <article class="highlight-card">
       <div class="highlight-card-text">
         <span class="eyebrow">{{ icon("microfone", 16) }}Notícia</span>
-        <h3><a href="{{ destaque.link if destaque.link else ('/noticias/' + destaque.slug + '/') }}"{% if destaque.link %} target="_blank" rel="noopener"{% endif %}>{{ destaque.titulo }}</a></h3>
+        <h3><a href="/noticias/{{ destaque.slug }}/">{{ destaque.titulo }}</a></h3>
         {% if destaque.subtitulo %}<p>{{ destaque.subtitulo }}</p>{% endif %}
         {% if destaque.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ destaque.data | formatDate }}</span>{% endif %}
         <span class="link-arrow" aria-hidden="true">Ler a notícia {{ icon("seta", 18) }}</span>
@@ -90,7 +90,7 @@ bodyClass: is-home
       <li class="news-compact-item">
         <div class="news-compact-img">{% if capa %}<img src="{{ capa }}" alt="" />{% else %}{{ placeholder("[imagem 16:9]") }}{% endif %}</div>
         <div>
-          <h3><a href="{{ n.link if n.link else ('/noticias/' + n.slug + '/') }}"{% if n.link %} target="_blank" rel="noopener"{% endif %}>{{ n.titulo }}</a></h3>
+          <h3><a href="/noticias/{{ n.slug }}/">{{ n.titulo }}</a></h3>
           {% if n.data %}<span class="news-date">{{ icon("calendario", 16) }}{{ n.data | formatDate }}</span>{% endif %}
           <span class="link-arrow" aria-hidden="true">Ler a notícia {{ icon("seta", 16) }}</span>
         </div>
