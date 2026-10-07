@@ -1,50 +1,9 @@
 {
-  "pagina_titulo": "Pesquisa e formação",
-  "pagina_frase_apoio": "Onde o AudioLab pesquisa som, narrativa e imaginário, e compartilha o que aprende em oficinas abertas ao público.",
-  "jonami_sigla": "JONAMI",
-  "jonami_por_extenso": "Jogo, Narrativa, Mídia e Imaginário",
-  "jonami_ano_formacao": "2025",
-  "jonami_lideranca": "Filipe Fernandes Ribeiro Mostaro",
+  "formacao_intro": "Todo semestre, o AudioLab oferece oficinas abertas ao público sobre os temas que trabalhamos no laboratório. Também promovemos eventos, como o seminário anual Mídia, Imaginário e Sonoridades, que aproxima estudantes de profissionais da área.",
+  "formacao_titulo": "Oficinas e formação",
   "jonami_composicao": "4 doutores, 6 doutorandos, 5 mestrandos e 4 graduandos",
-  "jonami_link_instagram": "https://www.instagram.com/uerjaudiolab/",
   "jonami_link_cnpq": "http://dgp.cnpq.br/dgp/espelhogrupo/821618",
   "jonami_descricao_curta": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário, fundamentais para compreender o processo comunicacional. Investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários.",
-  "jonami_descricao_completa": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário. Parte-se da ideia de que os três são fundamentais para compreender o processo comunicacional e seus desdobramentos. O impulso presente no jogo (HUIZINGA, 1971) na criação de um mundo à parte no qual os interlocutores se empenham, elabora uma situação social para que determinados imaginários (DURAND, 1997) sejam criados, reforçados e reconfigurados através das narrativas (RICOEUR, 2010), elaborando “quadros sociais” (GOFFMAN, 2012), que trazem o fantástico e o fictício para a narrativa (ISER, 2017). A partir dessas premissas, investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários. Especificamente, nos debruçamos nas narrativas presentes na era da convergência e os desdobramentos do jogo narrativo elaborado nesses cenários.",
-  "formacao_titulo": "Oficinas e formação",
-  "formacao_intro": "Todo semestre, o AudioLab oferece oficinas abertas ao público sobre os temas que trabalhamos no laboratório. Também promovemos eventos, como o seminário anual Mídia, Imaginário e Sonoridades, que aproxima estudantes de profissionais da área.",
-  "jonami_logo": "",
-  "conceitos": [
-    {
-      "conceito": "Imaginário",
-      "autores": "Castoriadis (1982), Durand (1988), Maffesoli (2001), Wunenburger (2007), Silva (2012)",
-      "definicao": "Conjunto de imagens e símbolos pelo qual uma sociedade cria e reconhece o real. Mais do que representar, organiza sentidos, afetos e laços coletivos."
-    },
-    {
-      "conceito": "Jogo",
-      "autores": "Huizinga (1971)",
-      "definicao": "Atividade livre, vivida como não séria, que absorve quem joga e segue regras, tempo e espaço próprios."
-    },
-    {
-      "conceito": "Círculo mágico",
-      "autores": "Huizinga (1971)",
-      "definicao": "Espaço delimitado onde o jogo acontece e suas regras valem, separado da vida comum."
-    },
-    {
-      "conceito": "Fachada",
-      "autores": "Goffman (2007)",
-      "definicao": "Conjunto de recursos expressivos que uma pessoa aciona, de forma intencional ou não, para se apresentar numa interação."
-    },
-    {
-      "conceito": "Mimese",
-      "autores": "Ricoeur (2010)",
-      "definicao": "Os três momentos da narrativa: a compreensão prévia do mundo, sua organização em trama e sua incorporação pela experiência de quem lê ou ouve."
-    },
-    {
-      "conceito": "Tecnopólio",
-      "autores": "Postman (1994)",
-      "definicao": "Cultura que se rende à tecnologia. Toda tecnologia é fardo e benefício ao mesmo tempo e redefine significados de forma silenciosa."
-    }
-  ],
   "temas": [
     {
       "eixo": "Educação e cidadania",
@@ -111,10 +70,10 @@
     },
     {
       "eixo": "Esporte",
-      "pessoa": "Giulia",
-      "nivel": "[nível]",
-      "tema": "[Tema a confirmar]",
-      "descricao": "[Descrição a escrever.]"
+      "pessoa": "Giulia Costa",
+      "nivel": "Mestrado",
+      "tema": "Jornalismo biográfico e realismo fantástico",
+      "descricao": "Análise do jornalismo biográfico de Maria Bonita na perspectiva do imaginário e realismo fantástico"
     },
     {
       "eixo": "Esporte",
@@ -126,7 +85,7 @@
     {
       "eixo": "Plataformas e dados",
       "pessoa": "Juliana Bossardi",
-      "nivel": "[nível]",
+      "nivel": "Mestrado",
       "tema": "Imaginário e IA generativa",
       "descricao": "O imaginário produzido na interação entre usuários e sistemas de IA generativa."
     },
@@ -136,6 +95,40 @@
       "nivel": "",
       "tema": "Narrativas na era da convergência",
       "descricao": "Como as mídias e suas adaptações mudam regras, códigos e percepções das narrativas."
+    }
+  ],
+  "jonami_por_extenso": "Jogo, Narrativa, Mídia e Imaginário",
+  "pagina_titulo": "Pesquisa e formação",
+  "conceitos": [
+    {
+      "conceito": "Imaginário",
+      "autores": "Castoriadis (1982), Durand (1988), Maffesoli (2001), Wunenburger (2007), Silva (2012)",
+      "definicao": "Conjunto de imagens e símbolos pelo qual uma sociedade cria e reconhece o real. Mais do que representar, organiza sentidos, afetos e laços coletivos."
+    },
+    {
+      "conceito": "Jogo",
+      "autores": "Huizinga (1971)",
+      "definicao": "Atividade livre, vivida como não séria, que absorve quem joga e segue regras, tempo e espaço próprios."
+    },
+    {
+      "conceito": "Círculo mágico",
+      "autores": "Huizinga (1971)",
+      "definicao": "Espaço delimitado onde o jogo acontece e suas regras valem, separado da vida comum."
+    },
+    {
+      "conceito": "Fachada",
+      "autores": "Goffman (2007)",
+      "definicao": "Conjunto de recursos expressivos que uma pessoa aciona, de forma intencional ou não, para se apresentar numa interação."
+    },
+    {
+      "conceito": "Mimese",
+      "autores": "Ricoeur (2010)",
+      "definicao": "Os três momentos da narrativa: a compreensão prévia do mundo, sua organização em trama e sua incorporação pela experiência de quem lê ou ouve."
+    },
+    {
+      "conceito": "Tecnopólio",
+      "autores": "Postman (1994)",
+      "definicao": "Cultura que se rende à tecnologia. Toda tecnologia é fardo e benefício ao mesmo tempo e redefine significados de forma silenciosa."
     }
   ],
   "formacao": [
@@ -156,6 +149,13 @@
       "link": "https://drive.google.com/file/d/1Q2u-VUu1kdcXV98fUly0uAh3mmCrjV1k/view"
     }
   ],
+  "jonami_lideranca": "Filipe Fernandes Ribeiro Mostaro",
+  "pagina_frase_apoio": "Onde o AudioLab pesquisa som, narrativa e imaginário, e compartilha o que aprende em oficinas abertas ao público.",
+  "jonami_logo": "",
+  "jonami_descricao_completa": "O grupo propõe a interseção entre os conceitos de narrativa, jogo e imaginário. Parte-se da ideia de que os três são fundamentais para compreender o processo comunicacional e seus desdobramentos. O impulso presente no jogo (HUIZINGA, 1971) na criação de um mundo à parte no qual os interlocutores se empenham, elabora uma situação social para que determinados imaginários (DURAND, 1997) sejam criados, reforçados e reconfigurados através das narrativas (RICOEUR, 2010), elaborando “quadros sociais” (GOFFMAN, 2012), que trazem o fantástico e o fictício para a narrativa (ISER, 2017). A partir dessas premissas, investigamos como as mídias e suas adaptações ao longo do tempo reelaboram regras do jogo, alteram códigos e percepções, influenciando narrativas e imaginários. Especificamente, nos debruçamos nas narrativas presentes na era da convergência e os desdobramentos do jogo narrativo elaborado nesses cenários.",
+  "jonami_link_instagram": "https://www.instagram.com/uerjaudiolab/",
+  "jonami_sigla": "JONAMI",
+  "jonami_ano_formacao": "2025",
   "eventos": [
     {
       "nome": "Mídia, Imaginário e Sonoridades",
