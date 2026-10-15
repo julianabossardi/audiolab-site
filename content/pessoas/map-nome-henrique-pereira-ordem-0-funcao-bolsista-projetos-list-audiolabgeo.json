@@ -1,8 +1,9 @@
 {
   "nome": "Henrique Pereira",
-  "ordem": 0,
-  "funcao": "Voluntário",
+  "ordem": 16,
+  "funcao": "Bolsista",
   "projetos": [
-    "Escola de Narradores"
+    "Escola de Narradores",
+    "AudioLabGeo"
   ]
 }
