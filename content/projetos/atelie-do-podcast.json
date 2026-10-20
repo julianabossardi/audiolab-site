@@ -1,13 +1,22 @@
 {
   "historia_contexto": "Criado em 2023, o projeto parte da ideia de que fazer som é uma arte. Assim como o artista vai ao ateliê para pensar e criar, estudantes e professores vêm até aqui para mergulhar em uma ideia, testar, elaborar e apresentar o resultado em forma de som. Fala, vinhetas, música e silêncio criam o ambiente para que outras experiências aconteçam.",
   "ano_inicio": "2023",
-  "conteudos": [],
+  "conteudos": [
+    {
+      "link": "https://open.spotify.com/episode/6wPxW6Z0d6ithJKFkbcXT9?si=uu8knhtDSReYTtXyf6upvA",
+      "titulo": "ENTRETENICAST #39 - Adaptações Literárias de 2026!"
+    },
+    {
+      "titulo": "Além das Quadras #01 - Renata Heilborn",
+      "link": "https://open.spotify.com/episode/0UAMWw6relW3zhN2U8Hmoz?si=e19e1873d28d494b"
+    }
+  ],
   "ordem": 2,
   "fale_com_o_projeto": "Tem um podcast na UERJ ou uma ideia de programa? Fale com a equipe do Ateliê do Podcast.",
-  "logo": "",
+  "logo": "/uploads/copia-de-atelie-_-portfolio-1-.png",
   "tagline": "Porque fazer som é uma arte: oficinas, apoio técnico e divulgação para podcasts feitos na UERJ.",
   "coordenacao": "Filipe Mostaro",
-  "capa": "",
+  "capa": "/uploads/atelie-miniatura-do-youtube-1-.png",
   "quadros": [
     {
       "nome": "Top 3",
@@ -78,7 +87,7 @@
       "rotulo": "conteúdos por mês"
     },
     {
-      "numero": "+70 mil",
+      "numero": "+78 mil",
       "rotulo": "visualizações por mês"
     },
     {
