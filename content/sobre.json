@@ -1,32 +1,4 @@
 {
-  "foto_uerj": "/uploads/uerj-2.jpg",
-  "carrossel_fotos": [
-    {
-      "foto": "/uploads/img_e4754.jpg",
-      "legenda": "[Legenda a escrever.]"
-    },
-    {
-      "foto": "/uploads/1000025871.jpg",
-      "legenda": "[Legenda a escrever.]"
-    },
-    {
-      "foto": "/uploads/1000025726.jpg",
-      "legenda": "[Legenda a escrever.]"
-    },
-    {
-      "foto": "/uploads/img_1995.jpg",
-      "legenda": "[Legenda a escrever.]"
-    }
-  ],
-  "historia_1": "O AudioLab existe desde 1992, e o som sempre foi o centro de tudo por aqui. Somos um núcleo da FCS/UERJ onde professores, alunos e servidores produzem conteúdo juntos. Em 2014, a gente começou a colocar nossas reportagens e programas no RadioTube, e hoje elas chegam a mais de 600 rádios comunitárias pelo Brasil. Em 2017 ganhamos o Prêmio Luiz Beltrão da Intercom, como grupo inovador. Desde 2018, fazemos o AudioLabGeo com a ECO/UFRJ, um app que funciona como um museu com fones de ouvido pelo Rio e por Niterói. E em 2022 tudo mudou de tamanho: cobrimos a Copa do Mundo com 40 alunos e não paramos mais.",
-  "foto_recente": "/uploads/audiolab-escola-de-narradores-fcs-uerj-848x565.jpeg",
-  "historia_2": "Hoje somos uma Unidade de Desenvolvimento Tecnológico (UDT) da UERJ e fazemos de tudo um pouco: podcasts, revista, entrevistas, transmissões esportivas, eventos, oficinas e divulgação científica. Temos parceria com 10 unidades da universidade e projetos como a Revista AudioLab, a Escola de Narradores, o Ateliê do Podcast, o BadaUERJ, o Mergulhando e o Hércules. Tudo isso sai de uma sala de 17 m² que é estúdio e redação ao mesmo tempo (sim, é apertado!). Nas avaliações da UERJ, tiramos nota 10 em todos os nossos projetos.",
-  "valores": [
-    "Diversa",
-    "Reflexiva",
-    "Inovadora"
-  ],
-  "foto_antiga": "/uploads/foto-audiolab.jpeg",
   "lab_desde": "1992",
   "revista_historia": "A Revista começou em maio de 2023 para reunir em um só lugar a produção do laboratório e ampliar seu alcance. Está nos principais tocadores de podcast e no portal colaborativo RadioTube.",
   "revista_estatisticas": [
@@ -49,14 +21,51 @@
     "3º lugar, Documentário, IV Prêmio Rubra de Rádio Universitário, 2025. Radioatividade, Especial Golpe Militar 60 anos.",
     "1º lugar, Prêmio Luiz Beltrão da Intercom, categoria Grupo Inovador, 2017."
   ],
+  "foto_uerj": "/uploads/uerj-2.jpg",
   "lab_descricao_curta": "O AudioLab é o Laboratório de Áudio da Faculdade de Comunicação Social da UERJ. Aqui, estudantes, professores e técnicos produzem conteúdos que têm o som como fio condutor: podcasts, reportagens, transmissões ao vivo, vídeos e divulgação científica. É um espaço de ensino, pesquisa e extensão para experimentar formatos e linguagens.",
   "lab_avaliacao": "Nas avaliações periódicas da UERJ, todos os nossos projetos recebem nota máxima.",
+  "carrossel_fotos": [
+    {
+      "foto": "/uploads/img_e4754.jpg",
+      "legenda": "[Legenda a escrever.]"
+    },
+    {
+      "foto": "/uploads/1000025871.jpg",
+      "legenda": "[Legenda a escrever.]"
+    },
+    {
+      "foto": "/uploads/1000025726.jpg",
+      "legenda": "[Legenda a escrever.]"
+    },
+    {
+      "foto": "/uploads/img_1995.jpg",
+      "legenda": "[Legenda a escrever.]"
+    },
+    {
+      "foto": "/uploads/whatsapp-image-2026-10-07-at-23.37.42-2-.jpeg"
+    },
+    {
+      "foto": "/uploads/img_1459.jpg"
+    },
+    {
+      "foto": "/uploads/img_8025-1-.jpg"
+    }
+  ],
   "lab_nome": "AudioLab",
   "lab_metodologia": "Nosso trabalho se baseia no ludens narrativo, proposta de Filipe Mostaro que une narrativa, jogo e imaginário. A ideia é que os três atuam juntos para convidar o público a entrar no jogo da história, o que ajuda na imersão e desperta emoções.",
+  "historia_1": "O AudioLab existe desde 1992, e o som sempre foi o centro de tudo por aqui. Somos um núcleo da FCS/UERJ onde professores, alunos e servidores produzem conteúdo juntos. Em 2014, a gente começou a colocar nossas reportagens e programas no RadioTube, e hoje elas chegam a mais de 600 rádios comunitárias pelo Brasil. Em 2017 ganhamos o Prêmio Luiz Beltrão da Intercom, como grupo inovador. Desde 2018, fazemos o AudioLabGeo com a ECO/UFRJ, um app que funciona como um museu com fones de ouvido pelo Rio e por Niterói. E em 2022 tudo mudou de tamanho: cobrimos a Copa do Mundo com 40 alunos e não paramos mais.",
+  "foto_recente": "/uploads/audiolab-escola-de-narradores-fcs-uerj-848x565.jpeg",
+  "historia_2": "Hoje somos uma Unidade de Desenvolvimento Tecnológico (UDT) da UERJ e fazemos de tudo um pouco: podcasts, revista, entrevistas, transmissões esportivas, eventos, oficinas e divulgação científica. Temos parceria com 10 unidades da universidade e projetos como a Revista AudioLab, a Escola de Narradores, o Ateliê do Podcast, o BadaUERJ, o Mergulhando e o Hércules. Tudo isso sai de uma sala de 17 m² que é estúdio e redação ao mesmo tempo (sim, é apertado!). Nas avaliações da UERJ, tiramos nota 10 em todos os nossos projetos.",
+  "valores": [
+    "Diversa",
+    "Reflexiva",
+    "Inovadora"
+  ],
   "revista_o_que_e": "A Revista AudioLab é um programa quinzenal apresentado pelos estagiários do laboratório. Ela reúne reportagens de estagiários e voluntários sobre política, cultura, ciência, tecnologia, educação e esportes, com produções do Radioatividade, do projeto A Gente da Ciência e do AudioLabGeo.",
   "lab_udt": "Somos reconhecidos pelo InovUERJ como Unidade de Desenvolvimento Tecnológico, um espaço de inovação e de integração entre graduação e pós-graduação.",
   "destaque_1": "Videocasts no Rio Innovation Week 2025",
   "lab_nome_completo": "Laboratório de Áudio da Faculdade de Comunicação Social da UERJ",
+  "foto_antiga": "/uploads/foto-audiolab.jpeg",
   "lab_descricao_completa": "O AudioLab é o Laboratório de Áudio da Faculdade de Comunicação Social da UERJ, espaço de ensino, pesquisa e extensão da graduação e da pós-graduação. Aqui, estudantes experimentam linguagens e formatos e pesquisam como aplicar técnicas jornalísticas na mídia sonora. Nossos temas vão do esporte ao carnaval, passando por ciência, memória, cinema, música, tecnologia e a própria UERJ. Também funcionamos como incubadora: ajudamos 10 unidades da universidade a criar seus podcasts e levar o conhecimento acadêmico para toda a sociedade.",
   "lab_assinatura": "AudioLab é a UERJ em todo lugar.",
   "estatisticas": [
