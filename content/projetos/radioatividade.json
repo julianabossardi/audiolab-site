@@ -5,12 +5,67 @@
     {
       "titulo": "Questões LGBTAQIAP+ no Brasil e Oriente Médio",
       "link": "https://open.spotify.com/episode/2HBxxcBqWdBVrmZRAOwG4R?si=1840f36eacb142f5",
-      "data": ""
+      "data": "03/12/2024"
     },
     {
-      "titulo": "Especial Golpe Militar 60 anos #1",
+      "titulo": "Especial Golpe Militar 60 anos #1: A Cultura na Ditadura",
       "link": "https://open.spotify.com/episode/41chmKRm7PlgufHPbLLFrX?si=65cf23b718b9406b",
-      "data": ""
+      "data": "07/06/2024"
+    },
+    {
+      "titulo": "Especial Golpe Militar 60 anos #2: O Futebol na Ditadura",
+      "link": "https://open.spotify.com/episode/3grov5hAX58AmIQ4rH38D8?si=rMUyoCKhSU6MnLldo3idmQ",
+      "data": "09/08/2024"
+    },
+    {
+      "titulo": "Especial Golpe Militar 60 anos #3: As Mulheres na Ditadura",
+      "link": "https://open.spotify.com/episode/62KYiwMmmMLt2FYCLjrZNK?si=T4e7bLP3Q8im8LGDr8oIzw",
+      "data": "26/09/2024"
+    },
+    {
+      "titulo": "Especial Golpe Militar 60 anos #4: Memórias na Ditadura",
+      "link": "https://open.spotify.com/episode/5cQnWWQnCgTf7BKPfoiNga?si=cuK5vcw3R6efcfyqL_EsHw",
+      "data": "01/04/2025"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #1 José de Alencar",
+      "link": "https://open.spotify.com/episode/31TcjyJsQ3A0A0ZllIHd9w?si=OEUVB4XFSjakAwVdvMbiAQ",
+      "data": "30/05/2025"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #2: Machado de Assis",
+      "link": "https://open.spotify.com/episode/3JikZeZzwL0zEcYnf0CyiC?si=JTtKO6L5SpyIpBC6w07vzA",
+      "data": "01/07/2025"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #3: Lima Barreto",
+      "link": "https://open.spotify.com/episode/0bqRLFzU63ul9YcrTyV7b9?si=ZKJY_-4ISESCvKc5Ly7LrQ",
+      "data": "31/07/2025"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #4: Clarice Lispector",
+      "link": "https://open.spotify.com/episode/4GjPWJG8ic4y5F5sMCUoYb?si=54b0135b1f40457d",
+      "data": "29/08/2025"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #5: Carlos Drummond",
+      "link": "https://open.spotify.com/episode/1wqsxUvSZByfZknUa4e5Ju?si=t9WuVOvuRwiEw-MV2IDL6w",
+      "data": "10/10/2025"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #6: Guimarães Rosa",
+      "link": "https://open.spotify.com/episode/5u8UMPut0J7v6KN0O95RJU?si=vdswDoWuSzSYP_6dWcQrpA",
+      "data": "13/11/2025"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #7: Jorge Amado",
+      "link": "https://open.spotify.com/episode/37aocTZvjeqw5l2dFNz50d?si=patSd8JaTC6NxG7oLKOBoQ",
+      "data": "19/08/2026"
+    },
+    {
+      "titulo": "Especial Rio Capital Mundial do Livro #8: Paulo Coelho",
+      "link": "https://open.spotify.com/episode/0GXmzvrwcUHsZqSpfo1kjm?si=soK17BCbRLmnjKyCFfJStw",
+      "data": "16/09/2026"
     }
   ],
   "ordem": 5,
@@ -35,7 +90,7 @@
     {
       "nome": "Especial Eleições 2026",
       "descricao": "Série especial em sete episódios sobre as eleições de 2026.",
-      "link": "",
+      "link": "https://open.spotify.com/show/6sRbfbl0COb8x7hRRitMdJ?si=77754f81ec634b39",
       "imagem": ""
     }
   ],
@@ -59,6 +114,6 @@
     }
   ],
   "redes": {
-    "spotify": "https://open.spotify.com/show/40MkBIJ8HfyrAhzd0S2SgM?si=fb6ab9e31db04184"
+    "spotify": "https://open.spotify.com/show/40MkBIJ8HfyrAhzd0S2SgM?si=fb6ab9e31db04184 "
   }
 }
