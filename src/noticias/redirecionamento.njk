@@ -1,10 +1,9 @@
 ---
 pagination:
-  data: noticias
+  data: noticiasRedirecionadas
   size: 1
   alias: n
-  before: lista
-permalink: "{% if n.slug_antigo %}/noticias/{{ n.slug_antigo }}/index.html{% else %}false{% endif %}"
+permalink: "/noticias/{{ n.slug_antigo }}/index.html"
 eleventyExcludeFromCollections: true
 ---
 <!doctype html>
