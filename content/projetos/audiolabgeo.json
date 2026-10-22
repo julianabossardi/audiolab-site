@@ -158,7 +158,7 @@
   "logo": "/uploads/1-logo_audiolab_geo-_1_.jpg",
   "tagline": "Um aplicativo que conta, em áudio, a história de mais de 300 lugares do Rio de Janeiro e de Niterói.",
   "coordenacao": "Gisele Sobral",
-  "capa": "",
+  "capa": "/uploads/1-logo_audiolab_geo-_1_.jpg",
   "quadros": [],
   "o_que_e": "O AudioLabGeo é um aplicativo com conteúdos em áudio sobre pontos de interesse histórico, geográfico, social e cultural, acessados pela localização do celular. É como circular por um museu com fones de ouvido. A versão beta, para Android, reúne mais de 300 locais do Rio de Janeiro e de Niterói, em categorias como Endereços Cariocas, História e Memória, Espaços Culturais e Lazer e Esportes.",
   "nome": "AudioLabGeo",
