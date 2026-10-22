@@ -12,7 +12,7 @@ eleventyComputed:
 ---
 {% from "al-macros.njk" import icon, socialIcon, placeholder, equalizer %}
 {% set b = p.nome | brand %}
-{% set logoHeroi = (p.logo | img) or b.logoBranco or b.logo %}
+{% set logoHeroi = (p.logo | img | logoAparado) or b.logoBranco or b.logo %}
 {% set email = p.email or laboratorio.lab_email %}
 {% set sobreTexto = p.o_que_e or p.historia_contexto %}
 {% set equipe = (pessoas | pessoasDoProjeto(p.nome) | limit(6)) if publicacao.pessoas else [] %}

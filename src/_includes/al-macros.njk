@@ -50,7 +50,7 @@
 {% macro placeholder(label, ratio="16-9") %}<div class="dsm-placeholder ratio-{{ ratio }}" role="img" aria-label="Imagem a definir">{{ label }}</div>{% endmacro %}
 
 {# Placa do projeto: logo quando existe, senão a sigla no quadrado de cor. #}
-{% macro projectMark(b, logo, nome, size="md") %}{% set src = logo or b.logo %}{% if src %}<span class="project-mark project-mark--{{ size }} has-logo" style="--mark-bg: {{ b.logoBg }};"><img src="{{ src }}" alt="{{ nome }}" /></span>{% else %}<span class="project-mark project-mark--{{ size }}" aria-hidden="true">{{ b.sigla }}</span>{% endif %}{% endmacro %}
+{% macro projectMark(b, logo, nome, size="md") %}{% set src = (logo | logoAparado) or b.logo %}{% if src %}<span class="project-mark project-mark--{{ size }} has-logo" style="--mark-bg: {{ b.logoBg }};"><img src="{{ src }}" alt="{{ nome }}" /></span>{% else %}<span class="project-mark project-mark--{{ size }}" aria-hidden="true">{{ b.sigla }}</span>{% endif %}{% endmacro %}
 
 {# Faixa de equalizador em largura total, igual à da home. Decorativa. #}
 {% macro equalizer(cols=56, size="lg") %}<div class="eq-zone eq-zone--{{ size }}" data-eq aria-hidden="true"><div class="eq">{% for i in range(0, cols) %}<span class="eq-col"><i style="--h: {{ 30 + (i * 47) % 70 }}%; height: var(--h); animation-duration: {{ (3.4 + (i % 7) * 0.55) | round(2) }}s; animation-delay: -{{ ((i % 11) * 0.32 + (i % 5) * 0.21) | round(2) }}s;"></i></span>{% endfor %}</div></div>{% endmacro %}

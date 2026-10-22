@@ -25,7 +25,39 @@ md.renderer.rules.image = (tokens, idx) => {
   return '<img src="' + md.utils.escapeHtml(src) + '" alt="' + alt + '" loading="lazy" />';
 };
 
+// Logos de projeto sobem com muita margem transparente, então o mesmo
+// tamanho de caixa dá logos de tamanhos diferentes. Antes de cada build
+// os logos dos projetos são aparados (sem margem) em LOGOS_DIR, que é
+// copiado para o site junto de src/assets. O filtro "logoAparado" troca
+// o caminho original pelo aparado, quando existir.
+const LOGOS_DIR = path.join(__dirname, "src/assets/img/logos-aparados");
+const logoAparadoNome = (src) => String(src).replace(/^.*\//, "").replace(/\.[^.]+$/, "").replace(/[^a-z0-9-]+/gi, "-").toLowerCase() + ".png";
+
+async function aparaLogos() {
+  const dir = path.join(__dirname, "content/projetos");
+  fs.rmSync(LOGOS_DIR, { recursive: true, force: true });
+  if (!fs.existsSync(dir)) return;
+  let sharp;
+  try { sharp = require("sharp"); } catch { return; }
+  fs.mkdirSync(LOGOS_DIR, { recursive: true });
+  const logos = new Set();
+  for (const f of fs.readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+    try { const logo = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")).logo; if (logo) logos.add(logo); } catch {}
+  }
+  for (const logo of logos) {
+    const prefix = Object.keys(PUBLIC_DIRS).find((p) => logo.startsWith(p));
+    if (!prefix) continue;
+    const file = path.join(__dirname, PUBLIC_DIRS[prefix], decodeURIComponent(logo.slice(prefix.length)));
+    if (!fs.existsSync(file)) continue;
+    try {
+      await sharp(file).trim({ background: { r: 0, g: 0, b: 0, alpha: 0 }, threshold: 10 }).png().toFile(path.join(LOGOS_DIR, logoAparadoNome(logo)));
+    } catch (e) { console.warn("[logos] não consegui aparar " + logo + ": " + e.message); }
+  }
+}
+
 module.exports = function (eleventyConfig) {
+  eleventyConfig.on("eleventy.before", aparaLogos);
+  eleventyConfig.watchIgnores.add("src/assets/img/logos-aparados/**");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("uploads");
   eleventyConfig.addPassthroughCopy("robots.txt");
@@ -38,6 +70,7 @@ module.exports = function (eleventyConfig) {
   // Devolve o caminho da imagem só se o arquivo existir. Vazio faz o
   // modelo mostrar o espaço marcado: nunca um ícone de imagem quebrada.
   eleventyConfig.addFilter("img", existingImage);
+  eleventyConfig.addFilter("logoAparado", (src) => (src && fs.existsSync(path.join(LOGOS_DIR, logoAparadoNome(src))) ? "/assets/img/logos-aparados/" + logoAparadoNome(src) : src));
   eleventyConfig.addFilter("md", (text) => (text ? md.render(String(text)) : ""));
 
   eleventyConfig.addFilter("slugify", slugify);
