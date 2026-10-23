@@ -392,11 +392,103 @@ button { font: inherit; color: inherit; }
 .site-footer-bottom p { margin: 0; font-size: var(--fs-small); line-height: var(--lh-small); }
 .site-footer-bottom a { color: var(--white); }
 .site-footer-bottom a:hover { color: var(--lime-500); }
-.site-footer .credit a { color: var(--lime-500); text-underline-offset: var(--space-4); }
 @media (max-width: 767px) {
   .site-footer-top { flex-direction: column; align-items: flex-start; }
   .site-footer-bottom { flex-direction: column; }
 }
+
+/* assinatura moldura no rodapé
+   o rodapé recebe a classe "rodape-moldura" (amplo) ou "rodape-moldura faixa" (em faixa) */
+
+.rodape-moldura {
+  position: relative;
+  overflow: hidden;                 /* o símbolo nunca passa da borda do rodapé */
+  --mf-texto: var(--white);         /* cor principal do texto do rodapé */
+  --mf-apoio: var(--petrol-200);    /* cor secundária do rodapé */
+  --mf-fundo: var(--petrol-700);    /* cor de fundo do rodapé */
+  --mf-simbolo: 80px;               /* amplo: 64 a 96 px; em faixa: altura da faixa menos 8 px */
+  --mf-recuo: 0px;                  /* distância do símbolo até a borda; use o padding do rodapé se ele não for de ponta a ponta */
+  --mf-ritmo: 1;                    /* velocidade da animação (1 = normal; no toque fica mais rápida) */
+}
+.rodape-moldura.faixa { --mf-simbolo: 32px; }
+
+/* crédito: rótulo + logotipo, um único link */
+.mf {
+  position: relative; display: inline-flex; align-items: baseline; gap: .45em;
+  min-height: 24px; padding: .75em 1.1em; margin: -.75em -1.1em;
+  color: var(--mf-texto); text-decoration: none; font: inherit; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.mf-rotulo { color: var(--mf-apoio); font-size: .85em; }
+.mf-tipo { height: 1.15em; width: auto; min-height: 12px; align-self: center; transform: translateY(.06em); }
+.mf:focus-visible { outline: 2px solid var(--mf-texto); outline-offset: 2px; }
+/* deixa espaço entre o crédito e o símbolo do canto */
+.rodape-moldura:has(.mf-simbolo) .mf { margin-right: calc(var(--mf-simbolo) + 24px - 1.1em); }
+
+/* símbolo do canto: vértice no canto, na cor do texto misturada ao fundo */
+.mf-simbolo {
+  position: absolute; right: var(--mf-recuo); bottom: var(--mf-recuo);
+  width: var(--mf-simbolo); height: var(--mf-simbolo); pointer-events: none;
+  color: color-mix(in srgb, var(--mf-texto) 15%, var(--mf-fundo));
+}
+.mf-pilha { position: relative; width: 100%; height: 100%; }
+.mf-pilha svg, .mf-quadro svg, .mf-lado svg {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+}
+.mf-pilha svg {
+  transform-origin: 100% 100%;
+  transition: transform calc(.32s * var(--mf-ritmo)) cubic-bezier(.2,.8,.2,1), opacity calc(.25s * var(--mf-ritmo)) ease;
+}
+.mf-pilha svg:nth-child(1) { transition-delay: calc(.12s * var(--mf-ritmo)); }
+.mf-pilha svg:nth-child(2) { transition-delay: calc(.18s * var(--mf-ritmo)); }
+.mf-pilha svg:nth-child(3) { transition-delay: calc(.24s * var(--mf-ritmo)); }
+
+/* amplo: no hover, o símbolo reaparece pequeno no alto, à direita do logotipo */
+.mf-quadro { position: absolute; right: 0; top: 0; width: 1.35em; height: 1.35em; pointer-events: none; color: var(--mf-apoio); }
+
+/* em faixa: no hover, o símbolo reaparece ao lado do logotipo, à direita,
+   um pouco menor que ele e com o filete da mesma largura da haste das letras (afastamento de 2x) */
+.mf-lado { position: absolute; right: -.1em; top: calc(50% - .44em); width: 1em; height: 1em; pointer-events: none; }
+.rodape-moldura:not(.faixa) .mf-lado { display: none; }
+
+.mf-quadro svg, .mf-lado svg {
+  opacity: 0; transform: scale(0); transform-origin: 100% 0;
+  transition: transform calc(.3s * var(--mf-ritmo)) cubic-bezier(.2,.8,.2,1), opacity calc(.2s * var(--mf-ritmo)) ease;
+}
+
+/* hover, foco ou toque: o símbolo do canto se recolhe no vértice e reaparece junto do logotipo, camada por camada */
+.rodape-moldura:has(.mf:hover, .mf:focus-visible, .mf:active) .mf-pilha svg { transform: scale(0); opacity: 0; }
+.rodape-moldura:has(.mf:hover, .mf:focus-visible, .mf:active) .mf-pilha svg:nth-child(3) { transition-delay: 0s; }
+.rodape-moldura:has(.mf:hover, .mf:focus-visible, .mf:active) .mf-pilha svg:nth-child(2) { transition-delay: calc(.05s * var(--mf-ritmo)); }
+.rodape-moldura:has(.mf:hover, .mf:focus-visible, .mf:active) .mf-pilha svg:nth-child(1) { transition-delay: calc(.1s * var(--mf-ritmo)); }
+.mf:is(:hover, :focus-visible, :active) :is(.mf-quadro, .mf-lado) svg { transform: scale(1); opacity: 1; }
+.mf:is(:hover, :focus-visible, :active) :is(.mf-quadro, .mf-lado) svg:nth-child(1) { transition-delay: calc(.14s * var(--mf-ritmo)); }
+.mf:is(:hover, :focus-visible, :active) :is(.mf-quadro, .mf-lado) svg:nth-child(2) { transition-delay: calc(.21s * var(--mf-ritmo)); }
+.mf:is(:hover, :focus-visible, :active) :is(.mf-quadro, .mf-lado) svg:nth-child(3) { transition-delay: calc(.28s * var(--mf-ritmo)); }
+
+/* telas de toque: a mesma animação, no toque, mais rápida */
+@media (hover: none) { .rodape-moldura { --mf-ritmo: .5; } }
+
+/* celular: símbolo do canto menor e logotipo um pouco menor; os símbolos do hover acompanham a proporção */
+@media (max-width: 480px) {
+  .rodape-moldura:not(.faixa) { --mf-simbolo: 64px; }
+  .mf-tipo { height: 1em; }
+  .mf-quadro { width: 1.17em; height: 1.17em; }
+  .mf-lado { width: .87em; height: .87em; top: calc(50% - .38em); }
+}
+
+/* menos movimento: a troca acontece sem deslocamento */
+@media (prefers-reduced-motion: reduce) {
+  .mf-pilha svg, .mf-quadro svg, .mf-lado svg { transition: none !important; }
+}
+
+/* integração com o rodapé do AudioLab */
+.site-footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-24); }
+.site-footer-bottom a.mf, .site-footer-bottom a.mf:hover { color: var(--mf-texto); }
+/* sinal de que o crédito é clicável: logotipo levemente translúcido, opaco no hover/foco/toque */
+.mf-tipo { opacity: .7; transition: opacity .2s ease; }
+.mf:is(:hover, :focus-visible, :active) .mf-tipo { opacity: 1; }
+@media (max-width: 767px) { .site-footer-right { align-items: flex-start; } }
 
 /* ── equalizador em largura total (identidade da home) ────── */
 .eq-zone { position: relative; flex: none; width: 100%; height: var(--eq-h-md); }
