@@ -91,10 +91,10 @@ eleventyComputed:
 <script>
 (function () {
   var url = window.location.href;
-  var titulo = document.title;
+  var manchete = document.querySelector("h1").textContent.trim();
   var aviso = document.querySelector("[data-share-copied]");
   var destinos = {
-    whatsapp: "https://wa.me/?text=" + encodeURIComponent(titulo + " " + url),
+    whatsapp: "https://wa.me/?text=" + encodeURIComponent(manchete + "\n\nVeja notícia completa em: " + url),
     linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(url)
   };
   document.querySelectorAll("[data-share]").forEach(function (btn) {

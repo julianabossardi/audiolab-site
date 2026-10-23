@@ -865,8 +865,8 @@ a.episode-row svg { flex: none; margin-left: auto; color: var(--petrol-600); }
 }
 
 /* Highlight (DSM): notícia mais recente, texto à esquerda e imagem 16:9 à direita */
-.highlight-card { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); background: var(--white); border: var(--hairline) solid var(--petrol-200); border-radius: var(--radius); overflow: hidden; }
-.highlight-card-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-12); padding: var(--space-40); }
+.highlight-card { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--white); border: var(--hairline) solid var(--petrol-200); border-radius: var(--radius); overflow: hidden; }
+.highlight-card-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-12); padding: var(--space-32); }
 .highlight-card h3 { margin: 0; font-size: var(--fs-h3); line-height: var(--lh-h3); font-weight: var(--fw-h3); color: var(--petrol-800); }
 .highlight-card h3 a { color: inherit; text-decoration: none; }
 .highlight-card h3 a::after { content: ""; position: absolute; inset: 0; }
@@ -879,6 +879,7 @@ a.episode-row svg { flex: none; margin-left: auto; color: var(--petrol-600); }
 .eyebrow { display: inline-flex; align-items: center; gap: var(--space-6); font-family: var(--font-display); font-size: var(--fs-eyebrow); line-height: var(--lh-eyebrow); font-weight: var(--fw-eyebrow); color: var(--petrol-600); }
 .news-date { display: inline-flex; align-items: center; gap: var(--space-6); font-size: var(--fs-small); color: var(--petrol-500); }
 
+.news-more { display: flex; justify-content: center; margin-top: var(--space-32); }
 .news-compact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-20); margin-top: var(--space-20); }
 .news-compact-item { position: relative; display: flex; flex-direction: column; gap: var(--space-12); padding: var(--space-12) var(--space-12) var(--space-16); background: var(--white); border: var(--hairline) solid var(--petrol-200); border-radius: var(--radius); }
 .news-compact-img { aspect-ratio: 16 / 9; background: var(--petrol-100); border-radius: var(--radius); overflow: hidden; }
