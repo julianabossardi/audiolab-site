@@ -56,6 +56,11 @@
       "titulo": "Mergulhando – Ep. 11: Geraldo Condé | AudioLab UERJ",
       "link": "https://www.youtube.com/watch?v=QpDYcudIr6U&list=PLoIMbOD4p4QSsdiRKuyOmlk25g-JgHgfG&index=1",
       "data": "17/09/2025"
+    },
+    {
+      "titulo": "Mergulhando – Ep. 12: Ricardo Benevides | AudioLab UERJ",
+      "link": "https://www.youtube.com/watch?v=d-A5diABx7g",
+      "data": "29/10/2026"
     }
   ],
   "ordem": 6,
@@ -72,7 +77,7 @@
   "email": "",
   "estatisticas": [
     {
-      "numero": "11",
+      "numero": "12",
       "rotulo": "episódios"
     },
     {
