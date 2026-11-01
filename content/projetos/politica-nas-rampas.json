@@ -1,21 +1,22 @@
 {
   "historia_contexto": "",
-  "ano_inicio": "",
+  "ano_inicio": "2026",
   "conteudos": [],
   "ordem": 7,
   "fale_com_o_projeto": "",
   "logo": "/uploads/politica-nas-rampas-2-.png",
-  "tagline": "[Frase de resumo a escrever.]",
-  "coordenacao": "",
+  "tagline": "As  rampas da UERJ conectam. Um sobe e desce que aproxima pessoas. A politica também pode ser vista como essas rampas sociais que conectam mundos.",
+  "coordenacao": "Filipe Mostaro",
   "capa": "",
   "quadros": [],
-  "o_que_e": "",
+  "o_que_e": "A política, assim como a UERJ, é feita de conexões que levam de um prédio para o outro, um sobe e desce que aproxima mundos que pareciam distantes. Rampas que ligam bloco a bloco, também ligam o poder e o povo.\n\nÉ por isso que esse podcast se chama Política nas Rampas. Aqui você vai subir e descer com a gente pelos bastidores da eleição presidencial de 2026, entender quem são os candidatos,quais são suas propostas e o que está em jogo pro país.\n\nPolítica nas Rampas é mais uma produção com o selo de qualidade do AudioLab UERJ. Bora falar de política?",
   "nome": "Política nas Rampas",
-  "tag": "",
+  "tag": "Jornalismo",
   "video": "",
   "email": "",
   "estatisticas": [],
   "redes": {
-    "youtube": "https://www.youtube.com/watch?v=z-qbM2WUpPU"
+    "youtube": "https://www.youtube.com/watch?v=z-qbM2WUpPU",
+    "instagram": "https://www.instagram.com/politicanasrampas/"
   }
 }
