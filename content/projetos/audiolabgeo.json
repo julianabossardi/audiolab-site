@@ -1,6 +1,25 @@
 {
+  "nome": "AudioLabGeo",
+  "ordem": 8,
+  "tagline": "Um aplicativo que conta, em áudio, a história de mais de 300 lugares do Rio de Janeiro e de Niterói.",
+  "tag": "Cultura",
+  "o_que_e": "O AudioLabGeo é um aplicativo com conteúdos em áudio sobre pontos de interesse histórico, geográfico, social e cultural, acessados pela localização do celular. É como circular por um museu com fones de ouvido. A versão beta, para Android, reúne mais de 300 locais do Rio de Janeiro e de Niterói, em categorias como Endereços Cariocas, História e Memória, Espaços Culturais e Lazer e Esportes.",
   "historia_contexto": "O aplicativo foi desenvolvido pelo AudioLab com o Laboratório de Ciências da Computação do IME, ambos Unidades de Desenvolvimento Tecnológico da UERJ. Desde 2018, o projeto tem parceria com a ECO/UFRJ na produção de conteúdo. Os episódios também estão no podcast AudioLab Geo, no Spotify, e desde 2023 fazem parte da Revista AudioLab.",
+  "fale_com_o_projeto": "Conhece um lugar do Rio ou de Niterói com uma boa história? Sugira para o AudioLabGeo.",
+  "coordenacao": "Gisele Sobral",
   "ano_inicio": "2012",
+  "email": "",
+  "redes": {},
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+300",
+      "rotulo": "locais no Rio e em Niterói"
+    }
+  ],
+  "logo": "",
+  "capa": "",
+  "quadros": [],
   "conteudos": [
     {
       "titulo": "Estádio do Maracanã | AudioLab Geo #1",
@@ -151,25 +170,196 @@
       "data": "07/10/2026",
       "titulo": "Academia Brasileira de Letras | AudioLab Geo #30",
       "link": "https://open.spotify.com/episode/1k1BoXWN28lRQxhZlEbEEJ?si=f2Y8_27yTGKkOidf328R8g"
-    }
-  ],
-  "ordem": 3,
-  "fale_com_o_projeto": "Conhece um lugar do Rio ou de Niterói com uma boa história? Sugira para o AudioLabGeo.",
-  "logo": "/uploads/design-sem-nome-8-.png",
-  "tagline": "Um aplicativo que conta, em áudio, a história de mais de 300 lugares do Rio de Janeiro e de Niterói.",
-  "coordenacao": "Gisele Sobral",
-  "capa": "",
-  "quadros": [],
-  "o_que_e": "O AudioLabGeo é um aplicativo com conteúdos em áudio sobre pontos de interesse histórico, geográfico, social e cultural, acessados pela localização do celular. É como circular por um museu com fones de ouvido. A versão beta, para Android, reúne mais de 300 locais do Rio de Janeiro e de Niterói, em categorias como Endereços Cariocas, História e Memória, Espaços Culturais e Lazer e Esportes.",
-  "nome": "AudioLabGeo",
-  "tag": "Cultura",
-  "video": "",
-  "email": "",
-  "estatisticas": [
+    },
     {
-      "numero": "+300",
-      "rotulo": "locais no Rio e em Niterói"
+      "data": "08/10/2026",
+      "link": "https://open.spotify.com/episode/327wSc5DoNygLi8PzUuGhE?si=3NK_zuRzTVqPCjDaanygXg",
+      "titulo": "Lagoa Rodrigo de Freitas | AudioLab Geo #31"
+    },
+    {
+      "data": "08/10/2026",
+      "link": "https://open.spotify.com/episode/30Jx3peT09CZBHTatOu5Xo?si=FE-E5vCHS8WY5d_BMAGE4Q",
+      "titulo": "Salgueiro | AudioLab #Geo 32"
+    },
+    {
+      "data": "09/10/2026",
+      "titulo": "Museu de Arte do Rio | AudioLab Geo #33",
+      "link": "https://open.spotify.com/episode/5T6YTOazzybjPSpjMc8Nv6?si=j9ODr9zzTm6IbpRcosEd5g"
+    },
+    {
+      "data": "09/10/2026",
+      "titulo": "Rua do Lavradio | AudioLab Geo #34",
+      "link": "https://open.spotify.com/episode/0hNHadGdUOzsPYwFjwG7s4?si=WeJlFuTYRmWPoHnKGD2K_g"
+    },
+    {
+      "data": "\t 11/10/2026",
+      "titulo": "CCPJ | AudioLab Geo #37",
+      "link": "https://open.spotify.com/episode/3aTjh2TzmvnOlDTEe3lHaw?si=VhL7_HfgT1etWHqh4GeDbg"
+    },
+    {
+      "data": "\t 11/10/2026",
+      "titulo": "Teatro Armando Gonzaga | AudioLab Geo #38",
+      "link": "https://open.spotify.com/episode/6oCt4lEK5WmGcTMbB8Q8eQ?si=x0KwNwPAR264E_g2SZ47-g"
+    },
+    {
+      "titulo": "Museu do Amanhã | AudioLab Geo #39",
+      "link": "https://open.spotify.com/episode/6SUlKuf9ttZXFvE6qayFfE?si=NKXoQfBlSlWw9IaqYKk0Ww",
+      "data": "\t 12/10/2026"
+    },
+    {
+      "data": "13/10/2026",
+      "titulo": "Palácio Duque de Caxias | AudioLab Geo #41",
+      "link": "https://open.spotify.com/episode/3XVbVnCz4FGRc4gMxYV2Fd?si=txhqMzb1TduKfZlmGS6Plg"
+    },
+    {
+      "titulo": "Museu do Samba | AudioLab Geo #42",
+      "link": "https://open.spotify.com/episode/1vc7HwEy9xcHYMxYuAagyz?si=6-5uOHFMTByy7h8vDJX1qQ",
+      "data": "13/10/2026"
+    },
+    {
+      "data": "14/10/2026",
+      "titulo": "Praça da Cantareira | AudioLab Geo #44",
+      "link": "https://open.spotify.com/episode/1bTonRrXK1czu5xN0e2otd?si=Xa-4bW-KRsOtKbBpLK5zFQ"
+    },
+    {
+      "data": "15/10/2026",
+      "link": "https://open.spotify.com/episode/0tQ2CV0T3YIch3gPoC325R?si=jDn-baEwS1SaszVFOJhNRw",
+      "titulo": "Rua do Ouvidor | AudioLab Geo #45"
+    },
+    {
+      "data": "15/10/2026",
+      "titulo": "COBAL | AudioLab Geo #46",
+      "link": "https://open.spotify.com/episode/2yyqpQqirGQAdXTD0LooKm?si=fK1RnfaySz2PRFrTRqygYA"
+    },
+    {
+      "data": "16/10/2026",
+      "link": "https://open.spotify.com/episode/3Su37hYXehi04CemmvWLkT?si=NjBOxQgmSAauDdbddX7b7w",
+      "titulo": "Praça dos Cavalinhos | AudioLab Geo #47"
+    },
+    {
+      "data": "16/10/2026",
+      "titulo": "Fundição Progresso | AudioLab Geo #48",
+      "link": "https://open.spotify.com/episode/0etoamgdFxCDFWCGD7V55o?si=FwSuKrd8S02r1yUjAv-xBA"
+    },
+    {
+      "data": "17/10/2026",
+      "titulo": "Museu Naval | AudioLab Geo #49",
+      "link": "https://open.spotify.com/episode/4JdhfTOYgjYbZbn0HPLasP?si=K9r68QnnSvyCXoAp1tEPaw"
+    },
+    {
+      "data": "17/10/2026",
+      "titulo": "Instituto Moreira Salles | AudioLab Geo #50",
+      "link": "https://open.spotify.com/episode/5vUYdUkGOzYLyJhXM5Tm5m?si=YNY0pjefQLyKQUIzq39eew"
+    },
+    {
+      "data": "\t 18/10/2026",
+      "titulo": "Base Aérea de Santa Cruz | AudioLab Geo #51",
+      "link": "https://open.spotify.com/episode/31xjlh79eF1JdiKZTmy4Se?si=26dkO0TcRQS1G6UmdNXTrQ"
+    },
+    {
+      "data": "\t 18/10/2026",
+      "titulo": "Bar Amarelinho | AudioLab Geo #52",
+      "link": "https://open.spotify.com/episode/6NNyZlI0AIUCcvey8N3EJq?si=GHvn9w5pQaWoWA0VclMI-A"
+    },
+    {
+      "data": "19/10/2026",
+      "link": "https://open.spotify.com/episode/4gdl7Bof8S3DXcZQihDKvj?si=MNGzCcLKRMmaRVX5rLkoAQ",
+      "titulo": "Palácio Tiradentes | AudioLab Geo #53"
+    },
+    {
+      "data": "19/10/2026",
+      "titulo": "Forte do Leme | AudioLab Geo #54",
+      "link": "https://open.spotify.com/episode/76tBROYXnWRU9LwrVN0D7Q?si=AtpvJpbIRlaCz7YI0ZAF5A"
+    },
+    {
+      "data": "20/10/2026",
+      "titulo": "Botafogo | AudioLab Geo #55",
+      "link": "https://open.spotify.com/episode/0aebpXDcMwilsZ7iZWYNTG?si=Zqm7F3SNQgqymTUgK74SJA"
+    },
+    {
+      "data": "20/10/2026",
+      "titulo": "Cais do Valongo | AudioLab Geo #56",
+      "link": "https://open.spotify.com/episode/52zZ47da0VsOBRbeuCcMVR?si=X2_7dGgHTqaIHylqdAv9wA"
+    },
+    {
+      "titulo": "Bangu |AudioLab Geo #57",
+      "data": "21/10/2026",
+      "link": "https://open.spotify.com/episode/1j5NZ9K1iHt6XhVzJzxdsn?si=PGJcfZhTRqmBL6ry0VKaMQ"
+    },
+    {
+      "data": "21/10/2026",
+      "titulo": "Fluminense | AudioLab Geo #58",
+      "link": "https://open.spotify.com/episode/4FDktqSKgvcz01KlZTjsP5?si=kOizl0FFRJC9yrtiJ418SQ"
+    },
+    {
+      "data": "22/10/2026",
+      "titulo": "Vasco da Gama | AudioLab Geo #59",
+      "link": "https://open.spotify.com/episode/5E8nJyVIpdTrfwOW6ot3he?si=fkKk81KES7-Bb_hPZkm00A"
+    },
+    {
+      "data": "22/10/2026",
+      "titulo": "América | AudioLab Geo #60",
+      "link": "https://open.spotify.com/episode/7qnO1W8yqN0Kvcxnc1weO0?si=xi0eXtUeTm2m2lLB4cipQg"
+    },
+    {
+      "data": "23/10/2026",
+      "titulo": "Igreja Nossa Senhora da Penha | AudioLab Geo #61",
+      "link": "https://open.spotify.com/episode/33fXaRbGNYHZeNFLAlTU8R?si=Uw6wvYBoSKCv-IxFR3EQyg"
+    },
+    {
+      "data": "23/10/2026",
+      "titulo": "Mosteiro de São Bento | AudioLab Geo #62",
+      "link": "https://open.spotify.com/episode/3oeumty5quLdEQnzQPeC1D?si=ta6F77M9TPecixi34G4Dxg"
+    },
+    {
+      "data": "24/10/2026",
+      "titulo": "Ilha das Flores | AudioLab Geo #63",
+      "link": "https://open.spotify.com/episode/3OYUFl7mTM4MqFfKnIOcm8?si=5unYgPsJTxitRQWgGE3e4w"
+    },
+    {
+      "data": "24/10/2026",
+      "titulo": "Vista Chinesa | AudioLab Geo #64",
+      "link": "https://open.spotify.com/episode/7gOXqiB4ziccihHdAH66m2?si=u466piqLQpiyb3jtbAxDVw"
+    },
+    {
+      "data": "25/10/2026",
+      "titulo": "Estátua Clarice Lispector | AudioLab Geo #65",
+      "link": "https://open.spotify.com/episode/2MtYiKqqyqgSeKkmO6Iu4C?si=ZmSqlqpGRvKygrZR-INCLg"
+    },
+    {
+      "data": "25/10/2026",
+      "titulo": "Morro da Urca | AudioLab Geo #66",
+      "link": "https://open.spotify.com/episode/1wp0q6uD6FU4LY5gROQqvL?si=VmYQVMebS4CD3rjhSa0tSw"
+    },
+    {
+      "data": "26/10/2026",
+      "titulo": "Parque do Bosque da Barra | AudioLab Geo #67",
+      "link": "https://open.spotify.com/episode/51Ps4BPmCgwHGVmW6LPEkU?si=v6-dCER5Q0Kb5shN8fpSZg"
+    },
+    {
+      "data": "27/10/2026",
+      "titulo": "Adega Flor de Coimbra | AudioLab Geo #68",
+      "link": "https://open.spotify.com/episode/5GTUEBTS5MYTi2cOdfum29?si=gSvySPHuTIieqls_K7AZcw"
+    },
+    {
+      "data": "28/10/2026",
+      "titulo": "Praça Tiradentes | AudioLab Geo #69",
+      "link": "https://open.spotify.com/episode/17dmgiM0jojijKSyVQfkp8?si=5bG1zmqNTNi95fA-IBRS4w"
+    },
+    {
+      "data": "29/10/2026",
+      "titulo": "Cidade do Samba | AudioLab Geo #70",
+      "link": "https://open.spotify.com/episode/3oSZrRLXgsaxEKhKiP1G8B?si=NRP5fqroSkSOSPdTxFNMcw"
+    },
+    {
+      "data": "31/10/2026",
+      "titulo": "Igreja Nossa Senhora da Candelária | AudioLab Geo #71",
+      "link": "https://open.spotify.com/episode/3F4K9kXPiUiHOyw6ys6GCf?si=f8CxNKceRNyMt9l1Cj5FmA"
+    },
+    {
+      "data": "01/11/2026",
+      "link": "https://open.spotify.com/episode/4F6quD2KdGlhCl18TXdabp?si=5wU1m1QDSDyZJIRCSL5nOA",
+      "titulo": "Museu do Índio | AudioLab Geo #72"
     }
-  ],
-  "redes": {}
+  ]
 }
