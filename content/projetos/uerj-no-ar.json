@@ -1,6 +1,31 @@
 {
+  "nome": "UERJ no Ar",
+  "ordem": 9,
+  "tagline": "Notícias da UERJ em áudio para rádios comunitárias e educativas de todo o país.",
+  "tag": "Jornalismo",
+  "o_que_e": "O UERJ no Ar produz notícias e conteúdos educativos em áudio, distribuídos pela internet para rádios comunitárias e educativas de todo o Brasil. O noticiário acompanha a UERJ e seus eventos, com foco em inclusão social e em divulgação científica, tecnológica e de extensão. É feito por estudantes de Jornalismo e Relações Públicas no AudioLab.",
   "historia_contexto": "O projeto parte da ideia de que o rádio ajuda na inclusão social e na difusão do conhecimento, e de que o acesso à informação precisa ser democrático. Desde 2015, publicou mais de 450 matérias, e 80% das unidades da UERJ já foram notícia no programa.",
+  "fale_com_o_projeto": "Sua unidade tem uma notícia? Fale com a equipe do UERJ no Ar. Rádios podem baixar as matérias de graça no RadioTube.",
+  "coordenacao": "Gisele Sobral",
   "ano_inicio": "2015",
+  "email": "",
+  "redes": {
+    "spotify": "https://open.spotify.com/show/6sRbfbl0COb8x7hRRitMdJ?si=e791a8bea6bd4dfa"
+  },
+  "video": "",
+  "estatisticas": [
+    {
+      "numero": "+450",
+      "rotulo": "matérias desde 2015"
+    },
+    {
+      "numero": "80%",
+      "rotulo": "das unidades da UERJ já noticiadas"
+    }
+  ],
+  "logo": "/uploads/logo-uerj-no-ar-9-.png",
+  "capa": "",
+  "quadros": [],
   "conteudos": [
     {
       "link": "https://open.spotify.com/episode/2IKKWJDd8rKeBHfIty4mKX?si=1bH_MVofReyNS-YYKcdYVA",
@@ -29,31 +54,10 @@
     {
       "titulo": "E-book “Princípios básicos da vida saudável” traz abordagem integrada e prática sobre alimentação, atividade física e higiene do sono aos uerjianos",
       "link": "https://open.spotify.com/episode/3ROMZdFJDRXCeDdUfY5hd9?si=nb8Qj6L1T3ODkHuw_rt9aw&utm_source=copy-link"
-    }
-  ],
-  "ordem": 9,
-  "fale_com_o_projeto": "Sua unidade tem uma notícia? Fale com a equipe do UERJ no Ar. Rádios podem baixar as matérias de graça no RadioTube.",
-  "logo": "/uploads/logo-uerj-no-ar-9-.png",
-  "tagline": "Notícias da UERJ em áudio para rádios comunitárias e educativas de todo o país.",
-  "coordenacao": "Gisele Sobral",
-  "capa": "",
-  "quadros": [],
-  "o_que_e": "O UERJ no Ar produz notícias e conteúdos educativos em áudio, distribuídos pela internet para rádios comunitárias e educativas de todo o Brasil. O noticiário acompanha a UERJ e seus eventos, com foco em inclusão social e em divulgação científica, tecnológica e de extensão. É feito por estudantes de Jornalismo e Relações Públicas no AudioLab.",
-  "nome": "UERJ no Ar",
-  "tag": "Jornalismo",
-  "video": "",
-  "email": "",
-  "estatisticas": [
-    {
-      "numero": "+450",
-      "rotulo": "matérias desde 2015"
     },
     {
-      "numero": "80%",
-      "rotulo": "das unidades da UERJ já noticiadas"
+      "link": "https://open.spotify.com/episode/4qteYhE2tpAxpKwctpBUVt?si=d9if1JLxTvqZq4WUUUopkA",
+      "titulo": "Restaurante Universitário da Uerj Maracanã comemora 15 anos de inauguração"
     }
-  ],
-  "redes": {
-    "spotify": "https://open.spotify.com/show/6sRbfbl0COb8x7hRRitMdJ?si=e791a8bea6bd4dfa"
-  }
+  ]
 }
