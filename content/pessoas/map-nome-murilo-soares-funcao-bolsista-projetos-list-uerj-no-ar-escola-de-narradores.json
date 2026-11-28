@@ -1,9 +1,10 @@
 {
   "nome": "Murilo Soares ",
+  "ordem": 17,
   "funcao": "Bolsista ",
   "projetos": [
     "UERJ no Ar",
-    "Escola de Narradores"
-  ],
-  "ordem": 17
+    "Escola de Narradores",
+    "Ateliê do Podcast"
+  ]
 }
